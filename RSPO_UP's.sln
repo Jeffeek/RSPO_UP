@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSPO_UP_1", "RSPO_UP_1\RSPO_UP_1.csproj", "{B4901C82-7E8A-429B-9106-F86E4928F84C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSPO_UP_2", "RSPO_UP_2\RSPO_UP_2.csproj", "{5F6741A6-544E-4ABD-BF57-930CFC895360}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4901C82-7E8A-429B-9106-F86E4928F84C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4901C82-7E8A-429B-9106-F86E4928F84C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4901C82-7E8A-429B-9106-F86E4928F84C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4901C82-7E8A-429B-9106-F86E4928F84C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F6741A6-544E-4ABD-BF57-930CFC895360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F6741A6-544E-4ABD-BF57-930CFC895360}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F6741A6-544E-4ABD-BF57-930CFC895360}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F6741A6-544E-4ABD-BF57-930CFC895360}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F0C76F90-239A-4813-8E34-89B9DA2D3546}
+	EndGlobalSection
+EndGlobal

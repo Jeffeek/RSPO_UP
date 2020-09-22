@@ -1,0 +1,10 @@
+E:\projectsVS\RSPO_UP_1\RSPO_UP_1\obj\Debug\RSPO_UP_1.csproj.CoreCompileInputs.cache
+E:\projectsVS\RSPO_UP_1\RSPO_UP_1\bin\Debug\RSPO_UP_1.exe.config
+E:\projectsVS\RSPO_UP_1\RSPO_UP_1\bin\Debug\RSPO_UP_1.exe
+E:\projectsVS\RSPO_UP_1\RSPO_UP_1\bin\Debug\RSPO_UP_1.pdb
+E:\projectsVS\RSPO_UP_1\RSPO_UP_1\obj\Debug\RSPO_UP_1.csproj.CopyComplete
+E:\projectsVS\RSPO_UP_1\RSPO_UP_1\obj\Debug\RSPO_UP_1.exe
+E:\projectsVS\RSPO_UP_1\RSPO_UP_1\obj\Debug\RSPO_UP_1.pdb
+E:\projectsVS\RSPO_UP_1\RSPO_UP_1\bin\Debug\Newtonsoft.Json.dll
+E:\projectsVS\RSPO_UP_1\RSPO_UP_1\bin\Debug\Newtonsoft.Json.xml
+E:\projectsVS\RSPO_UP_1\RSPO_UP_1\bin\Debug\MoviesList.json
