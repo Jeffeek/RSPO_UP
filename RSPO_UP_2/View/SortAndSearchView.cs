@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using RSPO_UP_2.Algorithms.SortingCollection;
 
 namespace RSPO_UP_2.View
@@ -47,6 +48,8 @@ namespace RSPO_UP_2.View
             Console.WriteLine("2. Сортировка по количеству");
             Console.WriteLine("3. Сортировка по названию категории");
             Console.WriteLine("4. Сортировка по названию");
+            Console.WriteLine("5. Сортировка по цене(ввод с клавиатуры диапазона)");
+            Console.WriteLine("6. Сортировка по названию(ввод с клавиатуры)");
             if (int.TryParse(Console.ReadLine(), out int answer))
             {
                 switch (answer)
@@ -74,28 +77,53 @@ namespace RSPO_UP_2.View
                         sortBoots.SortByName();
                         break;
                     }
+
+                    case 5:
+                    {
+                        Console.WriteLine("Введите диапазон в формате: x-y");
+                        string range = Console.ReadLine();
+                        var ints = range?.Split('-').Select(int.Parse).ToArray();
+                        sortBoots.SortByTypedPrice(ints[0],ints[1]);
+                        break;
+                    }
+
+                    case 6:
+                    {
+                        Console.WriteLine("Введите название товара");
+                        string name = Console.ReadLine();
+                        sortBoots.SortByTypedName(name);
+                        break;
+                    }
                 }
             }
         }
 
         private void CategorySorting()
         {
-            var sortBoots = new SortingCollectionCategory();
+            var sortCategory = new SortingCollectionCategory();
             Console.WriteLine("1. Сортировка по названию");
             Console.WriteLine("2. Сортировка по гарантийному сроку");
+            Console.WriteLine("3. Найти категорию по названию");
             if (int.TryParse(Console.ReadLine(), out int answer))
             {
                 switch (answer)
                 {
                     case 1:
                     {
-                        sortBoots.SortByCategoryName();
+                        sortCategory.SortByCategoryName();
                         break;
                     }
 
                     case 2:
                     {
-                        sortBoots.SortByGuaranteePeriod();
+                        sortCategory.SortByGuaranteePeriod();
+                        break;
+                    }
+
+                    case 3:
+                    {
+                        string name = Console.ReadLine();
+                        sortCategory.SortByTypedCategoryName(name);
                         break;
                     }
                 }
@@ -104,29 +132,48 @@ namespace RSPO_UP_2.View
 
         private void SaleSorting()
         {
-            var sortBoots = new SortingCollectionSale();
+            var sortSale = new SortingCollectionSale();
             Console.WriteLine("1. Сортировка по дате");
             Console.WriteLine("2. Сортировка по скидке");
             Console.WriteLine("3. Сортировка по количеству товара");
+            Console.WriteLine("4. Сортировка по скидке(ввод с клавиатуры, формат: x-y");
+            Console.WriteLine("5. Сортировка по скидке(ввод с клавиатуры");
             if (int.TryParse(Console.ReadLine(), out int answer))
             {
                 switch (answer)
                 {
                     case 1:
                     {
-                        sortBoots.SortByDate();
+                        sortSale.SortByDate();
                         break;
                     }
 
                     case 2:
                     {
-                        sortBoots.SortByDiscount();
+                        sortSale.SortByDiscount();
                         break;
                     }
 
                     case 3:
                     {
-                        sortBoots.SortByCount();
+                        sortSale.SortByCount();
+                        break;
+                    }
+
+                    case 4:
+                    {
+                        Console.WriteLine("Введите скидку в формате: x-y");
+                        string range = Console.ReadLine();
+                        var ints = range.Split('-').Select(int.Parse).ToArray();
+                        sortSale.SortByTypedRangeDiscount(ints[0], ints[1]);
+                        break;
+                    }
+
+                    case 5:
+                    {
+                        Console.WriteLine("Введите скидку в формате");
+                        var discount = int.Parse(Console.ReadLine());
+                        sortSale.SortByTypedDiscount(discount);
                         break;
                     }
                 }

@@ -12,6 +12,13 @@ namespace RSPO_UP_2.Algorithms.SortingCollection
             ShowInfoView.PrintList(sortedList);
         }
 
+        public void SortByTypedPrice(int start, int finish)
+        {
+            var list = DbCollectionHelper.GetBoots();
+            var sortedList = list.FindAll(x => x.Price >= start && x.Price <= finish);
+            ShowInfoView.PrintList(sortedList);
+        }
+
         public void SortByCount()
         {
             var list = DbCollectionHelper.GetBoots();
@@ -30,6 +37,13 @@ namespace RSPO_UP_2.Algorithms.SortingCollection
         {
             var list = DbCollectionHelper.GetBoots();
             var sortedList = list.OrderBy(x => x.ProductName);
+            ShowInfoView.PrintList(sortedList);
+        }
+
+        public void SortByTypedName(string name)
+        {
+            var list = DbCollectionHelper.GetBoots();
+            var sortedList = list.FindAll(x => x.ProductName == name);
             ShowInfoView.PrintList(sortedList);
         }
     }

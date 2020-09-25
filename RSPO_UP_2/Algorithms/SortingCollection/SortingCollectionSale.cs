@@ -26,5 +26,14 @@ namespace RSPO_UP_2.Algorithms.SortingCollection
             var sortedList = list.OrderBy(x => x.Count);
             ShowInfoView.PrintList(sortedList);
         }
+
+        public void SortByTypedRangeDiscount(int start, int end)
+        {
+            var list = DbCollectionHelper.GetSales();
+            var sortedList = list.FindAll(x => x.Discount >= start && x.Discount <= end);
+            ShowInfoView.PrintList(sortedList);
+        }
+
+        public void SortByTypedDiscount(int discount) => SortByTypedRangeDiscount(discount, discount);
     }
 }
