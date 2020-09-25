@@ -1,0 +1,78 @@
+[
+  {
+    "Id": 1,
+    "Text": "ты пидор?",
+    "_rightAnswerVariants": 
+    [
+      {
+      "Text": "да",
+      "IsRight": true
+      },
+      {
+        "Text": "конечно",
+        "IsRight": true
+      }
+    ],
+    "_answers": 
+    [
+      {
+        "Text": "да",
+        "IsRight": true
+      },
+      {
+        "Text": "нет",
+        "IsRight": false
+      },
+      {
+        "Text": "конечно",
+        "IsRight": true
+      },
+      {
+        "Text": "блять",
+        "IsRight": false
+      },
+      {
+        "Text": "конечно нет",
+        "IsRight": false
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "Text": "точно?",
+    "_rightAnswerVariants": 
+    [
+      {
+      "Text": "ДА!!!",
+      "IsRight": true
+      },
+      {
+        "Text": "ДА НАХУЙ",
+        "IsRight": true
+      }
+    ],
+    "_answers": 
+    [
+      {
+        "Text": "ДА НАХУЙ",
+        "IsRight": true
+      },
+      {
+        "Text": "Я не уверен(",
+        "IsRight": false
+      },
+      {
+        "Text": "ДА!!!",
+        "IsRight": true
+      },
+      {
+        "Text": "буль буль",
+        "IsRight": false
+      },
+      {
+        "Text": "САМ ИДИ ТЫ ПИДОР!",
+        "IsRight": false
+      }
+    ]
+  }
+]

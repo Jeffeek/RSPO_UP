@@ -25,7 +25,7 @@ namespace RSPO_UP_3.Collections
 
                 return questions;
             }
-            catch ()
+            catch
             {
                 Application.Current.Shutdown(0);
                 throw new FileLoadException();

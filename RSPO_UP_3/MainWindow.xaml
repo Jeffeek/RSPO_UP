@@ -25,12 +25,12 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Text="Супер-тест" FontSize="35" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontStretch="SemiExpanded"/>
-        <TextBlock x:Name="txtBlockQuestionText" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Text="question_text" TextAlignment="Center" FontSize="18"/>
-        <CheckBox Content="AnswerText" Grid.Column="0" Grid.Row="3" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4"/>
-        <CheckBox Content="AnswerText" Grid.Column="0" Grid.Row="4" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4"/>
-        <CheckBox Content="AnswerText" Grid.Column="0" Grid.Row="5" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4"/>
-        <CheckBox Content="AnswerText" Grid.Column="0" Grid.Row="6" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4"/>
-        <CheckBox Content="AnswerText" Grid.Column="0" Grid.Row="7" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Height="50" Grid.RowSpan="2"/>
-        <Button Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="Apply" FontSize="25" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"/>
+        <TextBlock x:Name="txtQuestionText" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Text="question_text" TextAlignment="Center" FontSize="18"/>
+        <CheckBox x:Name="checkBox_1" Content="AnswerText" Grid.Column="0" Grid.Row="3" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <CheckBox x:Name="checkBox_2" Content="AnswerText" Grid.Column="0" Grid.Row="4" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <CheckBox x:Name="checkBox_3" Content="AnswerText" Grid.Column="0" Grid.Row="5" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <CheckBox x:Name="checkBox_4" Content="AnswerText" Grid.Column="0" Grid.Row="6" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <CheckBox x:Name="checkBox_5" Content="AnswerText" Grid.Column="0" Grid.Row="7" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <Button x:Name="ButtonApply"  Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="Apply" FontSize="25" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="BtnApply_Click"/>
     </Grid>
 </Window>
