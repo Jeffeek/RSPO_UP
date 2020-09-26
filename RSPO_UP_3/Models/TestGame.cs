@@ -30,11 +30,11 @@ namespace RSPO_UP_3.Models
             return _questions[currentIndex + 1];
         }
 
-        public void CheckForWin(CheckBox pressedCheckBox_1, CheckBox pressedCheckBox_2)
+        public void CheckForWin(string pressedContent1, string pressedContent2)
         {
             var currectAnswers = CurrentQuestion._rightAnswerVariants;
-            AnswerVariant p1 = new AnswerVariant() { Text = pressedCheckBox_1.Content.ToString()};
-            AnswerVariant p2 = new AnswerVariant() { Text = pressedCheckBox_2.Content.ToString() };
+            AnswerVariant p1 = new AnswerVariant() { Text = pressedContent1 };
+            AnswerVariant p2 = new AnswerVariant() { Text = pressedContent2 };
             if (currectAnswers[0].Equals(p1) || currectAnswers[0].Equals(p2))
             {
                 if (currectAnswers[1].Equals(p1) || currectAnswers[1].Equals(p2))

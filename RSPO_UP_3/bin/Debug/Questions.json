@@ -1,78 +1,171 @@
-[
-  {
-    "Id": 1,
-    "Text": "ты пидор?",
-    "_rightAnswerVariants": 
-    [
-      {
-      "Text": "да",
-      "IsRight": true
-      },
-      {
-        "Text": "конечно",
-        "IsRight": true
-      }
-    ],
-    "_answers": 
-    [
-      {
-        "Text": "да",
-        "IsRight": true
-      },
-      {
-        "Text": "нет",
-        "IsRight": false
-      },
-      {
-        "Text": "конечно",
-        "IsRight": true
-      },
-      {
-        "Text": "блять",
-        "IsRight": false
-      },
-      {
-        "Text": "конечно нет",
-        "IsRight": false
-      }
-    ]
-  },
-  {
-    "Id": 2,
-    "Text": "точно?",
-    "_rightAnswerVariants": 
-    [
-      {
-      "Text": "ДА!!!",
-      "IsRight": true
-      },
-      {
-        "Text": "ДА НАХУЙ",
-        "IsRight": true
-      }
-    ],
-    "_answers": 
-    [
-      {
-        "Text": "ДА НАХУЙ",
-        "IsRight": true
-      },
-      {
-        "Text": "Я не уверен(",
-        "IsRight": false
-      },
-      {
-        "Text": "ДА!!!",
-        "IsRight": true
-      },
-      {
-        "Text": "буль буль",
-        "IsRight": false
-      },
-      {
-        "Text": "САМ ИДИ ТЫ ПИДОР!",
-        "IsRight": false
-      }
-    ]
-  }
+[{
+        "Id": 1,
+        "Text": "Кто из президентов США написал свой собственный рассказ про Шерлока Холмса?",
+        "_rightAnswerVariants": [{
+                "Text": "Франклин Рузвельт",
+                "IsRight": true
+            },
+            {
+                "Text": "Ф. Рузвельт",
+                "IsRight": true
+            }
+        ],
+        "_answers": [{
+                "Text": "Франклин Рузвельт",
+                "IsRight": true
+            },
+            {
+                "Text": "Рональд Рейган",
+                "IsRight": false
+            },
+            {
+                "Text": "Джон Кеннеди",
+                "IsRight": false
+            },
+            {
+                "Text": "Ф. Рузвельт",
+                "IsRight": true
+            },
+            {
+                "Text": "Дж. Кеннеди",
+                "IsRight": false
+            }
+        ]
+    },
+    {
+        "Id": 2,
+        "Text": "Какую пошлину ввели в XII  веке в Англии для того чтобы заставить мужчин пойти на войну?",
+        "_rightAnswerVariants": [{
+                "Text": "Налог на трусость",
+                "IsRight": true
+            },
+            {
+                "Text": "Налог на трусость(трусы)",
+                "IsRight": true
+            }
+        ],
+        "_answers": [{
+                "Text": "Налог на отсутствие сапог",
+                "IsRight": false
+            },
+            {
+                "Text": "Налог на тунеядство",
+                "IsRight": false
+            },
+            {
+                "Text": "Налог на трусость(трусы)",
+                "IsRight": true
+            },
+            {
+                "Text": "Налог на трусость",
+                "IsRight": true
+            },
+            {
+                "Text": "Налог на оружие",
+                "IsRight": false
+            }
+        ]
+    },
+    {
+        "Id": 3,
+        "Text": "Откуда пошло выражение «деньги не пахнут?",
+        "_rightAnswerVariants": [{
+                "Text": "От налога на туалеты",
+                "IsRight": true
+            },
+            {
+                "Text": "Из-за налога на 'чиркаши'",
+                "IsRight": true
+            }
+        ],
+        "_answers": [{
+                "Text": "От подателей за провоз парфюмерии",
+                "IsRight": false
+            },
+            {
+                "Text": "От сборов за нестиранные носки",
+                "IsRight": false
+            },
+            {
+                "Text": "От налога на туалеты",
+                "IsRight": true
+            },
+            {
+                "Text": "От вонючей реки, в которой жили богатые люди",
+                "IsRight": false
+            },
+            {
+                "Text": "Из-за налога на 'чиркаши'",
+                "IsRight": true
+            }
+        ]
+    },
+    {
+        "Id": 4,
+        "Text": "Российский мультфильм, удостоенный «Оскара», — это…",
+        "_rightAnswerVariants": [{
+                "Text": "«Море и старик»",
+                "IsRight": true
+            },
+            {
+                "Text": "«Старик и море»",
+                "IsRight": true
+            }
+        ],
+        "_answers": [{
+                "Text": "«Старик и море»",
+                "IsRight": true
+            },
+            {
+                "Text": "«Черепашки ниндзя»",
+                "IsRight": false
+            },
+            {
+                "Text": "«Ну, погоди!»",
+                "IsRight": false
+            },
+            {
+                "Text": "«Винни-Пух»",
+                "IsRight": false
+            },
+            {
+                "Text": "«Море и старик»",
+                "IsRight": true
+            }
+        ]
+    },
+    {
+        "Id": 5,
+        "Text": "У индейцев из немногочисленного североамериканского племени квакиутл есть традиция: беря деньги в долг, они оставляют в залог…",
+        "_rightAnswerVariants": [{
+                "Text": "Имя",
+                "IsRight": true
+            },
+            {
+                "Text": "Кусочек пальца, а может и нет",
+                "IsRight": true
+            }
+        ],
+        "_answers": [{
+                "Text": "Душу",
+                "IsRight": false
+            },
+            {
+                "Text": "Имя",
+                "IsRight": true
+            },
+            {
+                "Text": "Скальп тещи",
+                "IsRight": false
+            },
+            {
+                "Text": "Амулет",
+                "IsRight": false
+            },
+            {
+                "Text": "Кусочек пальца, а может и нет",
+                "IsRight": true
+            }
+        ]
+    }
 ]

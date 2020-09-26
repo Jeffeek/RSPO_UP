@@ -61,16 +61,17 @@ namespace RSPO_UP_3
         {
             if (pressedCheckBoxes.Count != 2)
             {
-                MessageBox.Show("Ошибочка", "Нужно минимум 2 отметки в чекбоксах");
+                MessageBox.Show("Ошибочка", "Нужно минимум и максимум 2 отметки в чекбоксах");
                 return;
             }
-            game.CheckForWin(pressedCheckBoxes[0], pressedCheckBoxes[1]);
+            game.CheckForWin(pressedCheckBoxes[0].Content.ToString(), pressedCheckBoxes[1].Content.ToString());
             var nextQuest = game.NextQuestion();
             if (nextQuest == null)
             {
-                FinishTestWindow finish = new FinishTestWindow();
+                FinishTestWindow finish = new FinishTestWindow(game);
+                ReloadCheckBoxes();
                 finish.ShowDialog();
-                return;
+                Application.Current.Shutdown(0);
             }
             pressedCheckBoxes.Clear();
             ReloadCheckBoxes();
@@ -80,18 +81,26 @@ namespace RSPO_UP_3
         private void CheckBox_OnClick(object sender, RoutedEventArgs e)
         {
             var pressedCheckBox = sender as CheckBox;
-            if (pressedCheckBoxes.Count == 2 && pressedCheckBoxes.Contains(pressedCheckBox))
+            if (pressedCheckBoxes.Contains(pressedCheckBox))
             {
                 pressedCheckBoxes.Remove(pressedCheckBox);
-                return;
             }
-
-            if (pressedCheckBoxes.Count == 2)
+            else
             {
-                pressedCheckBox.IsChecked = false;
-                return;
+                pressedCheckBoxes.Add(pressedCheckBox);
             }
-            pressedCheckBoxes.Add(pressedCheckBox);
+            //if (pressedCheckBoxes.Count == 2 && pressedCheckBoxes.Contains(pressedCheckBox))
+            //{
+            //    pressedCheckBoxes.Remove(pressedCheckBox);
+            //    return;
+            //}
+
+            //if (pressedCheckBoxes.Count == 2)
+            //{
+            //    pressedCheckBox.IsChecked = false;
+            //    return;
+            //}
+            //pressedCheckBoxes.Add(pressedCheckBox);
         }
     }
 }

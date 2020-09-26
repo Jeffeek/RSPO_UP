@@ -8,3 +8,13 @@ E:\projectsVS\RSPO_UP_1\RSPO_UP_1\obj\Debug\RSPO_UP_1.pdb
 E:\projectsVS\RSPO_UP_1\RSPO_UP_1\bin\Debug\Newtonsoft.Json.dll
 E:\projectsVS\RSPO_UP_1\RSPO_UP_1\bin\Debug\Newtonsoft.Json.xml
 E:\projectsVS\RSPO_UP_1\RSPO_UP_1\bin\Debug\MoviesList.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\bin\Debug\MoviesList.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\bin\Debug\RSPO_UP_1.exe.config
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\bin\Debug\RSPO_UP_1.exe
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\bin\Debug\RSPO_UP_1.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\obj\Debug\RSPO_UP_1.csproj.CoreCompileInputs.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\obj\Debug\RSPO_UP_1.csproj.CopyComplete
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\obj\Debug\RSPO_UP_1.exe
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\obj\Debug\RSPO_UP_1.pdb

@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="450" MinWidth="800" MaxHeight="550" MaxWidth="1050">
     <Grid>
+        <Grid.Background>
+            <RadialGradientBrush>
+                <GradientStopCollection>
+                    <GradientStop Color="AliceBlue" Offset="0.5"/>
+                    <GradientStop Color="Cyan" Offset="4"/>
+                </GradientStopCollection>
+            </RadialGradientBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -24,13 +32,14 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Супер-тест" FontSize="35" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontStretch="SemiExpanded"/>
-        <TextBlock x:Name="txtQuestionText" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Text="question_text" TextAlignment="Center" FontSize="18"/>
-        <CheckBox x:Name="checkBox_1" Content="AnswerText" Grid.Column="0" Grid.Row="3" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
-        <CheckBox x:Name="checkBox_2" Content="AnswerText" Grid.Column="0" Grid.Row="4" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
-        <CheckBox x:Name="checkBox_3" Content="AnswerText" Grid.Column="0" Grid.Row="5" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
-        <CheckBox x:Name="checkBox_4" Content="AnswerText" Grid.Column="0" Grid.Row="6" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
-        <CheckBox x:Name="checkBox_5" Content="AnswerText" Grid.Column="0" Grid.Row="7" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
-        <Button x:Name="ButtonApply"  Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="Apply" FontSize="25" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="BtnApply_Click"/>
+        <TextBlock Text="Супер-тест для интеллектуалов" FontSize="35" Grid.ColumnSpan="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontStretch="UltraExpanded"/>
+        <TextBlock x:Name="txtQuestionText" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Text="question_text" TextAlignment="Center" FontSize="18" TextWrapping="Wrap"/>
+        <Separator Grid.ColumnSpan="4" Opacity="80" Grid.Column="0" Grid.Row="2"/>
+        <CheckBox Margin="30 0 0 0" x:Name="checkBox_1" Content="AnswerText" Grid.Column="0" Grid.Row="3" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <CheckBox Margin="30 0 0 0" x:Name="checkBox_2" Content="AnswerText" Grid.Column="0" Grid.Row="4" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <CheckBox Margin="30 0 0 0" x:Name="checkBox_3" Content="AnswerText" Grid.Column="0" Grid.Row="5" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <CheckBox Margin="30 0 0 0" x:Name="checkBox_4" Content="AnswerText" Grid.Column="0" Grid.Row="6" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <CheckBox Margin="30 0 0 0" x:Name="checkBox_5" Content="AnswerText" Grid.Column="0" Grid.Row="7" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <Button x:Name="ButtonApply"  Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="Apply" FontSize="25" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="BtnApply_Click" Background="LightBlue" BorderThickness="2"/>
     </Grid>
 </Window>
