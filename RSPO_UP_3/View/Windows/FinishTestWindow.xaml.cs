@@ -21,8 +21,8 @@ namespace RSPO_UP_3
     /// </summary>
     public partial class FinishTestWindow : Window
     {
-        private TestGame _game;
-        public FinishTestWindow(TestGame game)
+        private QuizGame _game;
+        public FinishTestWindow(QuizGame game)
         {
             InitializeComponent();
             _game = game;

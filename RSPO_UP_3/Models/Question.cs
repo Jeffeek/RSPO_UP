@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace RSPO_UP_3.Models
@@ -10,13 +11,23 @@ namespace RSPO_UP_3.Models
         public int Id { get; set; }
         [DataMember]
         public string Text { get; set; }
-        [DataMember]
-        public AnswerVariant[] _rightAnswerVariants = new AnswerVariant[2];
-        [DataMember]
-        private AnswerVariant[] _answers = new AnswerVariant[5];
+        [DataMember] 
+        public Answer[] _answers { get; set; }
+        private Answer[] _rightAnswers;
+
+        public Question(Answer[] allAnswers)
+        {
+            if (allAnswers == null || allAnswers.Length != 5) 
+                throw new ArgumentException(nameof(allAnswers));
+            _answers = _answers;
+            _rightAnswers = _answers.Where(x => x.IsRight).ToArray();
+            if (_rightAnswers.Length != 2)
+                throw new Exception("Должно быть 2 правильных ответа!");
+        }
 
         public string GetTextQuestionByIndex(int index)
         {
+            if (index < 0 || index > 4) throw new IndexOutOfRangeException(nameof(_answers));
             return _answers[index].Text;
         }
 

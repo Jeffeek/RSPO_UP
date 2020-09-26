@@ -4,17 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RSPO_UP_3"
+        xmlns:viewModel="clr-namespace:RSPO_UP_3.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="450" MinWidth="800" MaxHeight="550" MaxWidth="1050">
+    <Window.DataContext>
+        <viewModel:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
-        <Grid.Background>
-            <RadialGradientBrush>
-                <GradientStopCollection>
-                    <GradientStop Color="AliceBlue" Offset="0.5"/>
-                    <GradientStop Color="Cyan" Offset="4"/>
-                </GradientStopCollection>
-            </RadialGradientBrush>
-        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -33,13 +29,13 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Text="Супер-тест для интеллектуалов" FontSize="35" Grid.ColumnSpan="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontStretch="UltraExpanded"/>
-        <TextBlock x:Name="txtQuestionText" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Text="question_text" TextAlignment="Center" FontSize="18" TextWrapping="Wrap"/>
+        <TextBlock x:Name="txtQuestionText" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Text="{Binding CurrentQuestion.Question.Text, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" FontSize="18" TextWrapping="Wrap"/>
         <Separator Grid.ColumnSpan="4" Opacity="80" Grid.Column="0" Grid.Row="2"/>
-        <CheckBox Margin="30 0 0 0" x:Name="checkBox_1" Content="AnswerText" Grid.Column="0" Grid.Row="3" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
-        <CheckBox Margin="30 0 0 0" x:Name="checkBox_2" Content="AnswerText" Grid.Column="0" Grid.Row="4" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
-        <CheckBox Margin="30 0 0 0" x:Name="checkBox_3" Content="AnswerText" Grid.Column="0" Grid.Row="5" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
-        <CheckBox Margin="30 0 0 0" x:Name="checkBox_4" Content="AnswerText" Grid.Column="0" Grid.Row="6" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
-        <CheckBox Margin="30 0 0 0" x:Name="checkBox_5" Content="AnswerText" Grid.Column="0" Grid.Row="7" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <CheckBox Margin="30 0 0 0" x:Name="checkBox_1" Content="{Binding CurrentQuestion.Question._answers[0].Text}" Grid.Column="0" Grid.Row="3" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <CheckBox Margin="30 0 0 0" x:Name="checkBox_2" Content="{Binding CurrentQuestion.Question._answers[1].Text}" Grid.Column="0" Grid.Row="4" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <CheckBox Margin="30 0 0 0" x:Name="checkBox_3" Content="{Binding CurrentQuestion.Question._answers[2].Text}" Grid.Column="0" Grid.Row="5" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <CheckBox Margin="30 0 0 0" x:Name="checkBox_4" Content="{Binding CurrentQuestion.Question._answers[3].Text}" Grid.Column="0" Grid.Row="6" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
+        <CheckBox Margin="30 0 0 0" x:Name="checkBox_5" Content="{Binding CurrentQuestion.Question._answers[4].Text}" Grid.Column="0" Grid.Row="7" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="4" Click="CheckBox_OnClick"/>
         <Button x:Name="ButtonApply"  Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="Apply" FontSize="25" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="BtnApply_Click" Background="LightBlue" BorderThickness="2"/>
     </Grid>
 </Window>

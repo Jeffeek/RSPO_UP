@@ -1,17 +1,12 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
 using RSPO_UP_3.Models;
 
-namespace RSPO_UP_3.Collections
+namespace RSPO_UP_3.Services
 {
-    public static class QuestionGetter
+    public static class QuestionDeserializer
     {
         public static List<Question> GetQuestionsFromFile()
         {
@@ -27,7 +22,7 @@ namespace RSPO_UP_3.Collections
             }
             catch
             {
-                Application.Current.Shutdown(0);
+                //Application.Current.Shutdown(0);
                 throw new FileLoadException();
             }
         }

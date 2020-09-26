@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\AnswerViewModel.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Page Include="View\Windows\FinishTestWindow.xaml">
@@ -73,7 +74,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Collections\QuestionGetter.cs" />
+    <Compile Include="Services\QuestionDeserializer.cs" />
+    <Compile Include="ViewModel\QuestionViewModel.cs" />
+    <Compile Include="ViewModel\QuizGameViewModel.cs" />
     <Compile Include="View\Windows\FinishTestWindow.xaml.cs">
       <DependentUpon>FinishTestWindow.xaml</DependentUpon>
     </Compile>
@@ -83,9 +86,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\AnswerVariant.cs" />
+    <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\Question.cs" />
-    <Compile Include="Models\TestGame.cs" />
+    <Compile Include="Models\QuizGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

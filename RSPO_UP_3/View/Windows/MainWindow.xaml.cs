@@ -21,7 +21,7 @@ namespace RSPO_UP_3
     /// </summary>
     public partial class MainWindow : Window
     {
-        private TestGame game;
+        private QuizGame game;
         private int ResultPoints = 0;
         private List<CheckBox> pressedCheckBoxes = new List<CheckBox>();
 
@@ -33,7 +33,7 @@ namespace RSPO_UP_3
 
         private void StartGame()
         {
-            game = new TestGame();
+            game = new QuizGame();
             ReloadCheckBoxes();
             FillTheQuest();
         }
