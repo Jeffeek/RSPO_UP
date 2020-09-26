@@ -12,10 +12,15 @@ namespace RSPO_UP_3.ViewModel
     {
         private QuizGameViewModel _currentGame;
 
-        public QuizGameViewModel CurrentQuestion
+        public QuizGameViewModel CurrentGame
         {
             get => _currentGame;
             set => SetValue(ref _currentGame, value);
+        }
+
+        public MainWindowViewModel()
+        {
+            CurrentGame = new QuizGameViewModel(new QuizGame());
         }
     }
 }

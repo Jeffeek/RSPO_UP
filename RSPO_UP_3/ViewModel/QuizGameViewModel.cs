@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RSPO_UP_3.Models;
+﻿using RSPO_UP_3.Models;
 using RSPO_UP_3.ViewModel.Base;
 
 namespace RSPO_UP_3.ViewModel
@@ -20,6 +15,11 @@ namespace RSPO_UP_3.ViewModel
         public QuizGameViewModel(QuizGame game)
         {
             _game = game;
+        }
+
+        public QuizGameViewModel()
+        {
+            
         }
     }
 }

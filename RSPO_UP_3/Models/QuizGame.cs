@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Controls;
 using RSPO_UP_3.Services;
 
 namespace RSPO_UP_3.Models
@@ -19,6 +18,8 @@ namespace RSPO_UP_3.Models
 
         public Question GetQuestionByIndex(int index)
         {
+            if (index < 0 || index >= _questions.Count) 
+                throw new IndexOutOfRangeException(nameof(_questions));
             return _questions[index];
         }
 
@@ -29,6 +30,17 @@ namespace RSPO_UP_3.Models
                 return false;
             CurrentQuestion = _questions[currentIndex + 1];
             return true;
+        }
+
+        public bool CheckForWinning(Answer answer1, Answer answer2)
+        {
+            if (answer1.IsRight && answer2.IsRight)
+            {
+                CurrentPoints++;
+                return true;
+            }
+
+            return false;
         }
     }
 }
