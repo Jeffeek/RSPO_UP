@@ -6,6 +6,13 @@ namespace RSPO_UP_3.ViewModel
     internal class QuizGameViewModel : ViewModelBase
     {
         private QuizGame _game;
+        private RelayCommand _next;
+        public RelayCommand Next => _next ?? new RelayCommand(x =>
+        {
+            Game.NextQuestion(); 
+            OnPropertyChanged(nameof(Game));
+        });
+
         public QuizGame Game
         {
             get => _game;
@@ -17,9 +24,6 @@ namespace RSPO_UP_3.ViewModel
             _game = game;
         }
 
-        public QuizGameViewModel()
-        {
-            
-        }
+        public QuizGameViewModel() { }
     }
 }

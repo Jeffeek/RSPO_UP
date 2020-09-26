@@ -65,7 +65,7 @@
             Margin="30,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[0].Text}"
+            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[0].Text, UpdateSourceTrigger=PropertyChanged}"
             FontSize="16" />
         <CheckBox
             x:Name="checkBox_2"
@@ -75,7 +75,7 @@
             Margin="30,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[1].Text}"
+            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[1].Text, UpdateSourceTrigger=PropertyChanged}"
             FontSize="16" />
         <CheckBox
             x:Name="checkBox_3"
@@ -85,7 +85,7 @@
             Margin="30,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[2].Text}"
+            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[2].Text, UpdateSourceTrigger=PropertyChanged}"
             FontSize="16" />
         <CheckBox
             x:Name="checkBox_4"
@@ -95,7 +95,7 @@
             Margin="30,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[3].Text}"
+            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[3].Text, UpdateSourceTrigger=PropertyChanged}"
             FontSize="16" />
         <CheckBox
             x:Name="checkBox_5"
@@ -105,7 +105,7 @@
             Margin="30,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[4].Text}"
+            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[4].Text, UpdateSourceTrigger=PropertyChanged}"
             FontSize="16" />
         <Button
             x:Name="ButtonApply"
@@ -118,6 +118,7 @@
             Background="LightBlue"
             BorderThickness="2"
             Content="Apply"
-            FontSize="25" />
+            FontSize="25"
+            Command="{Binding CurrentGame.Next}"/>
     </Grid>
 </Window>
