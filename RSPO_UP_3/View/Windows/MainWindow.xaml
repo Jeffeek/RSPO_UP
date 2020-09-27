@@ -13,123 +13,61 @@
     MaxHeight="550"
     mc:Ignorable="d">
     <Window.DataContext>
-        <viewModel:MainWindowViewModel />
+        <viewModel:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="0.8*" />
-            <RowDefinition Height="0.8*" />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="0.12*" />
         </Grid.RowDefinitions>
         <TextBlock
             Grid.Column="0"
-            Grid.ColumnSpan="4"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontFamily="Verdana"
             FontSize="35"
             FontStretch="UltraExpanded"
-            Text="Супер-тест для интеллектуалов" />
+            Text="Супер-тест для интеллектуалов"/>
         <TextBlock
-            x:Name="txtQuestionText"
             Grid.Row="1"
-            Grid.RowSpan="2"
-            Grid.Column="0"
-            Grid.ColumnSpan="4"
             FontSize="18"
             Text="{Binding CurrentGame.CurrentQuestion.Text, UpdateSourceTrigger=PropertyChanged}"
             TextAlignment="Center"
-            TextWrapping="Wrap" />
-        <Separator
-            Grid.Row="2"
-            Grid.Column="0"
-            Grid.ColumnSpan="4"
-            Opacity="80" />
-        <CheckBox
-            x:Name="checkBox_1"
-            Grid.Row="3"
-            Grid.Column="0"
-            Grid.ColumnSpan="4"
-            Margin="30,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Content="{Binding CurrentGame.CurrentQuestion[0].Text, UpdateSourceTrigger=PropertyChanged}"
-            Command="{Binding CheckBoxCommand}"
-            CommandParameter="{Binding ElementName=checkBox_1}"
-            FontSize="16" />
-        <CheckBox
-            x:Name="checkBox_2"
-            Grid.Row="4"
-            Grid.Column="0"
-            Grid.ColumnSpan="4"
-            Margin="30,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Content="{Binding CurrentGame.CurrentQuestion[1].Text, UpdateSourceTrigger=PropertyChanged}"
-            Command="{Binding CheckBoxCommand}"
-            CommandParameter="{Binding ElementName=checkBox_2}"
-            FontSize="16" />
-        <CheckBox
-            x:Name="checkBox_3"
-            Grid.Row="5"
-            Grid.Column="0"
-            Grid.ColumnSpan="4"
-            Margin="30,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Content="{Binding CurrentGame.CurrentQuestion[2].Text, UpdateSourceTrigger=PropertyChanged}"
-            Command="{Binding CheckBoxCommand}"
-            CommandParameter="{Binding ElementName=checkBox_3}"
-            FontSize="16" />
-        <CheckBox
-            x:Name="checkBox_4"
-            Grid.Row="6"
-            Grid.Column="0"
-            Grid.ColumnSpan="4"
-            Margin="30,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Content="{Binding CurrentGame.CurrentQuestion[3].Text, UpdateSourceTrigger=PropertyChanged}"
-            Command="{Binding CheckBoxCommand}"
-            CommandParameter="{Binding ElementName=checkBox_4}"
-            FontSize="16" />
-        <CheckBox
-            x:Name="checkBox_5"
-            Grid.Row="7"
-            Grid.Column="0"
-            Grid.ColumnSpan="4"
-            Margin="30,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Content="{Binding CurrentGame.CurrentQuestion[4].Text, UpdateSourceTrigger=PropertyChanged}"
-            Command="{Binding CheckBoxCommand}"
-            CommandParameter="{Binding ElementName=checkBox_5}"
-            FontSize="16" />
+            TextWrapping="Wrap"/>
+        <ListBox 
+            Grid.Column="0" 
+            Grid.Row="2" 
+            ItemsSource="{Binding CurrentGame.CurrentQuestion.CurrentAnswers}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid 
+                        Height="60">
+                        <CheckBox 
+                            Grid.Row="0" 
+                            Grid.Column="0" 
+                            Content="{Binding Path=Text, UpdateSourceTrigger=PropertyChanged}" 
+                            Command="{Binding DataContext.AnswerCheckCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                            CommandParameter="{Binding}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Button
             x:Name="ButtonApply"
-            Grid.Row="8"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
+            Grid.Row="3"
             VerticalAlignment="Center"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="LightBlue"
-            BorderThickness="2"
+            BorderThickness="5"
+            BorderBrush="Aqua"
             Content="Apply"
-            FontSize="25"
-            Command="{Binding NextCommand}"
-            IsEnabled="{Binding IsButtonEnabled}"/>
+            FontSize="30"
+            Width="500"
+            Height="60"
+            Command="{Binding NextQuestionCommand}"
+            IsEnabled="{Binding DataContext.IsEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

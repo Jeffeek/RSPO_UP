@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.Serialization;
 
@@ -12,28 +13,24 @@ namespace RSPO_UP_3.Models
         [DataMember]
         public string Text { get; set; }
         [DataMember] 
-        private Answer[] _answers;
+        public Answer[] Answers { get; set; }
 
-        public Answer this[int index] => _answers[index];
+        public ObservableCollection<Answer> CurrentAnswers { get; set; }
 
-        public Answer[] RightAnswers => _answers.Where(x => x.IsRight).ToArray();
+        public Answer this[int index] => Answers[index];
+
+        public Answer[] RightAnswers => Answers.Where(x => x.IsRight).ToArray();
 
         public Question(Answer[] allAnswers)
         {
             if (allAnswers == null || allAnswers.Length != 5) 
                 throw new ArgumentException(nameof(allAnswers));
-            _answers = allAnswers;
+            Answers = allAnswers;
         }
 
         public Question()
         {
             
-        }
-
-        public string GetTextQuestionByIndex(int index)
-        {
-            if (index < 0 || index > 4) throw new IndexOutOfRangeException(nameof(_answers));
-            return _answers[index].Text;
         }
 
         public bool Equals(Question other)

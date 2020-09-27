@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
+using GalaSoft.MvvmLight;
 using RSPO_UP_3.Services;
 using RSPO_UP_3.View.Windows;
 
 namespace RSPO_UP_3.Models
 {
-    public class QuizGame
+    public class QuizGame : ObservableObject
     {
         private readonly List<Question> _questions;
         public Question CurrentQuestion { get; private set; }
@@ -15,6 +18,9 @@ namespace RSPO_UP_3.Models
         public QuizGame()
         {
             _questions = QuestionDeserializer.GetQuestionsFromFile();
+            foreach (var question in _questions)
+                question.CurrentAnswers = new ObservableCollection<Answer>(question.Answers);
+
             CurrentQuestion = _questions[0] ?? throw new Exception("Вопросик был нуль");
         }
 
@@ -22,21 +28,20 @@ namespace RSPO_UP_3.Models
         {
             int currentIndex = _questions.IndexOf(CurrentQuestion);
             if (IsLast())
+            {
                 OpenFinish();
+                Application.Current.Shutdown();
+            }
             else
                 CurrentQuestion = _questions[currentIndex + 1];
         }
 
-        public bool CheckForWinning(string first, string second)
+        public bool CheckForWinning(Answer first, Answer second)
         {
-            var right = CurrentQuestion.RightAnswers;
-            if (right[0].Text == first || right[0].Text == second)
+            if (first.IsRight && second.IsRight)
             {
-                if (right[1].Text == first || right[1].Text == second)
-                {
-                    CurrentPoints++;
-                    return true;
-                }
+                CurrentPoints++;
+                return true;
             }
 
             return false;
@@ -44,7 +49,7 @@ namespace RSPO_UP_3.Models
 
         private void OpenFinish()
         {
-            FinishTestWindow w = new FinishTestWindow(this);
+            FinishTestWindow w = new FinishTestWindow(CurrentPoints);
             w.ShowDialog();
         }
 

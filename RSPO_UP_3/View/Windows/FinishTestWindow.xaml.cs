@@ -11,28 +11,27 @@ namespace RSPO_UP_3.View.Windows
     /// </summary>
     public partial class FinishTestWindow : Window
     {
-        private QuizGame _game;
-        public FinishTestWindow(QuizGame game)
+        private int _points;
+        public FinishTestWindow(int points)
         {
+            _points = points;
             InitializeComponent();
-            _game = game;
             ChangePicture();
             ChangeTextBox();
         }
 
         private void ChangeTextBox()
         {
-            txtResult.Text = txtResult.Text.Replace("{0}", $"{_game.CurrentPoints}");
+            txtResult.Text = txtResult.Text.Replace("{0}", $"{_points}");
         }
 
         private void ChangePicture()
         {
-            int points = _game.CurrentPoints;
-            if (points == 0)
+            if (_points == 0)
                 ImageResult.Source = new BitmapImage(new Uri($"{Directory.GetCurrentDirectory()}\\Images\\ResultImages\\sad.jpg"));
-            if (points < 3)
+            if (_points < 3)
                 ImageResult.Source = new BitmapImage(new Uri($"{Directory.GetCurrentDirectory()}\\Images\\ResultImages\\normy.png"));
-            if (points >= 3)
+            if (_points >= 3)
                 ImageResult.Source = new BitmapImage(new Uri($"{Directory.GetCurrentDirectory()}\\Images\\ResultImages\\happy.png"));
         }
     }
