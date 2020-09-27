@@ -49,7 +49,7 @@
             Grid.Column="0"
             Grid.ColumnSpan="4"
             FontSize="18"
-            Text="{Binding CurrentGame.Game.CurrentQuestion.Text, UpdateSourceTrigger=PropertyChanged}"
+            Text="{Binding CurrentGame.CurrentQuestion.Text, UpdateSourceTrigger=PropertyChanged}"
             TextAlignment="Center"
             TextWrapping="Wrap" />
         <Separator
@@ -65,7 +65,9 @@
             Margin="30,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[0].Text, UpdateSourceTrigger=PropertyChanged}"
+            Content="{Binding CurrentGame.CurrentQuestion[0].Text, UpdateSourceTrigger=PropertyChanged}"
+            Command="{Binding CheckBoxCommand}"
+            CommandParameter="{Binding ElementName=checkBox_1}"
             FontSize="16" />
         <CheckBox
             x:Name="checkBox_2"
@@ -75,7 +77,9 @@
             Margin="30,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[1].Text, UpdateSourceTrigger=PropertyChanged}"
+            Content="{Binding CurrentGame.CurrentQuestion[1].Text, UpdateSourceTrigger=PropertyChanged}"
+            Command="{Binding CheckBoxCommand}"
+            CommandParameter="{Binding ElementName=checkBox_2}"
             FontSize="16" />
         <CheckBox
             x:Name="checkBox_3"
@@ -85,7 +89,9 @@
             Margin="30,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[2].Text, UpdateSourceTrigger=PropertyChanged}"
+            Content="{Binding CurrentGame.CurrentQuestion[2].Text, UpdateSourceTrigger=PropertyChanged}"
+            Command="{Binding CheckBoxCommand}"
+            CommandParameter="{Binding ElementName=checkBox_3}"
             FontSize="16" />
         <CheckBox
             x:Name="checkBox_4"
@@ -95,7 +101,9 @@
             Margin="30,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[3].Text, UpdateSourceTrigger=PropertyChanged}"
+            Content="{Binding CurrentGame.CurrentQuestion[3].Text, UpdateSourceTrigger=PropertyChanged}"
+            Command="{Binding CheckBoxCommand}"
+            CommandParameter="{Binding ElementName=checkBox_4}"
             FontSize="16" />
         <CheckBox
             x:Name="checkBox_5"
@@ -105,7 +113,9 @@
             Margin="30,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Content="{Binding CurrentGame.Game.CurrentQuestion._answers[4].Text, UpdateSourceTrigger=PropertyChanged}"
+            Content="{Binding CurrentGame.CurrentQuestion[4].Text, UpdateSourceTrigger=PropertyChanged}"
+            Command="{Binding CheckBoxCommand}"
+            CommandParameter="{Binding ElementName=checkBox_5}"
             FontSize="16" />
         <Button
             x:Name="ButtonApply"
@@ -119,6 +129,7 @@
             BorderThickness="2"
             Content="Apply"
             FontSize="25"
-            Command="{Binding CurrentGame.Next}"/>
+            Command="{Binding NextCommand}"
+            IsEnabled="{Binding IsButtonEnabled}"/>
     </Grid>
 </Window>

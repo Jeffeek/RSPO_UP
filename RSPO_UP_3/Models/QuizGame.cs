@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RSPO_UP_3.Services;
+using RSPO_UP_3.View.Windows;
 
 namespace RSPO_UP_3.Models
 {
     public class QuizGame
     {
-        private List<Question> _questions;
+        private readonly List<Question> _questions;
         public Question CurrentQuestion { get; private set; }
         public int CurrentPoints { get; private set; } = 0;
 
@@ -16,31 +18,36 @@ namespace RSPO_UP_3.Models
             CurrentQuestion = _questions[0] ?? throw new Exception("Вопросик был нуль");
         }
 
-        public Question GetQuestionByIndex(int index)
-        {
-            if (index < 0 || index >= _questions.Count) 
-                throw new IndexOutOfRangeException(nameof(_questions));
-            return _questions[index];
-        }
-
-        public bool NextQuestion()
+        public void NextQuestion()
         {
             int currentIndex = _questions.IndexOf(CurrentQuestion);
-            if (currentIndex == _questions.Count - 1)
-                return false;
-            CurrentQuestion = _questions[currentIndex + 1];
-            return true;
+            if (IsLast())
+                OpenFinish();
+            else
+                CurrentQuestion = _questions[currentIndex + 1];
         }
 
-        public bool CheckForWinning(Answer answer1, Answer answer2)
+        public bool CheckForWinning(string first, string second)
         {
-            if (answer1.IsRight && answer2.IsRight)
+            var right = CurrentQuestion.RightAnswers;
+            if (right[0].Text == first || right[0].Text == second)
             {
-                CurrentPoints++;
-                return true;
+                if (right[1].Text == first || right[1].Text == second)
+                {
+                    CurrentPoints++;
+                    return true;
+                }
             }
 
             return false;
         }
+
+        private void OpenFinish()
+        {
+            FinishTestWindow w = new FinishTestWindow(this);
+            w.ShowDialog();
+        }
+
+        public bool IsLast() => CurrentQuestion.Id == _questions.Max(x => x.Id);
     }
 }

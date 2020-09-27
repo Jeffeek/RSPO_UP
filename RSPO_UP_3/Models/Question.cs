@@ -12,13 +12,17 @@ namespace RSPO_UP_3.Models
         [DataMember]
         public string Text { get; set; }
         [DataMember] 
-        public Answer[] _answers { get; set; }
+        private Answer[] _answers;
+
+        public Answer this[int index] => _answers[index];
+
+        public Answer[] RightAnswers => _answers.Where(x => x.IsRight).ToArray();
 
         public Question(Answer[] allAnswers)
         {
             if (allAnswers == null || allAnswers.Length != 5) 
                 throw new ArgumentException(nameof(allAnswers));
-            _answers = _answers;
+            _answers = allAnswers;
         }
 
         public Question()
