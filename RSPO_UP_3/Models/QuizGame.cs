@@ -1,40 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using GalaSoft.MvvmLight;
 using RSPO_UP_3.Services;
+using RSPO_UP_3.View.Windows;
 
 namespace RSPO_UP_3.Models
 {
-    public class QuizGame
+    public class QuizGame : ObservableObject
     {
-        private List<Question> _questions;
+        private readonly List<Question> _questions;
         public Question CurrentQuestion { get; private set; }
         public int CurrentPoints { get; private set; } = 0;
 
         public QuizGame()
         {
             _questions = QuestionDeserializer.GetQuestionsFromFile();
+            foreach (var question in _questions)
+                question.CurrentAnswers = new ObservableCollection<Answer>(question.Answers);
+
             CurrentQuestion = _questions[0] ?? throw new Exception("Вопросик был нуль");
         }
 
-        public Question GetQuestionByIndex(int index)
-        {
-            if (index < 0 || index >= _questions.Count) 
-                throw new IndexOutOfRangeException(nameof(_questions));
-            return _questions[index];
-        }
-
-        public bool NextQuestion()
+        public void NextQuestion()
         {
             int currentIndex = _questions.IndexOf(CurrentQuestion);
-            if (currentIndex == _questions.Count - 1)
-                return false;
-            CurrentQuestion = _questions[currentIndex + 1];
-            return true;
+            if (IsLast())
+            {
+                OpenFinish();
+                Application.Current.Shutdown();
+            }
+            else
+                CurrentQuestion = _questions[currentIndex + 1];
         }
 
-        public bool CheckForWinning(Answer answer1, Answer answer2)
+        public bool CheckForWinning(Answer first, Answer second)
         {
-            if (answer1.IsRight && answer2.IsRight)
+            if (first.IsRight && second.IsRight)
             {
                 CurrentPoints++;
                 return true;
@@ -42,5 +46,13 @@ namespace RSPO_UP_3.Models
 
             return false;
         }
+
+        private void OpenFinish()
+        {
+            FinishTestWindow w = new FinishTestWindow(CurrentPoints);
+            w.ShowDialog();
+        }
+
+        public bool IsLast() => CurrentQuestion.Id == _questions.Max(x => x.Id);
     }
 }
