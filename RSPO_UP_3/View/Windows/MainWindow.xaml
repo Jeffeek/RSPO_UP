@@ -13,12 +13,12 @@
     MaxHeight="550"
     mc:Ignorable="d">
     <Window.DataContext>
-        <viewModel:MainWindowViewModel/>
+        <viewModel:MainWindowViewModel />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="0.8*" />
             <RowDefinition Height="0.12*" />
         </Grid.RowDefinitions>
@@ -33,46 +33,45 @@
             <TextBlock.Foreground>
                 <RadialGradientBrush>
                     <GradientStopCollection>
-                        <GradientStop Color="Red" Offset="0.8"/>
-                        <GradientStop Color="Black" Offset="0.05"/>
+                        <GradientStop Offset="0.8" Color="Red" />
+                        <GradientStop Offset="0.05" Color="Black" />
                     </GradientStopCollection>
                 </RadialGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>
-        <Separator Background="Black" Margin="0 50 0 0"/>
+        <Separator Margin="0,50,0,0" Background="Black" />
         <TextBlock
             Grid.Row="1"
+            FontFamily="Black"
             FontSize="18"
+            FontStyle="Italic"
             Text="{Binding CurrentGame.CurrentQuestion.Text, UpdateSourceTrigger=PropertyChanged}"
             TextAlignment="Center"
-            TextWrapping="Wrap"
-            FontStyle="Italic"
-            FontFamily="Black">
+            TextWrapping="Wrap">
             <TextBlock.Foreground>
                 <LinearGradientBrush>
                     <GradientStopCollection>
-                        <GradientStop Color="Blue" Offset="0.5"/>
-                        <GradientStop Color="DarkViolet" Offset="0.6"/>
-                        <GradientStop Color="Black" Offset="0.05"/>
+                        <GradientStop Offset="0.5" Color="Blue" />
+                        <GradientStop Offset="0.6" Color="DarkViolet" />
+                        <GradientStop Offset="0.05" Color="Black" />
                     </GradientStopCollection>
                 </LinearGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>
-        <ListBox 
-            Grid.Column="0" 
-            Grid.Row="2" 
+        <ListBox
+            Grid.Row="2"
+            Grid.Column="0"
             ItemsSource="{Binding CurrentGame.CurrentQuestion.CurrentAnswers}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid 
-                        Height="60">
+                    <Grid Height="60">
                         <CheckBox
                             Name="Box"
-                            Grid.Row="0" 
-                            Grid.Column="0" 
-                            Content="{Binding Path=Text, UpdateSourceTrigger=PropertyChanged}" 
-                            Command="{Binding DataContext.AnswerCheckCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
-                            CommandParameter="{Binding}"/>
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Command="{Binding DataContext.CheckBoxCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
+                            CommandParameter="{Binding}"
+                            Content="{Binding Path=Text, UpdateSourceTrigger=PropertyChanged}" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -80,17 +79,17 @@
         <Button
             x:Name="ButtonApply"
             Grid.Row="3"
+            Width="500"
+            Height="60"
             VerticalAlignment="Center"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="LightBlue"
-            BorderThickness="5"
             BorderBrush="Aqua"
+            BorderThickness="5"
+            Command="{Binding NextQuestionCommand}"
             Content="Apply"
             FontSize="30"
-            Width="500"
-            Height="60"
-            Command="{Binding NextQuestionCommand}"
-            IsEnabled="{Binding DataContext.IsEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}"/>
+            IsEnabled="{Binding DataContext.IsButtonEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </Window>

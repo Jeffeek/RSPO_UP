@@ -12,7 +12,6 @@ namespace RSPO_UP_3.View.Windows
     /// </summary>
     public partial class FinishTestWindow : Window
     {
-        private int _points;
         public FinishTestWindow(int points)
         {
             InitializeComponent();

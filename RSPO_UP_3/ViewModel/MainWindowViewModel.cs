@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
 using RSPO_UP_3.Models;
 using ViewModelBase = RSPO_UP_3.ViewModel.Base.ViewModelBase;
 
@@ -12,14 +9,31 @@ namespace RSPO_UP_3.ViewModel
 {
     internal class MainWindowViewModel : ViewModelBase
     {
+        /// <summary>
+        /// объект текущей игры
+        /// </summary>
         private QuizGame _game;
-        private bool _btn;
+        /// <summary>
+        /// булево значение, показывающее доступа ли кнопка для нажатия
+        /// </summary>
+        private bool _isButtonEnabled;
+        /// <summary>
+        /// коллекция текущих выбранных ответов
+        /// </summary>
         private List<Answer> CheckedAnswers { get; }
+        /// <summary>
+        /// команда, для передвижения по вопросам в текущей игре
+        /// </summary>
+        public ICommand NextQuestionCommand { get; }
+        /// <summary>
+        /// команда, для проверки нажатого чекбокса
+        /// </summary>
+        public ICommand CheckBoxCommand { get; }
 
-        public bool IsEnabled
+        public bool IsButtonEnabled
         { 
-            get => _btn;
-            set => SetValue(ref _btn, value, nameof(IsEnabled));
+            get => _isButtonEnabled;
+            set => SetValue(ref _isButtonEnabled, value, nameof(IsButtonEnabled));
         }
         public QuizGame CurrentGame
         {
@@ -27,31 +41,40 @@ namespace RSPO_UP_3.ViewModel
             set => SetValue(ref _game, value);
         }
 
-        public RelayCommand NextQuestionCommand =>
-            new RelayCommand(() =>
-            {
-                CurrentGame.CheckForWinning(CheckedAnswers.First(), CheckedAnswers.Last());
-                CheckedAnswers.Clear();
-                CurrentGame.NextQuestion();
-                OnPropertyChanged(nameof(CurrentGame));
-                IsEnabled = false;
-            });
+        /// <summary>
+        /// метод для передвижения по текущему вопросу
+        /// </summary>
+        private void OnNextQuestionCommand()
+        {
+            CurrentGame.CheckForWinning(CheckedAnswers.First(), CheckedAnswers.Last());
+            CheckedAnswers.Clear();
+            CurrentGame.NextQuestion();
+            OnPropertyChanged(nameof(CurrentGame));
+            IsButtonEnabled = false;
+        }
 
-        public RelayCommand<Answer> AnswerCheckCommand =>
-            new RelayCommand<Answer>((obj) =>
+        /// <summary>
+        /// метод для нажатого чекбокса
+        /// </summary>
+        /// <param name="obj">нажатый чекбокс с ответом</param>
+        private void OnCheckBoxCheckedCommand(Answer obj)
         {
             if (CheckedAnswers.Exists(x => x.Text == obj.Text))
                 CheckedAnswers.Remove(CheckedAnswers.Find(x => x.Text == obj.Text));
             else
                 CheckedAnswers.Add(obj);
-            IsEnabled = CheckedAnswers.Count == 2;
-        });
+            IsButtonEnabled = CheckedAnswers.Count == 2;
+        }
 
-
+        /// <summary>
+        /// конструктор по умолчанию для инициализации
+        /// </summary>
         public MainWindowViewModel()
         {
             CurrentGame = new QuizGame();
             CheckedAnswers = new List<Answer>();
+            NextQuestionCommand = new RelayCommand(OnNextQuestionCommand);
+            CheckBoxCommand = new RelayCommand<Answer>(OnCheckBoxCheckedCommand);
         }
     }
 }
