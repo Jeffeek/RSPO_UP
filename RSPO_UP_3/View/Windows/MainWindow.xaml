@@ -26,16 +26,38 @@
             Grid.Column="0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            FontFamily="Verdana"
-            FontSize="35"
-            FontStretch="UltraExpanded"
-            Text="Супер-тест для интеллектуалов"/>
+            FontFamily="Impact"
+            FontSize="45"
+            FontStyle="Oblique"
+            Text="Супер-тест для интеллектуалов">
+            <TextBlock.Foreground>
+                <RadialGradientBrush>
+                    <GradientStopCollection>
+                        <GradientStop Color="Red" Offset="0.8"/>
+                        <GradientStop Color="Black" Offset="0.05"/>
+                    </GradientStopCollection>
+                </RadialGradientBrush>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <Separator Background="Black" Margin="0 50 0 0"/>
         <TextBlock
             Grid.Row="1"
             FontSize="18"
             Text="{Binding CurrentGame.CurrentQuestion.Text, UpdateSourceTrigger=PropertyChanged}"
             TextAlignment="Center"
-            TextWrapping="Wrap"/>
+            TextWrapping="Wrap"
+            FontStyle="Italic"
+            FontFamily="Black">
+            <TextBlock.Foreground>
+                <LinearGradientBrush>
+                    <GradientStopCollection>
+                        <GradientStop Color="Blue" Offset="0.5"/>
+                        <GradientStop Color="DarkViolet" Offset="0.6"/>
+                        <GradientStop Color="Black" Offset="0.05"/>
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </TextBlock.Foreground>
+        </TextBlock>
         <ListBox 
             Grid.Column="0" 
             Grid.Row="2" 
@@ -44,7 +66,8 @@
                 <DataTemplate>
                     <Grid 
                         Height="60">
-                        <CheckBox 
+                        <CheckBox
+                            Name="Box"
                             Grid.Row="0" 
                             Grid.Column="0" 
                             Content="{Binding Path=Text, UpdateSourceTrigger=PropertyChanged}" 

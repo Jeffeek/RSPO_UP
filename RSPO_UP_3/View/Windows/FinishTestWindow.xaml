@@ -8,6 +8,7 @@
     Title="FinishTestWindow"
     Width="800"
     Height="450"
+    IsManipulationEnabled="False"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -29,11 +30,11 @@
             VerticalAlignment="Center"
             FontSize="55"
             FontWeight="Black"
-            Text="Вы набрали: {0} баллов!" />
+            Text="{Binding ResultString}" />
         <Image
             x:Name="ImageResult"
             Grid.Row="2"
             Grid.Column="1"
-            Source="Images/ResultImages/normy.png" />
+            Source="{Binding ResultImage}"/>
     </Grid>
 </Window>

@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using RSPO_UP_3.Models;
+using RSPO_UP_3.ViewModel;
 
 namespace RSPO_UP_3.View.Windows
 {
@@ -14,25 +15,8 @@ namespace RSPO_UP_3.View.Windows
         private int _points;
         public FinishTestWindow(int points)
         {
-            _points = points;
             InitializeComponent();
-            ChangePicture();
-            ChangeTextBox();
-        }
-
-        private void ChangeTextBox()
-        {
-            txtResult.Text = txtResult.Text.Replace("{0}", $"{_points}");
-        }
-
-        private void ChangePicture()
-        {
-            if (_points == 0)
-                ImageResult.Source = new BitmapImage(new Uri($"{Directory.GetCurrentDirectory()}\\Images\\ResultImages\\sad.jpg"));
-            if (_points < 3)
-                ImageResult.Source = new BitmapImage(new Uri($"{Directory.GetCurrentDirectory()}\\Images\\ResultImages\\normy.png"));
-            if (_points >= 3)
-                ImageResult.Source = new BitmapImage(new Uri($"{Directory.GetCurrentDirectory()}\\Images\\ResultImages\\happy.png"));
+            DataContext = new FinishTestWindowViewModel(points);
         }
     }
 }
