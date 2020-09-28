@@ -1,5 +1,6 @@
 ﻿using RSPO_UP_3.ViewModel.Base;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -43,12 +44,13 @@ namespace RSPO_UP_3.ViewModel
 
         private void ChangePicture()
         {
+            string imagesPath = $"{Directory.GetCurrentDirectory()}\\Images\\ResultImages\\";
             if (Points == 0)
-                ResultImage = new BitmapImage(new Uri($"{Directory.GetCurrentDirectory()}\\Images\\ResultImages\\sad.jpg"));
+                ResultImage = new BitmapImage(new Uri($"{imagesPath}sad.jpg"));
             if (Points < 3)
-                ResultImage = new BitmapImage(new Uri($"{Directory.GetCurrentDirectory()}\\Images\\ResultImages\\normy.png"));
+                ResultImage = new BitmapImage(new Uri($"{imagesPath}normy.png"));
             if (Points >= 3)
-                ResultImage = new BitmapImage(new Uri($"{Directory.GetCurrentDirectory()}\\Images\\ResultImages\\happy.png"));
+                ResultImage = new BitmapImage(new Uri($"{imagesPath}happy.png"));
         }
     }
 }
