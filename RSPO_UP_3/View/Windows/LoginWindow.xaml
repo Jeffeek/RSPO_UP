@@ -5,23 +5,28 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:RSPO_UP_3.View.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:RSPO_UP_3.ViewModel"
     Title="LoginWindow"
     Width="400"
     Height="450"
-    Background="CornflowerBlue"
+    Background="#ee423e"
+    ResizeMode="NoResize"
     mc:Ignorable="d">
+    <Window.DataContext>
+        <vm:LoginWindowViewModel />
+    </Window.DataContext>
     <Border
         Margin="8"
-        Background="MidnightBlue"
+        Background="#21439c"
         CornerRadius="15">
         <StackPanel>
             <Label
-                Margin="0,50,0,0"
+                Margin="0,30,0,25"
                 HorizontalAlignment="Center"
                 Content="Logging"
                 FontFamily="Impact"
                 FontSize="40"
-                Foreground="AliceBlue" />
+                Foreground="#ee423e" />
             <Separator Height="3" />
             <Label
                 HorizontalAlignment="Center"
@@ -33,7 +38,9 @@
                 MinWidth="300"
                 HorizontalAlignment="Center"
                 Background="Black"
-                FontSize="18" />
+                FontSize="18"
+                Foreground="DarkCyan"
+                Text="{Binding LoginText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Label
                 HorizontalAlignment="Center"
                 Content="Password"
@@ -44,15 +51,26 @@
                 MinWidth="300"
                 HorizontalAlignment="Center"
                 Background="Black"
-                FontSize="18" />
-            <Button Margin="0 30 0 0" Height="40" Width="200"/>
+                FontSize="18"
+                Foreground="DarkCyan"
+                Text="{Binding PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Button
+                Width="200"
+                Height="40"
+                Margin="0,30,0,0"
+                Command="{Binding EnterCommand}"
+                Content="Sign In"
+                FontFamily="Impact"
+                FontSize="20"
+                Style="{StaticResource LoginButton}">
+            </Button>
             <StackPanel Margin="0,35,0,0">
-                <Separator/>
+                <Separator />
                 <Button
                     Width="200"
                     Margin="0,0,0,0"
                     HorizontalAlignment="Center"
-                    Background="DarkSlateBlue"
+                    Background="#02b0b1"
                     Content="Registration"
                     FontSize="14" />
             </StackPanel>

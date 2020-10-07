@@ -93,7 +93,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Infrastructure\Commands\Base\CommandBase.cs" />
     <Compile Include="Models\EntityFramework\Models\Entrance.cs" />
     <Compile Include="Models\EntityFramework\Models\Role.cs" />
     <Compile Include="Models\EntityFramework\Models\User.cs" />
