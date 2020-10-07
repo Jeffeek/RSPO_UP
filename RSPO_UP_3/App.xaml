@@ -6,13 +6,8 @@
     xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:RSPO_UP_3"
     d1p1:Ignorable="d"
-    StartupUri="View/Windows/MainWindow.xaml">
+    StartupUri="View/Windows/LoginWindow.xaml">
     <Application.Resources>
-        <ResourceDictionary>
-            <vm:ViewModelLocator
-                xmlns:vm="clr-namespace:RSPO_UP_3.ViewModel"
-                x:Key="Locator"
-                d:IsDataSource="True" />
-        </ResourceDictionary>
+        <ResourceDictionary />
     </Application.Resources>
 </Application>

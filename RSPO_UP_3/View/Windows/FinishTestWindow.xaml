@@ -35,6 +35,6 @@
             x:Name="ImageResult"
             Grid.Row="2"
             Grid.Column="1"
-            Source="{Binding ResultImage}"/>
+            Source="{Binding ResultImage}" />
     </Grid>
 </Window>

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using RSPO_UP_3.Models;
+using RSPO_UP_3.Models.DataModels;
 using ViewModelBase = RSPO_UP_3.ViewModel.Base.ViewModelBase;
 
 namespace RSPO_UP_3.ViewModel
