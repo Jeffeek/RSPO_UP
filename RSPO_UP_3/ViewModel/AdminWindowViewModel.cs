@@ -30,6 +30,8 @@ namespace RSPO_UP_3.ViewModel
         public ICommand LoadQuestionsCommand { get; }
         public ICommand ReloadQuestionsCommand { get; }
         public ICommand SaveQuestionsCommand { get; }
+        public ICommand RemoveQuestionCommand { get; }
+        public ICommand AddQuestionCommand { get; }
 
         #endregion
 
@@ -54,6 +56,32 @@ namespace RSPO_UP_3.ViewModel
         }
 
         #endregion
+
+        public bool CanRemoveQuestionExecute() => SelectedQuestion != null;
+        public void OnRemoveQuestionExecuted()
+        {
+            Questions.Remove(SelectedQuestion);
+            SelectedQuestion = null;
+        }
+
+        public bool CanAddQuestionExecute() => true;
+        public void OnAddQuestionExecuted()
+        {
+            var item = new Question()
+            {
+                Answers = new Answer[5]
+                {
+                    new Answer(), 
+                    new Answer(), 
+                    new Answer(), 
+                    new Answer(), 
+                    new Answer()
+                },
+                Text = String.Empty
+            };
+            Questions.Add(item);
+            SelectedQuestion = Questions.Last();
+        }
 
 
         private bool CanLoadQuestionsExecute() => true;
@@ -92,6 +120,8 @@ namespace RSPO_UP_3.ViewModel
             ReloadQuestionsCommand = new RelayCommand(OnReloadQuestionsExecuted, CanReloadQuestionsExecute);
             EditingModeCommand = new RelayCommand(OnEditingModeExecuted, CanChangeEditingMode);
             SaveQuestionsCommand = new RelayCommand(OnSaveQuestionsExecuted, CanSaveQuestionsExecute);
+            AddQuestionCommand = new RelayCommand(OnAddQuestionExecuted, CanAddQuestionExecute);
+            RemoveQuestionCommand = new RelayCommand(OnRemoveQuestionExecuted, CanRemoveQuestionExecute);
         }
     }
 }

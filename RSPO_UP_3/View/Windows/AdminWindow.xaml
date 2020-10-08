@@ -43,7 +43,7 @@
                     </Button.Content>
                 </Button>
                 <Separator />
-                <Button Width="28" Height="28">
+                <Button Width="28" Height="28" Command="{Binding ReloadQuestionsCommand}">
                     <Button.ToolTip>
                         <ToolTip Content="Reload" />
                     </Button.ToolTip>
@@ -92,7 +92,7 @@
                         <Button
                             Width="28"
                             Height="28"
-                            Command="{Binding LoadQuestionsCommand}">
+                            Command="{Binding AddQuestionCommand}">
                             <Button.ToolTip>
                                 <ToolTip Content="Add" />
                             </Button.ToolTip>
@@ -103,38 +103,63 @@
                         <Button
                             Width="28"
                             Height="28"
-                            Command="{Binding LoadQuestionsCommand}">
+                            Command="{Binding RemoveQuestionCommand}">
                             <Button.ToolTip>
-                                <ToolTip Content="Remove" />
+                                <ToolTip 
+                                    Content="Remove" />
                             </Button.ToolTip>
                             <Button.Content>
-                                <Image Source="../../Images/Resource/Delete Bin_48px.png" />
+                                <Image 
+                                    Source="../../Images/Resource/Delete Bin_48px.png" />
                             </Button.Content>
                         </Button>
                         <Button
                             Width="28"
                             Height="28"
-                            Command="{Binding LoadQuestionsCommand}">
+                            Command="{Binding EditingModeCommand}">
                             <Button.ToolTip>
-                                <ToolTip Content="Edit mode" />
+                                <ToolTip 
+                                    Content="Edit mode" />
                             </Button.ToolTip>
                             <Button.Content>
-                                <Image Source="../../Images/Resource/edit_file_48px.png" />
+                                <Image 
+                                    Source="../../Images/Resource/edit_file_48px.png" />
                             </Button.Content>
                         </Button>
                     </ToolBar>
                 </ToolBarTray>
             </Grid>
 
-            <StackPanel Grid.Column="1">
-                <TextBlock Text="Question: "  FontSize="16"/>
-                <xceed:RichTextBox MinHeight="60" Text="{Binding SelectedQuestion.Text}" Language="en-US" Name="QuestionTextBox"/>
-                <ListBox ItemsSource="{Binding SelectedQuestion.Answers}" Name="AnswersListBox">
+            <StackPanel 
+                Grid.Column="1">
+                <TextBlock 
+                    Text="Question: "  
+                    FontSize="16"/>
+                <xceed:RichTextBox 
+                    MinHeight="60" 
+                    Text="{Binding SelectedQuestion.Text}" 
+                    Language="en-US" 
+                    Name="QuestionTextBox"/>
+                <ListBox 
+                    ItemsSource="{Binding SelectedQuestion.Answers}" 
+                    Name="AnswersListBox">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Height="Auto" Orientation="Horizontal" Width="550">
-                                <CheckBox IsChecked="{Binding IsRight}" Margin="5 0 10 0"/>
-                                <xceed:RichTextBox FontSize="14" Text="{Binding Text}" Width="550" Height="Auto" MaxHeight="60"/>
+                            <StackPanel 
+                                Height="Auto" 
+                                Orientation="Horizontal" 
+                                Width="550">
+                                <CheckBox 
+                                    IsChecked="{Binding IsRight}" 
+                                    Margin="5 0 10 0"/>
+                                <xceed:RichTextBox 
+                                    FontSize="14" 
+                                    Text="{Binding Text}" 
+                                    Width="550" 
+                                    Height="Auto" 
+                                    MaxHeight="60" 
+                                    IsManipulationEnabled="{Binding DataContext.IsEditingMode,
+                                    RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>      
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
