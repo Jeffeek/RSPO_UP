@@ -15,8 +15,8 @@ namespace RSPO_UP_3.ViewModel
 {
     class LoginWindowViewModel : ViewModelBase
     {
-        private string _login = String.Empty;
-        private string _password = String.Empty;
+        private string _login = "admin1"; //String.Empty;
+        private string _password = "12345678";//String.Empty;
         private RegistrationViewModel _registrationViewModel;
         private List<User> _users;
         public ICommand EnterCommand { get; }
@@ -83,7 +83,7 @@ namespace RSPO_UP_3.ViewModel
 
                 case Role.Admin:
                 {
-                    //TODO: админ форма
+                    w = new AdminWindow();
                     break;
                 }
 

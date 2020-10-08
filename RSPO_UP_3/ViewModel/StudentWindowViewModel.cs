@@ -8,7 +8,7 @@ using ViewModelBase = RSPO_UP_3.ViewModel.Base.ViewModelBase;
 
 namespace RSPO_UP_3.ViewModel
 {
-    internal class MainWindowViewModel : ViewModelBase
+    internal class StudentWindowViewModel : ViewModelBase
     {
         /// <summary>
         /// объект текущей игры
@@ -70,7 +70,7 @@ namespace RSPO_UP_3.ViewModel
         /// <summary>
         /// конструктор по умолчанию для инициализации
         /// </summary>
-        public MainWindowViewModel()
+        public StudentWindowViewModel()
         {
             CurrentGame = new QuizGame();
             CheckedAnswers = new List<Answer>();

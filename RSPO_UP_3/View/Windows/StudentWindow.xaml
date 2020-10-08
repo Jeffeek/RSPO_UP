@@ -13,7 +13,7 @@
     MaxHeight="550"
     mc:Ignorable="d">
     <Window.DataContext>
-        <viewModel:MainWindowViewModel />
+        <viewModel:StudentWindowViewModel />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
