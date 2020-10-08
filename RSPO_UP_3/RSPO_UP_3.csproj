@@ -120,6 +120,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Services\QuestionDeserializer.cs" />
+    <Compile Include="ViewModel\RegistrationViewModel.cs" />
     <Compile Include="View\Windows\FinishTestWindow.xaml.cs">
       <DependentUpon>FinishTestWindow.xaml</DependentUpon>
     </Compile>
@@ -157,6 +158,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Images\Resource\back_to_80px.png" />
     <Content Include="QuizDB.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -182,6 +184,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

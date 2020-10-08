@@ -15,10 +15,11 @@ namespace RSPO_UP_3.ViewModel
 {
     class LoginWindowViewModel : ViewModelBase
     {
-        private string _login = "";
-        private string _password = "";
+        private string _login = String.Empty;
+        private string _password = String.Empty;
         private List<User> _users;
         public ICommand EnterCommand { get; }
+        public ICommand Registration { get; }
 
         public string LoginText
         {
@@ -44,6 +45,13 @@ namespace RSPO_UP_3.ViewModel
                     OpenChildForm(user.Role);
                 }
             }
+        }
+
+        private bool CanOpenRegistrationFormExecute() => true;
+
+        private void OnOpenRegistrationFromExecuted()
+        {
+
         }
 
         private void OpenChildForm(Role role)
@@ -77,6 +85,7 @@ namespace RSPO_UP_3.ViewModel
         {
             _users = UsersProvider.GetUsersList();
             EnterCommand = new RelayCommand(OnEnterButtonExecuted, CanEnterButtonExecute);
+            Registration = new RelayCommand(OnOpenRegistrationFromExecuted, CanOpenRegistrationFormExecute);
         }
     }
 }

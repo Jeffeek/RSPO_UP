@@ -19,7 +19,12 @@
         Margin="8"
         Background="#21439c"
         CornerRadius="15">
-        <StackPanel>
+        <Grid Name="MainGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1">
             <Label
                 Margin="0,30,0,25"
                 HorizontalAlignment="Center"
@@ -64,7 +69,7 @@
                 FontSize="20"
                 Style="{StaticResource LoginButton}">
             </Button>
-            <StackPanel Margin="0,35,0,0">
+            <StackPanel Margin="0,30,0,0">
                 <Separator />
                 <Button
                     Width="200"
@@ -72,8 +77,89 @@
                     HorizontalAlignment="Center"
                     Background="#02b0b1"
                     Content="Registration"
-                    FontSize="14" />
+                    FontSize="14">
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="RegPanel" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="0" To="400" Duration="0:0:0.5"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+            <StackPanel Grid.Column="0" Orientation="Vertical" Width="200" Name="RegPanel">
+                <Label 
+                    Content="Login" 
+                    HorizontalAlignment="Center" 
+                    FontSize="20"/>
+                <TextBox
+                    MinWidth="300"
+                    HorizontalAlignment="Center"
+                    Background="Black"
+                    FontSize="18"
+                    Foreground="DarkCyan"/>
+                <Label 
+                    Content="Name" 
+                    HorizontalAlignment="Center" 
+                    FontSize="20"/>
+                <TextBox
+                    MinWidth="300"
+                    HorizontalAlignment="Center"
+                    Background="Black"
+                    FontSize="18"
+                    Foreground="DarkCyan"/>
+                <Label 
+                    Content="Password" 
+                    HorizontalAlignment="Center" 
+                    FontSize="20"/>
+                <TextBox
+                    MinWidth="300"
+                    HorizontalAlignment="Center"
+                    Background="Black"
+                    FontSize="18"
+                    Foreground="DarkCyan"/>
+                <Label 
+                    Content="Repeat Password" 
+                    HorizontalAlignment="Center" 
+                    FontSize="20"/>
+                <TextBox
+                    MinWidth="300"
+                    HorizontalAlignment="Center"
+                    Background="Black"
+                    FontSize="18"
+                    Foreground="DarkCyan"/>
+                <Button 
+                    Content="Apply"
+                    Background="BlueViolet"
+                    FontSize="20"
+                    Margin="0 20 0 0"
+                    FontFamily="Impact"
+                    FontWeight="Medium"
+                    Width="100"
+                    HorizontalAlignment="Center"/>
+                <Button
+                    Background="Transparent"
+                    VerticalAlignment="Bottom"
+                    VerticalContentAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Margin="0 0 20 0"
+                    Height="40"
+                    Width="40">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="ButtonBase.Click">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="RegPanel" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="400" To="0" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                    <Image Source="../../Images/Resource/back_to_80px.png"/>
+                </Button>
+            </StackPanel>
+        </Grid>
     </Border>
 </Window>
