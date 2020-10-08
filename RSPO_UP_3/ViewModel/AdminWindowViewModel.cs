@@ -16,8 +16,12 @@ namespace RSPO_UP_3.ViewModel
     class AdminWindowViewModel : ViewModelBase
     {
         private ObservableCollection<Question> _questions;
-        public Question SelectedQuestion { get; set; }
-
+        private Question _selectedQuestion;
+        public Question SelectedQuestion 
+        {
+            get => _selectedQuestion; 
+            set => SetValue(ref _selectedQuestion, value);
+        }
         public ICommand LoadQuestionsCommand { get; }
 
         private bool CanLoadQuestionsExecute() => true;

@@ -27,7 +27,7 @@
                     Height="28"
                     Command="{Binding LoadQuestionsCommand}">
                     <Button.ToolTip>
-                        <ToolTip Content="Save File" />
+                        <ToolTip Content="Load File" />
                     </Button.ToolTip>
                     <Button.Content>
                         <Image Source="../../Images/Resource/downloading_updates_48px.png" />
@@ -36,7 +36,7 @@
                 <Separator />
                 <Button Width="28" Height="28">
                     <Button.ToolTip>
-                        <ToolTip Content="Load File" />
+                        <ToolTip Content="Save File" />
                     </Button.ToolTip>
                     <Button.Content>
                         <Image Source="../../Images/Resource/upload_48px.png" />
@@ -66,7 +66,7 @@
                 <ListBox
                     Name="QuestionsListBox"
                     ItemsSource="{Binding Questions}"
-                    SelectedItem="{Binding SelectedQuestion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    SelectedItem="{Binding SelectedQuestion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel
@@ -88,9 +88,10 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </Grid>
+
             <StackPanel Grid.Column="1">
                 <TextBlock Text="Question: " />
-                <xceed:RichTextBox MinHeight="120" Text="{Binding SelectedQuestion.Text}"/>
+                <xceed:RichTextBox MinHeight="120" Text="{Binding SelectedQuestion.Text}" Language="en-US"/>
             </StackPanel>
         </Grid>
     </Grid>
