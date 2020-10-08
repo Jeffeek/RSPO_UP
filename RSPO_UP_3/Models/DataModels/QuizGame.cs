@@ -17,7 +17,7 @@ namespace RSPO_UP_3.Models.DataModels
         /// <summary>
         /// коллекция вопросов
         /// </summary>
-        private readonly List<Question> _questions;
+        private readonly ObservableCollection<Question> _questions;
         /// <summary>
         /// объект вопроса, который на который в
         /// данный момент отвечает пользователь 
@@ -33,9 +33,8 @@ namespace RSPO_UP_3.Models.DataModels
         /// </summary>
         public QuizGame()
         {
-            _questions = QuestionDeserializer.GetQuestionsFromFile();
-            foreach (var question in _questions)
-                question.CurrentAnswers = new ObservableCollection<Answer>(question.Answers);
+            var qlist = QuestionDeserializer.GetQuestionsFromFile();
+            _questions = new ObservableCollection<Question>(qlist);
 
             CurrentQuestion = _questions[0] ?? throw new Exception("Вопросик был нуль");
         }

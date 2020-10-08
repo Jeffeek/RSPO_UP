@@ -34,7 +34,7 @@
                     </Button.Content>
                 </Button>
                 <Separator />
-                <Button Width="28" Height="28">
+                <Button Width="28" Height="28" Command="{Binding ReloadQuestionsCommand}">
                     <Button.ToolTip>
                         <ToolTip Content="Save File" />
                     </Button.ToolTip>
@@ -87,11 +87,58 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                <ToolBarTray Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+                    <ToolBar>
+                        <Button
+                            Width="28"
+                            Height="28"
+                            Command="{Binding LoadQuestionsCommand}">
+                            <Button.ToolTip>
+                                <ToolTip Content="Add" />
+                            </Button.ToolTip>
+                            <Button.Content>
+                                <Image Source="../../Images/Resource/create_48px.png" />
+                            </Button.Content>
+                        </Button>
+                        <Button
+                            Width="28"
+                            Height="28"
+                            Command="{Binding LoadQuestionsCommand}">
+                            <Button.ToolTip>
+                                <ToolTip Content="Remove" />
+                            </Button.ToolTip>
+                            <Button.Content>
+                                <Image Source="../../Images/Resource/Delete Bin_48px.png" />
+                            </Button.Content>
+                        </Button>
+                        <Button
+                            Width="28"
+                            Height="28"
+                            Command="{Binding LoadQuestionsCommand}">
+                            <Button.ToolTip>
+                                <ToolTip Content="Edit mode" />
+                            </Button.ToolTip>
+                            <Button.Content>
+                                <Image Source="../../Images/Resource/edit_file_48px.png" />
+                            </Button.Content>
+                        </Button>
+                    </ToolBar>
+                </ToolBarTray>
             </Grid>
 
             <StackPanel Grid.Column="1">
-                <TextBlock Text="Question: " />
-                <xceed:RichTextBox MinHeight="120" Text="{Binding SelectedQuestion.Text}" Language="en-US"/>
+                <TextBlock Text="Question: "  FontSize="16"/>
+                <xceed:RichTextBox MinHeight="60" Text="{Binding SelectedQuestion.Text}" Language="en-US" Name="QuestionTextBox"/>
+                <ListBox ItemsSource="{Binding SelectedQuestion.Answers}" Name="AnswersListBox">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Height="Auto" Orientation="Horizontal" Width="550">
+                                <CheckBox IsChecked="{Binding IsRight}" Margin="5 0 10 0"/>
+                                <xceed:RichTextBox FontSize="14" Text="{Binding Text}" Width="550" Height="Auto" MaxHeight="60"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </StackPanel>
         </Grid>
     </Grid>

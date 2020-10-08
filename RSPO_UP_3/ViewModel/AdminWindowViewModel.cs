@@ -15,22 +15,30 @@ namespace RSPO_UP_3.ViewModel
 {
     class AdminWindowViewModel : ViewModelBase
     {
+
+        #region fields
+
         private ObservableCollection<Question> _questions;
         private Question _selectedQuestion;
-        public Question SelectedQuestion 
-        {
-            get => _selectedQuestion; 
-            set => SetValue(ref _selectedQuestion, value);
-        }
+        private bool _isEditingMode = false;
+
+        #endregion
+
+        #region commands
+
+        public ICommand EditingModeCommand { get; }
         public ICommand LoadQuestionsCommand { get; }
+        public ICommand ReloadQuestionsCommand { get; }
+        public ICommand SaveQuestionsCommand { get; }
 
-        private bool CanLoadQuestionsExecute() => true;
+        #endregion
 
-        private void OnLoadQuestionsExecuted()
+        #region properties
+
+        public Question SelectedQuestion
         {
-            Questions = QuestionDeserializer.GetObservableCollectionOfQuestions();
-            if (Questions.Any())
-                SelectedQuestion = Questions.First();
+            get => _selectedQuestion;
+            set => SetValue(ref _selectedQuestion, value);
         }
 
         public ObservableCollection<Question> Questions
@@ -39,9 +47,51 @@ namespace RSPO_UP_3.ViewModel
             set => SetValue(ref _questions, value);
         }
 
+        public bool IsEditingMode
+        {
+            get => _isEditingMode;
+            set => SetValue(ref _isEditingMode, value);
+        }
+
+        #endregion
+
+
+        private bool CanLoadQuestionsExecute() => true;
+        private void OnLoadQuestionsExecuted()
+        {
+            Questions = QuestionDeserializer.GetObservableCollectionOfQuestions();
+            if (Questions.Any())
+                SelectedQuestion = Questions.First();
+        }
+
+        private bool CanReloadQuestionsExecute() => true;
+        private void OnReloadQuestionsExecuted()
+        {
+            OnLoadQuestionsExecuted();
+        }
+
+
+        private bool CanChangeEditingMode() => true;
+        private void OnEditingModeExecuted() => IsEditingMode = !IsEditingMode;
+
+
+        private bool CanSaveQuestionsExecute() => !IsEditingMode;
+        private void OnSaveQuestionsExecuted()
+        {
+            if (!IsEditingMode)
+            {
+                var list = _questions.ToList();
+                QuestionDeserializer.WriteQuestionsToFile(list);
+                IsEditingMode = true;
+            }
+        }
+
         public AdminWindowViewModel()
         {
             LoadQuestionsCommand = new RelayCommand(OnLoadQuestionsExecuted, CanLoadQuestionsExecute);
+            ReloadQuestionsCommand = new RelayCommand(OnReloadQuestionsExecuted, CanReloadQuestionsExecute);
+            EditingModeCommand = new RelayCommand(OnEditingModeExecuted, CanChangeEditingMode);
+            SaveQuestionsCommand = new RelayCommand(OnSaveQuestionsExecuted, CanSaveQuestionsExecute);
         }
     }
 }
