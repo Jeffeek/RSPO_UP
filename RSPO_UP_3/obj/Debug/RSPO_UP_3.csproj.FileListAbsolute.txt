@@ -128,3 +128,6 @@ C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_3\bin\Debug\System.Data.SQLite
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_3\obj\Debug\View\Windows\LoginWindow.g.cs
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_3\obj\Debug\RSPO_UP_3_Content.g.cs
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_3\obj\Debug\View\Windows\LoginWindow.baml
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_3\obj\Debug\RSPO_UP_3.csprojAssemblyReference.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_3\obj\Debug\View\Windows\TeacherWindow.g.cs
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_3\obj\Debug\View\Windows\TeacherWindow.baml

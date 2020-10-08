@@ -17,9 +17,15 @@ namespace RSPO_UP_3.ViewModel
     {
         private string _login = String.Empty;
         private string _password = String.Empty;
+        private RegistrationViewModel _registrationViewModel;
         private List<User> _users;
         public ICommand EnterCommand { get; }
-        public ICommand Registration { get; }
+
+        public RegistrationViewModel RegistrationViewModel
+        {
+            get => _registrationViewModel;
+            set => SetValue(ref _registrationViewModel, value);
+        }
 
         public string LoginText
         {
@@ -42,16 +48,26 @@ namespace RSPO_UP_3.ViewModel
             {
                 if (user.Password == PasswordText)
                 {
+                    UsersProvider.AddNewEntrance(user.Id);
                     OpenChildForm(user.Role);
                 }
+                else
+                {
+                    MessageBox.Show($"Password is wrong!",
+                        "Bad pass",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
             }
-        }
-
-        private bool CanOpenRegistrationFormExecute() => true;
-
-        private void OnOpenRegistrationFromExecuted()
-        {
-
+            else
+            {
+                MessageBox.Show($"User with login {LoginText} is not exists!",
+                    "Bad login",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+            LoginText = String.Empty;
+            PasswordText = String.Empty;
         }
 
         private void OpenChildForm(Role role)
@@ -61,8 +77,7 @@ namespace RSPO_UP_3.ViewModel
             {
                 case Role.Student:
                 {
-                    MainWindow mw = new MainWindow();
-                    w = mw;
+                    w = new MainWindow();
                     break;
                 }
 
@@ -74,18 +89,18 @@ namespace RSPO_UP_3.ViewModel
 
                 case Role.Teacher:
                 {
-                    //TODO: форма препода
+                    w = new TeacherWindow();
                     break;
                 }
             }
-            w?.Show();
+            w?.ShowDialog();
         }
 
         public LoginWindowViewModel()
         {
             _users = UsersProvider.GetUsersList();
+            RegistrationViewModel = new RegistrationViewModel(_users);
             EnterCommand = new RelayCommand(OnEnterButtonExecuted, CanEnterButtonExecute);
-            Registration = new RelayCommand(OnOpenRegistrationFromExecuted, CanOpenRegistrationFormExecute);
         }
     }
 }

@@ -1,0 +1,25 @@
+﻿<Window
+    x:Class="RSPO_UP_3.View.Windows.TeacherWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:RSPO_UP_3.View.Windows"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:RSPO_UP_3.ViewModel"
+    Title="TeacherWindow"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <vm:TeacherWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <DataGrid
+            AutoGenerateColumns="True"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserReorderColumns="False"
+            CanUserResizeRows="False"
+            ItemsSource="{Binding Entrances}" />
+    </Grid>
+</Window>

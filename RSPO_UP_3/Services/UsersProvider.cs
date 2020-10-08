@@ -36,5 +36,32 @@ namespace RSPO_UP_3.Services
 
             return entrances;
         }
+
+        public static void AddNewUser(User user)
+        {
+            using (var con = new QuizDbContext())
+            {
+                con.Users.Load();
+                con.Users.Add(user);
+                con.SaveChanges();
+            }
+        }
+
+        public static void AddNewEntrance(int userId)
+        {
+            using (var con = new QuizDbContext())
+            {
+                con.Entrances.Load();
+                con.Users.Load();
+                var user = con.Users.Single(x => x.Id == userId);
+                var entrance = new Entrance()
+                {
+                    Date = DateTime.Now.ToShortDateString(),
+                    UserId = userId
+                };
+                con.Entrances.Add(entrance);
+                con.SaveChanges();
+            }
+        }
     }
 }

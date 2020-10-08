@@ -21,68 +21,81 @@
         CornerRadius="15">
         <Grid Name="MainGrid">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="1">
-            <Label
-                Margin="0,30,0,25"
-                HorizontalAlignment="Center"
-                Content="Logging"
-                FontFamily="Impact"
-                FontSize="40"
-                Foreground="#ee423e" />
-            <Separator Height="3" />
-            <Label
-                HorizontalAlignment="Center"
-                Content="Login"
-                FontFamily="Impact"
-                FontSize="30"
-                Foreground="White" />
-            <TextBox
-                MinWidth="300"
-                HorizontalAlignment="Center"
-                Background="Black"
-                FontSize="18"
-                Foreground="DarkCyan"
-                Text="{Binding LoginText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <Label
-                HorizontalAlignment="Center"
-                Content="Password"
-                FontFamily="Impact"
-                FontSize="30"
-                Foreground="White" />
-            <TextBox
-                MinWidth="300"
-                HorizontalAlignment="Center"
-                Background="Black"
-                FontSize="18"
-                Foreground="DarkCyan"
-                Text="{Binding PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <Button
-                Width="200"
-                Height="40"
-                Margin="0,30,0,0"
-                Command="{Binding EnterCommand}"
-                Content="Sign In"
-                FontFamily="Impact"
-                FontSize="20"
-                Style="{StaticResource LoginButton}">
-            </Button>
-            <StackPanel Margin="0,30,0,0">
-                <Separator />
+                <Label
+                    Margin="0,30,0,25"
+                    HorizontalAlignment="Center"
+                    Content="Logging"
+                    FontFamily="Impact"
+                    FontSize="40"
+                    Foreground="#ee423e" />
+                <Separator Height="3" />
+                <Label
+                    HorizontalAlignment="Center"
+                    Content="Login"
+                    FontFamily="Impact"
+                    FontSize="30"
+                    Foreground="White" />
+                <TextBox
+                    MinWidth="300"
+                    HorizontalAlignment="Center"
+                    Background="Black"
+                    FontSize="18"
+                    Foreground="DarkCyan"
+                    Text="{Binding LoginText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.ToolTip>
+                        <ToolTip Content="5 chars minimum" />
+                    </TextBox.ToolTip>
+                </TextBox>
+                <Label
+                    HorizontalAlignment="Center"
+                    Content="Password"
+                    FontFamily="Impact"
+                    FontSize="30"
+                    Foreground="White" />
+                <TextBox
+                    MinWidth="300"
+                    HorizontalAlignment="Center"
+                    Background="Black"
+                    FontSize="18"
+                    Foreground="DarkCyan"
+                    Text="{Binding PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.ToolTip>
+                        <ToolTip Content="7 chars minimum" />
+                    </TextBox.ToolTip>
+                </TextBox>
                 <Button
                     Width="200"
-                    Margin="0,0,0,0"
-                    HorizontalAlignment="Center"
-                    Background="#02b0b1"
-                    Content="Registration"
-                    FontSize="14">
+                    Height="40"
+                    Margin="0,30,0,0"
+                    Command="{Binding EnterCommand}"
+                    Content="Sign In"
+                    FontFamily="Impact"
+                    FontSize="20"
+                    Style="{StaticResource LoginButton}" />
+                <StackPanel Margin="0,30,0,0">
+                    <Separator />
+                    <Button
+                        Width="200"
+                        Margin="0,0,0,0"
+                        HorizontalAlignment="Center"
+                        Background="#02b0b1"
+                        Content="Registration"
+                        FontSize="14">
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.Click">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="RegPanel" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="0" To="400" Duration="0:0:0.5"/>
+                                        <DoubleAnimation
+                                            BeginTime="0:0:0"
+                                            Storyboard.TargetName="RegPanel"
+                                            Storyboard.TargetProperty="Width"
+                                            From="0"
+                                            To="400"
+                                            Duration="0:0:0.5" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -90,74 +103,105 @@
                     </Button>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Column="0" Orientation="Vertical" Width="200" Name="RegPanel">
-                <Label 
-                    Content="Login" 
-                    HorizontalAlignment="Center" 
-                    FontSize="20"/>
+            <StackPanel
+                Name="RegPanel"
+                Grid.Column="0"
+                Width="0"
+                Orientation="Vertical">
+                <Label
+                    HorizontalAlignment="Center"
+                    Content="Login"
+                    FontSize="20" />
                 <TextBox
                     MinWidth="300"
                     HorizontalAlignment="Center"
                     Background="Black"
                     FontSize="18"
-                    Foreground="DarkCyan"/>
-                <Label 
-                    Content="Name" 
-                    HorizontalAlignment="Center" 
-                    FontSize="20"/>
+                    Foreground="DarkCyan"
+                    Text="{Binding RegistrationViewModel.LoginText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.ToolTip>
+                        <ToolTip Content="5 chars minimum" />
+                    </TextBox.ToolTip>
+                </TextBox>
+                <Label
+                    HorizontalAlignment="Center"
+                    Content="Name"
+                    FontSize="20" />
                 <TextBox
                     MinWidth="300"
                     HorizontalAlignment="Center"
                     Background="Black"
                     FontSize="18"
-                    Foreground="DarkCyan"/>
-                <Label 
-                    Content="Password" 
-                    HorizontalAlignment="Center" 
-                    FontSize="20"/>
+                    Foreground="DarkCyan"
+                    Text="{Binding RegistrationViewModel.NameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.ToolTip>
+                        <ToolTip Content="3 chars minimum" />
+                    </TextBox.ToolTip>
+                </TextBox>
+                <Label
+                    HorizontalAlignment="Center"
+                    Content="Password"
+                    FontSize="20" />
                 <TextBox
                     MinWidth="300"
                     HorizontalAlignment="Center"
                     Background="Black"
                     FontSize="18"
-                    Foreground="DarkCyan"/>
-                <Label 
-                    Content="Repeat Password" 
-                    HorizontalAlignment="Center" 
-                    FontSize="20"/>
+                    Foreground="DarkCyan"
+                    Text="{Binding RegistrationViewModel.PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.ToolTip>
+                        <ToolTip Content="7 chars minimum" />
+                    </TextBox.ToolTip>
+                </TextBox>
+                <Label
+                    HorizontalAlignment="Center"
+                    Content="Repeat Password"
+                    FontSize="20" />
                 <TextBox
                     MinWidth="300"
                     HorizontalAlignment="Center"
                     Background="Black"
                     FontSize="18"
-                    Foreground="DarkCyan"/>
-                <Button 
-                    Content="Apply"
-                    Background="BlueViolet"
-                    FontSize="20"
-                    Margin="0 20 0 0"
-                    FontFamily="Impact"
-                    FontWeight="Medium"
-                    Width="100"
-                    HorizontalAlignment="Center"/>
+                    Foreground="DarkCyan"
+                    Text="{Binding RegistrationViewModel.RepeatPasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.ToolTip>
+                        <ToolTip Content="7 chars minimum" />
+                    </TextBox.ToolTip>
+                </TextBox>
                 <Button
-                    Background="Transparent"
+                    Width="100"
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Center"
+                    Background="BlueViolet"
+                    Command="{Binding RegistrationViewModel.RegisterNewUser}"
+                    Content="Apply"
+                    FontFamily="Impact"
+                    FontSize="20"
+                    FontWeight="Medium" />
+                <Button
+                    Width="40"
+                    Height="40"
+                    Margin="0,0,30,0"
+                    HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     VerticalContentAlignment="Bottom"
-                    HorizontalAlignment="Right"
-                    Margin="0 0 20 0"
-                    Height="40"
-                    Width="40">
+                    Background="Transparent">
                     <Button.Triggers>
                         <EventTrigger RoutedEvent="ButtonBase.Click">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetName="RegPanel" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="400" To="0" Duration="0:0:0.5"/>
+                                    <DoubleAnimation
+                                        BeginTime="0:0:0"
+                                        Storyboard.TargetName="RegPanel"
+                                        Storyboard.TargetProperty="Width"
+                                        From="400"
+                                        To="0"
+                                        Duration="0:0:0.5" />
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
                     </Button.Triggers>
-                    <Image Source="../../Images/Resource/back_to_80px.png"/>
+                    <Image Source="../../Images/Resource/back_to_80px.png" />
                 </Button>
             </StackPanel>
         </Grid>
