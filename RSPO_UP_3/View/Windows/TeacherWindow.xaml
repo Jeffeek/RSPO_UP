@@ -15,11 +15,12 @@
     </Window.DataContext>
     <Grid>
         <DataGrid
-            AutoGenerateColumns="True"
+            IsReadOnly="True"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
             CanUserReorderColumns="False"
             CanUserResizeRows="False"
-            ItemsSource="{Binding Entrances}" />
+            ItemsSource="{Binding Entrances}">
+        </DataGrid>
     </Grid>
 </Window>

@@ -46,7 +46,7 @@ namespace RSPO_UP_3.Models.DataModels
         public void NextQuestion()
         {
             int currentIndex = _questions.IndexOf(CurrentQuestion);
-            if (IsLast())
+            if (IsLast)
             {
                 OpenFinish();
                 Application.Current.Shutdown();
@@ -88,6 +88,6 @@ namespace RSPO_UP_3.Models.DataModels
         /// </summary>
         /// <returns>true - если последний,
         /// false - если НЕ последний</returns>
-        public bool IsLast() => CurrentQuestion.Id == _questions.Max(x => x.Id);
+        public bool IsLast => _questions.IndexOf(CurrentQuestion) == _questions.IndexOf(_questions.Last());
     }
 }

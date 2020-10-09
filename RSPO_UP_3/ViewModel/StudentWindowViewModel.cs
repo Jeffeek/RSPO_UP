@@ -31,6 +31,7 @@ namespace RSPO_UP_3.ViewModel
         /// </summary>
         public ICommand CheckBoxCommand { get; }
 
+
         public bool IsButtonEnabled
         { 
             get => _isButtonEnabled;

@@ -18,5 +18,15 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="SelectButton" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Background" Value="DarkGray"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>

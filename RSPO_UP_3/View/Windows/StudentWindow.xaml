@@ -7,10 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:RSPO_UP_3.ViewModel"
     Title="MainWindow"
-    MinWidth="800"
-    MinHeight="450"
-    MaxWidth="1050"
-    MaxHeight="550"
+    Width="750"
+    Height="450"
+    ResizeMode="NoResize"
     mc:Ignorable="d">
     <Window.DataContext>
         <viewModel:StudentWindowViewModel />
@@ -22,6 +21,10 @@
             <RowDefinition Height="0.8*" />
             <RowDefinition Height="0.12*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0" Name="FinishWindowColumn"/>
+        </Grid.ColumnDefinitions>
         <TextBlock
             Grid.Column="0"
             HorizontalAlignment="Center"
@@ -29,7 +32,7 @@
             FontFamily="Impact"
             FontSize="45"
             FontStyle="Oblique"
-            Text="Супер-тест для интеллектуалов">
+            Text="Super-test for intellectuals">
             <TextBlock.Foreground>
                 <RadialGradientBrush>
                     <GradientStopCollection>
@@ -61,18 +64,17 @@
         <ListBox
             Grid.Row="2"
             Grid.Column="0"
-            ItemsSource="{Binding CurrentGame.CurrentQuestion.CurrentAnswers}">
+            ItemsSource="{Binding CurrentGame.CurrentQuestion.Answers}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="60">
+                    <StackPanel Height="40" MaxHeight="50" Orientation="Horizontal">
                         <CheckBox
+                            VerticalAlignment="Center"
                             Name="Box"
-                            Grid.Row="0"
-                            Grid.Column="0"
                             Command="{Binding DataContext.CheckBoxCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
-                            CommandParameter="{Binding}"
-                            Content="{Binding Path=Text, UpdateSourceTrigger=PropertyChanged}" />
-                    </Grid>
+                            CommandParameter="{Binding}"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10 0 0 0" TextWrapping="Wrap" Height="Auto" Width="690"  Text="{Binding Path=Text, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
@@ -90,6 +92,7 @@
             Command="{Binding NextQuestionCommand}"
             Content="Apply"
             FontSize="30"
-            IsEnabled="{Binding DataContext.IsButtonEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            IsEnabled="{Binding DataContext.IsButtonEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}">
+        </Button>
     </Grid>
 </Window>

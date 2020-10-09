@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using RSPO_UP_3.Models.EntityFramework.Models;
@@ -15,8 +16,8 @@ namespace RSPO_UP_3.ViewModel
 {
     class LoginWindowViewModel : ViewModelBase
     {
-        private string _login = "admin1"; //String.Empty;
-        private string _password = "12345678";//String.Empty;
+        private string _login = String.Empty;
+        private string _password = String.Empty;
         private RegistrationViewModel _registrationViewModel;
         private List<User> _users;
         public ICommand EnterCommand { get; }
@@ -94,6 +95,7 @@ namespace RSPO_UP_3.ViewModel
                 }
             }
             w?.ShowDialog();
+            Application.Current.Shutdown();
         }
 
         public LoginWindowViewModel()

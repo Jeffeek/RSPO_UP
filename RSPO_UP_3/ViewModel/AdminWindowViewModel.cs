@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using RSPO_UP_3.Models.DataModels;
-using RSPO_UP_3.Models.EntityFramework.Models;
 using RSPO_UP_3.Services;
 using RSPO_UP_3.ViewModel.Base;
 
@@ -20,7 +16,8 @@ namespace RSPO_UP_3.ViewModel
 
         private ObservableCollection<Question> _questions;
         private Question _selectedQuestion;
-        private bool _isEditingMode = false;
+        private bool _isReadOnlyMode = true;
+        private string _title = "Admin Panel";
 
         #endregion
 
@@ -37,6 +34,12 @@ namespace RSPO_UP_3.ViewModel
 
         #region properties
 
+        public string Title
+        {
+            get => _title;
+            set => SetValue(ref _title, value);
+        }
+
         public Question SelectedQuestion
         {
             get => _selectedQuestion;
@@ -49,10 +52,10 @@ namespace RSPO_UP_3.ViewModel
             set => SetValue(ref _questions, value);
         }
 
-        public bool IsEditingMode
+        public bool IsReadOnlyMode
         {
-            get => _isEditingMode;
-            set => SetValue(ref _isEditingMode, value);
+            get => _isReadOnlyMode;
+            set => SetValue(ref _isReadOnlyMode, value);
         }
 
         #endregion
@@ -77,12 +80,12 @@ namespace RSPO_UP_3.ViewModel
                     new Answer(), 
                     new Answer()
                 },
-                Text = String.Empty
+                Text = String.Empty,
+                Id = Questions.Last().Id + 1
             };
             Questions.Add(item);
             SelectedQuestion = Questions.Last();
         }
-
 
         private bool CanLoadQuestionsExecute() => true;
         private void OnLoadQuestionsExecuted()
@@ -95,22 +98,30 @@ namespace RSPO_UP_3.ViewModel
         private bool CanReloadQuestionsExecute() => true;
         private void OnReloadQuestionsExecuted()
         {
+            IsReadOnlyMode = true;
             OnLoadQuestionsExecuted();
+            SelectedQuestion = Questions.FirstOrDefault();
         }
 
 
         private bool CanChangeEditingMode() => true;
-        private void OnEditingModeExecuted() => IsEditingMode = !IsEditingMode;
+        private void OnEditingModeExecuted()
+        {
+            IsReadOnlyMode = !IsReadOnlyMode;
+            if (IsReadOnlyMode)
+                Title = "Admin Panel";
+            else
+                Title = "Admin Panel (edit mode)";
+        }
 
 
-        private bool CanSaveQuestionsExecute() => !IsEditingMode;
+        private bool CanSaveQuestionsExecute() => IsReadOnlyMode && Questions != null && Questions.All(x => x.Answers.Count(y => y.IsRight) == 2) && Questions.All(x => x.Answers.All(y => y.Text != null)) && Questions.All(x => !string.IsNullOrEmpty(x.Text));
         private void OnSaveQuestionsExecuted()
         {
-            if (!IsEditingMode)
+            if (IsReadOnlyMode)
             {
                 var list = _questions.ToList();
                 QuestionDeserializer.WriteQuestionsToFile(list);
-                IsEditingMode = true;
             }
         }
 

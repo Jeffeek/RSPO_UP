@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:RSPO_UP_3.ViewModel"
     xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
-    Title="AdminWindow"
+    Title="{Binding Title}"
     Width="800"
     Height="450"
     ResizeMode="NoResize"
@@ -34,7 +34,7 @@
                     </Button.Content>
                 </Button>
                 <Separator />
-                <Button Width="28" Height="28" Command="{Binding ReloadQuestionsCommand}">
+                <Button Width="28" Height="28" Command="{Binding SaveQuestionsCommand}">
                     <Button.ToolTip>
                         <ToolTip Content="Save File" />
                     </Button.ToolTip>
@@ -55,10 +55,11 @@
         </ToolBarTray>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.33*" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="195*" />
+                <ColumnDefinition/>
+                <ColumnDefinition Width="598*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0" Name="ListGrid" Grid.ColumnSpan="3" Margin="0,0,596.6,-0.2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="0.08*" />
@@ -71,18 +72,21 @@
                         <DataTemplate>
                             <StackPanel
                                 Height="25"
-                                MaxWidth="{Binding ElementName=QuestionsListBox, Path=ActualWidth}"
+                                MaxWidth="{Binding ElementName=ListGrid, Path=ActualWidth}"
                                 CanHorizontallyScroll="False"
+                                CanVerticallyScroll="False"
                                 Orientation="Horizontal">
                                 <Ellipse
-                                    Width="12"
-                                    Height="12"
-                                    Margin="0,0,10,0"
+                                    Width="6"
+                                    Height="6"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,3,0"
                                     Fill="Aquamarine" />
                                 <TextBlock
                                     VerticalAlignment="Center"
                                     Text="{Binding Text}"
-                                    TextWrapping="Wrap" />
+                                    TextWrapping="NoWrap"
+                                    MaxWidth="160"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -129,37 +133,41 @@
                     </ToolBar>
                 </ToolBarTray>
             </Grid>
-
             <StackPanel 
-                Grid.Column="1">
+                Grid.Column="2">
                 <TextBlock 
                     Text="Question: "  
                     FontSize="16"/>
-                <xceed:RichTextBox 
+                <TextBox 
                     MinHeight="60" 
-                    Text="{Binding SelectedQuestion.Text}" 
-                    Language="en-US" 
-                    Name="QuestionTextBox"/>
+                    Text="{Binding SelectedQuestion.Text}"
+                    TextWrapping="Wrap"
+                    FontSize="18"
+                    Name="QuestionTextBox"
+                    IsReadOnly="{Binding IsReadOnlyMode}"/>
+                <TextBlock Text="Answers: " FontSize="16"/>
                 <ListBox 
                     ItemsSource="{Binding SelectedQuestion.Answers}" 
-                    Name="AnswersListBox">
+                    Name="AnswersListBox"
+                    Width="{Binding ElementName=AnswersListBox, Path=Width}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel 
                                 Height="Auto" 
                                 Orientation="Horizontal" 
-                                Width="550">
+                                Width="{Binding ElementName=AnswersListBox, Path=Width}">
                                 <CheckBox 
-                                    IsChecked="{Binding IsRight}" 
+                                    IsChecked="{Binding IsRight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Margin="5 0 10 0"/>
-                                <xceed:RichTextBox 
+                                <TextBox 
                                     FontSize="14" 
                                     Text="{Binding Text}" 
-                                    Width="550" 
+                                    Width="545"
+                                    TextWrapping="Wrap"
                                     Height="Auto" 
-                                    MaxHeight="60" 
-                                    IsManipulationEnabled="{Binding DataContext.IsEditingMode,
-                                    RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>      
+                                    MaxHeight="70" 
+                                    IsReadOnly="{Binding DataContext.IsReadOnlyMode,
+                                    RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

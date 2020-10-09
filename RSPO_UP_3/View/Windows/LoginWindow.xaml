@@ -44,8 +44,8 @@
                     HorizontalAlignment="Center"
                     Background="Black"
                     FontSize="18"
-                    Foreground="DarkCyan"
-                    Text="{Binding LoginText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    Text="{Binding LoginText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Foreground="DarkCyan">
                     <TextBox.ToolTip>
                         <ToolTip Content="5 chars minimum" />
                     </TextBox.ToolTip>
@@ -56,17 +56,18 @@
                     FontFamily="Impact"
                     FontSize="30"
                     Foreground="White" />
-                <TextBox
+                <PasswordBox
                     MinWidth="300"
                     HorizontalAlignment="Center"
                     Background="Black"
+                    PasswordChanged="PasswordBox_OnPasswordChanged"
                     FontSize="18"
                     Foreground="DarkCyan"
-                    Text="{Binding PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <TextBox.ToolTip>
+                    Name="Password">
+                    <PasswordBox.ToolTip>
                         <ToolTip Content="7 chars minimum" />
-                    </TextBox.ToolTip>
-                </TextBox>
+                    </PasswordBox.ToolTip>
+                </PasswordBox>
                 <Button
                     Width="200"
                     Height="40"
@@ -75,7 +76,7 @@
                     Content="Sign In"
                     FontFamily="Impact"
                     FontSize="20"
-                    Style="{StaticResource LoginButton}" />
+                    Style="{StaticResource LoginButton}"/>
                 <StackPanel Margin="0,30,0,0">
                     <Separator />
                     <Button

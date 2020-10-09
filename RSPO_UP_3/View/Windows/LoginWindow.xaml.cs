@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RSPO_UP_3.Models.EntityFramework;
+using RSPO_UP_3.ViewModel;
 
 namespace RSPO_UP_3.View.Windows
 {
@@ -25,6 +26,15 @@ namespace RSPO_UP_3.View.Windows
         public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (sender is PasswordBox pb)
+            {
+                var pass = pb.Password;
+                ((LoginWindowViewModel)DataContext).PasswordText = pass;
+            }
         }
     }
 }
