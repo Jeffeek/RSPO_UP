@@ -65,7 +65,7 @@
                     Background="Black"
                     FontSize="18"
                     Foreground="DarkCyan"
-                    Text="{Binding PasswordText}">
+                    Text="{Binding PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <xctk:WatermarkPasswordBox.ToolTip>
                         <ToolTip Content="7 chars minimum" />
                     </xctk:WatermarkPasswordBox.ToolTip>
