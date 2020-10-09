@@ -27,14 +27,5 @@ namespace RSPO_UP_3.View.Windows
         {
             InitializeComponent();
         }
-
-        private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
-        {
-            if (sender is PasswordBox pb)
-            {
-                var pass = pb.Password;
-                ((LoginWindowViewModel)DataContext).PasswordText = pass;
-            }
-        }
     }
 }

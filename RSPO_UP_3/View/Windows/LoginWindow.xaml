@@ -6,6 +6,8 @@
     xmlns:local="clr-namespace:RSPO_UP_3.View.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:RSPO_UP_3.ViewModel"
+    xmlns:xceed="clr-namespace:Xceed;assembly=Xceed.Wpf.Toolkit"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     Title="LoginWindow"
     Width="400"
     Height="450"
@@ -44,8 +46,8 @@
                     HorizontalAlignment="Center"
                     Background="Black"
                     FontSize="18"
-                    Text="{Binding LoginText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Foreground="DarkCyan">
+                    Foreground="DarkCyan"
+                    Text="{Binding LoginText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <TextBox.ToolTip>
                         <ToolTip Content="5 chars minimum" />
                     </TextBox.ToolTip>
@@ -56,18 +58,18 @@
                     FontFamily="Impact"
                     FontSize="30"
                     Foreground="White" />
-                <PasswordBox
+                <xctk:WatermarkPasswordBox
+                    Name="Password"
                     MinWidth="300"
                     HorizontalAlignment="Center"
                     Background="Black"
-                    PasswordChanged="PasswordBox_OnPasswordChanged"
                     FontSize="18"
                     Foreground="DarkCyan"
-                    Name="Password">
-                    <PasswordBox.ToolTip>
+                    Text="{Binding PasswordText}">
+                    <xctk:WatermarkPasswordBox.ToolTip>
                         <ToolTip Content="7 chars minimum" />
-                    </PasswordBox.ToolTip>
-                </PasswordBox>
+                    </xctk:WatermarkPasswordBox.ToolTip>
+                </xctk:WatermarkPasswordBox>
                 <Button
                     Width="200"
                     Height="40"
@@ -76,7 +78,7 @@
                     Content="Sign In"
                     FontFamily="Impact"
                     FontSize="20"
-                    Style="{StaticResource LoginButton}"/>
+                    Style="{StaticResource LoginButton}" />
                 <StackPanel Margin="0,30,0,0">
                     <Separator />
                     <Button
@@ -143,7 +145,7 @@
                     HorizontalAlignment="Center"
                     Content="Password"
                     FontSize="20" />
-                <TextBox
+                <xctk:WatermarkPasswordBox
                     MinWidth="300"
                     HorizontalAlignment="Center"
                     Background="Black"
@@ -153,12 +155,12 @@
                     <TextBox.ToolTip>
                         <ToolTip Content="7 chars minimum" />
                     </TextBox.ToolTip>
-                </TextBox>
+                </xctk:WatermarkPasswordBox>
                 <Label
                     HorizontalAlignment="Center"
                     Content="Repeat Password"
                     FontSize="20" />
-                <TextBox
+                <xctk:WatermarkPasswordBox
                     MinWidth="300"
                     HorizontalAlignment="Center"
                     Background="Black"
@@ -166,9 +168,9 @@
                     Foreground="DarkCyan"
                     Text="{Binding RegistrationViewModel.RepeatPasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <TextBox.ToolTip>
-                        <ToolTip Content="7 chars minimum" />
+                        <ToolTip Content="7 chars minimum and the same pass" />
                     </TextBox.ToolTip>
-                </TextBox>
+                </xctk:WatermarkPasswordBox>
                 <Button
                     Width="100"
                     Margin="0,20,0,0"

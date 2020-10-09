@@ -193,12 +193,24 @@
     <Resource Include="Images\Resource\back_to_80px.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Resource\downloading_updates_48px.png" />
-    <Resource Include="Images\Resource\reset_48px.png" />
-    <Resource Include="Images\Resource\upload_48px.png" />
-    <Resource Include="Images\Resource\create_48px.png" />
-    <Resource Include="Images\Resource\Delete Bin_48px.png" />
-    <Resource Include="Images\Resource\edit_file_48px.png" />
+    <Resource Include="Images\Resource\downloading_updates_48px.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Resource\reset_48px.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Resource\upload_48px.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Resource\create_48px.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Resource\Delete Bin_48px.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Resource\edit_file_48px.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="QuizDB.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

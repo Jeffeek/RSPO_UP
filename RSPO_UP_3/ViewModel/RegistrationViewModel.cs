@@ -45,6 +45,7 @@ namespace RSPO_UP_3.ViewModel
             if (checkUser == null)
             {
                 UsersProvider.AddNewUser(user);
+                _users.Add(user);
                 MessageBox.Show($"User with login {LoginText} was registered!",
                     "Successful registration",
                     MessageBoxButton.OK,
