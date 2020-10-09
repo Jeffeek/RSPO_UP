@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_3\App.xaml
-3-200359868
-2-857728386
-20-1242400104
-127-1054592555
-View\Windows\FinishTestWindow.xaml;View\Windows\LoginWindow.xaml;View\Windows\MainWindow.xaml;
+5-430089103
+1583495078
+27-98817360
+1351750321022
+View\Windows\AdminWindow.xaml;View\Windows\FinishTestWindow.xaml;View\Windows\LoginWindow.xaml;View\Windows\StudentWindow.xaml;View\Windows\TeacherWindow.xaml;
 
 False
 

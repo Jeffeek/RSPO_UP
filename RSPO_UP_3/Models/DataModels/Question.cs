@@ -30,11 +30,6 @@ namespace RSPO_UP_3.Models.DataModels
         public Answer[] Answers { get; set; }
 
         /// <summary>
-        /// коллекция ответов, которая отслеживается
-        /// </summary>
-        public ObservableCollection<Answer> CurrentAnswers { get; set; }
-
-        /// <summary>
         /// коллекция ответов для десериализации
         /// </summary>
         /// <param name="index">индекс нужного ответа</param>

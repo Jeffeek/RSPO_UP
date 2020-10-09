@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
@@ -61,6 +62,13 @@ namespace RSPO_UP_3.Services
                 list.Remove(item);
                 WriteQuestionsToFile(list);
             }
+        }
+
+        public static ObservableCollection<Question> GetObservableCollectionOfQuestions()
+        {
+            var list = GetQuestionsFromFile();
+            ObservableCollection<Question> observable = new ObservableCollection<Question>(list);
+            return observable;
         }
 
         public static void ChangeAnswersInQuestion(int questionId, Answer[] answers)

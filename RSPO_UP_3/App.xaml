@@ -8,6 +8,25 @@
     d1p1:Ignorable="d"
     StartupUri="View/Windows/LoginWindow.xaml">
     <Application.Resources>
-        <ResourceDictionary />
+        <Style x:Key="LoginButton" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="DarkCyan" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Background" Value="#ee423e" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="SelectButton" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Background" Value="DarkGray" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="Transparent" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>
