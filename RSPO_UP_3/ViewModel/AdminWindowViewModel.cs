@@ -18,6 +18,7 @@ namespace RSPO_UP_3.ViewModel
         private Question _selectedQuestion;
         private bool _isReadOnlyMode = true;
         private string _title = "Admin Panel";
+        private int _selectedCheckBoxCount = 2;
 
         #endregion
 
@@ -29,6 +30,7 @@ namespace RSPO_UP_3.ViewModel
         public ICommand SaveQuestionsCommand { get; }
         public ICommand RemoveQuestionCommand { get; }
         public ICommand AddQuestionCommand { get; }
+        public ICommand CheckBoxCommand { get; }
 
         #endregion
 
@@ -81,7 +83,7 @@ namespace RSPO_UP_3.ViewModel
                     new Answer()
                 },
                 Text = String.Empty,
-                Id = Questions.Last().Id + 1
+                Id = Questions.LastOrDefault()?.Id + 1 ?? 999
             };
             Questions.Add(item);
             SelectedQuestion = Questions.Last();
@@ -102,7 +104,6 @@ namespace RSPO_UP_3.ViewModel
             OnLoadQuestionsExecuted();
             SelectedQuestion = Questions.FirstOrDefault();
         }
-
 
         private bool CanChangeEditingMode() => true;
         private void OnEditingModeExecuted()

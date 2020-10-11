@@ -22,8 +22,8 @@
             <RowDefinition Height="0.12*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="0" Name="FinishWindowColumn"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Name="FinishWindowColumn" Width="0" />
         </Grid.ColumnDefinitions>
         <TextBlock
             Grid.Column="0"
@@ -67,13 +67,27 @@
             ItemsSource="{Binding CurrentGame.CurrentQuestion.Answers}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Height="40" MaxHeight="50" Orientation="Horizontal">
+                    <StackPanel
+                        Height="40"
+                        MaxHeight="50"
+                        Orientation="Horizontal">
                         <CheckBox
-                            VerticalAlignment="Center"
                             Name="Box"
+                            VerticalAlignment="Center"
                             Command="{Binding DataContext.CheckBoxCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}"
-                            CommandParameter="{Binding}"/>
-                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10 0 0 0" TextWrapping="Wrap" Height="Auto" Width="690"  Text="{Binding Path=Text, UpdateSourceTrigger=PropertyChanged}" />
+                            CommandParameter="{Binding}">
+                            <CheckBox.Triggers>
+                                <EventTrigger RoutedEvent="CheckBox.Click" />
+                            </CheckBox.Triggers>
+                        </CheckBox>
+                        <TextBlock
+                            Width="690"
+                            Height="Auto"
+                            Margin="10,0,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="13"
+                            Text="{Binding Path=Text, UpdateSourceTrigger=PropertyChanged}"
+                            TextWrapping="Wrap" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -92,7 +106,6 @@
             Command="{Binding NextQuestionCommand}"
             Content="Apply"
             FontSize="30"
-            IsEnabled="{Binding DataContext.IsButtonEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}">
-        </Button>
+            IsEnabled="{Binding DataContext.IsButtonEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </Window>

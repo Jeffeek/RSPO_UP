@@ -15,12 +15,19 @@
     </Window.DataContext>
     <Grid>
         <DataGrid
-            IsReadOnly="True"
+            AutoGenerateColumns="False"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
             CanUserReorderColumns="False"
             CanUserResizeRows="False"
+            FontSize="14"
+            IsReadOnly="True"
             ItemsSource="{Binding Entrances}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Header="ID" />
+                <DataGridTextColumn Binding="{Binding User}" Header="User Info" />
+                <DataGridTextColumn Binding="{Binding Date}" Header="Date" />
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>

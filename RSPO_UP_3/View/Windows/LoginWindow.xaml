@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:RSPO_UP_3.View.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:RSPO_UP_3.ViewModel"
-    xmlns:xceed="clr-namespace:Xceed;assembly=Xceed.Wpf.Toolkit"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:view="clr-namespace:RSPO_UP_3.View"
     Title="LoginWindow"
     Width="400"
     Height="450"
@@ -58,18 +58,14 @@
                     FontFamily="Impact"
                     FontSize="30"
                     Foreground="White" />
-                <xctk:WatermarkPasswordBox
-                    Name="Password"
+                <view:UnsafePasswordBox
                     MinWidth="300"
                     HorizontalAlignment="Center"
-                    Background="Black"
-                    FontSize="18"
-                    Foreground="DarkCyan"
-                    Text="{Binding PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <xctk:WatermarkPasswordBox.ToolTip>
+                    Password="{Binding PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <view:UnsafePasswordBox.ToolTip>
                         <ToolTip Content="7 chars minimum" />
-                    </xctk:WatermarkPasswordBox.ToolTip>
-                </xctk:WatermarkPasswordBox>
+                    </view:UnsafePasswordBox.ToolTip>
+                </view:UnsafePasswordBox>
                 <Button
                     Width="200"
                     Height="40"
@@ -132,10 +128,10 @@
                     FontSize="20" />
                 <TextBox
                     MinWidth="300"
-                    HorizontalAlignment="Center"
-                    Background="Black"
                     FontSize="18"
+                    Background="Black"
                     Foreground="DarkCyan"
+                    HorizontalAlignment="Center"
                     Text="{Binding RegistrationViewModel.NameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <TextBox.ToolTip>
                         <ToolTip Content="3 chars minimum" />
@@ -145,32 +141,26 @@
                     HorizontalAlignment="Center"
                     Content="Password"
                     FontSize="20" />
-                <xctk:WatermarkPasswordBox
+                <view:UnsafePasswordBox
                     MinWidth="300"
                     HorizontalAlignment="Center"
-                    Background="Black"
-                    FontSize="18"
-                    Foreground="DarkCyan"
-                    Text="{Binding RegistrationViewModel.PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <TextBox.ToolTip>
+                    Password="{Binding RegistrationViewModel.PasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <view:UnsafePasswordBox.ToolTip>
                         <ToolTip Content="7 chars minimum" />
-                    </TextBox.ToolTip>
-                </xctk:WatermarkPasswordBox>
+                    </view:UnsafePasswordBox.ToolTip>
+                </view:UnsafePasswordBox>
                 <Label
                     HorizontalAlignment="Center"
                     Content="Repeat Password"
                     FontSize="20" />
-                <xctk:WatermarkPasswordBox
+                <view:UnsafePasswordBox
                     MinWidth="300"
                     HorizontalAlignment="Center"
-                    Background="Black"
-                    FontSize="18"
-                    Foreground="DarkCyan"
-                    Text="{Binding RegistrationViewModel.RepeatPasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <TextBox.ToolTip>
+                    Password="{Binding RegistrationViewModel.RepeatPasswordText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <view:UnsafePasswordBox.ToolTip>
                         <ToolTip Content="7 chars minimum and the same pass" />
-                    </TextBox.ToolTip>
-                </xctk:WatermarkPasswordBox>
+                    </view:UnsafePasswordBox.ToolTip>
+                </view:UnsafePasswordBox>
                 <Button
                     Width="100"
                     Margin="0,20,0,0"

@@ -41,7 +41,7 @@ namespace RSPO_UP_3.ViewModel
             set => SetValue(ref _password, value);
         }
 
-        private bool CanEnterButtonExecute() => LoginText.Length > 5 && PasswordText.Length > 7;
+        private bool CanEnterButtonExecute() => LoginText.Length >= 5 && PasswordText.Length >= 7;
 
         private void OnEnterButtonExecuted()
         {

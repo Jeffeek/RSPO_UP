@@ -163,7 +163,7 @@
                                 <TextBox 
                                     FontSize="14" 
                                     Text="{Binding Text}" 
-                                    Width="545"
+                                    MaxWidth="540"
                                     TextWrapping="Wrap"
                                     Height="Auto" 
                                     MaxHeight="70" 

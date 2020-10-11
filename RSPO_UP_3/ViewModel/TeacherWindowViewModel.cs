@@ -16,6 +16,13 @@ namespace RSPO_UP_3.ViewModel
         public TeacherWindowViewModel()
         {
             Entrances = UsersProvider.GetEntrancesList();
+            HidePasswords();
+        }
+
+        private void HidePasswords()
+        {
+            for (int i = 0; i < Entrances.Count; i++)
+                Entrances[i].User.Password = new string('*', Entrances[i].User.Password.Length);
         }
     }
 }

@@ -28,9 +28,9 @@ namespace RSPO_UP_3.ViewModel
             RegisterNewUser = new RelayCommand(OnRegisterButtonExecuted, CanRegisterButtonExecute);
         }
 
-        private bool CanRegisterButtonExecute() => NameText.Length > 3 && 
-                                                   LoginText.Length > 5 &&
-                                                   PasswordText.Length > 7 && 
+        private bool CanRegisterButtonExecute() => NameText.Length >= 3 && 
+                                                   LoginText.Length >= 5 &&
+                                                   PasswordText.Length >= 7 && 
                                                    PasswordText == RepeatPasswordText;
 
         private void OnRegisterButtonExecuted()

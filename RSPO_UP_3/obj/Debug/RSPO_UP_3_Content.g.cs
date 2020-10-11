@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("questions.json")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("quizdb.db")]
 
 
