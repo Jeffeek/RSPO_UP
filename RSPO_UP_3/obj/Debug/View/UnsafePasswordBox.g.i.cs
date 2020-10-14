@@ -41,7 +41,7 @@ namespace RSPO_UP_3.View {
     public partial class UnsafePasswordBox : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
         
-        #line 10 "..\..\..\View\UnsafePasswordBox.xaml"
+        #line 12 "..\..\..\View\UnsafePasswordBox.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.PasswordBox passwordBox;
         
@@ -81,7 +81,7 @@ namespace RSPO_UP_3.View {
             case 1:
             this.passwordBox = ((System.Windows.Controls.PasswordBox)(target));
             
-            #line 11 "..\..\..\View\UnsafePasswordBox.xaml"
+            #line 16 "..\..\..\View\UnsafePasswordBox.xaml"
             this.passwordBox.PasswordChanged += new System.Windows.RoutedEventHandler(this.PasswordBox_PasswordChanged);
             
             #line default

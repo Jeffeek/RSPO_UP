@@ -5,9 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:RSPO_UP_3.View.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:RSPO_UP_3.View"
     xmlns:vm="clr-namespace:RSPO_UP_3.ViewModel"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-    xmlns:view="clr-namespace:RSPO_UP_3.View"
     Title="LoginWindow"
     Width="400"
     Height="450"
@@ -128,10 +128,10 @@
                     FontSize="20" />
                 <TextBox
                     MinWidth="300"
-                    FontSize="18"
-                    Background="Black"
-                    Foreground="DarkCyan"
                     HorizontalAlignment="Center"
+                    Background="Black"
+                    FontSize="18"
+                    Foreground="DarkCyan"
                     Text="{Binding RegistrationViewModel.NameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <TextBox.ToolTip>
                         <ToolTip Content="3 chars minimum" />

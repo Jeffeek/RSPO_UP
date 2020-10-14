@@ -1,7 +1,8 @@
 [{
         "Id": 1,
         "Text": "What is the CLR?",
-        "Answers": [{
+        "Answers": [
+            {
                 "Text": "This is a component .The NET Framework, whose main task is to manage the interpretation and execution of IL code. the CLR is responsible for application memory isolation, type checking, code security, and converting IL to machine code.",
                 "IsRight": true
             },

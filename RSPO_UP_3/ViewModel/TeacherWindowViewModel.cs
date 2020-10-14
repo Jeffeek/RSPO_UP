@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using RSPO_UP_3.Models.EntityFramework.Models;
 using RSPO_UP_3.Services;
 using RSPO_UP_3.ViewModel.Base;

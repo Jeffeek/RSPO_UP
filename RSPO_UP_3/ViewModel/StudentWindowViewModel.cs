@@ -10,6 +10,8 @@ namespace RSPO_UP_3.ViewModel
 {
     internal class StudentWindowViewModel : ViewModelBase
     {
+        #region fields
+
         /// <summary>
         /// объект текущей игры
         /// </summary>
@@ -22,6 +24,11 @@ namespace RSPO_UP_3.ViewModel
         /// коллекция текущих выбранных ответов
         /// </summary>
         private List<Answer> CheckedAnswers { get; }
+
+        #endregion
+
+        #region commands
+
         /// <summary>
         /// команда, для передвижения по вопросам в текущей игре
         /// </summary>
@@ -31,6 +38,9 @@ namespace RSPO_UP_3.ViewModel
         /// </summary>
         public ICommand CheckBoxCommand { get; }
 
+        #endregion
+
+        #region props
 
         public bool IsButtonEnabled
         { 
@@ -42,6 +52,10 @@ namespace RSPO_UP_3.ViewModel
             get => _game;
             set => SetValue(ref _game, value);
         }
+
+        #endregion
+
+        #region methods
 
         /// <summary>
         /// метод для передвижения по текущему вопросу
@@ -67,6 +81,8 @@ namespace RSPO_UP_3.ViewModel
                 CheckedAnswers.Add(obj);
             IsButtonEnabled = CheckedAnswers.Count == 2;
         }
+
+        #endregion
 
         /// <summary>
         /// конструктор по умолчанию для инициализации

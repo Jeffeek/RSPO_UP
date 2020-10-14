@@ -18,7 +18,6 @@ namespace RSPO_UP_3.ViewModel
         private Question _selectedQuestion;
         private bool _isReadOnlyMode = true;
         private string _title = "Admin Panel";
-        private int _selectedCheckBoxCount = 2;
 
         #endregion
 
@@ -30,7 +29,6 @@ namespace RSPO_UP_3.ViewModel
         public ICommand SaveQuestionsCommand { get; }
         public ICommand RemoveQuestionCommand { get; }
         public ICommand AddQuestionCommand { get; }
-        public ICommand CheckBoxCommand { get; }
 
         #endregion
 
@@ -61,6 +59,8 @@ namespace RSPO_UP_3.ViewModel
         }
 
         #endregion
+
+        #region command methods
 
         public bool CanRemoveQuestionExecute() => SelectedQuestion != null;
         public void OnRemoveQuestionExecuted()
@@ -125,6 +125,8 @@ namespace RSPO_UP_3.ViewModel
                 QuestionDeserializer.WriteQuestionsToFile(list);
             }
         }
+
+        #endregion
 
         public AdminWindowViewModel()
         {

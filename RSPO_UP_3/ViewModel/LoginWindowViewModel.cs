@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using RSPO_UP_3.Models.EntityFramework.Models;
@@ -17,11 +13,22 @@ namespace RSPO_UP_3.ViewModel
 {
     class LoginWindowViewModel : ViewModelBase
     {
+        #region fields
+
         private string _login = String.Empty;
         private string _password = String.Empty;
         private RegistrationViewModel _registrationViewModel;
         private List<User> _users;
+
+        #endregion
+
+        #region commands
+
         public ICommand EnterCommand { get; }
+
+        #endregion
+
+        #region props
 
         public RegistrationViewModel RegistrationViewModel
         {
@@ -40,6 +47,10 @@ namespace RSPO_UP_3.ViewModel
             get => _password;
             set => SetValue(ref _password, value);
         }
+
+        #endregion
+
+        #region command methods
 
         private bool CanEnterButtonExecute() => LoginText.Length >= 5 && PasswordText.Length >= 7;
 
@@ -71,6 +82,8 @@ namespace RSPO_UP_3.ViewModel
             LoginText = String.Empty;
             PasswordText = String.Empty;
         }
+
+        #endregion
 
         private void OpenChildForm(Role role)
         {

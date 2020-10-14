@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -14,19 +12,23 @@ namespace RSPO_UP_3.ViewModel
 {
     class RegistrationViewModel : ViewModelBase
     {
+        #region fields
+
         private string _name = String.Empty;
         private string _password = String.Empty;
         private string _repeatPassword = String.Empty;
         private string _login = String.Empty;
         private List<User> _users;
 
+        #endregion
+
+        #region commands
+
         public ICommand RegisterNewUser { get; }
 
-        public RegistrationViewModel(List<User> users)
-        {
-            _users = users;
-            RegisterNewUser = new RelayCommand(OnRegisterButtonExecuted, CanRegisterButtonExecute);
-        }
+        #endregion
+
+        #region command methods
 
         private bool CanRegisterButtonExecute() => NameText.Length >= 3 && 
                                                    LoginText.Length >= 5 &&
@@ -58,11 +60,15 @@ namespace RSPO_UP_3.ViewModel
             else
             {
                 MessageBox.Show($"User with login {LoginText} is already exists!",
-                                    "Bad login", 
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Error);
+                    "Bad login", 
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
+
+        #endregion
+
+        #region props
 
         public string NameText
         {
@@ -86,6 +92,14 @@ namespace RSPO_UP_3.ViewModel
         {
             get => _login;
             set => SetValue(ref _login, value);
+        }
+
+        #endregion
+
+        public RegistrationViewModel(List<User> users)
+        {
+            _users = users;
+            RegisterNewUser = new RelayCommand(OnRegisterButtonExecuted, CanRegisterButtonExecute);
         }
     }
 }

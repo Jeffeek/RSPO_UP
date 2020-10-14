@@ -34,7 +34,10 @@
                     </Button.Content>
                 </Button>
                 <Separator />
-                <Button Width="28" Height="28" Command="{Binding SaveQuestionsCommand}">
+                <Button
+                    Width="28"
+                    Height="28"
+                    Command="{Binding SaveQuestionsCommand}">
                     <Button.ToolTip>
                         <ToolTip Content="Save File" />
                     </Button.ToolTip>
@@ -43,7 +46,10 @@
                     </Button.Content>
                 </Button>
                 <Separator />
-                <Button Width="28" Height="28" Command="{Binding ReloadQuestionsCommand}">
+                <Button
+                    Width="28"
+                    Height="28"
+                    Command="{Binding ReloadQuestionsCommand}">
                     <Button.ToolTip>
                         <ToolTip Content="Reload" />
                     </Button.ToolTip>
@@ -56,10 +62,14 @@
         <Grid Grid.Row="1" ShowGridLines="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="195*" />
-                <ColumnDefinition/>
+                <ColumnDefinition />
                 <ColumnDefinition Width="598*" />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Row="0" Name="ListGrid" Grid.Column="0" ShowGridLines="False">
+            <Grid
+                Name="ListGrid"
+                Grid.Row="0"
+                Grid.Column="0"
+                ShowGridLines="False">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="0.08*" />
@@ -79,19 +89,22 @@
                                 <Ellipse
                                     Width="6"
                                     Height="6"
-                                    VerticalAlignment="Center"
                                     Margin="0,0,3,0"
+                                    VerticalAlignment="Center"
                                     Fill="Aquamarine" />
                                 <TextBlock
+                                    MaxWidth="160"
                                     VerticalAlignment="Center"
                                     Text="{Binding Text}"
-                                    TextWrapping="NoWrap"
-                                    MaxWidth="160"/>
+                                    TextWrapping="NoWrap" />
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <ToolBarTray Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+                <ToolBarTray
+                    Grid.Row="1"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
                     <ToolBar>
                         <Button
                             Width="28"
@@ -109,12 +122,10 @@
                             Height="28"
                             Command="{Binding RemoveQuestionCommand}">
                             <Button.ToolTip>
-                                <ToolTip 
-                                    Content="Remove" />
+                                <ToolTip Content="Remove" />
                             </Button.ToolTip>
                             <Button.Content>
-                                <Image 
-                                    Source="../../Images/Resource/Delete Bin_48px.png" />
+                                <Image Source="../../Images/Resource/Delete Bin_48px.png" />
                             </Button.Content>
                         </Button>
                         <Button
@@ -122,53 +133,44 @@
                             Height="28"
                             Command="{Binding EditingModeCommand}">
                             <Button.ToolTip>
-                                <ToolTip 
-                                    Content="Edit mode" />
+                                <ToolTip Content="Edit mode" />
                             </Button.ToolTip>
                             <Button.Content>
-                                <Image 
-                                    Source="../../Images/Resource/edit_file_48px.png" />
+                                <Image Source="../../Images/Resource/edit_file_48px.png" />
                             </Button.Content>
                         </Button>
                     </ToolBar>
                 </ToolBarTray>
             </Grid>
-            <StackPanel 
-                Margin="5 0 0 0"
-                Grid.Column="2">
-                <TextBlock 
-                    Text="Question: "  
-                    FontSize="16"/>
-                <TextBox 
-                    MinHeight="60" 
-                    Text="{Binding SelectedQuestion.Text}"
-                    TextWrapping="Wrap"
-                    FontSize="18"
+            <StackPanel Grid.Column="2" Margin="5,0,0,0">
+                <TextBlock FontSize="16" Text="Question: " />
+                <TextBox
                     Name="QuestionTextBox"
-                    IsReadOnly="{Binding IsReadOnlyMode}"/>
-                <TextBlock Text="Answers: " FontSize="16"/>
-                <ListBox 
-                    ItemsSource="{Binding SelectedQuestion.Answers}" 
+                    MinHeight="60"
+                    FontSize="18"
+                    IsReadOnly="{Binding IsReadOnlyMode}"
+                    Text="{Binding SelectedQuestion.Text}"
+                    TextWrapping="Wrap" />
+                <TextBlock FontSize="16" Text="Answers: " />
+                <ListBox
                     Name="AnswersListBox"
-                    Width="{Binding ElementName=AnswersListBox, Path=Width}">
+                    Width="{Binding ElementName=AnswersListBox, Path=Width}"
+                    ItemsSource="{Binding SelectedQuestion.Answers}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel 
-                                Height="Auto" 
-                                Orientation="Horizontal" 
-                                Width="{Binding ElementName=AnswersListBox, Path=Width}">
-                                <CheckBox 
-                                    IsChecked="{Binding IsRight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    Margin="5 0 10 0"/>
-                                <TextBox 
-                                    FontSize="14" 
-                                    Text="{Binding Text}" 
+                            <StackPanel
+                                Width="{Binding ElementName=AnswersListBox, Path=Width}"
+                                Height="Auto"
+                                Orientation="Horizontal">
+                                <CheckBox Margin="5,0,10,0" IsChecked="{Binding IsRight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox
+                                    Height="Auto"
                                     MaxWidth="540"
-                                    TextWrapping="Wrap"
-                                    Height="Auto" 
-                                    MaxHeight="70" 
-                                    IsReadOnly="{Binding DataContext.IsReadOnlyMode,
-                                    RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                                    MaxHeight="70"
+                                    FontSize="14"
+                                    IsReadOnly="{Binding DataContext.IsReadOnlyMode, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                    Text="{Binding Text}"
+                                    TextWrapping="Wrap" />
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

@@ -8,6 +8,8 @@ namespace RSPO_UP_3.ViewModel
 {
     class FinishTestWindowViewModel : ViewModelBase
     {
+        #region fields
+
         /// <summary>
         /// кол-во баллов, которое набрал пользователь
         /// </summary>
@@ -20,6 +22,11 @@ namespace RSPO_UP_3.ViewModel
         /// результирующая строка для показа баллов пользователю
         /// </summary>
         private string _resultString;
+
+        #endregion
+
+        #region props
+
         public int Points
         {
             get => _points;
@@ -38,16 +45,9 @@ namespace RSPO_UP_3.ViewModel
             set => SetValue(ref _resultString, value, nameof(ResultString));
         }
 
-        /// <summary>
-        /// конструктор по умолчанию
-        /// </summary>
-        /// <param name="points"></param>
-        public FinishTestWindowViewModel(int points)
-        {
-            Points = points;
-            ChangePicture();
-            ChangeTextBox();
-        }
+        #endregion
+
+        #region methods
 
         /// <summary>
         /// метод, который выставляет нужный текст для информирования
@@ -63,6 +63,19 @@ namespace RSPO_UP_3.ViewModel
             if (Points == 0) ResultImage = new BitmapImage(new Uri($"{imagesPath}sad.jpg"));
             if (Points < 3) ResultImage = new BitmapImage(new Uri($"{imagesPath}normy.png"));
             if (Points >= 3) ResultImage = new BitmapImage(new Uri($"{imagesPath}happy.png"));
+        }
+
+        #endregion
+
+        /// <summary>
+        /// конструктор по умолчанию
+        /// </summary>
+        /// <param name="points"></param>
+        public FinishTestWindowViewModel(int points)
+        {
+            Points = points;
+            ChangePicture();
+            ChangeTextBox();
         }
     }
 }
