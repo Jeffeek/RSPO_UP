@@ -97,7 +97,6 @@
     <Compile Include="Models\EntityFramework\Models\Role.cs" />
     <Compile Include="Models\EntityFramework\Models\User.cs" />
     <Compile Include="Models\EntityFramework\QuizDbContext.cs" />
-    <Compile Include="Models\ExtensionClass.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\UsersProvider.cs" />
     <Compile Include="ViewModel\AdminWindowViewModel.cs" />
