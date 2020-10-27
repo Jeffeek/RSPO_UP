@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RSPO_UP_4.Model;
+﻿using RSPO_UP_4.Model;
 
 namespace RSPO_UP_4.ViewModel
 {
@@ -31,13 +26,33 @@ namespace RSPO_UP_4.ViewModel
             }
         }
 
-        public int Top
+        public int Up
         {
             get => _playerController.Top;
             set
             {
                 _playerController.Top = value;
-                OnPropertyChanged(nameof(Top));
+                OnPropertyChanged(nameof(Up));
+            }
+        }
+
+        public int Down
+        {
+            get => _playerController.Left;
+            set
+            {
+                _playerController.Left = value;
+                OnPropertyChanged(nameof(Down));
+            }
+        }
+
+        public int Right
+        {
+            get => _playerController.Top;
+            set
+            {
+                _playerController.Top = value;
+                OnPropertyChanged(nameof(Right));
             }
         }
     }

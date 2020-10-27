@@ -25,4 +25,3 @@ E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.csproj.CoreCompileI
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.csproj.CopyComplete
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.exe
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.pdb
-E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.csprojAssemblyReference.cache

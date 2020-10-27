@@ -12,22 +12,20 @@ namespace RSPO_UP_4.ViewModel
 {
     public class RoomsViewModel : ViewModelBase
     {
-        public ICommand KeyPressCommand { get; }
+        public ICommand MoveUpCommand { get; }
+        public ICommand MoveDownCommand { get; }
+        public ICommand MoveLeftCommand { get; }
+        public ICommand MoveRightCommand { get; }
+
         private PlayerControllerViewModel _player;
-        private DateTime _time;
         private Timer _timer;
+        private bool _nightTime;
         private string _timeString;
 
-        public bool NightTime => Time.Hour > 23 && Time.Hour < 4;
-
-        public DateTime Time
+        public bool NightTime
         {
-            get => _time;
-            set
-            {
-                SetValue(ref _time, value);
-                DateString = _time.ToLongTimeString();
-            }
+            get => _nightTime;
+            set => SetValue(ref _nightTime, value);
         }
 
         public string DateString 
@@ -42,24 +40,57 @@ namespace RSPO_UP_4.ViewModel
             set => SetValue(ref _player, value);
         }
 
-        private bool CanKeyPress => true;
+        #region keyBindings
 
-        private void OnKeyPress()
-        {
+        #region moveRight
 
-        }
+        private bool CanMoveRight => Player.Right > 0;
+
+        private void OnMoveRight() => Player.Left += 3;
+
+        #endregion
+
+        #region moveLeft
+
+        private bool CanMoveLeft => Player.Left > 0;
+
+        private void OnMoveLeft() => Player.Left -= 3;
+
+        #endregion
+
+        #region moveUp
+
+        private bool CanMoveUp => Player.Up > 0;
+
+        private void OnMoveUp() => Player.Up -= 3;
+
+        #endregion
+
+        #region moveDown
+
+        private bool CanMoveDown => Player.Down > 0;
+
+        private void OnMoveDown() => Player.Up += 3;
+
+        #endregion
+
+        #endregion
 
         public RoomsViewModel()
         {
-            KeyPressCommand = new RelayCommand(OnKeyPress, CanKeyPress);
             Player = new PlayerControllerViewModel();
+            MoveUpCommand = new RelayCommand(OnMoveUp, CanMoveUp);
+            MoveDownCommand = new RelayCommand(OnMoveDown, CanMoveDown);
+            MoveRightCommand = new RelayCommand(OnMoveRight, CanMoveRight);
+            MoveLeftCommand = new RelayCommand(OnMoveLeft, CanMoveLeft);
             TimerCallback callback = UpdateTime;
             _timer = new Timer(callback, null, 0, 100);
         }
 
-        private void UpdateTime(object obj)
+        private void UpdateTime(object state)
         {
-            Time = DateTime.Now;
+            DateString = DateTime.Now.ToLongTimeString();
+            NightTime = DateTime.Now.Hour > 23 && DateTime.Now.Hour < 4;
         }
     }
 }
