@@ -22,6 +22,10 @@ namespace RSPO_UP_4.ViewModel
         private bool _nightTime;
         private string _timeString;
 
+        public RoomViewModel FirstRoom { get; }
+        public RoomViewModel SecondRoom { get; }
+        public RoomViewModel ThirdRoom { get; }
+
         public bool NightTime
         {
             get => _nightTime;
@@ -46,7 +50,11 @@ namespace RSPO_UP_4.ViewModel
 
         private bool CanMoveRight => Player.Right > 0;
 
-        private void OnMoveRight() => Player.Left += 3;
+        private void OnMoveRight()
+        {
+            Player.Left += 5;
+            CheckPositionNearLamps();
+        }
 
         #endregion
 
@@ -54,7 +62,11 @@ namespace RSPO_UP_4.ViewModel
 
         private bool CanMoveLeft => Player.Left > 0;
 
-        private void OnMoveLeft() => Player.Left -= 3;
+        private void OnMoveLeft()
+        {
+            Player.Left -= 5;
+            CheckPositionNearLamps();
+        }
 
         #endregion
 
@@ -62,7 +74,11 @@ namespace RSPO_UP_4.ViewModel
 
         private bool CanMoveUp => Player.Up > 0;
 
-        private void OnMoveUp() => Player.Up -= 3;
+        private void OnMoveUp()
+        {
+            Player.Up -= 5;
+            CheckPositionNearLamps();
+        }
 
         #endregion
 
@@ -70,19 +86,39 @@ namespace RSPO_UP_4.ViewModel
 
         private bool CanMoveDown => Player.Down > 0;
 
-        private void OnMoveDown() => Player.Up += 3;
+        private void OnMoveDown()
+        {
+            Player.Up += 5;
+            CheckPositionNearLamps();
+        }
 
         #endregion
 
         #endregion
+
+        private void CheckPositionNearLamps()
+        {
+            FirstRoom.Lamp.CheckPlayer(Player.Up, Player.Left);
+            FirstRoom.Bruh.CheckPlayer(Player.Up, Player.Left);
+            SecondRoom.Lamp.CheckPlayer(Player.Up, Player.Left);
+            SecondRoom.Bruh.CheckPlayer(Player.Up, Player.Left);
+            ThirdRoom.Lamp.CheckPlayer(Player.Up, Player.Left);
+            ThirdRoom.Bruh.CheckPlayer(Player.Up, Player.Left);
+        }
 
         public RoomsViewModel()
         {
             Player = new PlayerControllerViewModel();
+
             MoveUpCommand = new RelayCommand(OnMoveUp, CanMoveUp);
             MoveDownCommand = new RelayCommand(OnMoveDown, CanMoveDown);
             MoveRightCommand = new RelayCommand(OnMoveRight, CanMoveRight);
             MoveLeftCommand = new RelayCommand(OnMoveLeft, CanMoveLeft);
+
+            FirstRoom = new RoomViewModel(195, 300);
+            SecondRoom = new RoomViewModel(195, 600);
+            ThirdRoom = new RoomViewModel(425, 450);
+
             TimerCallback callback = UpdateTime;
             _timer = new Timer(callback, null, 0, 100);
         }

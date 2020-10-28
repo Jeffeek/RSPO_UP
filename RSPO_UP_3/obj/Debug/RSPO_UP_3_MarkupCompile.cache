@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_3\obj\Debug\
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_3\obj\Debug\
 RSPO_UP_3
 none
 false
 DEBUG;TRACE
-E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_3\App.xaml
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_3\App.xaml
 61943326539
 2-1702153444
-27-1411427072
-1301307363221
+282128970440
+1301087212861
 View\UnsafePasswordBox.xaml;View\Windows\AdminWindow.xaml;View\Windows\FinishTestWindow.xaml;View\Windows\LoginWindow.xaml;View\Windows\StudentWindow.xaml;View\Windows\TeacherWindow.xaml;
 
-False
+True
 

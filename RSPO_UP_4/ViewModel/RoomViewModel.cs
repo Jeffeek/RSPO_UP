@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RSPO_UP_4.ViewModel
 {
-    class RoomViewModel : ViewModelBase
+    public class RoomViewModel : ViewModelBase
     {
-        private LampViewModel _lamp;
+        public LampViewModel Lamp { get; }
+        public LampViewModel Bruh { get; }
 
-        public LampViewModel Lamp => _lamp;
-
-        public RoomViewModel()
+        public RoomViewModel(int btnTop, int btnLeft)
         {
-            _lamp = new LampViewModel();
+           Lamp = new LampViewModel(btnTop, btnLeft);
+           Bruh = new LampViewModel(btnTop-170, btnLeft-150);
         }
     }
 }
