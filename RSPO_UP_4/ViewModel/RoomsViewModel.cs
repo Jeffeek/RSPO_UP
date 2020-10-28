@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using RSPO_UP_4.Model;
@@ -16,12 +12,10 @@ namespace RSPO_UP_4.ViewModel
         public ICommand MoveDownCommand { get; }
         public ICommand MoveLeftCommand { get; }
         public ICommand MoveRightCommand { get; }
-
         public ICommand TouchLampCommand { get; }
-
         public ICommand GuestsCommand { get; }
 
-        private PlayerControllerViewModel _player;
+        private PlayerController _playerController;
         private Timer _timerRealTime;
         private bool _nightTime;
         private string _timeString;
@@ -29,6 +23,7 @@ namespace RSPO_UP_4.ViewModel
         public RoomViewModel FirstRoom { get; }
         public RoomViewModel SecondRoom { get; }
         public RoomViewModel ThirdRoom { get; }
+        public BathroomViewModel Bathroom { get; }
 
         public bool NightTime
         {
@@ -42,21 +37,21 @@ namespace RSPO_UP_4.ViewModel
             set => SetValue(ref _timeString, value);
         }
 
-        public PlayerControllerViewModel Player
+        public PlayerController PlayerController
         {
-            get => _player;
-            set => SetValue(ref _player, value);
+            get => _playerController;
+            set => SetValue(ref _playerController, value);
         }
 
         #region keyBindings
 
         #region moveRight
 
-        private bool CanMoveRight => Player.Right > 0;
+        private bool CanMoveRight => PlayerController.Right > 0;
 
         private void OnMoveRight()
         {
-            Player.Left += 5;
+            PlayerController.GoRight();
             CheckPositionNearLamps();
         }
 
@@ -64,11 +59,11 @@ namespace RSPO_UP_4.ViewModel
 
         #region moveLeft
 
-        private bool CanMoveLeft => Player.Left > 0;
+        private bool CanMoveLeft => PlayerController.Left > 0;
 
         private void OnMoveLeft()
         {
-            Player.Left -= 5;
+            PlayerController.GoLeft();
             CheckPositionNearLamps();
         }
 
@@ -76,11 +71,11 @@ namespace RSPO_UP_4.ViewModel
 
         #region moveUp
 
-        private bool CanMoveUp => Player.Up > 0;
+        private bool CanMoveUp => PlayerController.Up > 0;
 
         private void OnMoveUp()
         {
-            Player.Up -= 5;
+            PlayerController.GoUp();
             CheckPositionNearLamps();
         }
 
@@ -88,11 +83,11 @@ namespace RSPO_UP_4.ViewModel
 
         #region moveDown
 
-        private bool CanMoveDown => Player.Down > 0;
+        private bool CanMoveDown => PlayerController.Down > 0;
 
         private void OnMoveDown()
         {
-            Player.Up += 5;
+            PlayerController.GoDown();
             CheckPositionNearLamps();
         }
 
@@ -115,6 +110,9 @@ namespace RSPO_UP_4.ViewModel
                 ThirdRoom.Lamp.IsOn = !ThirdRoom.Lamp.IsOn;
             if (ThirdRoom.Bruh.IsPlayerNearLamp)
                 ThirdRoom.Bruh.IsOn = !ThirdRoom.Bruh.IsOn;
+
+            if (Bathroom.Lamp.IsPlayerNearLamp)
+                Bathroom.Lamp.IsOn = !Bathroom.Lamp.IsOn;
         }
 
         #endregion
@@ -136,29 +134,31 @@ namespace RSPO_UP_4.ViewModel
 
         private void CheckPositionNearLamps()
         {
-            FirstRoom.Lamp.CheckPlayer(Player.Up, Player.Left);
-            FirstRoom.Bruh.CheckPlayer(Player.Up, Player.Left);
-            SecondRoom.Lamp.CheckPlayer(Player.Up, Player.Left);
-            SecondRoom.Bruh.CheckPlayer(Player.Up, Player.Left);
-            ThirdRoom.Lamp.CheckPlayer(Player.Up, Player.Left);
-            ThirdRoom.Bruh.CheckPlayer(Player.Up, Player.Left);
+            FirstRoom.Lamp.CheckPlayer(PlayerController);
+            FirstRoom.Bruh.CheckPlayer(PlayerController);
+            SecondRoom.Lamp.CheckPlayer(PlayerController);
+            SecondRoom.Bruh.CheckPlayer(PlayerController);
+            ThirdRoom.Lamp.CheckPlayer(PlayerController);
+            ThirdRoom.Bruh.CheckPlayer(PlayerController);
+            Bathroom.Lamp.CheckPlayer(PlayerController);
         }
 
         public RoomsViewModel()
         {
-            Player = new PlayerControllerViewModel();
+            PlayerController= new PlayerController();
 
             MoveUpCommand = new RelayCommand(OnMoveUp, CanMoveUp);
             MoveDownCommand = new RelayCommand(OnMoveDown, CanMoveDown);
             MoveRightCommand = new RelayCommand(OnMoveRight, CanMoveRight);
             MoveLeftCommand = new RelayCommand(OnMoveLeft, CanMoveLeft);
+
             GuestsCommand = new RelayCommand(OnGuestsComing, () => true);
             TouchLampCommand = new RelayCommand(OnTouchLamp, () => true);
 
-
             FirstRoom = new RoomViewModel(195, 300);
             SecondRoom = new RoomViewModel(195, 600);
-            ThirdRoom = new RoomViewModel(425, 450);
+            ThirdRoom = new RoomViewModel(425, 300);
+            Bathroom = new BathroomViewModel(425,600);
 
             TimerCallback callback = UpdateTime;
             _timerRealTime = new Timer(callback, null, 0, 100);

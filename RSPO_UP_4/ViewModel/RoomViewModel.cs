@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
-namespace RSPO_UP_4.ViewModel
+﻿namespace RSPO_UP_4.ViewModel
 {
     public class RoomViewModel : ViewModelBase
     {

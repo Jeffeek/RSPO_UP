@@ -54,3 +54,6 @@ C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.csproj.C
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.csproj.CopyComplete
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.exe
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.pdb
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_4\bin\Debug\putin.wav
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.csprojAssemblyReference.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4_Content.g.cs

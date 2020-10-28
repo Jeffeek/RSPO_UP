@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using RSPO_UP_4.Model;
@@ -17,8 +13,8 @@ namespace RSPO_UP_4.ViewModel
         private bool _isPlayerNearLamp;
         private bool _isOn;
 
-        private int _top;
-        private int _left;
+        private readonly int _top;
+        private readonly int _left;
 
         public LampViewModel(int top, int left)
         {
@@ -45,10 +41,11 @@ namespace RSPO_UP_4.ViewModel
             set => SetValue(ref _isPlayerNearLamp, value);
         }
 
-        public void CheckPlayer(int playerUp, int playerLeft)
+        public void CheckPlayer(in PlayerController controller)
         {
             int radius = 30;
-            IsPlayerNearLamp =  Math.Abs(_top - playerUp) < radius && Math.Abs(_left - playerLeft) < radius;
+            IsPlayerNearLamp = Math.Abs(_top - controller.Up) < radius && 
+                               Math.Abs(_left - controller.Left) <= radius;
         }
     }
 }

@@ -82,8 +82,8 @@
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\PlayerController.cs" />
     <Compile Include="Model\Room.cs" />
+    <Compile Include="ViewModel\BathroomViewModel.cs" />
     <Compile Include="ViewModel\LampViewModel.cs" />
-    <Compile Include="ViewModel\PlayerControllerViewModel.cs" />
     <Compile Include="ViewModel\RoomsViewModel.cs" />
     <Compile Include="ViewModel\RoomViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
