@@ -25,6 +25,7 @@ E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.csproj.CoreCompileI
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.csproj.CopyComplete
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.exe
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\bin\Debug\putin.wav
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\bin\Debug\RSPO_UP_4.exe.config
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\bin\Debug\RSPO_UP_4.exe
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\bin\Debug\RSPO_UP_4.pdb
@@ -39,9 +40,9 @@ C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\bin\Debug\GalaSoft.MvvmLight
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\bin\Debug\GalaSoft.MvvmLight.Extras.xml
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\bin\Debug\GalaSoft.MvvmLight.Platform.xml
-C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4.csprojAssemblyReference.cache
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\View\RoomsView.g.cs
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\App.g.cs
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4_Content.g.cs
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4_MarkupCompile.cache
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_4\obj\Debug\RSPO_UP_4_MarkupCompile.lref

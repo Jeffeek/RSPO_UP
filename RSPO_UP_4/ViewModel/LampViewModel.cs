@@ -47,7 +47,8 @@ namespace RSPO_UP_4.ViewModel
 
         public void CheckPlayer(int playerUp, int playerLeft)
         {
-            IsPlayerNearLamp =  Math.Abs(_top - playerUp) < 20 && Math.Abs(_left - playerLeft) < 20;
+            int radius = 30;
+            IsPlayerNearLamp =  Math.Abs(_top - playerUp) < radius && Math.Abs(_left - playerLeft) < radius;
         }
     }
 }

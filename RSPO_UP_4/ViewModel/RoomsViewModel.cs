@@ -17,8 +17,12 @@ namespace RSPO_UP_4.ViewModel
         public ICommand MoveLeftCommand { get; }
         public ICommand MoveRightCommand { get; }
 
+        public ICommand TouchLampCommand { get; }
+
+        public ICommand GuestsCommand { get; }
+
         private PlayerControllerViewModel _player;
-        private Timer _timer;
+        private Timer _timerRealTime;
         private bool _nightTime;
         private string _timeString;
 
@@ -94,7 +98,41 @@ namespace RSPO_UP_4.ViewModel
 
         #endregion
 
+
+        private void OnTouchLamp()
+        {
+            if (FirstRoom.Lamp.IsPlayerNearLamp)
+                FirstRoom.Lamp.IsOn = !FirstRoom.Lamp.IsOn;
+            if (FirstRoom.Bruh.IsPlayerNearLamp)
+                FirstRoom.Bruh.IsOn = !FirstRoom.Bruh.IsOn;
+
+            if (SecondRoom.Lamp.IsPlayerNearLamp)
+                SecondRoom.Lamp.IsOn = !SecondRoom.Lamp.IsOn;
+            if (SecondRoom.Bruh.IsPlayerNearLamp)
+                SecondRoom.Bruh.IsOn = !SecondRoom.Bruh.IsOn;
+
+            if (ThirdRoom.Lamp.IsPlayerNearLamp)
+                ThirdRoom.Lamp.IsOn = !ThirdRoom.Lamp.IsOn;
+            if (ThirdRoom.Bruh.IsPlayerNearLamp)
+                ThirdRoom.Bruh.IsOn = !ThirdRoom.Bruh.IsOn;
+        }
+
         #endregion
+
+        private void OnGuestsComing()
+        {
+            TurnOnAllLamps();
+        }
+
+        private void TurnOnAllLamps()
+        {
+            FirstRoom.Lamp.IsOn = true;
+            FirstRoom.Bruh.IsOn = true;
+            SecondRoom.Lamp.IsOn = true;
+            SecondRoom.Bruh.IsOn = true;
+            ThirdRoom.Lamp.IsOn = true;
+            ThirdRoom.Bruh.IsOn = true;
+        }
 
         private void CheckPositionNearLamps()
         {
@@ -114,13 +152,16 @@ namespace RSPO_UP_4.ViewModel
             MoveDownCommand = new RelayCommand(OnMoveDown, CanMoveDown);
             MoveRightCommand = new RelayCommand(OnMoveRight, CanMoveRight);
             MoveLeftCommand = new RelayCommand(OnMoveLeft, CanMoveLeft);
+            GuestsCommand = new RelayCommand(OnGuestsComing, () => true);
+            TouchLampCommand = new RelayCommand(OnTouchLamp, () => true);
+
 
             FirstRoom = new RoomViewModel(195, 300);
             SecondRoom = new RoomViewModel(195, 600);
             ThirdRoom = new RoomViewModel(425, 450);
 
             TimerCallback callback = UpdateTime;
-            _timer = new Timer(callback, null, 0, 100);
+            _timerRealTime = new Timer(callback, null, 0, 100);
         }
 
         private void UpdateTime(object state)

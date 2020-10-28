@@ -17,6 +17,7 @@
         <KeyBinding Key="A" Command="{Binding MoveLeftCommand}" />
         <KeyBinding Key="S" Command="{Binding MoveDownCommand}" />
         <KeyBinding Key="D" Command="{Binding MoveRightCommand}" />
+        <KeyBinding Key="Enter" Command="{Binding TouchLampCommand}"/>
     </Window.InputBindings>
     <Window.DataContext>
         <vm:RoomsViewModel />
@@ -386,6 +387,20 @@
         </Canvas>
         <ToolBar Grid.Row="1">
             <TextBlock Text="{Binding DateString, UpdateSourceTrigger=PropertyChanged}" />
+            <Button 
+                Content="Guests"
+                Background="Coral"
+                Foreground="Azure"
+                Command="{Binding GuestsCommand}"
+                Margin="650 0 0 0">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <EventTrigger.Actions>
+                            <SoundPlayerAction Source="../putin.wav"/>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
         </ToolBar>
     </Grid>
 </Window>
