@@ -3,6 +3,7 @@ using System.Threading;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using RSPO_UP_4.Model;
+using RSPO_UP_4.Model.Controller;
 
 namespace RSPO_UP_4.ViewModel
 {
@@ -14,33 +15,34 @@ namespace RSPO_UP_4.ViewModel
         public ICommand MoveRightCommand { get; }
         public ICommand TouchLampCommand { get; }
         public ICommand GuestsCommand { get; }
+        public ICommand TimeChangeCommand { get; }
 
         private PlayerController _playerController;
-        private Timer _timerRealTime;
-        private bool _nightTime;
-        private string _timeString;
+        private TimeController _timerController;
 
         public RoomViewModel FirstRoom { get; }
         public RoomViewModel SecondRoom { get; }
         public RoomViewModel ThirdRoom { get; }
         public BathroomViewModel Bathroom { get; }
 
-        public bool NightTime
-        {
-            get => _nightTime;
-            set => SetValue(ref _nightTime, value);
-        }
-
-        public string DateString 
-        { 
-            get => _timeString;
-            set => SetValue(ref _timeString, value);
-        }
-
         public PlayerController PlayerController
         {
             get => _playerController;
             set => SetValue(ref _playerController, value);
+        }
+
+        public TimeController TimerController
+        {
+            get => _timerController;
+            set => SetValue(ref _timerController, value);
+        }
+
+        public void OnChangeTime()
+        {
+            if (TimerController.IsStopped)
+                TimerController.Start();
+            else
+                TimerController.Stop();
         }
 
         #region keyBindings
@@ -146,6 +148,7 @@ namespace RSPO_UP_4.ViewModel
         public RoomsViewModel()
         {
             PlayerController= new PlayerController();
+            TimerController = new TimeController();
 
             MoveUpCommand = new RelayCommand(OnMoveUp, CanMoveUp);
             MoveDownCommand = new RelayCommand(OnMoveDown, CanMoveDown);
@@ -154,20 +157,12 @@ namespace RSPO_UP_4.ViewModel
 
             GuestsCommand = new RelayCommand(OnGuestsComing, () => true);
             TouchLampCommand = new RelayCommand(OnTouchLamp, () => true);
+            TimeChangeCommand = new RelayCommand(OnChangeTime, () => true);
 
             FirstRoom = new RoomViewModel(195, 300);
             SecondRoom = new RoomViewModel(195, 600);
             ThirdRoom = new RoomViewModel(425, 300);
             Bathroom = new BathroomViewModel(425,600);
-
-            TimerCallback callback = UpdateTime;
-            _timerRealTime = new Timer(callback, null, 0, 100);
-        }
-
-        private void UpdateTime(object state)
-        {
-            DateString = DateTime.Now.ToLongTimeString();
-            NightTime = DateTime.Now.Hour > 23 && DateTime.Now.Hour < 4;
         }
     }
 }

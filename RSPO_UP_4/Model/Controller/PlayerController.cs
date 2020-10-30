@@ -1,6 +1,6 @@
 ﻿using RSPO_UP_4.ViewModel;
 
-namespace RSPO_UP_4.Model
+namespace RSPO_UP_4.Model.Controller
 {
     public class PlayerController : ViewModelBase
     {

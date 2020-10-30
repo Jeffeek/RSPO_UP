@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using RSPO_UP_4.Model;
+using RSPO_UP_4.Model.Controller;
 
 namespace RSPO_UP_4.ViewModel
 {

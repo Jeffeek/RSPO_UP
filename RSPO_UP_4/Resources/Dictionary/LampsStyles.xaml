@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style
+        x:Key="LampButtonStyle1"
+        BasedOn="{StaticResource LampButtonStyle}"
+        TargetType="Button">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding FirstRoom.Lamp.IsPlayerNearLamp}" Value="True">
+                <Setter Property="IsEnabled" Value="True" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding FirstRoom.Lamp.IsPlayerNearLamp}" Value="False">
+                <Setter Property="IsEnabled" Value="False" />
+            </DataTrigger>
+        </Style.Triggers>
+        <Style.Setters>
+            <Setter Property="Command" Value="{Binding FirstRoom.Lamp.TurnOnLampCommand}" />
+        </Style.Setters>
+    </Style>
+    <Style
+        x:Key="LampButtonStyle2"
+        BasedOn="{StaticResource LampButtonStyle}"
+        TargetType="Button">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding SecondRoom.Lamp.IsPlayerNearLamp}" Value="True">
+                <Setter Property="IsEnabled" Value="True" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding SecondRoom.Lamp.IsPlayerNearLamp}" Value="False">
+                <Setter Property="IsEnabled" Value="False" />
+            </DataTrigger>
+        </Style.Triggers>
+        <Style.Setters>
+            <Setter Property="Command" Value="{Binding SecondRoom.Lamp.TurnOnLampCommand}" />
+        </Style.Setters>
+    </Style>
+    <Style
+        x:Key="LampButtonStyle3"
+        BasedOn="{StaticResource LampButtonStyle}"
+        TargetType="Button">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ThirdRoom.Lamp.IsPlayerNearLamp}" Value="True">
+                <Setter Property="IsEnabled" Value="True" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ThirdRoom.Lamp.IsPlayerNearLamp}" Value="False">
+                <Setter Property="IsEnabled" Value="False" />
+            </DataTrigger>
+        </Style.Triggers>
+        <Style.Setters>
+            <Setter Property="Command" Value="{Binding ThirdRoom.Lamp.TurnOnLampCommand}" />
+        </Style.Setters>
+    </Style>
+
+    <Style
+        x:Key="LampBathroomButtonStyle"
+        BasedOn="{StaticResource LampButtonStyle}"
+        TargetType="Button">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Bathroom.Lamp.IsPlayerNearLamp}" Value="True">
+                <Setter Property="IsEnabled" Value="True" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Bathroom.Lamp.IsPlayerNearLamp}" Value="False">
+                <Setter Property="IsEnabled" Value="False" />
+            </DataTrigger>
+        </Style.Triggers>
+        <Style.Setters>
+            <Setter Property="Command" Value="{Binding Bathroom.Lamp.TurnOnLampCommand}" />
+        </Style.Setters>
+    </Style>
+</ResourceDictionary>

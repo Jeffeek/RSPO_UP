@@ -7,7 +7,9 @@
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:RSPO_UP_4"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tp="clr-namespace:RoyT.TimePicker;assembly=RoyT.TimePicker"
     xmlns:vm="clr-namespace:RSPO_UP_4.ViewModel"
+    xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
     Title="MainWindow"
     Width="800"
     Height="550"
@@ -23,355 +25,37 @@
         <vm:RoomsViewModel />
     </Window.DataContext>
     <Window.Resources>
-        <Style x:Key="RoomStyle" TargetType="Rectangle">
+        <Style x:Key="ClockButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="10,0,0,0" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="50px" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding NightTime, UpdateSourceTrigger=PropertyChanged}" Value="false">
+                <DataTrigger Binding="{Binding TimerController.IsStopped, UpdateSourceTrigger=PropertyChanged}" Value="true">
                     <DataTrigger.Setters>
-                        <Setter Property="Fill" Value="Gray" />
+                        <Setter Property="Background" Value="ForestGreen" />
+                        <Setter Property="Content" Value="Start" />
                     </DataTrigger.Setters>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding NightTime, UpdateSourceTrigger=PropertyChanged}" Value="true">
+                <DataTrigger Binding="{Binding TimerController.IsStopped, UpdateSourceTrigger=PropertyChanged}" Value="false">
                     <DataTrigger.Setters>
-                        <Setter Property="Fill" Value="Yellow" />
+                        <Setter Property="Background" Value="Red" />
+                        <Setter Property="Content" Value="Stop" />
                     </DataTrigger.Setters>
                 </DataTrigger>
             </Style.Triggers>
-        </Style>
-        <Style
-            x:Key="RoomStyle1"
-            BasedOn="{StaticResource RoomStyle}"
-            TargetType="Rectangle">
-            <Style.Triggers>
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding FirstRoom.Lamp.IsOn}" Value="false" />
-                        <Condition Binding="{Binding FirstRoom.Bruh.IsOn}" Value="false" />
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            Gray
-                        </Setter.Value>
-                    </Setter>
-                </MultiDataTrigger>
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding FirstRoom.Lamp.IsOn}" Value="true" />
-                        <Condition Binding="{Binding FirstRoom.Bruh.IsOn}" Value="false" />
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            <LinearGradientBrush>
-                                <GradientStopCollection>
-                                    <GradientStop Offset=".33" Color="Gray" />
-                                    <GradientStop Offset=".66" Color="Yellow" />
-                                </GradientStopCollection>
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                </MultiDataTrigger>
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding FirstRoom.Lamp.IsOn}" Value="false" />
-                        <Condition Binding="{Binding FirstRoom.Bruh.IsOn}" Value="true" />
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            <LinearGradientBrush>
-                                <GradientStopCollection>
-                                    <GradientStop Offset=".66" Color="Gray" />
-                                    <GradientStop Offset=".33" Color="Yellow" />
-                                </GradientStopCollection>
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                </MultiDataTrigger>
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding FirstRoom.Lamp.IsOn}" Value="True" />
-                        <Condition Binding="{Binding FirstRoom.Bruh.IsOn}" Value="True" />
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            Yellow
-                        </Setter.Value>
-                    </Setter>
-                </MultiDataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style
-            x:Key="RoomStyle2"
-            BasedOn="{StaticResource RoomStyle}"
-            TargetType="Rectangle">
-            <Style.Triggers>
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding SecondRoom.Lamp.IsOn}" Value="false" />
-                        <Condition Binding="{Binding SecondRoom.Bruh.IsOn}" Value="false" />
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            Gray
-                        </Setter.Value>
-                    </Setter>
-                </MultiDataTrigger>
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding SecondRoom.Lamp.IsOn}" Value="true" />
-                        <Condition Binding="{Binding SecondRoom.Bruh.IsOn}" Value="false" />
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            <LinearGradientBrush>
-                                <GradientStopCollection>
-                                    <GradientStop Offset=".31" Color="Gray" />
-                                    <GradientStop Offset=".76" Color="Yellow" />
-                                </GradientStopCollection>
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                </MultiDataTrigger>
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding SecondRoom.Lamp.IsOn}" Value="false" />
-                        <Condition Binding="{Binding SecondRoom.Bruh.IsOn}" Value="true" />
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            <LinearGradientBrush>
-                                <GradientStopCollection>
-                                    <GradientStop Offset=".76" Color="Gray" />
-                                    <GradientStop Offset=".31" Color="Yellow" />
-                                </GradientStopCollection>
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                </MultiDataTrigger>
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding SecondRoom.Lamp.IsOn}" Value="True" />
-                        <Condition Binding="{Binding SecondRoom.Bruh.IsOn}" Value="True" />
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            Yellow
-                        </Setter.Value>
-                    </Setter>
-                </MultiDataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style
-            x:Key="RoomStyle3"
-            BasedOn="{StaticResource RoomStyle}"
-            TargetType="Rectangle">
-            <Style.Triggers>
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding ThirdRoom.Lamp.IsOn}" Value="false" />
-                        <Condition Binding="{Binding ThirdRoom.Bruh.IsOn}" Value="false" />
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            Gray
-                        </Setter.Value>
-                    </Setter>
-                </MultiDataTrigger>
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding ThirdRoom.Lamp.IsOn}" Value="true" />
-                        <Condition Binding="{Binding ThirdRoom.Bruh.IsOn}" Value="false" />
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            <LinearGradientBrush>
-                                <GradientStopCollection>
-                                    <GradientStop Offset=".32" Color="Gray" />
-                                    <GradientStop Offset=".65" Color="Yellow" />
-                                </GradientStopCollection>
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                </MultiDataTrigger>
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding ThirdRoom.Lamp.IsOn}" Value="false" />
-                        <Condition Binding="{Binding ThirdRoom.Bruh.IsOn}" Value="true" />
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            <LinearGradientBrush>
-                                <GradientStopCollection>
-                                    <GradientStop Offset=".65" Color="Gray" />
-                                    <GradientStop Offset=".32" Color="Yellow" />
-                                </GradientStopCollection>
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                </MultiDataTrigger>
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding ThirdRoom.Lamp.IsOn}" Value="True" />
-                        <Condition Binding="{Binding ThirdRoom.Bruh.IsOn}" Value="True" />
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            Yellow
-                        </Setter.Value>
-                    </Setter>
-                </MultiDataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style
-            x:Key="BathroomStyle"
-            BasedOn="{StaticResource RoomStyle}"
-            TargetType="Rectangle">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Bathroom.Lamp.IsOn}" Value="True">
-                    <Setter Property="Fill">
-                        <Setter.Value>
-                            <LinearGradientBrush>
-                                <GradientStopCollection>
-                                    <GradientStop Offset="0.155" Color="Gray" />
-                                    <GradientStop Offset="0.485" Color="Yellow" />
-                                </GradientStopCollection>
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="LampButtonStyle" TargetType="Button">
-            <Style.Setters>
-                <Setter Property="Background" Value="Yellow" />
-                <Setter Property="Foreground" Value="Blue" />
-                <Setter Property="Content" Value="Lamp" />
-            </Style.Setters>
-        </Style>
-        <Style
-            x:Key="LampButtonStyle1"
-            BasedOn="{StaticResource LampButtonStyle}"
-            TargetType="Button">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding FirstRoom.Lamp.IsPlayerNearLamp}" Value="True">
-                    <Setter Property="IsEnabled" Value="True" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding FirstRoom.Lamp.IsPlayerNearLamp}" Value="False">
-                    <Setter Property="IsEnabled" Value="False" />
-                </DataTrigger>
-            </Style.Triggers>
-            <Style.Setters>
-                <Setter Property="Command" Value="{Binding FirstRoom.Lamp.TurnOnLampCommand}" />
-            </Style.Setters>
-        </Style>
-        <Style
-            x:Key="LampButtonStyle2"
-            BasedOn="{StaticResource LampButtonStyle}"
-            TargetType="Button">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding SecondRoom.Lamp.IsPlayerNearLamp}" Value="True">
-                    <Setter Property="IsEnabled" Value="True" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding SecondRoom.Lamp.IsPlayerNearLamp}" Value="False">
-                    <Setter Property="IsEnabled" Value="False" />
-                </DataTrigger>
-            </Style.Triggers>
-            <Style.Setters>
-                <Setter Property="Command" Value="{Binding SecondRoom.Lamp.TurnOnLampCommand}" />
-            </Style.Setters>
-        </Style>
-        <Style
-            x:Key="LampButtonStyle3"
-            BasedOn="{StaticResource LampButtonStyle}"
-            TargetType="Button">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding ThirdRoom.Lamp.IsPlayerNearLamp}" Value="True">
-                    <Setter Property="IsEnabled" Value="True" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding ThirdRoom.Lamp.IsPlayerNearLamp}" Value="False">
-                    <Setter Property="IsEnabled" Value="False" />
-                </DataTrigger>
-            </Style.Triggers>
-            <Style.Setters>
-                <Setter Property="Command" Value="{Binding ThirdRoom.Lamp.TurnOnLampCommand}" />
-            </Style.Setters>
-        </Style>
-        <Style
-            x:Key="LampBathroomButtonStyle"
-            BasedOn="{StaticResource LampButtonStyle}"
-            TargetType="Button">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Bathroom.Lamp.IsPlayerNearLamp}" Value="True">
-                    <Setter Property="IsEnabled" Value="True" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Bathroom.Lamp.IsPlayerNearLamp}" Value="False">
-                    <Setter Property="IsEnabled" Value="False" />
-                </DataTrigger>
-            </Style.Triggers>
-            <Style.Setters>
-                <Setter Property="Command" Value="{Binding Bathroom.Lamp.TurnOnLampCommand}" />
-            </Style.Setters>
-        </Style>
-        <Style x:Key="BruhButtonStyle" TargetType="Button">
-            <Style.Setters>
-                <Setter Property="Background" Value="PaleVioletRed" />
-                <Setter Property="Foreground" Value="AliceBlue" />
-                <Setter Property="Content" Value="Bruh" />
-            </Style.Setters>
-        </Style>
-        <Style
-            x:Key="BruhButtonStyle1"
-            BasedOn="{StaticResource BruhButtonStyle}"
-            TargetType="Button">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding FirstRoom.Bruh.IsPlayerNearLamp}" Value="True">
-                    <Setter Property="IsEnabled" Value="True" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding FirstRoom.Bruh.IsPlayerNearLamp}" Value="False">
-                    <Setter Property="IsEnabled" Value="False" />
-                </DataTrigger>
-            </Style.Triggers>
-            <Style.Setters>
-                <Setter Property="Command" Value="{Binding FirstRoom.Bruh.TurnOnLampCommand}" />
-            </Style.Setters>
-        </Style>
-        <Style
-            x:Key="BruhButtonStyle2"
-            BasedOn="{StaticResource BruhButtonStyle}"
-            TargetType="Button">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding SecondRoom.Bruh.IsPlayerNearLamp}" Value="True">
-                    <Setter Property="IsEnabled" Value="True" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding SecondRoom.Bruh.IsPlayerNearLamp}" Value="False">
-                    <Setter Property="IsEnabled" Value="False" />
-                </DataTrigger>
-            </Style.Triggers>
-            <Style.Setters>
-                <Setter Property="Command" Value="{Binding SecondRoom.Bruh.TurnOnLampCommand}" />
-            </Style.Setters>
-        </Style>
-        <Style
-            x:Key="BruhButtonStyle3"
-            BasedOn="{StaticResource BruhButtonStyle}"
-            TargetType="Button">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding ThirdRoom.Bruh.IsPlayerNearLamp}" Value="True">
-                    <Setter Property="IsEnabled" Value="True" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding ThirdRoom.Bruh.IsPlayerNearLamp}" Value="False">
-                    <Setter Property="IsEnabled" Value="False" />
-                </DataTrigger>
-            </Style.Triggers>
-            <Style.Setters>
-                <Setter Property="Command" Value="{Binding ThirdRoom.Bruh.TurnOnLampCommand}" />
-            </Style.Setters>
         </Style>
     </Window.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding ElementName=TimePicker, Path=Width}"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="0.05*" />
         </Grid.RowDefinitions>
-        <Canvas Grid.Row="0">
+        <Canvas Grid.Row="0" Grid.ColumnSpan="2">
             <Rectangle
                 Name="Room_1"
                 Canvas.Left="150"
@@ -463,22 +147,48 @@
                 Height="50"
                 Fill="Black" />
         </Canvas>
-        <ToolBar Grid.Row="1">
-            <TextBlock Text="{Binding DateString, UpdateSourceTrigger=PropertyChanged}" />
-            <Button
-                Margin="650,0,0,0"
-                Background="Coral"
-                Command="{Binding GuestsCommand}"
-                Content="Guests"
-                Foreground="Azure">
-                <Button.Triggers>
-                    <EventTrigger RoutedEvent="Button.Click">
-                        <EventTrigger.Actions>
-                            <SoundPlayerAction Source="../putin.wav" />
-                        </EventTrigger.Actions>
-                    </EventTrigger>
-                </Button.Triggers>
-            </Button>
+        <tp:TimePicker
+            Grid.Column="0"
+            Grid.Row="0"
+            Name="TimePicker"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
+            Height="120"
+            Width="100"
+            Time="{Binding TimerController.Time, Mode=TwoWay}" />
+        <ToolBar 
+            Grid.Row="1" 
+            Grid.ColumnSpan="2" 
+            Grid.Column="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.1*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock 
+                    Text="{Binding TimerController.Time, UpdateSourceTrigger=PropertyChanged}" 
+                    Grid.Column="0"/>
+                <Button 
+                    Command="{Binding TimeChangeCommand}" 
+                    Style="{StaticResource ClockButtonStyle}" 
+                    Grid.Column="1"/>
+                <Button
+                    Grid.Column="2"
+                    Margin="600,0,0,0"
+                    Background="Coral"
+                    Command="{Binding GuestsCommand}"
+                    Content="Guests"
+                    Foreground="Azure">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <EventTrigger.Actions>
+                                <SoundPlayerAction Source="../putin.wav" />
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
+            </Grid>
         </ToolBar>
     </Grid>
 </Window>
