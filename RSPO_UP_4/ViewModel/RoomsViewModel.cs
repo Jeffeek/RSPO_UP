@@ -121,10 +121,10 @@ namespace RSPO_UP_4.ViewModel
 
         private void OnGuestsComing()
         {
-            TurnOnAllLamps();
+            TurnOnRoomLamps();
         }
 
-        private void TurnOnAllLamps()
+        private void TurnOnRoomLamps()
         {
             FirstRoom.Lamp.IsOn = true;
             FirstRoom.Bruh.IsOn = true;
@@ -132,6 +132,16 @@ namespace RSPO_UP_4.ViewModel
             SecondRoom.Bruh.IsOn = true;
             ThirdRoom.Lamp.IsOn = true;
             ThirdRoom.Bruh.IsOn = true;
+        }
+
+        private void TurnOffRoomLamps()
+        {
+            FirstRoom.Lamp.IsOn = false;
+            FirstRoom.Bruh.IsOn = false;
+            SecondRoom.Lamp.IsOn = false;
+            SecondRoom.Bruh.IsOn = false;
+            ThirdRoom.Lamp.IsOn = false;
+            ThirdRoom.Bruh.IsOn = false;
         }
 
         private void CheckPositionNearLamps()
@@ -147,8 +157,13 @@ namespace RSPO_UP_4.ViewModel
 
         public RoomsViewModel()
         {
+            FirstRoom = new RoomViewModel(195, 300);
+            SecondRoom = new RoomViewModel(195, 600);
+            ThirdRoom = new RoomViewModel(425, 300);
+            Bathroom = new BathroomViewModel(425,600);
+
             PlayerController= new PlayerController();
-            TimerController = new TimeController();
+            TimerController = new TimeController(TurnOnRoomLamps, TurnOffRoomLamps);
 
             MoveUpCommand = new RelayCommand(OnMoveUp, CanMoveUp);
             MoveDownCommand = new RelayCommand(OnMoveDown, CanMoveDown);
@@ -159,10 +174,6 @@ namespace RSPO_UP_4.ViewModel
             TouchLampCommand = new RelayCommand(OnTouchLamp, () => true);
             TimeChangeCommand = new RelayCommand(OnChangeTime, () => true);
 
-            FirstRoom = new RoomViewModel(195, 300);
-            SecondRoom = new RoomViewModel(195, 600);
-            ThirdRoom = new RoomViewModel(425, 300);
-            Bathroom = new BathroomViewModel(425,600);
         }
     }
 }

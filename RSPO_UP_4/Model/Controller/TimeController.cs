@@ -11,11 +11,20 @@ namespace RSPO_UP_4.Model.Controller
         private bool _isNightTime;
         private DispatcherTimer _timer;
         private AnalogueTime _time;
+        private Action _turnOnLamps;
+        private Action _turnOffLamps;
 
         public bool IsStopped
         {
             get => _isStopped;
-            set => SetValue(ref _isStopped, value);
+            set
+            {
+                SetValue(ref _isStopped, value);
+                if (_isNightTime)
+                    _turnOnLamps?.Invoke();
+                else
+                    _turnOffLamps?.Invoke();
+            }
         }
 
         public bool IsNightTime
@@ -37,8 +46,10 @@ namespace RSPO_UP_4.Model.Controller
             }
         }
 
-        public TimeController()
+        public TimeController(Action turnOnLamps, Action turnOffLamps)
         {
+            _turnOnLamps = turnOnLamps;
+            _turnOffLamps = turnOffLamps;
             Time = new AnalogueTime(DateTime.Now.Hour % 12, DateTime.Now.Minute, Meridiem.AM);
             _timer = new DispatcherTimer(TimeSpan.FromMinutes(1.0),
                                                 DispatcherPriority.Background,
@@ -69,10 +80,7 @@ namespace RSPO_UP_4.Model.Controller
 
         private void CheckForNightTime()
         {
-            if (Time.Meridiem == Meridiem.AM)
-                IsNightTime = Time.Hour > 11 || Time.Hour < 4;
-            else
-                IsNightTime = Time.Hour > 23 || Time.Hour < 4;
+            IsNightTime = Time.Hour > 11 || Time.Hour < 4;
         }
     }
 }
