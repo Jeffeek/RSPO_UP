@@ -173,7 +173,6 @@ namespace RSPO_UP_4.ViewModel
             GuestsCommand = new RelayCommand(OnGuestsComing, () => true);
             TouchLampCommand = new RelayCommand(OnTouchLamp, () => true);
             TimeChangeCommand = new RelayCommand(OnChangeTime, () => true);
-
         }
     }
 }
