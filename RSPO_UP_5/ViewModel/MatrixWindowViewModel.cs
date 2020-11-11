@@ -1,5 +1,5 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using RSPO_UP_5.Model;
@@ -127,21 +127,23 @@ namespace RSPO_UP_5.ViewModel
         private void FillFirstMatrixRandomlyExecuted()
         {
             IsFirstMatrixReadOnly = true;
-            var mw = new MatrixWorker();
-            FirstMatrix = mw.ConvertToDataTable(mw.FillMatrixRandomly(_firstMatrixRowsCount, _firstMatrixColumnsCount));
+            var matrixHelper = new MatrixHelper();
+            var converter = new MatrixConverter();
+            var matrix = new Matrix(_firstMatrixRowsCount, _firstMatrixColumnsCount);
+            var filledMatrix = matrixHelper.FillMatrixRandomly(matrix);
+            FirstMatrix = converter.ConvertToDataTable(filledMatrix);
             _isFirstMatrixFilled = true;
-            FirstMatrixColumnsCount = "0";
-            FirstMatrixRowsCount = "0";
         }
 
         private void FillFirstMatrixByHandExecuted()
         {
             IsFirstMatrixReadOnly = false;
-            var mw = new MatrixWorker();
-            FirstMatrix = mw.ConvertToDataTable(mw.FillMatrixZeros(_firstMatrixRowsCount, _firstMatrixColumnsCount));
+            var matrixHelper = new MatrixHelper();
+            var converter = new MatrixConverter();
+            var matrix = new Matrix(_firstMatrixRowsCount, _firstMatrixColumnsCount);
+            var filledMatrix = matrixHelper.FillMatrixZeros(matrix);
+            FirstMatrix = converter.ConvertToDataTable(filledMatrix);
             _isSecondMatrixFilled = true;
-            FirstMatrixColumnsCount = "0";
-            FirstMatrixRowsCount = "0";
         }
 
         private bool CanFillFirstMatrixExecute() => _firstMatrixColumnsCount > 0 &&
@@ -154,21 +156,23 @@ namespace RSPO_UP_5.ViewModel
         private void FillSecondMatrixRandomlyExecuted()
         {
             IsSecondMatrixReadOnly = true;
-            var mw = new MatrixWorker();
-            SecondMatrix = mw.ConvertToDataTable(mw.FillMatrixRandomly(_secondMatrixRowsCount, _secondMatrixColumnsCount));
+            var matrixHelper = new MatrixHelper();
+            var converter = new MatrixConverter();
+            var matrix = new Matrix(_secondMatrixRowsCount, _secondMatrixColumnsCount);
+            var filledMatrix = matrixHelper.FillMatrixRandomly(matrix);
+            SecondMatrix = converter.ConvertToDataTable(filledMatrix);
             _isSecondMatrixFilled = true;
-            FirstMatrixColumnsCount = "0";
-            FirstMatrixRowsCount = "0";
         }
 
         private void FillSecondMatrixByHandExecuted()
         {
             IsSecondMatrixReadOnly = false;
-            var mw = new MatrixWorker();
-            SecondMatrix = mw.ConvertToDataTable(mw.FillMatrixZeros(_secondMatrixRowsCount, _secondMatrixColumnsCount));
+            var matrixHelper = new MatrixHelper();
+            var converter = new MatrixConverter();
+            var matrix = new Matrix(_secondMatrixRowsCount, _secondMatrixColumnsCount);
+            var filledMatrix = matrixHelper.FillMatrixZeros(matrix);
+            SecondMatrix = converter.ConvertToDataTable(filledMatrix);
             _isSecondMatrixFilled = true;
-            SecondMatrixColumnsCount = "0";
-            SecondMatrixRowsCount = "0";
         }
 
         private bool CanFillSecondMatrixExecute() => _secondMatrixColumnsCount > 0 &&
@@ -181,10 +185,11 @@ namespace RSPO_UP_5.ViewModel
         public void TransposeFirstMatrixExecuted()
         {
             IsFirstMatrixReadOnly = false;
-            var mw = new MatrixWorker();
-            FirstMatrix = mw.ConvertToDataTable
-                    (mw.Transpose
-                    (mw.ConvertFromDataTable(FirstMatrix)));
+            var converter = new MatrixConverter();
+            var matrix = converter.ConvertFromDataTable(FirstMatrix);
+            var matrixT = matrix.Transpose();
+            var table = converter.ConvertToDataTable(matrixT);
+            FirstMatrix = table;
             _firstMatrixRowsCount = FirstMatrix.Rows.Count;
             _firstMatrixColumnsCount = FirstMatrix.Columns.Count;
         }
@@ -194,10 +199,11 @@ namespace RSPO_UP_5.ViewModel
         public void TransposeSecondMatrixExecuted()
         {
             IsSecondMatrixReadOnly = false;
-            var mw = new MatrixWorker();
-            SecondMatrix = mw.ConvertToDataTable
-                    (mw.Transpose
-                    (mw.ConvertFromDataTable(SecondMatrix)));
+            var converter = new MatrixConverter();
+            var matrix = converter.ConvertFromDataTable(SecondMatrix);
+            var matrixT = matrix.Transpose();
+            var table = converter.ConvertToDataTable(matrixT);
+            SecondMatrix = table;
             _secondMatrixRowsCount = SecondMatrix.Rows.Count;
             _secondMatrixColumnsCount = SecondMatrix.Columns.Count;
         }
@@ -210,11 +216,11 @@ namespace RSPO_UP_5.ViewModel
 
         private void MultiplyFirstAndSecondMatricesExecuted()
         {
-            var mw = new MatrixWorker();
-            var firstMatrix = mw.ConvertFromDataTable(FirstMatrix);
-            var secondMatrix = mw.ConvertFromDataTable(SecondMatrix);
-            var newMatrix = mw.Multiplication(firstMatrix, secondMatrix);
-            var newTable = mw.ConvertToDataTable(newMatrix);
+            var converter = new MatrixConverter();
+            var firstMatrix = converter.ConvertFromDataTable(FirstMatrix);
+            var secondMatrix = converter.ConvertFromDataTable(SecondMatrix);
+            var newMatrix = firstMatrix.Multiplication(secondMatrix);
+            var newTable = converter.ConvertToDataTable(newMatrix);
             FirstMatrix = newTable;
             _isFirstMatrixFilled = true;
             _isSecondMatrixFilled = false;
@@ -230,13 +236,13 @@ namespace RSPO_UP_5.ViewModel
 
         #region sum
 
-        private void SumMatrices()
+        private void AddMatrices()
         {
-            var mw = new MatrixWorker();
-            var firstMatrix = mw.ConvertFromDataTable(FirstMatrix);
-            var secondMatrix = mw.ConvertFromDataTable(SecondMatrix);
-            var newMatrix = mw.Sum(firstMatrix, secondMatrix);
-            var newTable = mw.ConvertToDataTable(newMatrix);
+            var converter = new MatrixConverter();
+            var firstMatrix = converter.ConvertFromDataTable(FirstMatrix);
+            var secondMatrix = converter.ConvertFromDataTable(SecondMatrix);
+            var newMatrix = firstMatrix.Add(secondMatrix);
+            var newTable = converter.ConvertToDataTable(newMatrix);
             FirstMatrix = newTable;
             _isFirstMatrixFilled = true;
             _isSecondMatrixFilled = false;
@@ -259,7 +265,7 @@ namespace RSPO_UP_5.ViewModel
             TransposeFirstMatrixCommand = new RelayCommand(TransposeFirstMatrixExecuted, CanTransposeFirstMatrix);
             TransposeSecondMatrixCommand = new RelayCommand(TransposeSecondMatrixExecuted, CanTransposeSecondMatrix);
             MultiplyFirstAndSecondMatricesCommand = new RelayCommand(MultiplyFirstAndSecondMatricesExecuted, CanMultiplyMatrices);
-            AddFirstAndSecondMatricesCommand = new RelayCommand(SumMatrices, CanSumMatrices);
+            AddFirstAndSecondMatricesCommand = new RelayCommand(AddMatrices, CanSumMatrices);
         }
     }
 }

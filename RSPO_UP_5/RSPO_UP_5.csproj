@@ -70,6 +70,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Matrix.cs" />
+    <Compile Include="Model\MatrixConverter.cs" />
     <Compile Include="ViewModel\ChooseOperationWindowViewModel.cs" />
     <Compile Include="ViewModel\MatrixWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
@@ -93,7 +95,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\MatrixWorker.cs" />
+    <Compile Include="Model\MatrixHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

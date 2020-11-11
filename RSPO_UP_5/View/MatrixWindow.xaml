@@ -8,7 +8,7 @@
     xmlns:vm="clr-namespace:RSPO_UP_5.ViewModel"
     Title="MatrixWindow"
     Width="800"
-    Height="450"
+    Height="460"
     Closed="MatrixWindow_OnClosed"
     mc:Ignorable="d">
     <Window.DataContext>
@@ -29,9 +29,9 @@
                 <Button Command="{Binding FillFirstMatrixRandomlyCommand}" Content="Create and fill RANDOMLY" />
                 <Button Command="{Binding FillFirstMatrixByHandCommand}" Content="Create and fill BY HANDS" />
                 <Button Command="{Binding TransposeFirstMatrixCommand}" Content="Transpose" />
-                <Button Content="Reverse" />
+                <Button Content="Reverse(not enabled)" />
             </StackPanel>
-            <Separator Height="3" Margin="0,10,0,10" />
+            <Separator Height="3" Margin="0,35,0,10" />
             <StackPanel>
                 <TextBlock Text="2st MATRIX configuration and actions: " />
                 <TextBlock Text="Rows Count: " />
@@ -41,11 +41,10 @@
                 <Button Command="{Binding FillSecondMatrixRandomlyCommand}" Content="Create and fill RANDOMLY" />
                 <Button Command="{Binding FillSecondMatrixByHandCommand}" Content="Create and fill BY HANDS" />
                 <Button Command="{Binding TransposeSecondMatrixCommand}" Content="Transpose" />
-                <Button Content="Reverse" />
+                <Button Content="Reverse(not enabled)" />
             </StackPanel>
-            <Separator Height="3" Margin="0,10,0,10" />
-            <Button Command="{Binding MultiplyFirstAndSecondMatricesCommand}" Content="Multiply matrices"/>
-            <Button Content="Add matrices" Command="{Binding AddFirstAndSecondMatricesCommand}"/>
+            <Separator Height="3" Margin="0,22,0,10" />
+            
         </StackPanel>
         <StackPanel Grid.Column="1" Orientation="Vertical">
             <DataGrid
@@ -74,6 +73,10 @@
                 IsReadOnly="{Binding IsSecondMatrixReadOnly}"
                 ItemsSource="{Binding SecondMatrix}"
                 VerticalScrollBarVisibility="Auto" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Command="{Binding MultiplyFirstAndSecondMatricesCommand}" Content="Multiply matrices" Width="150"/>
+                <Button Command="{Binding AddFirstAndSecondMatricesCommand}" Content="Add matrices" Width="150"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>
