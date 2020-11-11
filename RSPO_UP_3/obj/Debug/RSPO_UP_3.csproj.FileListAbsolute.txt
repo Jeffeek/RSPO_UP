@@ -145,3 +145,4 @@ C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_3\obj\Debug\RSPO_UP_3.csproj.C
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_3\obj\Debug\RSPO_UP_3.csproj.CopyComplete
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_3\obj\Debug\RSPO_UP_3.exe
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_3\obj\Debug\RSPO_UP_3.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_3\obj\Debug\RSPO_UP_3.csprojAssemblyReference.cache

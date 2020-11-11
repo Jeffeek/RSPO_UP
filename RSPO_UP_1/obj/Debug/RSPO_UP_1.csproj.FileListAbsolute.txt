@@ -30,3 +30,4 @@ C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\obj\Debug\RSPO_UP_1.csproj.C
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\obj\Debug\RSPO_UP_1.csproj.CopyComplete
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\obj\Debug\RSPO_UP_1.exe
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\obj\Debug\RSPO_UP_1.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_1\obj\Debug\RSPO_UP_1.csprojAssemblyReference.cache

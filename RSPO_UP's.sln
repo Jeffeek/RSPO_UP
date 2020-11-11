@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSPO_UP_3", "RSPO_UP_3\RSPO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSPO_UP_4", "RSPO_UP_4\RSPO_UP_4.csproj", "{A8A3418E-A9BF-441B-995D-52DFF7546F7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSPO_UP_5", "RSPO_UP_5\RSPO_UP_5.csproj", "{B70D024A-870F-4C74-B257-41EE6D974FBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A8A3418E-A9BF-441B-995D-52DFF7546F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8A3418E-A9BF-441B-995D-52DFF7546F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8A3418E-A9BF-441B-995D-52DFF7546F7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B70D024A-870F-4C74-B257-41EE6D974FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B70D024A-870F-4C74-B257-41EE6D974FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B70D024A-870F-4C74-B257-41EE6D974FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B70D024A-870F-4C74-B257-41EE6D974FBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
