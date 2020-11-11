@@ -9,7 +9,7 @@ using System.Windows;
 namespace RSPO_UP_5
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// Логика взаимодействия для App.xaml
     /// </summary>
     public partial class App : Application
     {

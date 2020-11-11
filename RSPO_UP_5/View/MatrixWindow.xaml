@@ -1,54 +1,79 @@
-﻿<Window x:Class="RSPO_UP_5.View.MatrixWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
-        xmlns:mui="http://firstfloorsoftware.com/ModernUI"
-        xmlns:local="clr-namespace:RSPO_UP_5.View"
-        xmlns:vm="clr-namespace:RSPO_UP_5.ViewModel"
-        xmlns:converters="clr-namespace:RSPO_UP_5.Model.Converters"
-        mc:Ignorable="d"
-        Title="MatrixWindow" Height="450" Width="800" Closed="MatrixWindow_OnClosed">
+﻿<Window
+    x:Class="RSPO_UP_5.View.MatrixWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:RSPO_UP_5.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:RSPO_UP_5.ViewModel"
+    Title="MatrixWindow"
+    Width="800"
+    Height="450"
+    Closed="MatrixWindow_OnClosed"
+    mc:Ignorable="d">
     <Window.DataContext>
-        <vm:MatrixWindowViewModel/>
+        <vm:MatrixWindowViewModel />
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.4*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="0.4*" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical" Grid.Column="0">
+        <StackPanel Grid.Column="0" Orientation="Vertical">
             <StackPanel>
-                <TextBlock Text="1st MATRIX configuration and actions: "/>
-                <TextBlock Text="Rows Count: "/>
-                <TextBox Text="{Binding FirstMatrixRowsCount, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
-                <TextBlock Text="Columns Count: "/>
-                <TextBox Text="{Binding FirstMatrixColumnsCount, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
-                <Button Content="Create and fill RANDOMLY" Command="{Binding FillFirstMatrixRandomlyCommand}"/>
-                <Button Content="Create and fill BY HANDS" Command="{Binding FillFirstMatrixByHandCommand}"/>
-                <Button Content="Transpose"/>
-                <Button Content="Reverse"/>
+                <TextBlock Text="1st MATRIX configuration and actions: " />
+                <TextBlock Text="Rows Count: " />
+                <TextBox Text="{Binding FirstMatrixRowsCount, Mode=TwoWay}" />
+                <TextBlock Text="Columns Count: " />
+                <TextBox Text="{Binding FirstMatrixColumnsCount, Mode=TwoWay}" />
+                <Button Command="{Binding FillFirstMatrixRandomlyCommand}" Content="Create and fill RANDOMLY" />
+                <Button Command="{Binding FillFirstMatrixByHandCommand}" Content="Create and fill BY HANDS" />
+                <Button Command="{Binding TransposeFirstMatrixCommand}" Content="Transpose" />
+                <Button Content="Reverse" />
             </StackPanel>
-            <Separator Margin="0 10 0 10" Height="3"/>
+            <Separator Height="3" Margin="0,10,0,10" />
             <StackPanel>
-                <TextBlock Text="2st MATRIX configuration and actions: "/>
-                <TextBlock Text="Rows Count: "/>
-                <TextBox/>
-                <TextBlock Text="Columns Count: "/>
-                <TextBox/>
-                <Button Content="Create and fill RANDOMLY"/>
-                <Button Content="Create and fill BY HANDS"/>
-                <Button Content="Transpose"/>
-                <Button Content="Reverse"/>
+                <TextBlock Text="2st MATRIX configuration and actions: " />
+                <TextBlock Text="Rows Count: " />
+                <TextBox Text="{Binding SecondMatrixRowsCount, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+                <TextBlock Text="Columns Count: " />
+                <TextBox Text="{Binding SecondMatrixColumnsCount, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+                <Button Command="{Binding FillSecondMatrixRandomlyCommand}" Content="Create and fill RANDOMLY" />
+                <Button Command="{Binding FillSecondMatrixByHandCommand}" Content="Create and fill BY HANDS" />
+                <Button Command="{Binding TransposeSecondMatrixCommand}" Content="Transpose" />
+                <Button Content="Reverse" />
             </StackPanel>
-            <Separator Margin="0 10 0 10" Height="3"/>
-            <Button Content="Multiply matrixes"/>
-            <Button Content="Add matrixes"/>
+            <Separator Height="3" Margin="0,10,0,10" />
+            <Button Command="{Binding MultiplyFirstAndSecondMatricesCommand}" Content="Multiply matrices"/>
+            <Button Content="Add matrices" Command="{Binding AddFirstAndSecondMatricesCommand}"/>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Column="1">
-            <DataGrid Height="200" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" ItemsSource="{Binding FirstMatrix}" IsReadOnly="{Binding IsFirstMatrixReadOnly}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False"/>
-            <DataGrid Height="200" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalAlignment="Center" ItemsSource="{Binding SecondMatrix}" IsReadOnly="{Binding IsSecondMatrixReadOnly}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False"/>
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <DataGrid
+                Height="200"
+                VerticalAlignment="Center"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="False"
+                CanUserResizeRows="False"
+                CanUserSortColumns="False"
+                HorizontalScrollBarVisibility="Auto"
+                IsReadOnly="{Binding IsFirstMatrixReadOnly}"
+                ItemsSource="{Binding FirstMatrix}"
+                VerticalScrollBarVisibility="Auto" />
+            <DataGrid
+                Height="200"
+                VerticalAlignment="Center"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="False"
+                CanUserResizeRows="False"
+                CanUserSortColumns="False"
+                HorizontalScrollBarVisibility="Auto"
+                IsReadOnly="{Binding IsSecondMatrixReadOnly}"
+                ItemsSource="{Binding SecondMatrix}"
+                VerticalScrollBarVisibility="Auto" />
         </StackPanel>
     </Grid>
 </Window>
