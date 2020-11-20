@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\
 RSPO_UP_5
 none
 false
 DEBUG;TRACE
-E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_5\App.xaml
-2225484019
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\App.xaml
+4-135475579
 
-13-2098201983
-122-1140454770
-View\ChooseOperationWindow.xaml;View\MatrixWindow.xaml;
+20725886854
+133-1566667942
+Resources\ActiveButton.xaml;View\ChooseOperationWindow.xaml;View\MatrixWindow.xaml;View\NonLinearEqualationWindow.xaml;
 
 True
 

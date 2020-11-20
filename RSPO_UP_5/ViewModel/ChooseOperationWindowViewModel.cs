@@ -28,6 +28,8 @@ namespace RSPO_UP_5.ViewModel
 
         public void OnNonlinearEquationChooseCommandExecuted()
         {
+            var matrixWindow = new NonLinearEqualationWindow();
+            matrixWindow.Show();
             IsSecondFormNotOpened = false;
         }
 
