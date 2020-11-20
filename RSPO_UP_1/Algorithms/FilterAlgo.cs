@@ -105,7 +105,7 @@ namespace RSPO_UP_1.Algorithms
                 return new List<Movie>();
             }
             var priceSum = _movies.Select(x => x.Price).Sum();
-            double averagePrice = priceSum / _movies.Count;
+            double averagePrice = (double)priceSum / _movies.Count;
             var higherPriceList = _movies.Where(x => x.Price > averagePrice);
             Console.WriteLine($"Средняя цена: {averagePrice}");
             Console.WriteLine("Сеансы, цена за билет которых выше средней по всем билетам");

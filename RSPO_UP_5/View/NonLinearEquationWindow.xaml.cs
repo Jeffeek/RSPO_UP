@@ -17,9 +17,9 @@ namespace RSPO_UP_5.View
     /// <summary>
     /// Логика взаимодействия для NonLinearEqualationWindow.xaml
     /// </summary>
-    public partial class NonLinearEqualationWindow : Window
+    public partial class NonLinearEquationWindow : Window
     {
-        public NonLinearEqualationWindow()
+        public NonLinearEquationWindow()
         {
             InitializeComponent();
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using RSPO_UP_2.Algorithms.SortingCollection;
 
@@ -83,7 +84,8 @@ namespace RSPO_UP_2.View
                         Console.WriteLine("Введите диапазон в формате: x-y");
                         string range = Console.ReadLine();
                         var ints = range?.Split('-').Select(int.Parse).ToArray();
-                        sortBoots.SortByTypedPrice(ints[0],ints[1]);
+                        Debug.Assert(ints != null, nameof(ints) + " != null");
+                        sortBoots.SortByTypedPrice(ints[0], ints[1]);
                         break;
                     }
 

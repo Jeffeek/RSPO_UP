@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using MahApps.Metro.Controls;
 using OxyPlot;
 
 namespace RSPO_UP_5.Model
 {
-    public abstract class EqualationBase : IEqualation
+    public abstract class EquationBase : IEquation
     {
-        public IEnumerable<DataPoint> Solve(double lower, double upper, double c = 0, double step = 0.1)
+        public IEnumerable<DataPoint> Solve(double lower, double upper, double a = 0, double step = 0.1)
         {
             var dataPoints = new List<DataPoint>();
             for (; lower < upper; lower += step)
             {
                 var pointX = lower;
-                var pointY = Calculate(lower, c);
+                var pointY = Calculate(lower, a);
                 var point = new DataPoint(pointX, pointY);
-                if (pointY == 0.0d)
+                if (pointY.IsCloseTo(0.0d))
                     Root = pointX;
                 dataPoints.Add(point);
             }
@@ -25,7 +22,7 @@ namespace RSPO_UP_5.Model
             return dataPoints;
         }
 
-        public abstract double Calculate(double x, double c);
+        public abstract double Calculate(double x, double a);
 
         public double? Root { get; private set; } = null;
     }

@@ -93,14 +93,14 @@
     </ApplicationDefinition>
     <Compile Include="Model\AsupX.cs" />
     <Compile Include="Model\EqualationBase.cs" />
-    <Compile Include="Model\IEqualation.cs" />
+    <Compile Include="Model\IEquation.cs" />
     <Compile Include="Model\Matrix.cs" />
     <Compile Include="Model\MatrixConverter.cs" />
-    <Compile Include="Model\Sinusoid.cs" />
-    <Compile Include="Model\XsupAx.cs" />
+    <Compile Include="Model\SinXminusA.cs" />
+    <Compile Include="Model\XsupAminusX.cs" />
     <Compile Include="ViewModel\ChooseOperationWindowViewModel.cs" />
     <Compile Include="ViewModel\MatrixWindowViewModel.cs" />
-    <Compile Include="ViewModel\NonLinearEqualationViewModel.cs" />
+    <Compile Include="ViewModel\NonLinearEquationViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\ChooseOperationWindow.xaml.cs">
       <DependentUpon>ChooseOperationWindow.xaml</DependentUpon>
@@ -112,8 +112,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\NonLinearEqualationWindow.xaml.cs">
-      <DependentUpon>NonLinearEqualationWindow.xaml</DependentUpon>
+    <Compile Include="View\NonLinearEquationWindow.xaml.cs">
+      <DependentUpon>NonLinearEquationWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\ActiveButton.xaml">
       <SubType>Designer</SubType>
@@ -127,7 +127,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\NonLinearEqualationWindow.xaml">
+    <Page Include="View\NonLinearEquationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
