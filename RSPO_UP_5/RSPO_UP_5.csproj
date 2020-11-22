@@ -68,6 +68,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -91,19 +92,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\AsupX.cs" />
+    <Compile Include="Model\IIntegralFunc.cs" />
+    <Compile Include="Model\Integral\AsupX.cs" />
+    <Compile Include="Model\Integral\AX3plusBX2plusCXplusD.cs" />
+    <Compile Include="Model\Integral\CosX.cs" />
+    <Compile Include="Model\Integral\SinX.cs" />
+    <Compile Include="Model\Integral\XsupA.cs" />
+    <Compile Include="Model\NonLinear\AsupX.cs" />
     <Compile Include="Model\EqualationBase.cs" />
     <Compile Include="Model\IEquation.cs" />
     <Compile Include="Model\Matrix.cs" />
     <Compile Include="Model\MatrixConverter.cs" />
-    <Compile Include="Model\SinXminusA.cs" />
-    <Compile Include="Model\XsupAminusX.cs" />
+    <Compile Include="Model\NonLinear\SinXminusA.cs" />
+    <Compile Include="Model\NonLinear\XsupAminusX.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="ViewModel\ChooseOperationWindowViewModel.cs" />
+    <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MatrixWindowViewModel.cs" />
+    <Compile Include="ViewModel\IntegralViewModel.cs" />
     <Compile Include="ViewModel\NonLinearEquationViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\ChooseOperationWindow.xaml.cs">
       <DependentUpon>ChooseOperationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MatrixWindow.xaml.cs">
       <DependentUpon>MatrixWindow.xaml</DependentUpon>
@@ -111,6 +124,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\IntegralWindow.xaml.cs">
+      <DependentUpon>IntegralWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\NonLinearEquationWindow.xaml.cs">
       <DependentUpon>NonLinearEquationWindow.xaml</DependentUpon>
@@ -123,7 +139,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MatrixWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\IntegralWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -151,6 +175,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Files\users.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -161,5 +188,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Files\1_L76A5gL6176UbMgn7q4Ybg.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

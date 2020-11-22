@@ -17,11 +17,24 @@ namespace RSPO_UP_5.ViewModel
         private string _title = String.Empty;
         private double _lowerValue = 0.0d, _upperValue = 0.0d, _c=0.0d;
         private IEquation _equalationStrategy;
+        private int _equationNumber;
 
         public ICommand ApplyEquationCommand { get; }
         public ICommand SinXCommand { get; } //1
         public ICommand XsupAxCommand { get; } //2
         public ICommand AsubXCommand { get; } //3
+
+        public int EquationNumber
+        {
+            get => _equationNumber;
+            set => SetValue(ref _equationNumber, value);
+        }
+
+        public IEquation CurrentEquation
+        {
+            get => _equalationStrategy;
+            set => SetValue(ref _equalationStrategy, value);
+        }
 
         public string Title
         {
@@ -55,17 +68,34 @@ namespace RSPO_UP_5.ViewModel
 
         private async void OnApplyEquationExecuted()
         {
-            var solvedPoints = _equalationStrategy.Solve(_lowerValue, _upperValue, _c);
+            var solvedPoints = CurrentEquation.Solve(_lowerValue, _upperValue, _c);
             await Task.Run(() => LogPoints(solvedPoints));
             Points = new List<DataPoint>(solvedPoints);
-            MessageBox.Show(_equalationStrategy.Root != null ? $"Корень: {_equalationStrategy.Root}" : $"Корня нет");
+            MessageBox.Show(_equalationStrategy.Root != null ? $"Корень: {CurrentEquation.Root}" : $"Корня нет");
         }
 
-        private void SinXminusAStrategyChanged() => _equalationStrategy = new SinXminusA();
+        private bool CanApplyEquationExecute()
+        {
+            return EquationNumber != 0;
+        }
 
-        private void XsubAminusXStrategyChanged() => _equalationStrategy = new XsupAminusx();
+        private void SinXminusAStrategyChanged()
+        {
+            CurrentEquation = new SinXminusA();
+            EquationNumber = 1;
+        }
 
-        private void AsubXStrategyChanged() => _equalationStrategy = new AsupX();
+        private void XsubAminusXStrategyChanged()
+        {
+            CurrentEquation = new XsupAminusx();
+            EquationNumber = 2;
+        }
+
+        private void AsubXStrategyChanged()
+        {
+            CurrentEquation = new AsupX();
+            EquationNumber = 3;
+        }
 
         private async Task LogPoints(IEnumerable<DataPoint> points)
         {
@@ -79,7 +109,7 @@ namespace RSPO_UP_5.ViewModel
 
         public NonLinearEquationViewModel()
         {
-            ApplyEquationCommand = new RelayCommand(OnApplyEquationExecuted);
+            ApplyEquationCommand = new RelayCommand(OnApplyEquationExecuted, CanApplyEquationExecute);
             SinXCommand = new RelayCommand(SinXminusAStrategyChanged);
             XsupAxCommand = new RelayCommand(XsubAminusXStrategyChanged);
             AsubXCommand = new RelayCommand(AsubXStrategyChanged);

@@ -1,12 +1,40 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style x:Key="ChoosedButton" TargetType="Button">
-        <Style.Setters>
-            <Setter Property="Background" Value="Cyan" />
-        </Style.Setters>
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:RSPO_UP_5">
+    <Style x:Key="ChoosedButton1" TargetType="Button">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding EquationNumber}" Value="1">
+                <Setter Property="Background" Value="Aquamarine" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
-    <Style x:Key="UnChoosedButton" TargetType="Button">
-        <Style.Setters>
-            <Setter Property="Background" Value="BlueViolet" />
-        </Style.Setters>
+    <Style x:Key="ChoosedButton2" TargetType="Button">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding EquationNumber}" Value="2">
+                <Setter Property="Background" Value="Aquamarine" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ChoosedButton3" TargetType="Button">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding EquationNumber}" Value="3">
+                <Setter Property="Background" Value="Aquamarine" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ChoosedButton4" TargetType="Button">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding EquationNumber}" Value="4">
+                <Setter Property="Background" Value="Aquamarine" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ChoosedButton5" TargetType="Button">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding EquationNumber}" Value="5">
+                <Setter Property="Background" Value="Aquamarine" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

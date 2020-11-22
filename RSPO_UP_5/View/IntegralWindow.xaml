@@ -1,0 +1,165 @@
+﻿<Window
+    x:Class="RSPO_UP_5.View.IntegralWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:RSPO_UP_5.View"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:oxy="http://oxyplot.org/wpf"
+    xmlns:vm="clr-namespace:RSPO_UP_5.ViewModel"
+    Title="NonLinearEquationWindow"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <vm:IntegralViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel
+            Grid.Row="0"
+            Height="40px"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Orientation="Horizontal">
+            <Button
+                Width="50px"
+                Margin="0,0,10,0"
+                Command="{Binding SinXCommand}"
+                Content="sin(X)"
+                Style="{DynamicResource ChoosedButton1}" />
+            <Button
+                Width="50px"
+                Margin="0,0,10,0"
+                Command="{Binding SinXCommand}"
+                Content="cos(X)"
+                Style="{DynamicResource ChoosedButton2}" />
+            <Button
+                Width="50px"
+                Margin="0,0,10,0"
+                Command="{Binding XsupACommand}"
+                Style="{DynamicResource ChoosedButton3}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="X" />
+                        <TextBlock
+                            FontSize="9"
+                            FontStyle="Oblique"
+                            Text="A" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button
+                Width="50px"
+                Margin="0,0,0,0"
+                Command="{Binding AsupXCommand}"
+                Style="{DynamicResource ChoosedButton4}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="A" />
+                        <TextBlock
+                            FontSize="9"
+                            FontStyle="Oblique"
+                            Text="X" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button
+                Width="100px"
+                Margin="10,0,0,0"
+                Command="{Binding StrongCommand}"
+                Style="{DynamicResource ChoosedButton5}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="AX" />
+                        <TextBlock
+                            FontSize="9"
+                            FontStyle="Oblique"
+                            Text="3" />
+                        <TextBlock Text="+BX" />
+                        <TextBlock
+                            FontSize="9"
+                            FontStyle="Oblique"
+                            Text="2" />
+                        <TextBlock Text="+CX" />
+                        <TextBlock FontStyle="Oblique" Text="+D" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    Text="A:" />
+                <TextBox Width="30px" Text="{Binding A, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:N2}'}" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    Text="B:" />
+                <TextBox Width="30px" Text="{Binding B, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:N2}'}" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    Text="C:" />
+                <TextBox Width="30px" Text="{Binding C, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:N2}'}" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    Text="D:" />
+                <TextBox Width="30px" Text="{Binding D, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:N2}'}" />
+            </StackPanel>
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="16"
+                Text="Step:" />
+            <TextBox Width="30px" Text="{Binding Step, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:N2}'}" />
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="16"
+                Text="Range:" />
+            <mah:RangeSlider
+                Name="RangeSlider"
+                Width="200"
+                Margin="0,0,0,20"
+                LowerValue="{Binding LowerValue, Mode=TwoWay}"
+                Maximum="100"
+                Minimum="0"
+                UpperValue="{Binding UpperValue, Mode=TwoWay}" />
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock
+                    Margin="0,0,20,0"
+                    HorizontalAlignment="Center"
+                    Text="{Binding ElementName=RangeSlider, Path=LowerValue, StringFormat='{}{0:N2}'}" />
+                <TextBlock
+                    Margin="20,0,0,0"
+                    HorizontalAlignment="Center"
+                    Text="{Binding ElementName=RangeSlider, Path=UpperValue, StringFormat='{}{0:N2}'}" />
+            </StackPanel>
+            <Button
+                Command="{Binding ApplyEquationCommand}"
+                Content="Apply"
+                FontSize="20" />
+        </StackPanel>
+        <oxy:Plot Title="{Binding Title}" Grid.Row="2">
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding Points}" />
+            </oxy:Plot.Series>
+        </oxy:Plot>
+    </Grid>
+</Window>

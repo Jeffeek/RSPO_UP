@@ -35,6 +35,8 @@ namespace RSPO_UP_5.ViewModel
 
         public void OnIntegralChooseCommandExecuted()
         {
+            var integralWindow = new IntegralWindow();
+            integralWindow.Show();
             IsSecondFormNotOpened = false;
         }
 
