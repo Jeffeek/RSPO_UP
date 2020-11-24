@@ -256,6 +256,28 @@ namespace RSPO_UP_5.ViewModel
 
         #endregion
 
+        private void ReverseFirstMatrixExecuted()
+        {
+            IsFirstMatrixReadOnly = false;
+            var converter = new MatrixConverter();
+            var matrix = converter.ConvertFromDataTable(FirstMatrix);
+            var invertedMatrix = matrix.CreateInvertibleMatrix();
+            FirstMatrix = converter.ConvertToDataTable(invertedMatrix);
+        }
+
+        private bool CanReverseFirstMatrixExecute() => FirstMatrix?.Columns.Count == FirstMatrix?.Rows.Count;
+
+        private void ReverseSecondMatrixExecuted()
+        {
+            IsSecondMatrixReadOnly = false;
+            var converter = new MatrixConverter();
+            var matrix = converter.ConvertFromDataTable(SecondMatrix);
+            var invertedMatrix = matrix.CreateInvertibleMatrix();
+            SecondMatrix = converter.ConvertToDataTable(invertedMatrix);
+        }
+
+        private bool CanReverseSecondMatrixExecute() => SecondMatrix?.Columns.Count == SecondMatrix?.Rows.Count;
+
         public MatrixWindowViewModel()
         {
             FillFirstMatrixRandomlyCommand = new RelayCommand(FillFirstMatrixRandomlyExecuted, CanFillFirstMatrixExecute);
@@ -266,6 +288,8 @@ namespace RSPO_UP_5.ViewModel
             TransposeSecondMatrixCommand = new RelayCommand(TransposeSecondMatrixExecuted, CanTransposeSecondMatrix);
             MultiplyFirstAndSecondMatricesCommand = new RelayCommand(MultiplyFirstAndSecondMatricesExecuted, CanMultiplyMatrices);
             AddFirstAndSecondMatricesCommand = new RelayCommand(AddMatrices, CanSumMatrices);
+            ReverseFirstMatrixCommand = new RelayCommand(ReverseFirstMatrixExecuted, CanReverseFirstMatrixExecute);
+            ReverseSecondMatrixCommand = new RelayCommand(ReverseSecondMatrixExecuted, CanReverseSecondMatrixExecute);
         }
     }
 }

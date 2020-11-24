@@ -30,7 +30,7 @@ namespace RSPO_UP_5.Model
             {
                 for (int j = 0; j < table.Columns.Count; j++)
                 {
-                    matrix[i, j] = int.Parse(table.Rows[i][j].ToString());
+                    matrix[i, j] = double.Parse(table.Rows[i][j].ToString());
                 }
             }
 

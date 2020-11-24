@@ -10,7 +10,7 @@ namespace RSPO_UP_5.Model
             for (int i = 0; i < matrix.RowsCount; i++)
             {
                 for (int j = 0; j < matrix.ColumnsCount; j++)
-                    matrix[i,j] = rnd.Next(-20, 50);
+                    matrix[i,j] = rnd.Next(-50, 50);
             }
             return matrix;
         }

@@ -96,3 +96,4 @@ E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5.csproj.CoreCompileI
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5.csproj.CopyComplete
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5.exe
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5.pdb
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5.csprojAssemblyReference.cache
