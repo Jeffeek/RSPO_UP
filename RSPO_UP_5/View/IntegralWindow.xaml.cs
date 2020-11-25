@@ -14,14 +14,18 @@ using System.Windows.Shapes;
 
 namespace RSPO_UP_5.View
 {
-    /// <summary>
-    /// Логика взаимодействия для NonLinearEqualationWindow.xaml
-    /// </summary>
-    public partial class NonLinearEquationWindow : Window
+    public partial class IntegralWindow : Window
     {
-        public NonLinearEquationWindow()
+        private Action _closeAction;
+        public IntegralWindow(Action closeAction)
         {
             InitializeComponent();
+            _closeAction = closeAction;
+        }
+
+        private void IntegralWindow_OnClosed(object sender, EventArgs e)
+        {
+            _closeAction?.Invoke();
         }
     }
 }

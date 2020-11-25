@@ -28,14 +28,14 @@ namespace RSPO_UP_5.ViewModel
 
         public void OnNonlinearEquationChooseCommandExecuted()
         {
-            var matrixWindow = new NonLinearEquationWindow();
+            var matrixWindow = new NonLinearEquationWindow(() => IsSecondFormNotOpened = true);
             matrixWindow.Show();
             IsSecondFormNotOpened = false;
         }
 
         public void OnIntegralChooseCommandExecuted()
         {
-            var integralWindow = new IntegralWindow();
+            var integralWindow = new IntegralWindow(() => IsSecondFormNotOpened = true);
             integralWindow.Show();
             IsSecondFormNotOpened = false;
         }

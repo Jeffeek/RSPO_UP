@@ -18,14 +18,12 @@ C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\bin\Debug\OxyPlot.xml
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\bin\Debug\OxyPlot.Wpf.xml
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\View\ChooseOperationWindow.g.cs
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\View\MatrixWindow.g.cs
-C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\View\NonLinearEqualationWindow.g.cs
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\App.g.cs
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5_MarkupCompile.cache
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5_MarkupCompile.lref
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\View\ChooseOperationWindow.baml
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\View\MatrixWindow.baml
-C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\View\NonLinearEqualationWindow.baml
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5.g.resources
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5.Properties.Resources.resources
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5.csproj.GenerateResource.cache
@@ -97,3 +95,12 @@ E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5.csproj.CopyComplete
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5.exe
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5.pdb
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5.csprojAssemblyReference.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\bin\Debug\Files\users.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5.csprojAssemblyReference.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\View\LoginWindow.g.cs
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\View\IntegralWindow.g.cs
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\View\NonLinearEquationWindow.g.cs
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\RSPO_UP_5_Content.g.cs
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\View\LoginWindow.baml
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\View\IntegralWindow.baml
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\View\NonLinearEquationWindow.baml

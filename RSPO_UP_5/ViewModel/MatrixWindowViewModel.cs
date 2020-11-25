@@ -265,7 +265,7 @@ namespace RSPO_UP_5.ViewModel
             FirstMatrix = converter.ConvertToDataTable(invertedMatrix);
         }
 
-        private bool CanReverseFirstMatrixExecute() => FirstMatrix?.Columns.Count == FirstMatrix?.Rows.Count;
+        private bool CanReverseFirstMatrixExecute() => FirstMatrix?.Columns.Count == FirstMatrix?.Rows.Count && _firstMatrixColumnsCount > 1;
 
         private void ReverseSecondMatrixExecuted()
         {
@@ -276,7 +276,7 @@ namespace RSPO_UP_5.ViewModel
             SecondMatrix = converter.ConvertToDataTable(invertedMatrix);
         }
 
-        private bool CanReverseSecondMatrixExecute() => SecondMatrix?.Columns.Count == SecondMatrix?.Rows.Count;
+        private bool CanReverseSecondMatrixExecute() => SecondMatrix?.Columns.Count == SecondMatrix?.Rows.Count && _secondMatrixColumnsCount > 1;
 
         public MatrixWindowViewModel()
         {

@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\obj\Debug\
 RSPO_UP_5
 none
 false
 DEBUG;TRACE
-E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_5\App.xaml
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_5\App.xaml
 6600228291
 1-1677139399
 311399202619
-1341485738756
+13464307178
 Resources\ActiveButton.xaml;View\ChooseOperationWindow.xaml;View\LoginWindow.xaml;View\MatrixWindow.xaml;View\IntegralWindow.xaml;View\NonLinearEquationWindow.xaml;
 
 True
