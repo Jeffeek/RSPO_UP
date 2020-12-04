@@ -1,0 +1,38 @@
+﻿<Page x:Class="RSPO_UP_6.View.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RSPO_UP_6.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="600"
+      Title="SettingsPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.4*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Choose image from your computer for your cow-hero!!!" Foreground="Cyan" Grid.Column="0" VerticalAlignment="Center"/>
+        <Button Height="20px" Content="Choose Image" Grid.Column="1" Grid.Row="0"/>
+
+        <TextBlock Text="Choose image from your computer for your evil-wolf!!!" Foreground="Cyan" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
+        <Button Height="20px" Content="Choose Image" Grid.Column="1" Grid.Row="1"/>
+
+        <TextBlock Text="Choose how much lives will have cow-hero!!!" Foreground="Cyan" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Height="20" VerticalAlignment="Top" Margin="0 5 0 0"/>
+        <Button Height="20px" Content="Apply" Grid.Column="1" Grid.Row="2"/>
+        
+
+
+    </Grid>
+</Page>
