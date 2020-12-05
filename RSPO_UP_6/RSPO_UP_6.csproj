@@ -75,7 +75,6 @@
     </ApplicationDefinition>
     <Compile Include="Model\Controllers\GoCowEvent.cs" />
     <Compile Include="Model\Controllers\MoveDirection.cs" />
-    <Compile Include="Model\Controllers\WolfController.cs" />
     <Compile Include="Model\Entities\Bomb.cs" />
     <Compile Include="Model\Entities\Cow.cs" />
     <Compile Include="Model\Entities\EntitySettings.cs" />

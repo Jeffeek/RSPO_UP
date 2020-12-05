@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Input;
 using RSPO_UP_6.Model.Controllers;
 using RSPO_UP_6.Model.Entities;
 
@@ -12,21 +7,22 @@ namespace RSPO_UP_6.ViewModel
 {
     public class CowViewModel : ViewModelBase
     {
+        private readonly object _monitor = new object();
         private string _currentImageSource;
-        public event GoCow CowPositionChanged;
+        private int _row, _column;
         public Cow Cow { get; set; }
-        public int Row { get; set; }
-        public int Column { get; set; }
         public int Size { get; set; }
+
+        public event GoCow CowPositionChanged;
+        public int Row { get => _row; set => SetValue(ref _row, value); }
+        public int Column { get => _column; set => SetValue(ref _column, value); }
+
+        public ObservableCollection<bool> Lives { get; set; }
 
         public CowViewModel()
         {
-            
-        }
-
-        private void CowController_CowPositionChanged(MoveDirection direction)
-        {
-            throw new NotImplementedException();
+            Cow = new Cow {Settings = new EntitySettings {Delay = 5}};
+            Lives = new ObservableCollection<bool>() {true, true, true};
         }
 
         public string ImageSource
@@ -38,33 +34,45 @@ namespace RSPO_UP_6.ViewModel
         public async Task MoveUp()
         {
             await Task.Delay(Cow.Settings.Delay);
-            if (Row == 0) return;
-            Row--;
-            CowPositionChanged?.Invoke(MoveDirection.Up);
+            lock (_monitor)
+            {
+                if (Row == 0) return;
+                Row--;
+                CowPositionChanged?.Invoke(MoveDirection.Up);
+            }
         }
 
         public async Task MoveDown()
         {
-            if (Size - 1 == Row) return;
             await Task.Delay(Cow.Settings.Delay);
-            Row++;
-            CowPositionChanged?.Invoke(MoveDirection.Down);
+            lock (_monitor)
+            {
+                if (Size - 1 == Row) return;
+                Row++;
+                CowPositionChanged?.Invoke(MoveDirection.Down);
+            }
         }
 
         public async Task MoveRight()
         {
-            if (Size - 1 == Row) return;
             await Task.Delay(Cow.Settings.Delay);
-            Column++;
-            CowPositionChanged?.Invoke(MoveDirection.Right);
+            lock (_monitor)
+            {
+                if (Size - 1 == Column) return;
+                Column++;
+                CowPositionChanged?.Invoke(MoveDirection.Right);
+            }
         }
 
         public async Task MoveLeft()
         {
-            if (Size - 1 == Column) return;
             await Task.Delay(Cow.Settings.Delay);
-            Row++;
-            CowPositionChanged?.Invoke(MoveDirection.Down);
+            lock (_monitor)
+            {
+                if (Column == 0) return;
+                Column--;
+                CowPositionChanged?.Invoke(MoveDirection.Down);
+            }
         }
     }
 }

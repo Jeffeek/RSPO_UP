@@ -34,5 +34,6 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
+        <Button Grid.Row="{Binding Cow.Row}" Grid.Column="{Binding Cow.Column}" Background="Aquamarine"/>
     </Grid>
 </Page>
