@@ -86,6 +86,7 @@
     <Compile Include="Model\Map\Map6X6.cs" />
     <Compile Include="Model\Map\Map8X8.cs" />
     <Compile Include="Model\Map\TextToMapConverter.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\BombViewModel.cs" />
     <Compile Include="ViewModel\CannabisViewModel.cs" />
     <Compile Include="ViewModel\CowAndWeedGameViewModel.cs" />
@@ -162,22 +163,34 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Files\bomb.png" />
+    <AdditionalFiles Include="Files\bomb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Files\cow.gif" />
+    <AdditionalFiles Include="Files\cow.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Files\cannabis.png" />
+    <AdditionalFiles Include="Files\cannabis.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Files\heart.png" />
+    <AdditionalFiles Include="Files\heart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Files\wolf.png" />
+    <AdditionalFiles Include="Files\wolf.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Files\explosion.png" />
+    <AdditionalFiles Include="Files\explosion.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -15,9 +15,7 @@ namespace RSPO_UP_6.Model.Entities
 
         public Bomb()
         {
-            Settings = new EntitySettings();
-            Settings.ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\bomb.png";
-            Settings.Image = new Image {Source = new BitmapImage(new Uri(Settings.ImagePath))};
+            Settings = new EntitySettings {ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\bomb.png"};
         }
     }
 }

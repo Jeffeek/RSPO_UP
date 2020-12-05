@@ -27,7 +27,6 @@ namespace RSPO_UP_6.ViewModel
         {
             await Task.Delay(Bomb.Settings.Delay);
             Bomb.Settings.ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\explosion.png";
-            Bomb.Settings.Image = new Image { Source = new BitmapImage(new Uri(Bomb.Settings.ImagePath)) };
         }
     }
 }

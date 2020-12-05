@@ -8,7 +8,6 @@ namespace RSPO_UP_6.ViewModel
     public class CowViewModel : ViewModelBase
     {
         private readonly object _monitor = new object();
-        private string _currentImageSource;
         private int _row, _column;
         public Cow Cow { get; set; }
         public int Size { get; set; }
@@ -17,18 +16,9 @@ namespace RSPO_UP_6.ViewModel
         public int Row { get => _row; set => SetValue(ref _row, value); }
         public int Column { get => _column; set => SetValue(ref _column, value); }
 
-        public ObservableCollection<bool> Lives { get; set; }
-
         public CowViewModel()
         {
-            Cow = new Cow {Settings = new EntitySettings {Delay = 5}};
-            Lives = new ObservableCollection<bool>() {true, true, true};
-        }
-
-        public string ImageSource
-        {
-            get => _currentImageSource;
-            set => SetValue(ref _currentImageSource, value);
+            Cow = new Cow();
         }
 
         public async Task MoveUp()
@@ -71,7 +61,7 @@ namespace RSPO_UP_6.ViewModel
             {
                 if (Column == 0) return;
                 Column--;
-                CowPositionChanged?.Invoke(MoveDirection.Down);
+                CowPositionChanged?.Invoke(MoveDirection.Left);
             }
         }
     }
