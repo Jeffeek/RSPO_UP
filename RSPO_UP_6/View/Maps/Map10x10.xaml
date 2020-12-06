@@ -35,20 +35,25 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Button Grid.Column="0" Grid.Row="0" Background="Red"/>
-        <Button Grid.Column="9" Grid.Row="9" Background="LightGreen"/>
+        <Button
+            Grid.Row="0"
+            Grid.Column="0"
+            Background="Red" />
+        <Button
+            Grid.Row="9"
+            Grid.Column="9"
+            Background="LightGreen" />
         <Image
             Grid.Row="{Binding Cow.Row}"
             Grid.Column="{Binding Cow.Column}"
-            gif:ImageBehavior.AnimatedSource="{Binding Cow.Cow.Settings.ImagePath}"
+            gif:ImageBehavior.AnimatedSource="{Binding Cow.Settings.ImagePath}"
             gif:ImageBehavior.AutoStart="True"
             gif:ImageBehavior.RepeatBehavior="Forever" />
         <Image
             Grid.Row="{Binding Wolf.Row}"
             Grid.Column="{Binding Wolf.Column}"
-            gif:ImageBehavior.AnimatedSource="{Binding Wolf.Wolf.Settings.ImagePath}"
+            gif:ImageBehavior.AnimatedSource="{Binding Wolf.Settings.ImagePath}"
             gif:ImageBehavior.AutoStart="True"
             gif:ImageBehavior.RepeatBehavior="Forever" />
-        
     </Grid>
 </Page>

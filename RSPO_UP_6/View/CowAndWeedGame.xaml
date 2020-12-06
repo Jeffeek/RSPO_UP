@@ -42,7 +42,7 @@
                 VerticalAlignment="Top"
                 FlowDirection="LeftToRight"
                 IsManipulationEnabled="False"
-                ItemsSource="{Binding Cow}"
+                ItemsSource="{Binding Cow.Lives}"
                 SelectionMode="Single">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>

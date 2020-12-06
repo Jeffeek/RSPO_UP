@@ -1,29 +1,47 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.Threading.Tasks;
 using RSPO_UP_6.Model.Controllers;
-using RSPO_UP_6.Model.Entities;
 
 namespace RSPO_UP_6.ViewModel
 {
     public class CowViewModel : ViewModelBase
     {
         private readonly object _monitor = new object();
+        private ObservableCollection<bool> _lives;
         private int _row, _column;
-        public Cow Cow { get; set; }
+        private EntitySettingsViewModel _settings;
         public int Size { get; set; }
 
         public event GoCow CowPositionChanged;
-        public int Row { get => _row; set => SetValue(ref _row, value); }
-        public int Column { get => _column; set => SetValue(ref _column, value); }
 
-        public CowViewModel()
+        public int Row 
+        { 
+            get => _row; 
+            set => SetValue(ref _row, value);
+        }
+
+        public int Column
         {
-            Cow = new Cow();
+            get => _column;
+            set => SetValue(ref _column, value);
+        }
+
+        public ObservableCollection<bool> Lives
+        {
+            get => _lives;
+            set => SetValue(ref _lives, value);
+        }
+
+        public EntitySettingsViewModel Settings
+        {
+            get => _settings;
+            set => SetValue(ref _settings, value);
         }
 
         public async Task MoveUp()
         {
-            await Task.Delay(Cow.Settings.Delay);
+            await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
                 if (Row == 0) return;
@@ -34,7 +52,7 @@ namespace RSPO_UP_6.ViewModel
 
         public async Task MoveDown()
         {
-            await Task.Delay(Cow.Settings.Delay);
+            await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
                 if (Size - 1 == Row) return;
@@ -45,7 +63,7 @@ namespace RSPO_UP_6.ViewModel
 
         public async Task MoveRight()
         {
-            await Task.Delay(Cow.Settings.Delay);
+            await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
                 if (Size - 1 == Column) return;
@@ -56,13 +74,19 @@ namespace RSPO_UP_6.ViewModel
 
         public async Task MoveLeft()
         {
-            await Task.Delay(Cow.Settings.Delay);
+            await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
                 if (Column == 0) return;
                 Column--;
                 CowPositionChanged?.Invoke(MoveDirection.Left);
             }
+        }
+
+        public CowViewModel()
+        {
+            Settings = new EntitySettingsViewModel();
+            Settings.ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\cow.gif";
         }
     }
 }

@@ -12,22 +12,67 @@ namespace RSPO_UP_6.ViewModel
 {
     public class SettingsViewModel : ViewModelBase
     {
-        private string _cowImageSource = $"{Directory.GetCurrentDirectory()}\\Files\\cow.gif";
-        private string _wolfImageSource = $"{Directory.GetCurrentDirectory()}\\Files\\wolf.png";
+        private EntitySettingsViewModel _cowSettings;
+        private EntitySettingsViewModel _wolfSettings;
+        private EntitySettingsViewModel _bombSettings;
+        private EntitySettingsViewModel _cannabisSettings;
+
+        private string _cowDelayText = "5";
+        private string _wolfDelayText = "100";
+        private string _livesText = "3";
+        private int _lives = 3;
+        private int _cowDelay = 5;
+        private int _wolfDelay = 100;
+
+        public int CowLivesCount
+        {
+            get => _lives;
+            set => SetValue(ref _lives, value);
+        }
+
+        public string CowDelay
+        {
+            get => _cowDelayText;
+            set => SetValue(ref _cowDelayText, value);
+        }
+
+        public string WolfDelay
+        {
+            get => _wolfDelayText;
+            set => SetValue(ref _wolfDelayText, value);
+        }
+
+        public string CowLives
+        {
+            get => _livesText;
+            set => SetValue(ref _livesText, value);
+        }
 
         public ICommand ChangeCowImageCommand { get; }
         public ICommand ChangeWolfImageCommand { get; }
 
-        public string CowImageSource
-        {
-            get => _cowImageSource;
-            set => SetValue(ref _cowImageSource, value);
-        }
+        public ICommand ChangeCowDelayCommand { get; }
+        public ICommand ChangeWolfDelayCommand { get; }
 
-        public string WolfImageSource
+        public EntitySettingsViewModel CowSettings
         {
-            get => _wolfImageSource;
-            set => SetValue(ref _wolfImageSource, value);
+            get => _cowSettings;
+            set => SetValue(ref _cowSettings, value);
+        }
+        public EntitySettingsViewModel WolfSettings
+        {
+            get => _wolfSettings;
+            set => SetValue(ref _wolfSettings, value);
+        }
+        public EntitySettingsViewModel BombSettings
+        {
+            get => _bombSettings;
+            set => SetValue(ref _bombSettings, value);
+        }
+        public EntitySettingsViewModel CannabisSettings
+        {
+            get => _cannabisSettings;
+            set => SetValue(ref _cannabisSettings, value);
         }
 
         private void OnChangeCowImageExecuted()
@@ -38,7 +83,7 @@ namespace RSPO_UP_6.ViewModel
             };
             if (dialog.ShowDialog() ?? false)
             {
-                CowImageSource = dialog.FileName;
+                CowSettings.ImagePath = dialog.FileName;
             }
         }
 
@@ -50,14 +95,44 @@ namespace RSPO_UP_6.ViewModel
             };
             if (dialog.ShowDialog() ?? false)
             {
-                WolfImageSource = dialog.FileName;
+                WolfSettings.ImagePath = dialog.FileName;
             }
         }
+
+        private void OnChangeCowDelayExecuted()
+        {
+            CowSettings.Delay = _cowDelay;
+        }
+
+        private bool CanChangeCowDelayExecute() => int.TryParse(CowDelay, out _cowDelay) && _cowDelay >= 0;
+
+        private void OnChangeWolfDelayExecuted()
+        {
+            WolfSettings.Delay = _wolfDelay;
+        }
+
+        private bool CanChangeCowLivesDelayExecute() => int.TryParse(CowLives, out _lives) && _cowDelay >= 0 && _lives <= 5;
+
+        private void OnChangeCowLivesExecuted()
+        {
+            if (_lives == 0 || _lives > 5)
+            {
+                CowLivesCount = 3;
+            }
+            else
+            {
+                CowLivesCount = _lives;
+            }
+        }
+
+        private bool CanChangeWolfDelayExecute() => int.TryParse(WolfDelay, out _wolfDelay) && _wolfDelay >= 0;
 
         public SettingsViewModel()
         {
             ChangeCowImageCommand = new RelayCommand(OnChangeCowImageExecuted);
             ChangeWolfImageCommand = new RelayCommand(OnChangeWolfImageExecuted);
+            ChangeCowDelayCommand = new RelayCommand(OnChangeCowDelayExecuted, CanChangeCowDelayExecute);
+            ChangeWolfDelayCommand = new RelayCommand(OnChangeWolfDelayExecuted, CanChangeWolfDelayExecute);
         }
     }
 }

@@ -75,11 +75,6 @@
     </ApplicationDefinition>
     <Compile Include="Model\Controllers\GoCowEvent.cs" />
     <Compile Include="Model\Controllers\MoveDirection.cs" />
-    <Compile Include="Model\Entities\Bomb.cs" />
-    <Compile Include="Model\Entities\Cow.cs" />
-    <Compile Include="Model\Entities\EntitySettings.cs" />
-    <Compile Include="Model\Entities\Game.cs" />
-    <Compile Include="Model\Entities\Wolf.cs" />
     <Compile Include="Model\FileWorker.cs" />
     <Compile Include="Model\Map\IMap.cs" />
     <Compile Include="Model\Map\Map10X10.cs" />
@@ -91,6 +86,7 @@
     <Compile Include="ViewModel\CannabisViewModel.cs" />
     <Compile Include="ViewModel\CowAndWeedGameViewModel.cs" />
     <Compile Include="ViewModel\CowViewModel.cs" />
+    <Compile Include="ViewModel\EntitySettingsViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\WolfViewModel.cs" />
@@ -191,6 +187,9 @@
     <AdditionalFiles Include="Files\explosion.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

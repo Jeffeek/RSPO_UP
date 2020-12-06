@@ -1,22 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RSPO_UP_6.Model.Controllers;
-using RSPO_UP_6.Model.Entities;
 
 namespace RSPO_UP_6.ViewModel
 {
     public class WolfViewModel : ViewModelBase
     {
         private readonly object _monitor = new object();
-        private int _row = 0, _column = 9;
-        public Wolf Wolf { get; set; }
-        public int Size { get; set; } = 10;
+        private EntitySettingsViewModel _settings;
+        private int _row, _column;
+        public int Size { get; set; }
 
-        public int Row { get => _row; set => SetValue(ref _row, value); }
-        public int Column { get => _column; set => SetValue(ref _column, value); }
+        public int Row
+        {
+            get => _row; 
+            set => SetValue(ref _row, value);
+        }
+
+        public int Column
+        {
+            get => _column; 
+            set => SetValue(ref _column, value);
+        }
+
+        public EntitySettingsViewModel Settings
+        {
+            get => _settings;
+            set => SetValue(ref _settings, value);
+        }
 
         public void CowMovedExecuted(MoveDirection direction)
         {
@@ -47,7 +62,7 @@ namespace RSPO_UP_6.ViewModel
 
         public async Task MoveRight()
         {
-            await Task.Delay(Wolf.Settings.Delay);
+            await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
                 if (Size - 1 == Column) return;
@@ -57,7 +72,7 @@ namespace RSPO_UP_6.ViewModel
 
         public async Task MoveLeft()
         {
-            await Task.Delay(Wolf.Settings.Delay);
+            await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
                 if (Column == 0) return;
@@ -67,7 +82,7 @@ namespace RSPO_UP_6.ViewModel
 
         public async Task MoveDown()
         {
-            await Task.Delay(Wolf.Settings.Delay);
+            await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
                 if (Size - 1 == Row) return;
@@ -77,7 +92,7 @@ namespace RSPO_UP_6.ViewModel
 
         public async Task MoveUp()
         {
-            await Task.Delay(Wolf.Settings.Delay);
+            await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
                 if (Row == 0) return;
@@ -87,8 +102,8 @@ namespace RSPO_UP_6.ViewModel
 
         public WolfViewModel()
         {
-            Wolf = new Wolf();
-            Column = Size - 1;
+            Settings = new EntitySettingsViewModel();
+            Settings.ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\wolf.png";
         }
     }
 }

@@ -42,3 +42,4 @@ E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_6\bin\Debug\Files\cannabis.png
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_6\bin\Debug\Files\heart.png
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_6\bin\Debug\Files\wolf.png
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_6\bin\Debug\Files\explosion.png
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_6\obj\Debug\RSPO_UP_6.csprojAssemblyReference.cache
