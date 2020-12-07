@@ -44,12 +44,14 @@
             Grid.Column="9"
             Background="LightGreen" />
         <Image
+            x:Name="CowImage"
             Grid.Row="{Binding CurrentMap.Cow.Row}"
             Grid.Column="{Binding CurrentMap.Cow.Column}"
             gif:ImageBehavior.AnimatedSource="{Binding CurrentMap.Cow.Settings.ImagePath}"
             gif:ImageBehavior.AutoStart="True"
             gif:ImageBehavior.RepeatBehavior="Forever" />
         <Image
+            x:Name="WolfImage"
             Grid.Row="{Binding CurrentMap.Wolf.Row}"
             Grid.Column="{Binding CurrentMap.Wolf.Column}"
             gif:ImageBehavior.AnimatedSource="{Binding CurrentMap.Wolf.Settings.ImagePath}"

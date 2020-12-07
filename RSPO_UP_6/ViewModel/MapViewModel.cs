@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using RSPO_UP_6.Model.Controllers;
 using RSPO_UP_6.Model.Map;
 
@@ -61,7 +58,11 @@ namespace RSPO_UP_6.ViewModel
             Bricks = new ObservableCollection<BrickViewModel>();
             CurrentMap = map;
             Cow = new CowViewModel(IsBlockOn);
-            Wolf = new WolfViewModel(IsBlockOn);
+            Wolf = new WolfViewModel(IsBlockOn)
+            {
+                Column = CurrentMap.Size - 1,
+                Row = 0
+            };
             Cow.CowPositionChanged += Wolf.CowMovedExecuted;
             Cow.CowPositionChanged += RemoveLiveOrWin;
             Bomb = new BombViewModel()

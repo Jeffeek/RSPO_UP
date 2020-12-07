@@ -84,7 +84,7 @@ namespace RSPO_UP_6.ViewModel
                 var file = new FileWorker(dialog.FileName);
                 var text = file.Read();
                 var map = TextToMapConverter.Convert(text);
-                CurrentMap.CurrentMap = map;
+                CurrentMap = new MapViewModel(map);
                 BuildMap(map);
                 ReloadObjects();
             }
@@ -108,7 +108,8 @@ namespace RSPO_UP_6.ViewModel
 
         private void ReloadObjects()
         {
-            CurrentMap = new MapViewModel(CurrentMap.CurrentMap);
+            var map = CurrentMap.CurrentMap;
+            CurrentMap = new MapViewModel(map);
             Settings = new SettingsViewModel()
             {
                 BombSettings = CurrentMap.Bomb.Settings,
@@ -134,15 +135,12 @@ namespace RSPO_UP_6.ViewModel
 
         public CowAndWeedGameViewModel()
         {
-            CurrentMap = new MapViewModel(new Map10X10(new bool[10,10]));
-            ReloadObjects();
             MoveDownCommand = new RelayCommand(async () => await CurrentMap.Cow.MoveDown());
-            MoveUpCommand = new RelayCommand( async () => await CurrentMap.Cow.MoveUp());
-            MoveRightCommand = new RelayCommand( async () => await CurrentMap.Cow.MoveRight());
-            MoveLeftCommand = new RelayCommand( async () => await CurrentMap.Cow.MoveLeft());
+            MoveUpCommand = new RelayCommand(async () => await CurrentMap.Cow.MoveUp());
+            MoveRightCommand = new RelayCommand(async () => await CurrentMap.Cow.MoveRight());
+            MoveLeftCommand = new RelayCommand(async () => await CurrentMap.Cow.MoveLeft());
             OpenSettingsCommand = new RelayCommand(OnOpenSettingsExecuted);
             OpenMapCommand = new RelayCommand(OnLoadMapExecute);
-            CurrentPage = new Map10x10(CurrentMap.Bricks, new bool[10,10]);
         }
     }
 }

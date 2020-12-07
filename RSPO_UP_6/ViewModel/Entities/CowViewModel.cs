@@ -88,7 +88,12 @@ namespace RSPO_UP_6.ViewModel
         public CowViewModel(Func<int, int, MoveDirection, bool> isBlockOn)
         {
             _isBlockOn = isBlockOn;
-            Lives = new ObservableCollection<LiveViewModel>();
+            Lives = new ObservableCollection<LiveViewModel>()
+            {
+                new LiveViewModel(),
+                new LiveViewModel(),
+                new LiveViewModel()
+            };
             Settings = new EntitySettingsViewModel();
             Settings.ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\cow.gif";
         }

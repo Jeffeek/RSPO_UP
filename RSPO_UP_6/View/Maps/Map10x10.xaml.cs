@@ -45,6 +45,15 @@ namespace RSPO_UP_6.View.Maps
 
         private void PlaceBricksOnMap()
         {
+            for (int i = 0; i < Map.Children.Count; i++)
+            {
+                if (Map.Children[i] is Image img)
+                {
+                    if (img.Name != "WolfImage" && img.Name != "CowImage")
+                        Map.Children.Remove(Map.Children[i]);
+                }
+            }
+
             for (int i = 0; i < _bricks.Count; i++)
             {
                 if (_bricks[i].Row == 0 && _bricks[i].Column == 0 ||
