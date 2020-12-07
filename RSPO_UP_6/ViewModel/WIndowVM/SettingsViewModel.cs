@@ -125,7 +125,6 @@ namespace RSPO_UP_6.ViewModel
             {
                 CowLivesCount = _lives;
             }
-            
         }
 
         private bool CanChangeWolfDelayExecute() => int.TryParse(WolfDelay, out _wolfDelay) && _wolfDelay >= 0;
@@ -134,8 +133,10 @@ namespace RSPO_UP_6.ViewModel
         {
             ChangeCowImageCommand = new RelayCommand(OnChangeCowImageExecuted);
             ChangeWolfImageCommand = new RelayCommand(OnChangeWolfImageExecuted);
+
             ChangeCowDelayCommand = new RelayCommand(OnChangeCowDelayExecuted, CanChangeCowDelayExecute);
             ChangeWolfDelayCommand = new RelayCommand(OnChangeWolfDelayExecuted, CanChangeWolfDelayExecute);
+
             ChangeCowLivesCountCommand = new RelayCommand(OnChangeCowLivesExecuted, CanChangeCowLivesExecute);
         }
     }

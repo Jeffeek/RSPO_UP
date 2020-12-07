@@ -82,16 +82,17 @@
     <Compile Include="Model\Map\Map8X8.cs" />
     <Compile Include="Model\Map\TextToMapConverter.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="ViewModel\BombViewModel.cs" />
-    <Compile Include="ViewModel\BrickViewModel.cs" />
-    <Compile Include="ViewModel\CannabisViewModel.cs" />
-    <Compile Include="ViewModel\CowAndWeedGameViewModel.cs" />
-    <Compile Include="ViewModel\CowViewModel.cs" />
-    <Compile Include="ViewModel\EntitySettingsViewModel.cs" />
-    <Compile Include="ViewModel\LiveViewModel.cs" />
-    <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\Entities\BombViewModel.cs" />
+    <Compile Include="ViewModel\Entities\BrickViewModel.cs" />
+    <Compile Include="ViewModel\Entities\CannabisViewModel.cs" />
+    <Compile Include="ViewModel\WIndowVM\CowAndWeedGameViewModel.cs" />
+    <Compile Include="ViewModel\Entities\CowViewModel.cs" />
+    <Compile Include="ViewModel\Entities\EntitySettingsViewModel.cs" />
+    <Compile Include="ViewModel\Entities\LiveViewModel.cs" />
+    <Compile Include="ViewModel\MapViewModel.cs" />
+    <Compile Include="ViewModel\WIndowVM\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="ViewModel\WolfViewModel.cs" />
+    <Compile Include="ViewModel\Entities\WolfViewModel.cs" />
     <Compile Include="View\Maps\Map10x10.xaml.cs">
       <DependentUpon>Map10x10.xaml</DependentUpon>
     </Compile>

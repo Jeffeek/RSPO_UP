@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -14,13 +15,9 @@ namespace RSPO_UP_6.ViewModel
     public class CowAndWeedGameViewModel : ViewModelBase
     {
         private SettingsViewModel _settings;
-        private CowViewModel _cow;
-        private WolfViewModel _wolf;
-        private BombViewModel _bomb;
-        private CannabisViewModel _cannabis;
         private Page _currentPage;
-        private IMap _currentMap;
-        private ObservableCollection<BrickViewModel> _bricks;
+
+        private MapViewModel _map;
 
         public ICommand OpenSettingsCommand { get; }
         public ICommand OpenMapCommand { get; }
@@ -30,10 +27,10 @@ namespace RSPO_UP_6.ViewModel
         public ICommand MoveLeftCommand { get; }
         public ICommand MoveRightCommand { get; }
 
-        public ObservableCollection<BrickViewModel> Bricks
+        public MapViewModel CurrentMap
         {
-            get => _bricks;
-            set => SetValue(ref _bricks, value);
+            get => _map;
+            set => SetValue(ref _map, value);
         }
 
         public Page CurrentPage
@@ -46,30 +43,6 @@ namespace RSPO_UP_6.ViewModel
             }
         }
 
-        public CowViewModel Cow
-        {
-            get => _cow;
-            set => SetValue(ref _cow, value);
-        }
-
-        public WolfViewModel Wolf
-        {
-            get => _wolf;
-            set => SetValue(ref _wolf, value);
-        }
-
-        public BombViewModel Bomb
-        {
-            get => _bomb;
-            set => SetValue(ref _bomb, value);
-        }
-
-        public CannabisViewModel Cannabis
-        {
-            get => _cannabis;
-            set => SetValue(ref _cannabis, value);
-        }
-
         public SettingsViewModel Settings
         {
             get => _settings;
@@ -80,15 +53,15 @@ namespace RSPO_UP_6.ViewModel
         {
             if (CurrentPage is SettingsPage)
             {
-                CurrentPage = new Map10x10(Bricks, new bool[10,10])
+                CurrentPage = new Map10x10(CurrentMap.Bricks, new bool[10,10])
                 {
                     DataContext = this
                 };
 
-                Cow.Lives.Clear();
+                CurrentMap.Cow.Lives.Clear();
                 for (int i = 0; i < Settings.CowLivesCount; i++)
                 {
-                    Cow.Lives.Add(new LiveViewModel());
+                    CurrentMap.Cow.Lives.Add(new LiveViewModel());
                 }
             }
             else
@@ -111,7 +84,7 @@ namespace RSPO_UP_6.ViewModel
                 var file = new FileWorker(dialog.FileName);
                 var text = file.Read();
                 var map = TextToMapConverter.Convert(text);
-                _currentMap = map;
+                CurrentMap.CurrentMap = map;
                 BuildMap(map);
                 ReloadObjects();
             }
@@ -122,7 +95,7 @@ namespace RSPO_UP_6.ViewModel
             switch (map.Size)
             {
                 case 10:
-                    CurrentPage = new Map10x10(Bricks, map.Map);
+                    CurrentPage = new Map10x10(CurrentMap.Bricks, map.Map);
                     break;
                 case 8:
                     CurrentPage = new Map8x8();
@@ -130,60 +103,46 @@ namespace RSPO_UP_6.ViewModel
                 case 6:
                     CurrentPage = new Map6x6();
                     break;
-                default:
-                {
-                    throw new Exception();
-                }
             }
         }
 
         private void ReloadObjects()
         {
-            Cow = new CowViewModel()
-            {
-                Size = _currentMap.Size, 
-                Bricks = Bricks, 
-                Row = 0, Column = 0
-            };
-            Wolf = new WolfViewModel()
-            {
-                Size = _currentMap.Size,
-                Row = 0, Column = _currentMap.Size - 1, 
-                Bricks = Bricks
-            };
-            Bomb = new BombViewModel()
-            {
-                Size = _currentMap.Size
-            };
-            Cannabis = new CannabisViewModel()
-            {
-                Size = _currentMap.Size
-            };
-            Cow.CowPositionChanged += Wolf.CowMovedExecuted;
+            CurrentMap = new MapViewModel(CurrentMap.CurrentMap);
             Settings = new SettingsViewModel()
             {
-                BombSettings = Bomb.Settings,
-                CannabisSettings = Cannabis.Settings,
-                WolfSettings = Wolf.Settings,
-                CowSettings = Cow.Settings
+                BombSettings = CurrentMap.Bomb.Settings,
+                WolfSettings = CurrentMap.Wolf.Settings,
+                CannabisSettings = CurrentMap.Cannabis.Settings,
+                CowSettings = CurrentMap.Cow.Settings
             };
+            CurrentMap.OnGameResult += OnGameResult;
+        }
+
+        private void OnGameResult(object sender, bool isWin)
+        {
+            if (isWin)
+            {
+                MessageBox.Show("CONGRAT");
+            }
+            else
+            {
+                MessageBox.Show("FUC");
+            }
+            ReloadObjects();
         }
 
         public CowAndWeedGameViewModel()
         {
-            Bricks = new ObservableCollection<BrickViewModel>();
-            _currentMap = new Map10X10(new bool[10,10]);
+            CurrentMap = new MapViewModel(new Map10X10(new bool[10,10]));
             ReloadObjects();
-            MoveDownCommand = new RelayCommand(async () => await _cow.MoveDown());
-            MoveUpCommand = new RelayCommand( async () => await _cow.MoveUp());
-            MoveRightCommand = new RelayCommand( async () => await _cow.MoveRight());
-            MoveLeftCommand = new RelayCommand( async () => await _cow.MoveLeft());
+            MoveDownCommand = new RelayCommand(async () => await CurrentMap.Cow.MoveDown());
+            MoveUpCommand = new RelayCommand( async () => await CurrentMap.Cow.MoveUp());
+            MoveRightCommand = new RelayCommand( async () => await CurrentMap.Cow.MoveRight());
+            MoveLeftCommand = new RelayCommand( async () => await CurrentMap.Cow.MoveLeft());
             OpenSettingsCommand = new RelayCommand(OnOpenSettingsExecuted);
             OpenMapCommand = new RelayCommand(OnLoadMapExecute);
-            CurrentPage = new Map10x10(Bricks, new bool[10,10])
-            {
-                DataContext = this
-            };
+            CurrentPage = new Map10x10(CurrentMap.Bricks, new bool[10,10]);
         }
     }
 }

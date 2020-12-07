@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using RSPO_UP_6.Model.Controllers;
 
@@ -12,16 +9,9 @@ namespace RSPO_UP_6.ViewModel
     public class WolfViewModel : ViewModelBase
     {
         private readonly object _monitor = new object();
+        private Func<int, int, MoveDirection, bool> _isBlockHere;
         private EntitySettingsViewModel _settings;
-        private ObservableCollection<BrickViewModel> _bricks;
         private int _row, _column;
-        public int Size { get; set; }
-
-        public ObservableCollection<BrickViewModel> Bricks
-        {
-            get => _bricks;
-            set => SetValue(ref _bricks, value);
-        }
 
         public int Row
         {
@@ -73,9 +63,7 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (Size - 1 == Column || 
-                    Bricks.SingleOrDefault(x => x.Row == Row && x.Column == Column + 1) != null)
-                    return;
+                if (_isBlockHere(Row, Column, MoveDirection.Right)) return;
                 Column++;
             }
         }
@@ -85,9 +73,7 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (Column == 0 ||
-                    Bricks.SingleOrDefault(x => x.Row == Row && x.Column == Column - 1) != null) 
-                    return;
+                if (_isBlockHere(Row, Column, MoveDirection.Left)) return;
                 Column--;
             }
         }
@@ -97,9 +83,7 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (Size - 1 == Row ||
-                    Bricks.SingleOrDefault(x => x.Column == Column && x.Row == Row + 1) != null) 
-                    return;
+                if (_isBlockHere(Row, Column, MoveDirection.Down)) return;
                 Row++;
             }
         }
@@ -109,15 +93,14 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (Row == 0 ||
-                    Bricks.SingleOrDefault(x => x.Column == Column && x.Row == Row - 1) != null) 
-                    return;
+                if (_isBlockHere(Row, Column, MoveDirection.Up)) return;
                 Row--;
             }
         }
 
-        public WolfViewModel()
+        public WolfViewModel(Func<int, int, MoveDirection, bool> isBlockHere)
         {
+            _isBlockHere = isBlockHere;
             Settings = new EntitySettingsViewModel();
             Settings.ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\wolf.png";
         }
