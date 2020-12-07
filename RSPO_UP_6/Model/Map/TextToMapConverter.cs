@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace RSPO_UP_6.Model.Map
@@ -33,7 +34,8 @@ namespace RSPO_UP_6.Model.Map
 
         public static bool[,] ConvertToBoolMatrix(string text)
         {
-            var rows = text.Split('\n');
+            var regex = new Regex("\r\n");
+            var rows = regex.Split(text);
             bool[,] matrix = new bool[rows.Length, rows.Length];
             int size = matrix.GetLength(0);
             for (int i = 0; i < size; i++)

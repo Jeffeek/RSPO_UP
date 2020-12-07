@@ -31,7 +31,7 @@ namespace RSPO_UP_6.Model
             var sb = new StringBuilder();
             using (var reader = new StreamReader(Path))
             {
-                sb.Append(reader.ReadLine());
+                sb.Append(reader.ReadToEnd());
             }
 
             return sb.ToString();

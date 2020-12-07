@@ -10,7 +10,7 @@ namespace RSPO_UP_6.Model.Map
     {
         public bool[,] Map { get; }
 
-        public int Size { get; }
+        public int Size { get; } = 8;
 
         public Map8X8(bool[,] matrix)
         {

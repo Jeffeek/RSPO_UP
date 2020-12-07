@@ -35,7 +35,8 @@
             <Button
                 Grid.Column="1"
                 Content="Load Map"
-                FontSize="16" />
+                FontSize="16"
+                Command="{Binding OpenMapCommand}"/>
             <ListView
                 Grid.Column="2"
                 HorizontalAlignment="Right"
@@ -48,8 +49,8 @@
                     <DataTemplate>
                         <Image
                             Height="20px"
-                            HorizontalAlignment="Right"
-                            Source="../Files/heart.png" />
+                            Width="20px"
+                            Source="{Binding Settings.ImagePath}" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemsPanel>

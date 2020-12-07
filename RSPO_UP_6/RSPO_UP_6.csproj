@@ -83,10 +83,12 @@
     <Compile Include="Model\Map\TextToMapConverter.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\BombViewModel.cs" />
+    <Compile Include="ViewModel\BrickViewModel.cs" />
     <Compile Include="ViewModel\CannabisViewModel.cs" />
     <Compile Include="ViewModel\CowAndWeedGameViewModel.cs" />
     <Compile Include="ViewModel\CowViewModel.cs" />
     <Compile Include="ViewModel\EntitySettingsViewModel.cs" />
+    <Compile Include="ViewModel\LiveViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\WolfViewModel.cs" />
@@ -190,6 +192,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\Entities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="Files\brick.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,15 @@ namespace RSPO_UP_6.ViewModel
     {
         private readonly object _monitor = new object();
         private EntitySettingsViewModel _settings;
+        private ObservableCollection<BrickViewModel> _bricks;
         private int _row, _column;
         public int Size { get; set; }
+
+        public ObservableCollection<BrickViewModel> Bricks
+        {
+            get => _bricks;
+            set => SetValue(ref _bricks, value);
+        }
 
         public int Row
         {
@@ -65,7 +73,9 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (Size - 1 == Column) return;
+                if (Size - 1 == Column || 
+                    Bricks.SingleOrDefault(x => x.Row == Row && x.Column == Column + 1) != null)
+                    return;
                 Column++;
             }
         }
@@ -75,7 +85,9 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (Column == 0) return;
+                if (Column == 0 ||
+                    Bricks.SingleOrDefault(x => x.Row == Row && x.Column == Column - 1) != null) 
+                    return;
                 Column--;
             }
         }
@@ -85,7 +97,9 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (Size - 1 == Row) return;
+                if (Size - 1 == Row ||
+                    Bricks.SingleOrDefault(x => x.Column == Column && x.Row == Row + 1) != null) 
+                    return;
                 Row++;
             }
         }
@@ -95,7 +109,9 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (Row == 0) return;
+                if (Row == 0 ||
+                    Bricks.SingleOrDefault(x => x.Column == Column && x.Row == Row - 1) != null) 
+                    return;
                 Row--;
             }
         }

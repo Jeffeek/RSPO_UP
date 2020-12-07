@@ -10,7 +10,7 @@
     d:DesignHeight="600"
     d:DesignWidth="600"
     mc:Ignorable="d">
-    <Grid>
+    <Grid x:Name="Map">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
