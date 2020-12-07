@@ -94,8 +94,10 @@ namespace RSPO_UP_6.ViewModel
                 new LiveViewModel(),
                 new LiveViewModel()
             };
-            Settings = new EntitySettingsViewModel();
-            Settings.ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\cow.gif";
+            Settings = new EntitySettingsViewModel
+            {
+                ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\cow.gif"
+            };
         }
     }
 }

@@ -12,8 +12,6 @@ namespace RSPO_UP_6.ViewModel
     public class MapViewModel : ViewModelBase
     {
         private List<(int, int)> _freeCells;
-        private Random _randomBomb = new Random(DateTime.Now.Millisecond * DateTime.Now.Second * DateTime.UtcNow.Millisecond / 2);
-        private Random _randomCannabis = new Random(DateTime.Now.Millisecond * DateTime.Now.Second / 2 * DateTime.MinValue.Second);
         private IMap _currentMap;
         private CowViewModel _cow;
         private WolfViewModel _wolf;
@@ -62,8 +60,9 @@ namespace RSPO_UP_6.ViewModel
         public MapViewModel(IMap map)
         {
             Bricks = new ObservableCollection<BrickViewModel>();
-            _freeCells = new List<(int, int)>();
             CurrentMap = map;
+            _freeCells = new List<(int, int)>();
+            FillFreeCells();
             Cow = new CowViewModel(IsBlockOn);
             Wolf = new WolfViewModel(IsBlockOn)
             {
@@ -71,13 +70,18 @@ namespace RSPO_UP_6.ViewModel
                 Row = 0
             };
             Cow.CowPositionChanged += Wolf.CowMovedExecuted;
-            Cow.CowPositionChanged += RemoveLiveOrWin;
-            Bomb = new BombViewModel();
-            Cannabis = new CannabisViewModel();
+            Cow.CowPositionChanged += CowChangedPosition;
+            Cow.CowPositionChanged += CheckCowState;
+            Bomb = new BombViewModel(_freeCells);
+            Bomb.BombStateChanged += BombChangedStateHandler;
+            Cannabis = new CannabisViewModel(_freeCells);
             InitBricks();
-            FillFreeCells();
-            SpawnBomb();
-            SpawnCannabis();
+        }
+
+        private void CowChangedPosition(MoveDirection direction)
+        {
+            if (Cow.Row != Cannabis.Row || Cow.Column != Cannabis.Column) return;
+            Cow.Lives.Add(new LiveViewModel());
         }
 
         private void FillFreeCells()
@@ -92,17 +96,23 @@ namespace RSPO_UP_6.ViewModel
             }
         }
 
-        private void RemoveLiveOrWin(MoveDirection direction)
+        private void BombChangedStateHandler(object bomb, bool state)
+        {
+            if (state == false) return;
+            if (Cow.Row != Bomb.Row || Cow.Column != Bomb.Column) return;
+            Cow.Lives.Remove(Cow.Lives.Last());
+            if (Cow.Lives.Count == 0)
+                OnGameResult?.Invoke(this, false);
+        }
+
+        private void CheckCowState(MoveDirection direction)
         {
             if (Cow.Column == CurrentMap.Size - 1 && Cow.Row == CurrentMap.Size - 1)
                 OnGameResult?.Invoke(this, true);
-            if (Cow.Column != Wolf.Column) return;
-            if (Cow.Row != Wolf.Row) return;
-            Cow.Lives.Remove(Cow.Lives.Last());
+            if (Cow.Column == Wolf.Column && Cow.Row == Wolf.Row)
+                Cow.Lives.Remove(Cow.Lives.Last());
             if (Cow.Lives.Count == 0)
-            {
                 OnGameResult?.Invoke(this, false);
-            }
         }
 
         private void InitBricks()
@@ -160,40 +170,6 @@ namespace RSPO_UP_6.ViewModel
                     return Bricks.SingleOrDefault(x => x.Row == row && x.Column == column) != null;
                 }
             }
-        }
-
-        private async Task SpawnBomb()
-        {
-            await Task.Delay(Bomb.Settings.Delay);
-            Bomb.Settings.ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\bomb.png";
-            int placeToPaste = _randomBomb.Next(0, _freeCells.Count);
-            Bomb.Row = _freeCells[placeToPaste].Item1;
-            Bomb.Column = _freeCells[placeToPaste].Item2;
-            await BombExplode();
-        }
-
-        private async Task BombExplode()
-        {
-            await Task.Delay(Bomb.Settings.Delay);
-            Bomb.Settings.ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\explosion.png";
-            SpawnBomb();
-        }
-
-        private async Task SpawnCannabis()
-        {
-            await Task.Delay(Cannabis.Settings.Delay / 2);
-            int placeToPaste = _randomCannabis.Next(0, _freeCells.Count);
-            Cannabis.Row = _freeCells[placeToPaste].Item1;
-            Cannabis.Column = _freeCells[placeToPaste].Item2;
-            await RemoveCannabis();
-        }
-
-        private async Task RemoveCannabis()
-        {
-            await Task.Delay(Cannabis.Settings.Delay);
-            Cannabis.Row = -1;
-            Cannabis.Column = -1;
-            SpawnCannabis();
         }
     }
 }
