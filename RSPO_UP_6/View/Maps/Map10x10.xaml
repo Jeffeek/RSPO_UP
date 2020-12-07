@@ -45,17 +45,25 @@
             Background="LightGreen" />
         <Image
             x:Name="CowImage"
-            Grid.Row="{Binding CurrentMap.Cow.Row}"
-            Grid.Column="{Binding CurrentMap.Cow.Column}"
-            gif:ImageBehavior.AnimatedSource="{Binding CurrentMap.Cow.Settings.ImagePath}"
+            Grid.Row="{Binding Map.Cow.Row}"
+            Grid.Column="{Binding Map.Cow.Column}"
+            gif:ImageBehavior.AnimatedSource="{Binding Map.Cow.Settings.ImagePath}"
             gif:ImageBehavior.AutoStart="True"
             gif:ImageBehavior.RepeatBehavior="Forever" />
         <Image
             x:Name="WolfImage"
-            Grid.Row="{Binding CurrentMap.Wolf.Row}"
-            Grid.Column="{Binding CurrentMap.Wolf.Column}"
-            gif:ImageBehavior.AnimatedSource="{Binding CurrentMap.Wolf.Settings.ImagePath}"
+            Grid.Row="{Binding Map.Wolf.Row}"
+            Grid.Column="{Binding Map.Wolf.Column}"
+            gif:ImageBehavior.AnimatedSource="{Binding Map.Wolf.Settings.ImagePath}"
             gif:ImageBehavior.AutoStart="True"
             gif:ImageBehavior.RepeatBehavior="Forever" />
+        <Image
+            Grid.Row="{Binding Map.Bomb.Row}"
+            Grid.Column="{Binding Map.Bomb.Column}"
+            Source="{Binding Map.Bomb.Settings.ImagePath}" />
+        <Image
+            Grid.Row="{Binding Map.Cannabis.Row}"
+            Grid.Column="{Binding Map.Cannabis.Column}"
+            Source="{Binding Map.Cannabis.Settings.ImagePath}" />
     </Grid>
 </Page>

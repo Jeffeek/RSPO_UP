@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,14 +9,8 @@ namespace RSPO_UP_6.ViewModel
 {
     public class CannabisViewModel : ViewModelBase
     {
-        private int _currentRow, _currentColumn, _size;
+        private int _currentRow, _currentColumn;
         private EntitySettingsViewModel _settings;
-
-        public int Size
-        {
-            get => _size;
-            set => SetValue(ref _size, value);
-        }
 
         public int Row
         {
@@ -37,7 +32,11 @@ namespace RSPO_UP_6.ViewModel
 
         public CannabisViewModel()
         {
-            Settings = new EntitySettingsViewModel();
+            Settings = new EntitySettingsViewModel()
+            {
+                Delay = 3000,
+                ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\cannabis.png"
+            };
         }
     }
 }

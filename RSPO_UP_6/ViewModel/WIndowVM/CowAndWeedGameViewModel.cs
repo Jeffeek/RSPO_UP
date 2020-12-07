@@ -27,7 +27,7 @@ namespace RSPO_UP_6.ViewModel
         public ICommand MoveLeftCommand { get; }
         public ICommand MoveRightCommand { get; }
 
-        public MapViewModel CurrentMap
+        public MapViewModel Map
         {
             get => _map;
             set => SetValue(ref _map, value);
@@ -53,15 +53,15 @@ namespace RSPO_UP_6.ViewModel
         {
             if (CurrentPage is SettingsPage)
             {
-                CurrentPage = new Map10x10(CurrentMap.Bricks, new bool[10,10])
+                CurrentPage = new Map10x10(Map?.Bricks, new bool[10,10])
                 {
                     DataContext = this
                 };
 
-                CurrentMap.Cow.Lives.Clear();
+                Map?.Cow.Lives.Clear();
                 for (int i = 0; i < Settings.CowLivesCount; i++)
                 {
-                    CurrentMap.Cow.Lives.Add(new LiveViewModel());
+                    Map?.Cow.Lives.Add(new LiveViewModel());
                 }
             }
             else
@@ -84,7 +84,7 @@ namespace RSPO_UP_6.ViewModel
                 var file = new FileWorker(dialog.FileName);
                 var text = file.Read();
                 var map = TextToMapConverter.Convert(text);
-                CurrentMap = new MapViewModel(map);
+                Map = new MapViewModel(map);
                 BuildMap(map);
                 ReloadObjects();
             }
@@ -95,7 +95,7 @@ namespace RSPO_UP_6.ViewModel
             switch (map.Size)
             {
                 case 10:
-                    CurrentPage = new Map10x10(CurrentMap.Bricks, map.Map);
+                    CurrentPage = new Map10x10(Map.Bricks, map.Map);
                     break;
                 case 8:
                     CurrentPage = new Map8x8();
@@ -108,37 +108,30 @@ namespace RSPO_UP_6.ViewModel
 
         private void ReloadObjects()
         {
-            var map = CurrentMap.CurrentMap;
-            CurrentMap = new MapViewModel(map);
+            var map = Map.CurrentMap;
+            Map = new MapViewModel(map);
             Settings = new SettingsViewModel()
             {
-                BombSettings = CurrentMap.Bomb.Settings,
-                WolfSettings = CurrentMap.Wolf.Settings,
-                CannabisSettings = CurrentMap.Cannabis.Settings,
-                CowSettings = CurrentMap.Cow.Settings
+                BombSettings = Map.Bomb.Settings,
+                WolfSettings = Map.Wolf.Settings,
+                CannabisSettings = Map.Cannabis.Settings,
+                CowSettings = Map.Cow.Settings
             };
-            CurrentMap.OnGameResult += OnGameResult;
+            Map.OnGameResult += OnGameResult;
         }
 
         private void OnGameResult(object sender, bool isWin)
         {
-            if (isWin)
-            {
-                MessageBox.Show("CONGRAT");
-            }
-            else
-            {
-                MessageBox.Show("FUC");
-            }
+            MessageBox.Show(isWin ? "CONGRAT" : "FUC");
             ReloadObjects();
         }
 
         public CowAndWeedGameViewModel()
         {
-            MoveDownCommand = new RelayCommand(async () => await CurrentMap.Cow.MoveDown());
-            MoveUpCommand = new RelayCommand(async () => await CurrentMap.Cow.MoveUp());
-            MoveRightCommand = new RelayCommand(async () => await CurrentMap.Cow.MoveRight());
-            MoveLeftCommand = new RelayCommand(async () => await CurrentMap.Cow.MoveLeft());
+            MoveDownCommand = new RelayCommand(async () => await Map.Cow.MoveDown());
+            MoveUpCommand = new RelayCommand(async () => await Map.Cow.MoveUp());
+            MoveRightCommand = new RelayCommand(async () => await Map.Cow.MoveRight());
+            MoveLeftCommand = new RelayCommand(async () => await Map.Cow.MoveLeft());
             OpenSettingsCommand = new RelayCommand(OnOpenSettingsExecuted);
             OpenMapCommand = new RelayCommand(OnLoadMapExecute);
         }

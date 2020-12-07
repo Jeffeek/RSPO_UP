@@ -112,5 +112,49 @@
             Height="20px"
             Content="Apply" 
             Command="{Binding Settings.ChangeWolfDelayCommand}"/>
+
+        <TextBlock
+            Grid.Row="5"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Foreground="Cyan"
+            Text="Write the delay for bomb!!! (ms)" />
+        <TextBox
+            Grid.Row="5"
+            Grid.Column="1"
+            Height="20"
+            Margin="0,5,0,0"
+            VerticalAlignment="Top"
+            MaxLength="4"
+            MaxLines="1"
+            Text="{Binding Settings.BombDelay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button
+            Grid.Row="5"
+            Grid.Column="1"
+            Height="20px"
+            Content="Apply" 
+            Command="{Binding Settings.ChangeBombDelayCommand}"/>
+
+        <TextBlock
+            Grid.Row="6"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Foreground="Cyan"
+            Text="Write the delay for cannabis!!! (ms)" />
+        <TextBox
+            Grid.Row="6"
+            Grid.Column="1"
+            Height="20"
+            Margin="0,5,0,0"
+            VerticalAlignment="Top"
+            MaxLength="4"
+            MaxLines="1"
+            Text="{Binding Settings.CannabisDelay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button
+            Grid.Row="6"
+            Grid.Column="1"
+            Height="20px"
+            Content="Apply" 
+            Command="{Binding Settings.ChangeCannabisDelayCommand}"/>
     </Grid>
 </Page>

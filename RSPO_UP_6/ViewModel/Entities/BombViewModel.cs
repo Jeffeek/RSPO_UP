@@ -11,14 +11,8 @@ namespace RSPO_UP_6.ViewModel
 {
     public class BombViewModel : ViewModelBase
     {
-        private int _currentRow, _currentColumn, _size;
+        private int _currentRow = -1, _currentColumn = -1;
         private EntitySettingsViewModel _settings;
-
-        public int Size
-        {
-            get => _size;
-            set => SetValue(ref _size, value);
-        }
 
         public int Row
         {
@@ -38,15 +32,13 @@ namespace RSPO_UP_6.ViewModel
             set => SetValue(ref _settings, value);
         }
 
-        public async Task Explode()
-        {
-            await Task.Delay(Settings.Delay);
-            Settings.ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\explosion.png";
-        }
-
         public BombViewModel()
         {
-            Settings = new EntitySettingsViewModel();
+            Settings = new EntitySettingsViewModel()
+            {
+                ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\bomb.png",
+                Delay = 3000
+            };
         }
     }
 }

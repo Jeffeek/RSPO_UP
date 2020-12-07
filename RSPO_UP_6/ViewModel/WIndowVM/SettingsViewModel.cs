@@ -20,9 +20,13 @@ namespace RSPO_UP_6.ViewModel
         private string _cowDelayText = "5";
         private string _wolfDelayText = "100";
         private string _livesText = "3";
+        private string _bombDelayText = "1000";
+        private string _cannabisDelayText = "1000";
         private int _lives = 3;
         private int _cowDelay = 5;
         private int _wolfDelay = 100;
+        private int _bombDelay = 1000;
+        private int _cannabisDelay;
 
         public int CowLivesCount
         {
@@ -48,11 +52,25 @@ namespace RSPO_UP_6.ViewModel
             set => SetValue(ref _livesText, value);
         }
 
+        public string BombDelay
+        {
+            get => _bombDelayText;
+            set => SetValue(ref _bombDelayText, value);
+        }
+
+        public string CannabisDelay
+        {
+            get => _cannabisDelayText;
+            set => SetValue(ref _cannabisDelayText, value);
+        }
+
         public ICommand ChangeCowImageCommand { get; }
         public ICommand ChangeWolfImageCommand { get; }
 
         public ICommand ChangeCowDelayCommand { get; }
         public ICommand ChangeWolfDelayCommand { get; }
+        public ICommand ChangeBombDelayCommand { get; }
+        public ICommand ChangeCannabisDelayCommand { get; }
 
         public ICommand ChangeCowLivesCountCommand { get; }
 
@@ -106,14 +124,37 @@ namespace RSPO_UP_6.ViewModel
             CowSettings.Delay = _cowDelay;
         }
 
-        private bool CanChangeCowDelayExecute() => int.TryParse(CowDelay, out _cowDelay) && _cowDelay >= 0;
+        private bool CanChangeCowDelayExecute() => int.TryParse(CowDelay, out _cowDelay) && 
+                                                   _cowDelay >= 0 &&
+                                                   _cowDelay <= 1000;
 
         private void OnChangeWolfDelayExecuted()
         {
             WolfSettings.Delay = _wolfDelay;
         }
 
-        private bool CanChangeCowLivesExecute() => int.TryParse(CowLives, out _lives) && _cowDelay >= 0 && _lives <= 5;
+        private bool CanChangeWolfDelayExecute() => int.TryParse(WolfDelay, out _wolfDelay) &&
+                                                    _wolfDelay >= 0 &&
+                                                    _wolfDelay <= 1000;
+
+
+        private void OnChangeBombDelayExecuted()
+        {
+            BombSettings.Delay = _bombDelay;
+        }
+
+        private bool CanChangeBombDelayExecute() => int.TryParse(BombDelay, out _bombDelay) &&
+                                                    _bombDelay >= 1000 &&
+                                                    _lives <= 5000;
+
+        private void OnChangeCannabisDelayExecuted()
+        {
+            CannabisSettings.Delay = _cannabisDelay;
+        }
+
+        private bool CanChangeCannabisDelayExecute() => int.TryParse(CannabisDelay, out _cannabisDelay) &&
+                                                        _cannabisDelay >= 1000 &&
+                                                        _cannabisDelay <= 5000;
 
         private void OnChangeCowLivesExecuted()
         {
@@ -127,7 +168,7 @@ namespace RSPO_UP_6.ViewModel
             }
         }
 
-        private bool CanChangeWolfDelayExecute() => int.TryParse(WolfDelay, out _wolfDelay) && _wolfDelay >= 0;
+        private bool CanChangeCowLivesExecute() => int.TryParse(CowLives, out _lives) && _cowDelay >= 0 && _lives <= 5;
 
         public SettingsViewModel()
         {
@@ -136,6 +177,8 @@ namespace RSPO_UP_6.ViewModel
 
             ChangeCowDelayCommand = new RelayCommand(OnChangeCowDelayExecuted, CanChangeCowDelayExecute);
             ChangeWolfDelayCommand = new RelayCommand(OnChangeWolfDelayExecuted, CanChangeWolfDelayExecute);
+            ChangeBombDelayCommand = new RelayCommand(OnChangeBombDelayExecuted, CanChangeBombDelayExecute);
+            ChangeCannabisDelayCommand = new RelayCommand(OnChangeCannabisDelayExecuted, CanChangeCannabisDelayExecute);
 
             ChangeCowLivesCountCommand = new RelayCommand(OnChangeCowLivesExecuted, CanChangeCowLivesExecute);
         }
