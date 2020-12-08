@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace RSPO_UP_6.Model.Map
 {
+    //1 - блок есть
+    //0 - блока нет
     public static class TextToMapConverter
     {
         public static IMap Convert(string text)
@@ -35,6 +33,8 @@ namespace RSPO_UP_6.Model.Map
         public static bool[,] ConvertToBoolMatrix(string text)
         {
             var regex = new Regex("\r\n");
+            if (!regex.IsMatch(text))
+                throw new Exception("bad map");
             var rows = regex.Split(text);
             bool[,] matrix = new bool[rows.Length, rows.Length];
             int size = matrix.GetLength(0);
@@ -42,7 +42,8 @@ namespace RSPO_UP_6.Model.Map
             {
                 for (int j = 0; j < size; j++)
                 {
-                    matrix[i, j] = rows[i][j] == '0';
+                    if (rows[i][j] == '1')
+                        matrix[i, j] = true;
                 }
             }
 

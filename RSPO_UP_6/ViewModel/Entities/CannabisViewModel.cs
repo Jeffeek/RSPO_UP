@@ -5,18 +5,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using RSPO_UP_6.Model.Controllers;
+using RSPO_UP_6.ViewModel.Entities;
 
 namespace RSPO_UP_6.ViewModel
 {
     public class CannabisViewModel : ViewModelBase
     {
-        private Random _randomCannabis = new Random(DateTime.Now.Millisecond * DateTime.Now.Second / 2 * DateTime.MinValue.Second);
-        private List<(int, int)> _freeCells;
-        private int _currentRow = 0, _currentColumn = 0;
-        private EntitySettingsViewModel _settings;
-        private bool _isCollected;
+        #region Events
 
-        public event EventHandler CannabisCollectedEvent;
+        public event EntityMovedTo CannabisPositionChanged;
+        public event EventHandler CannabisCollected;
+
+        #endregion
+
+        #region Fields
+
+        private Func<int, int, bool> _isCellFree;
+        private readonly Random _randomCannabis = new Random(DateTime.Now.Millisecond * DateTime.Now.Second / 2 * DateTime.MinValue.Second);
+        private EntitySettingsViewModel _settings;
+        private int _currentRow = 0, _currentColumn = 0;
+        private bool _isCollected;
+        private bool _isGameStopped;
+
+        #endregion
+
+        #region Properties
+
+        public bool IsGameStopped
+        {
+            get => _isGameStopped;
+            set
+            {
+                if (!value)
+                    SpawnCannabis();
+                SetValue(ref _isGameStopped, value);
+            }
+        }
 
         public bool IsCollected
         {
@@ -24,7 +49,7 @@ namespace RSPO_UP_6.ViewModel
             set
             {
                 if (value)
-                    CannabisCollectedEvent?.Invoke(this, EventArgs.Empty);
+                    CannabisCollected?.Invoke(this, EventArgs.Empty);
                 SetValue(ref _isCollected, value);
             }
         }
@@ -47,12 +72,14 @@ namespace RSPO_UP_6.ViewModel
             set => SetValue(ref _settings, value);
         }
 
-        public CannabisViewModel(List<(int, int)> freeCells)
+        #endregion
+
+        public CannabisViewModel(Func<int, int, bool> isCellFree)
         {
-            _freeCells = freeCells;
+            _isCellFree = isCellFree;
             Settings = new EntitySettingsViewModel()
             {
-                Delay = 3000,
+                Delay = 2000,
                 ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\cannabis.png"
             };
             SpawnCannabis();
@@ -61,17 +88,24 @@ namespace RSPO_UP_6.ViewModel
         private async Task SpawnCannabis()
         {
             await Task.Delay(Settings.Delay / 2);
-            int placeToPaste = _randomCannabis.Next(0, _freeCells.Count);
-            Row = _freeCells[placeToPaste].Item1;
-            Column = _freeCells[placeToPaste].Item2;
             IsCollected = false;
+            int row = _randomCannabis.Next(0, 10);
+            int column = _randomCannabis.Next(0, 10);
+            while (!_isCellFree(row, column))
+            {
+                row = _randomCannabis.Next(0, 10);
+                column = _randomCannabis.Next(0, 10);
+            }
+            Row = row;
+            Column = column;
             await RemoveCannabis();
         }
 
         private async Task RemoveCannabis()
         {
             await Task.Delay(Settings.Delay / 2);
-            await SpawnCannabis();
+            if (!IsGameStopped)
+                await SpawnCannabis();
         }
     }
 }

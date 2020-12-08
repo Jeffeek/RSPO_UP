@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RSPO_UP_6.Model
 {
     public class FileWorker
     {
+        public event EventHandler PathChanged;
         private string _path;
         public string Path
         {
@@ -19,7 +16,6 @@ namespace RSPO_UP_6.Model
                 PathChanged?.Invoke(this, EventArgs.Empty);
             }
         }
-        public event EventHandler PathChanged;
 
         public FileWorker(string path)
         {
@@ -28,13 +24,10 @@ namespace RSPO_UP_6.Model
 
         public string Read()
         {
-            var sb = new StringBuilder();
+            string text;
             using (var reader = new StreamReader(Path))
-            {
-                sb.Append(reader.ReadToEnd());
-            }
-
-            return sb.ToString();
+                text = reader.ReadToEnd();
+            return text;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -7,15 +8,27 @@ using RSPO_UP_6.Model;
 using RSPO_UP_6.Model.Map;
 using RSPO_UP_6.View;
 using RSPO_UP_6.View.Maps;
+using RSPO_UP_6.ViewModel.WIndowVM;
 
 namespace RSPO_UP_6.ViewModel
 {
     public class CowAndWeedGameViewModel : ViewModelBase
     {
-        private SettingsViewModel _settings;
+        #region Pages
+
         private Page _previousPage;
         private Page _currentPage;
-        private MapViewModel _map;
+
+        #endregion
+
+        #region ViewModels
+
+        private SettingsViewModel _settings;
+        private MapViewModel _currentMap;
+
+        #endregion
+
+        #region Commands
 
         public ICommand OpenSettingsCommand { get; }
         public ICommand OpenMapCommand { get; }
@@ -25,10 +38,14 @@ namespace RSPO_UP_6.ViewModel
         public ICommand MoveLeftCommand { get; }
         public ICommand MoveRightCommand { get; }
 
-        public MapViewModel Map
+        #endregion
+
+        #region Properties
+
+        public MapViewModel CurrentMap
         {
-            get => _map;
-            set => SetValue(ref _map, value);
+            get => _currentMap;
+            set => SetValue(ref _currentMap, value);
         }
 
         public Page CurrentPage
@@ -48,22 +65,22 @@ namespace RSPO_UP_6.ViewModel
             set => SetValue(ref _settings, value);
         }
 
+        #endregion
+
         private void OnOpenSettingsExecuted()
         {
             if (CurrentPage is SettingsPage)
             {
                 CurrentPage = _previousPage;
-                if (Map != null)
-                    Map.Bomb.IsGameStopped = false;
+                if (CurrentMap != null)
+                    CurrentMap.Bomb.IsGameStopped = false;
             }
             else
             {
-                Map.Bomb.IsGameStopped = true;
+                if (CurrentMap != null)
+                    CurrentMap.Bomb.IsGameStopped = true;
                 _previousPage = CurrentPage;
-                CurrentPage = new SettingsPage()
-                {
-                    DataContext = this
-                };
+                CurrentPage = new SettingsPage();
             }
         }
 
@@ -77,59 +94,55 @@ namespace RSPO_UP_6.ViewModel
             var file = new FileWorker(dialog.FileName);
             var text = file.Read();
             var map = TextToMapConverter.Convert(text);
-            Map = new MapViewModel(map);
-            BuildMap();
-            ReloadObjects();
+            CurrentMap = new MapViewModel(map);
+            
+            SetCurrentMapPage();
+            StartGame();
         }
 
-        private void BuildMap()
+        private void SetCurrentMapPage()
         {
-            switch (Map.CurrentMap.Size)
+            switch (CurrentMap.Map.Size)
             {
                 case 10:
-                    CurrentPage = new Map10x10(Map.Bricks, Map.CurrentMap.Map);
+                    CurrentPage = new Map10x10(CurrentMap.Bricks);
                     break;
                 case 8:
-                    CurrentPage = new Map8x8(Map.Bricks, Map.CurrentMap.Map);
+                    CurrentPage = new Map8x8(CurrentMap.Bricks);
                     break;
                 case 6:
-                    CurrentPage = new Map6x6(Map.Bricks, Map.CurrentMap.Map);
+                    CurrentPage = new Map6x6(CurrentMap.Bricks);
                     break;
+                default:
+                    throw new Exception();
             }
         }
 
-        private void ReloadObjects()
+        private void StopGame()
         {
-            var map = Map.CurrentMap;
-            Map = new MapViewModel(map);
-            Settings = new SettingsViewModel()
-            {
-                BombSettings = Map.Bomb.Settings,
-                WolfSettings = Map.Wolf.Settings,
-                CannabisSettings = Map.Cannabis.Settings,
-                CowSettings = Map.Cow.Settings
-            };
-            Map.OnGameResult += OnGameResult;
+
+        }
+
+        private void StartGame()
+        {
+
         }
 
         private void OnGameResult(object sender, bool isWin)
         {
+            StopGame();
             MessageBox.Show(isWin ? "CONGRAT" : "FUC");
-            ReloadObjects();
         }
 
         public CowAndWeedGameViewModel()
         {
-            MoveDownCommand = new RelayCommand(async () => await Map.Cow.MoveDown());
-            MoveUpCommand = new RelayCommand(async () => await Map.Cow.MoveUp());
-            MoveRightCommand = new RelayCommand(async () => await Map.Cow.MoveRight());
-            MoveLeftCommand = new RelayCommand(async () => await Map.Cow.MoveLeft());
+            MoveDownCommand = new RelayCommand(async () => await CurrentMap.Cow.MoveDown());
+            MoveUpCommand = new RelayCommand(async () => await CurrentMap.Cow.MoveUp());
+            MoveRightCommand = new RelayCommand(async () => await CurrentMap.Cow.MoveRight());
+            MoveLeftCommand = new RelayCommand(async () => await CurrentMap.Cow.MoveLeft());
             OpenSettingsCommand = new RelayCommand(OnOpenSettingsExecuted);
             OpenMapCommand = new RelayCommand(OnLoadMapExecute);
-            Settings = new SettingsViewModel()
-            {
-                GameRedirectionIndex = 0
-            };
+            Settings = new SettingsViewModel();
         }
     }
 }

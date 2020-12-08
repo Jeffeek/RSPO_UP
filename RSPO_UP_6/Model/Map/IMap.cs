@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace RSPO_UP_6.Model.Map
 {
@@ -10,5 +6,6 @@ namespace RSPO_UP_6.Model.Map
     {
         bool[,] Map { get; }
         int Size { get; }
+        bool IsCellFree(int row, int column);
     }
 }

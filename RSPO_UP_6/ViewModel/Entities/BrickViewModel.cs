@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RSPO_UP_6.ViewModel.Entities;
 
 namespace RSPO_UP_6.ViewModel
 {
@@ -34,7 +35,6 @@ namespace RSPO_UP_6.ViewModel
         {
             Settings = new EntitySettingsViewModel()
             {
-                Delay = 0,
                 ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\brick.jpg"
             };
         }

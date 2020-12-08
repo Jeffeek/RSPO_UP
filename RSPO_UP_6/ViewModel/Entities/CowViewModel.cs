@@ -1,21 +1,32 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using RSPO_UP_6.Model.Controllers;
 
-namespace RSPO_UP_6.ViewModel
+namespace RSPO_UP_6.ViewModel.Entities
 {
     public class CowViewModel : ViewModelBase
     {
+        #region Events
+
+        public event EntityMovedTo CowPositionChanged;
+        public event EntityToMoveDirection CowWantsToChangePosition;
+        public event CowMovedInDirection CowMovedTo;
+
+        #endregion
+
+        #region Fields
+
         private readonly object _monitor = new object();
         private ObservableCollection<LiveViewModel> _lives;
-        private Func<int, int, MoveDirection, bool> _isBlockOn;
-        private int _row, _column;
+        private Func<int, int, bool> _isCellFree;
+        private int _row = 0, _column = 0;
         private EntitySettingsViewModel _settings;
 
-        public event GoCow CowPositionChanged;
+        #endregion
+
+        #region Properties
 
         public int Row 
         { 
@@ -41,14 +52,20 @@ namespace RSPO_UP_6.ViewModel
             set => SetValue(ref _settings, value);
         }
 
+        #endregion
+
+        #region Controller
+
         public async Task MoveUp()
         {
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (_isBlockOn(Row, Column, MoveDirection.Up)) return;
+                CowWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Up);
+                if (_isCellFree(Row - 1, Column)) return;
                 Row--;
-                CowPositionChanged?.Invoke(MoveDirection.Up);
+                CowPositionChanged?.Invoke(Row, Column);
+                CowMovedTo?.Invoke(MoveDirection.Up);
             }
         }
 
@@ -57,9 +74,11 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (_isBlockOn(Row, Column, MoveDirection.Down)) return;
+                CowWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Down);
+                if (_isCellFree(Row + 1, Column)) return;
                 Row++;
-                CowPositionChanged?.Invoke(MoveDirection.Down);
+                CowPositionChanged?.Invoke(Row, Column);
+                CowMovedTo?.Invoke(MoveDirection.Down);
             }
         }
 
@@ -68,9 +87,11 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (_isBlockOn(Row, Column, MoveDirection.Right)) return;
+                CowWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Right);
+                if (_isCellFree(Row, Column + 1)) return;
                 Column++;
-                CowPositionChanged?.Invoke(MoveDirection.Right);
+                CowPositionChanged?.Invoke(Row, Column);
+                CowMovedTo?.Invoke(MoveDirection.Right);
             }
         }
 
@@ -79,15 +100,19 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (_isBlockOn(Row, Column, MoveDirection.Left)) return;
+                CowWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Left);
+                if (_isCellFree(Row, Column - 1)) return;
                 Column--;
-                CowPositionChanged?.Invoke(MoveDirection.Left);
+                CowPositionChanged?.Invoke(Row, Column);
+                CowMovedTo?.Invoke(MoveDirection.Left);
             }
         }
 
-        public CowViewModel(Func<int, int, MoveDirection, bool> isBlockOn)
+        #endregion
+
+        public CowViewModel(Func<int, int, bool> isCellFree)
         {
-            _isBlockOn = isBlockOn;
+            _isCellFree = isCellFree;
             Lives = new ObservableCollection<LiveViewModel>()
             {
                 new LiveViewModel(),
@@ -96,7 +121,8 @@ namespace RSPO_UP_6.ViewModel
             };
             Settings = new EntitySettingsViewModel
             {
-                ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\cow.gif"
+                ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\cow.gif",
+                Delay = 0
             };
         }
     }

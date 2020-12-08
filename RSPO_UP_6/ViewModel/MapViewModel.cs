@@ -1,30 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using RSPO_UP_6.Model.Controllers;
 using RSPO_UP_6.Model.Map;
+using RSPO_UP_6.ViewModel.Entities;
 
 namespace RSPO_UP_6.ViewModel
 {
     public class MapViewModel : ViewModelBase
     {
-        private List<(int, int)> _freeCells;
-        private IMap _currentMap;
+        public event EventHandler<bool> OnGameResult;
+
+        #region Fields
+
+        private IMap _map;
         private CowViewModel _cow;
         private WolfViewModel _wolf;
         private CannabisViewModel _cannabis;
         private BombViewModel _bomb;
         private ObservableCollection<BrickViewModel> _bricks;
+        private bool _isGameStopped = false;
 
-        public event EventHandler<bool> OnGameResult;
+        #endregion
 
-        public IMap CurrentMap
+        #region Properties
+
+        public ObservableCollection<BrickViewModel> Bricks
         {
-            get => _currentMap;
-            set => SetValue(ref _currentMap, value);
+            get => _bricks;
+            set => SetValue(ref _bricks, value);
+        }
+
+        public bool IsGameStopped
+        {
+            get => _isGameStopped;
+            set
+            {
+                SetValue(ref _isGameStopped, value);
+                Cannabis.IsGameStopped = value;
+                Bomb.IsGameStopped = value;
+            }
+        }
+
+        public IMap Map
+        {
+            get => _map;
+            set => SetValue(ref _map, value);
         }
 
         public WolfViewModel Wolf
@@ -45,143 +65,68 @@ namespace RSPO_UP_6.ViewModel
             set => SetValue(ref _bomb, value);
         }
 
-        public ObservableCollection<BrickViewModel> Bricks
-        {
-            get => _bricks;
-            set => SetValue(ref _bricks, value);
-        }
-
         public CowViewModel Cow
         {
             get => _cow;
             set => SetValue(ref _cow, value);
         }
 
+        #endregion
+
+        #region Event Handlers
+
+        private void CowWalkedEventHandler(int row, int column, MoveDirection direction)
+        {
+
+        }
+
+        private void BombExplodedEventHandler(int row, int column)
+        {
+
+        }
+
+        private void WolfWalkedEventHandler(int row, int column)
+        {
+
+        }
+
+        private void CannabisChangedPositionEventHandler(int row, int column)
+        {
+
+        }
+
+        #endregion
+
+        private void SetBricksInPosition()
+        {
+            for (int i = 0; i < Map.Size; i++)
+            {
+                for (int j = 0; j < Map.Size; j++)
+                {
+                    if (Map.Map[i, j])
+                        _bricks.Add(new BrickViewModel() {Column = j, Row = i});
+                }
+            }
+        }
+
         public MapViewModel(IMap map)
         {
-            Bricks = new ObservableCollection<BrickViewModel>();
-            CurrentMap = map;
-            _freeCells = new List<(int, int)>();
-            FillFreeCells();
-            Bomb = new BombViewModel(_freeCells);
-            Cannabis = new CannabisViewModel(_freeCells);
-            Cow = new CowViewModel(IsBlockOn);
-            Wolf = new WolfViewModel(IsBlockOn)
+            Map = map;
+            Bomb = new BombViewModel((row, column) => Map.IsCellFree(row, column));
+            Cannabis = new CannabisViewModel((row, column) => Map.IsCellFree(row, column));
+            Cow = new CowViewModel((row, column) => Map.IsCellFree(row, column))
             {
-                Column = CurrentMap.Size - 1,
+                Column = 0,
                 Row = 0
             };
-            Cow.CowPositionChanged += Wolf.CowMovedExecuted;
-            Cow.CowPositionChanged += CowChangedPositionHandler;
-            Bomb.BombStateChanged += BombChangedStateHandler;
-            Wolf.WolfPositionChanged += WolfMovedHandler;
-            InitBricks();
-        }
-
-        private void CowChangedPositionHandler(MoveDirection direction)
-        {
-            if (Cow.Column == CurrentMap.Size - 1 && Cow.Row == CurrentMap.Size - 1)
+            Wolf = new WolfViewModel((row, column) => Map.IsCellFree(row, column))
             {
-                OnGameResult?.Invoke(this, true);
-                return;
-            }
+                Column = Map.Size - 1,
+                Row = 0
+            };
 
-            if (Cow.Row == Cannabis.Row && Cow.Column == Cannabis.Column && !Cannabis.IsCollected)
-            {
-                if (Cow.Lives.Count == 7) return;
-                Cow.Lives.Add(new LiveViewModel());
-                Cannabis.IsCollected = true;
-            }
-        }
-
-        private void WolfMovedHandler(object sender, EventArgs args)
-        {
-            if (Cow.Column == Wolf.Column && Cow.Row == Wolf.Row)
-            {
-                Cow.Lives.Remove(Cow.Lives.First());
-                if (Cow.Lives.Count == 0)
-                    OnGameResult?.Invoke(this, false);
-            }
-        }
-
-        private void FillFreeCells()
-        {
-            for (int i = 0; i < CurrentMap.Size; i++)
-            {
-                for (int j = 0; j < CurrentMap.Size; j++)
-                {
-                    if (!CurrentMap.Map[i, j])
-                        _freeCells.Add((i, j));
-                }
-            }
-        }
-
-        private void BombChangedStateHandler(object bomb, bool state)
-        {
-            if (state == false) return;
-            if (Cow.Row == Bomb.Row && Cow.Column == Bomb.Column)
-            {
-                Cow.Lives.RemoveAt(0);
-                if (Cow.Lives.Count == 0)
-                    OnGameResult?.Invoke(this, false);
-            }
-        }
-
-        private void InitBricks()
-        {
-            for (int i = 0; i < CurrentMap.Size; i++)
-            {
-                for (int j = 0; j < CurrentMap.Size; j++)
-                {
-                    if (CurrentMap.Map[i, j])
-                    {
-                        Bricks.Add(new BrickViewModel()
-                        {
-                            Column = j,
-                            Row = i
-                        });
-                    }
-                }
-            }
-        }
-
-        private bool IsBlockOn(int row, int column, MoveDirection direction)
-        {
-            switch (direction)
-            {
-                case MoveDirection.Down:
-                {
-                    if (row + 1 == CurrentMap.Size)
-                        return true;
-                    return Bricks.SingleOrDefault(x => x.Row == row + 1 && x.Column == column) != null;
-                }
-
-                case MoveDirection.Up:
-                {
-                    if (row - 1 == -1)
-                        return true;
-                    return Bricks.SingleOrDefault(x => x.Row == row - 1 && x.Column == column) != null;
-                }
-
-                case MoveDirection.Left:
-                {
-                    if (column - 1 == -1)
-                        return true;
-                    return Bricks.SingleOrDefault(x => x.Row == row && x.Column == column - 1) != null;
-                }
-
-                case MoveDirection.Right:
-                {
-                    if (column + 1 == CurrentMap.Size)
-                        return true;
-                    return Bricks.SingleOrDefault(x => x.Row == row && x.Column == column + 1) != null;
-                }
-
-                default:
-                {
-                    return Bricks.SingleOrDefault(x => x.Row == row && x.Column == column) != null;
-                }
-            }
+            _bricks = new ObservableCollection<BrickViewModel>();
+            SetBricksInPosition();
         }
     }
 }

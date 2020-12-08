@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using RSPO_UP_6.Model.Controllers;
+using RSPO_UP_6.ViewModel.Entities;
 
 
 namespace RSPO_UP_6.ViewModel
 {
     public class BombViewModel : ViewModelBase
     {
-        private Random _randomBomb = new Random(DateTime.Now.Millisecond * DateTime.Now.Second * DateTime.UtcNow.Millisecond / 2);
-        private int _currentRow = 0, _currentColumn = 0;
-        private List<(int, int)> _freeCells;
+        public event EntityMovedTo BombExploded;
+        public event EventHandler<bool> BombStateChanged;
+
+        private readonly Func<int, int, bool> _isCellFree;
+        private readonly Random _randomBomb = new Random(DateTime.Now.Millisecond * DateTime.Now.Second * DateTime.UtcNow.Millisecond / 2);
         private EntitySettingsViewModel _settings;
+        private int _currentRow = 0, _currentColumn = 0;
         private bool _isExploded;
         private bool _isGameStopped = false;
 
@@ -27,8 +32,6 @@ namespace RSPO_UP_6.ViewModel
                 }
             }
         }
-
-        public event EventHandler<bool> BombStateChanged;
 
         public bool IsExploded
         {
@@ -58,9 +61,9 @@ namespace RSPO_UP_6.ViewModel
             set => SetValue(ref _settings, value);
         }
 
-        public BombViewModel(List<(int, int)> freeCells)
+        public BombViewModel(Func<int, int, bool> isCellFree)
         {
-            _freeCells = freeCells;
+            _isCellFree = isCellFree;
             Settings = new EntitySettingsViewModel()
             {
                 ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\bomb.png",
@@ -73,11 +76,16 @@ namespace RSPO_UP_6.ViewModel
         {
             Settings.ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\bomb.png";
             IsExploded = false;
-            int placeToPaste = _randomBomb.Next(0, _freeCells.Count);
-            Row = _freeCells[placeToPaste].Item1;
-            Column = _freeCells[placeToPaste].Item2;
-            if (!IsGameStopped)
-                await BombExplode();
+            int row = _randomBomb.Next(0, 10);
+            int column = _randomBomb.Next(0, 10);
+            while (!_isCellFree(row, column))
+            {
+                row = _randomBomb.Next(0, 10);
+                column = _randomBomb.Next(0, 10);
+            }
+            Row = row;
+            Column = column;
+            await BombExplode();
         }
 
         private async Task BombExplode()
@@ -85,10 +93,12 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay / 2);
             Settings.ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\explosion.png";
             IsExploded = true;
+            BombExploded?.Invoke(Row, Column);
             await Task.Delay(Settings.Delay / 2);
             Row = 0;
             Column = 0;
-            SpawnBomb();
+            if (!IsGameStopped)
+                await SpawnBomb();
         }
     }
 }

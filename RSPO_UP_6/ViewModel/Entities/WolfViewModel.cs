@@ -1,38 +1,40 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using RSPO_UP_6.Model.Controllers;
 
-namespace RSPO_UP_6.ViewModel
+namespace RSPO_UP_6.ViewModel.Entities
 {
     public class WolfViewModel : ViewModelBase
     {
+        #region Events
+
+        public event EntityMovedTo WolfPositionChanged;
+        public event EntityToMoveDirection WolfWantsToChangePosition;
+
+        #endregion
+
+        #region Fields
+
         private readonly object _monitor = new object();
-        private Func<int, int, MoveDirection, bool> _isBlockHere;
+        private Func<int, int, bool> _isCellFree;
         private EntitySettingsViewModel _settings;
         private int _row, _column;
 
-        public event EventHandler WolfPositionChanged;
+        #endregion
+
+        #region Properties
 
         public int Row
         {
             get => _row;
-            set
-            {
-                SetValue(ref _row, value);
-                WolfPositionChanged?.Invoke(this, EventArgs.Empty);
-            }
+            set => SetValue(ref _row, value);
         }
 
         public int Column
         {
             get => _column;
-            set
-            {
-                SetValue(ref _column, value);
-                WolfPositionChanged?.Invoke(this, EventArgs.Empty);
-            }
+            set => SetValue(ref _column, value);
         }
 
         public EntitySettingsViewModel Settings
@@ -41,40 +43,50 @@ namespace RSPO_UP_6.ViewModel
             set => SetValue(ref _settings, value);
         }
 
-        public void CowMovedExecuted(MoveDirection direction)
+        #endregion
+
+        public async Task CowMovedEventHandler(MoveDirection direction)
         {
             switch (direction)
             {
                 case MoveDirection.Down:
                 {
-                    Task.Run(() => MoveUp());
+                    await MoveUp();
                     break;
                 }
                 case MoveDirection.Up:
                 {
-                    Task.Run(() => MoveDown());
+                    await MoveDown();
                     break;
                 }
                 case MoveDirection.Left:
                 {
-                    Task.Run(() => MoveRight());
+                    await MoveRight();
                     break;
                 }
                 case MoveDirection.Right:
                 {
-                    Task.Run(() => MoveLeft());
+                    await MoveLeft();
                     break;
                 }
+                case MoveDirection.None:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
             }
         }
+
+        #region Controller
 
         public async Task MoveRight()
         {
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (_isBlockHere(Row, Column, MoveDirection.Right)) return;
+                WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Right);
+                if (_isCellFree(Row, Column + 1)) return;
                 Column++;
+                WolfPositionChanged?.Invoke(Row, Column);
             }
         }
 
@@ -83,8 +95,10 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (_isBlockHere(Row, Column, MoveDirection.Left)) return;
+                WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Left);
+                if (_isCellFree(Row, Column - 1)) return;
                 Column--;
+                WolfPositionChanged?.Invoke(Row, Column);
             }
         }
 
@@ -93,8 +107,10 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (_isBlockHere(Row, Column, MoveDirection.Down)) return;
+                WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Down);
+                if (_isCellFree(Row + 1, Column)) return;
                 Row++;
+                WolfPositionChanged?.Invoke(Row, Column);
             }
         }
 
@@ -103,16 +119,23 @@ namespace RSPO_UP_6.ViewModel
             await Task.Delay(Settings.Delay);
             lock (_monitor)
             {
-                if (_isBlockHere(Row, Column, MoveDirection.Up)) return;
+                WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Down);
+                if (_isCellFree(Row - 1, Column)) return;
                 Row--;
+                WolfPositionChanged?.Invoke(Row, Column);
             }
         }
 
-        public WolfViewModel(Func<int, int, MoveDirection, bool> isBlockHere)
+        #endregion
+
+        public WolfViewModel(Func<int, int, bool> isCellFree)
         {
-            _isBlockHere = isBlockHere;
-            Settings = new EntitySettingsViewModel();
-            Settings.ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\wolf.png";
+            _isCellFree = isCellFree;
+            Settings = new EntitySettingsViewModel
+            {
+                ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\wolf.png",
+                Delay = 100
+            };
         }
     }
 }

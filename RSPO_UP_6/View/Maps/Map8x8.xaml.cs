@@ -21,25 +21,10 @@ namespace RSPO_UP_6.View.Maps
     {
         private ObservableCollection<BrickViewModel> _bricks;
 
-        public Map8x8(ObservableCollection<BrickViewModel> bricks, bool[,] matrix)
+        public Map8x8(ObservableCollection<BrickViewModel> bricks)
         {
             InitializeComponent();
             _bricks = bricks;
-            InitBricks(matrix);
-        }
-
-        private void InitBricks(bool[,] matrix)
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    if (matrix[i, j])
-                    {
-                        _bricks.Add(new BrickViewModel() { Column = j, Row = i });
-                    }
-                }
-            }
             PlaceBricksOnMap();
         }
 

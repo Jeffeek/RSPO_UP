@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
-namespace RSPO_UP_6.ViewModel
+namespace RSPO_UP_6.ViewModel.Entities
 {
     public class LiveViewModel : ViewModelBase
     {

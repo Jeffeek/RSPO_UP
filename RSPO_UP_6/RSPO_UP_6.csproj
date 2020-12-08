@@ -73,24 +73,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Controllers\GoCowEvent.cs" />
+    <Compile Include="Model\Controllers\MovingDelegates.cs" />
     <Compile Include="Model\Controllers\MoveDirection.cs" />
     <Compile Include="Model\FileWorker.cs" />
     <Compile Include="Model\Map\IMap.cs" />
     <Compile Include="Model\Map\Map10X10.cs" />
     <Compile Include="Model\Map\Map6X6.cs" />
     <Compile Include="Model\Map\Map8X8.cs" />
+    <Compile Include="Model\Map\MapBase.cs" />
     <Compile Include="Model\Map\TextToMapConverter.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\Entities\BombViewModel.cs" />
     <Compile Include="ViewModel\Entities\BrickViewModel.cs" />
     <Compile Include="ViewModel\Entities\CannabisViewModel.cs" />
-    <Compile Include="ViewModel\WIndowVM\CowAndWeedGameViewModel.cs" />
+    <Compile Include="ViewModel\WindowVM\CowAndWeedGameViewModel.cs" />
     <Compile Include="ViewModel\Entities\CowViewModel.cs" />
     <Compile Include="ViewModel\Entities\EntitySettingsViewModel.cs" />
     <Compile Include="ViewModel\Entities\LiveViewModel.cs" />
     <Compile Include="ViewModel\MapViewModel.cs" />
-    <Compile Include="ViewModel\WIndowVM\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\WindowVM\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\Entities\WolfViewModel.cs" />
     <Compile Include="View\Maps\Map10x10.xaml.cs">
@@ -191,9 +192,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\Entities\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <AdditionalFiles Include="Files\brick.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
