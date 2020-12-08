@@ -60,11 +60,11 @@
             <TextBox
                 Grid.Row="2"
                 Grid.Column="1"
-                MaxLength="1"
                 Height="20"
                 Margin="0,5,0,0"
                 VerticalAlignment="Center"
-                Text="{Binding Settings.CowLivesText, UpdateSourceTrigger=PropertyChanged}"/>
+                MaxLength="1"
+                Text="{Binding Settings.CowLivesText, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBlock
                 Grid.Row="3"
@@ -80,7 +80,7 @@
                 VerticalAlignment="Center"
                 MaxLength="4"
                 MaxLines="1"
-                Text="{Binding Settings.CowDelayText, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Settings.CowDelayText, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBlock
                 Grid.Row="4"
@@ -95,8 +95,8 @@
                 Margin="0,5,0,0"
                 VerticalAlignment="Center"
                 MaxLength="4"
-                MaxLines="1" 
-                Text="{Binding Settings.WolfDelayText, UpdateSourceTrigger=PropertyChanged}"/>
+                MaxLines="1"
+                Text="{Binding Settings.WolfDelayText, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBlock
                 Grid.Row="5"
@@ -111,8 +111,8 @@
                 Margin="0,5,0,0"
                 VerticalAlignment="Center"
                 MaxLength="4"
-                MaxLines="1" 
-                Text="{Binding Settings.BombDelayText, UpdateSourceTrigger=PropertyChanged}"/>
+                MaxLines="1"
+                Text="{Binding Settings.BombDelayText, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBlock
                 Grid.Row="6"
@@ -127,15 +127,24 @@
                 Orientation="Vertical">
                 <StackPanel Height="20px" Orientation="Horizontal">
                     <TextBlock Foreground="Aqua" Text="1. " />
-                    <TextBox Width="80px" MaxLength="2" Text="{Binding Settings.Time6x6Text, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox
+                        Width="80px"
+                        MaxLength="2"
+                        Text="{Binding Settings.Time6x6Text, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Height="20px" Orientation="Horizontal">
                     <TextBlock Foreground="Aqua" Text="2. " />
-                    <TextBox Width="80px" MaxLength="2" Text="{Binding Settings.Time8x8Text, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox
+                        Width="80px"
+                        MaxLength="2"
+                        Text="{Binding Settings.Time8x8Text, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Height="20px" Orientation="Horizontal">
                     <TextBlock Foreground="Aqua" Text="3. " />
-                    <TextBox Width="80px" MaxLength="2" Text="{Binding Settings.Time10x10Text, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox
+                        Width="80px"
+                        MaxLength="2"
+                        Text="{Binding Settings.Time10x10Text, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </StackPanel>
 
@@ -159,6 +168,7 @@
             </StackPanel>
         </Grid>
         <Button
+            Margin="0,5,0,0"
             VerticalAlignment="Center"
             Command="{Binding Settings.ApplyAllSettingsCommand}"
             Content="Save Settings" />

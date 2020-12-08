@@ -1,11 +1,10 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Win32;
 using RSPO_UP_6.ViewModel.Entities;
 
-namespace RSPO_UP_6.ViewModel.WIndowVM
+namespace RSPO_UP_6.ViewModel.WindowVM
 {
     public enum GameRedirection : byte
     {

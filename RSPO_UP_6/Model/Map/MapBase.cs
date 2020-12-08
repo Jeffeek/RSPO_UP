@@ -18,9 +18,9 @@ namespace RSPO_UP_6.Model.Map
         {
             Map = new bool[Size, Size];
             _freeCells = new List<(int, int)>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < Size; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < Size; j++)
                 {
                     Map[i, j] = matrix[i, j];
                     if (!Map[i, j])

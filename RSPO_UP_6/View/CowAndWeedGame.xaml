@@ -6,13 +6,14 @@
     xmlns:local="clr-namespace:RSPO_UP_6"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:RSPO_UP_6.ViewModel"
+    xmlns:windowVm="clr-namespace:RSPO_UP_6.ViewModel.WindowVM"
     Title="MainWindow"
     Width="600"
     Height="660"
     ResizeMode="NoResize"
     mc:Ignorable="d">
     <Window.DataContext>
-        <vm:CowAndWeedGameViewModel />
+        <windowVm:CowAndWeedGameViewModel />
     </Window.DataContext>
     <Window.InputBindings>
         <KeyBinding Key="Up" Command="{Binding MoveUpCommand}" />

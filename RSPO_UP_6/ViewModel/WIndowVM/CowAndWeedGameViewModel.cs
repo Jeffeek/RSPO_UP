@@ -8,9 +8,8 @@ using RSPO_UP_6.Model;
 using RSPO_UP_6.Model.Map;
 using RSPO_UP_6.View;
 using RSPO_UP_6.View.Maps;
-using RSPO_UP_6.ViewModel.WIndowVM;
 
-namespace RSPO_UP_6.ViewModel
+namespace RSPO_UP_6.ViewModel.WindowVM
 {
     public class CowAndWeedGameViewModel : ViewModelBase
     {
@@ -73,12 +72,12 @@ namespace RSPO_UP_6.ViewModel
             {
                 CurrentPage = _previousPage;
                 if (CurrentMap != null)
-                    CurrentMap.Bomb.IsGameStopped = false;
+                    StartGame();
             }
             else
             {
                 if (CurrentMap != null)
-                    CurrentMap.Bomb.IsGameStopped = true;
+                    StopGame();
                 _previousPage = CurrentPage;
                 CurrentPage = new SettingsPage();
             }
@@ -95,7 +94,6 @@ namespace RSPO_UP_6.ViewModel
             var text = file.Read();
             var map = TextToMapConverter.Convert(text);
             CurrentMap = new MapViewModel(map);
-            
             SetCurrentMapPage();
             StartGame();
         }
@@ -120,12 +118,19 @@ namespace RSPO_UP_6.ViewModel
 
         private void StopGame()
         {
-
+            if (CurrentMap == null) throw new Exception();
+            
+            CurrentMap.IsGameStopped = true;
         }
 
+        // TODO: потеря контекста
         private void StartGame()
         {
-
+            if (CurrentMap == null) throw new Exception();
+            if (Settings.CowSettings == null) return;
+            CurrentMap.Cow.Settings = Settings.CowSettings;
+            CurrentMap.Bomb.Settings = Settings.BombSettings;
+            CurrentMap.Wolf.Settings = Settings.WolfSettings;
         }
 
         private void OnGameResult(object sender, bool isWin)
