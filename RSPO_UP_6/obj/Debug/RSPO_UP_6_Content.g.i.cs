@@ -9,6 +9,5 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("files/music.wav")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("files/polska.mp3")]
 
 

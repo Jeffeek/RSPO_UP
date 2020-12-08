@@ -47,22 +47,22 @@ namespace RSPO_UP_6.ViewModel
             {
                 case MoveDirection.Down:
                 {
-                    Task.Run(async () => await MoveUp());
+                    Task.Run(() => MoveUp());
                     break;
                 }
                 case MoveDirection.Up:
                 {
-                    Task.Run(async () => await MoveDown());
+                    Task.Run(() => MoveDown());
                     break;
                 }
                 case MoveDirection.Left:
                 {
-                    Task.Run(async () => await MoveRight());
+                    Task.Run(() => MoveRight());
                     break;
                 }
                 case MoveDirection.Right:
                 {
-                    Task.Run(async () => await MoveLeft());
+                    Task.Run(() => MoveLeft());
                     break;
                 }
             }

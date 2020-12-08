@@ -13,6 +13,20 @@ namespace RSPO_UP_6.ViewModel
         private List<(int, int)> _freeCells;
         private EntitySettingsViewModel _settings;
         private bool _isExploded;
+        private bool _isGameStopped = false;
+
+        public bool IsGameStopped
+        {
+            get => _isGameStopped;
+            set
+            {
+                _isGameStopped = value;
+                if (!_isGameStopped)
+                {
+                    SpawnBomb();
+                }
+            }
+        }
 
         public event EventHandler<bool> BombStateChanged;
 
@@ -62,7 +76,8 @@ namespace RSPO_UP_6.ViewModel
             int placeToPaste = _randomBomb.Next(0, _freeCells.Count);
             Row = _freeCells[placeToPaste].Item1;
             Column = _freeCells[placeToPaste].Item2;
-            await BombExplode();
+            if (!IsGameStopped)
+                await BombExplode();
         }
 
         private async Task BombExplode()

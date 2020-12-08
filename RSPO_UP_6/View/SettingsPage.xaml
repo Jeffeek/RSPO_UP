@@ -140,21 +140,45 @@
             Grid.Column="0"
             VerticalAlignment="Center"
             Foreground="Cyan"
-            Text="Write the delay for cannabis!!! (ms)" />
-        <TextBox
+            Text="Time for walk. 1. 6x6. 2. 8x8. 3. 10x10 (sec)" />
+        <StackPanel
             Grid.Row="6"
             Grid.Column="1"
-            Height="20"
-            Margin="0,5,0,0"
-            VerticalAlignment="Top"
-            MaxLength="4"
-            MaxLines="1"
-            Text="{Binding Settings.CannabisDelay, UpdateSourceTrigger=PropertyChanged}" />
-        <Button
-            Grid.Row="6"
+            HorizontalAlignment="Center"
+            Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Foreground="Aqua" Text="1. " />
+                <TextBox Width="80px" Text="{Binding Settings.Time6x6, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Foreground="Aqua" Text="2. " />
+                <TextBox Width="80px" Text="{Binding Settings.Time8x8, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Foreground="Aqua" Text="3. " />
+                <TextBox Width="80px" Text="{Binding Settings.Time10x10, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <Button Command="{Binding Settings.ChangeWalkTimeCommand}" Content="Apply" />
+        </StackPanel>
+
+        <TextBlock
+            Grid.Row="7"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Foreground="Cyan"
+            Text="Level transactions" />
+        <StackPanel
+            Grid.Row="7"
             Grid.Column="1"
-            Height="20px"
-            Command="{Binding Settings.ChangeCannabisDelayCommand}"
-            Content="Apply" />
+            VerticalAlignment="Center"
+            Orientation="Vertical">
+            <ComboBox IsReadOnly="True" SelectedIndex="{Binding Settings.GameRedirectionIndex}">
+                <ComboBox.Items>
+                    <ComboBoxItem Content="Can choose" />
+                    <ComboBoxItem Content="Auto redirect" />
+                </ComboBox.Items>
+            </ComboBox>
+        </StackPanel>
+
     </Grid>
 </Page>

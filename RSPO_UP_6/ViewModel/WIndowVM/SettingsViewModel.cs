@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Win32;
 
 namespace RSPO_UP_6.ViewModel
 {
+    public enum GameRedirection : byte
+    {
+        CanChoose,
+        AutoRedirect
+    }
+
     public class SettingsViewModel : ViewModelBase
     {
         private EntitySettingsViewModel _cowSettings;
@@ -19,14 +19,65 @@ namespace RSPO_UP_6.ViewModel
 
         private string _cowDelayText = "5";
         private string _wolfDelayText = "100";
-        private string _livesText = "3";
         private string _bombDelayText = "1000";
-        private string _cannabisDelayText = "1000";
-        private int _lives = 3;
+
         private int _cowDelay = 5;
         private int _wolfDelay = 100;
         private int _bombDelay = 1000;
-        private int _cannabisDelay;
+
+        private string _livesText = "3";
+        private int _lives = 3;
+
+        private string _time6x6Text = "10";
+        private string _time8x8Text = "20";
+        private string _time10x10Text = "30";
+        private int _time6x6 = 10;
+        private int _time8x8 = 20;
+        private int _time10x10 = 30;
+
+        public int GameRedirectionIndex
+        {
+            set => GameRedirection = value == 0 ? 
+                GameRedirection.CanChoose : GameRedirection.AutoRedirect;
+        }
+
+        public GameRedirection GameRedirection { get; private set; }
+
+        public int Time6X6
+        {
+            get => _time6x6;
+            private set => SetValue(ref _time6x6, value);
+        }
+
+        public int Time8X8
+        {
+            get => _time8x8; 
+            private set => SetValue(ref _time8x8, value);
+        }
+
+        public int Time10X10
+        {
+            get => _time10x10; 
+            private set => SetValue(ref _time10x10, value);
+        }
+
+        public string Time6x6
+        {
+            get => _time6x6Text;
+            set => SetValue(ref _time6x6Text, value);
+        }
+
+        public string Time8x8
+        {
+            get => _time8x8Text;
+            set => SetValue(ref _time6x6Text, value);
+        }
+
+        public string Time10x10
+        {
+            get => _time10x10Text;
+            set => SetValue(ref _time10x10Text, value);
+        }
 
         public int CowLivesCount
         {
@@ -58,21 +109,15 @@ namespace RSPO_UP_6.ViewModel
             set => SetValue(ref _bombDelayText, value);
         }
 
-        public string CannabisDelay
-        {
-            get => _cannabisDelayText;
-            set => SetValue(ref _cannabisDelayText, value);
-        }
-
         public ICommand ChangeCowImageCommand { get; }
         public ICommand ChangeWolfImageCommand { get; }
 
         public ICommand ChangeCowDelayCommand { get; }
         public ICommand ChangeWolfDelayCommand { get; }
         public ICommand ChangeBombDelayCommand { get; }
-        public ICommand ChangeCannabisDelayCommand { get; }
 
         public ICommand ChangeCowLivesCountCommand { get; }
+        public ICommand ChangeWalkTimeCommand { get; }
 
         public EntitySettingsViewModel CowSettings
         {
@@ -147,20 +192,11 @@ namespace RSPO_UP_6.ViewModel
                                                     _bombDelay >= 1000 &&
                                                     _lives <= 5000;
 
-        private void OnChangeCannabisDelayExecuted()
-        {
-            CannabisSettings.Delay = _cannabisDelay;
-        }
-
-        private bool CanChangeCannabisDelayExecute() => int.TryParse(CannabisDelay, out _cannabisDelay) &&
-                                                        _cannabisDelay >= 1000 &&
-                                                        _cannabisDelay <= 5000;
-
         private void OnChangeCowLivesExecuted()
         {
-            if (_lives == 0 || _lives > 5)
+            if (_lives == 0 || _lives > 7)
             {
-                CowLivesCount = 3;
+                CowLivesCount = 7;
             }
             else
             {
@@ -170,6 +206,24 @@ namespace RSPO_UP_6.ViewModel
 
         private bool CanChangeCowLivesExecute() => int.TryParse(CowLives, out _lives) && _cowDelay >= 0 && _lives <= 5;
 
+
+        private void OnApplyWalkTimeExecuted()
+        {
+            Time10X10 = _time10x10;
+            Time8X8 = _time8x8;
+            Time6X6 = _time6x6;
+        }
+
+        private bool CanApplyWalkTimeExecute()
+        {
+            return int.TryParse(_time6x6Text, out _time6x6) &&
+                   int.TryParse(_time8x8Text, out _time8x8) &&
+                   int.TryParse(_time10x10Text, out _time10x10) &&
+                   Time6X6 >= 10 && Time6X6 <= 50 &&
+                   Time8X8 >= 20 && Time8X8 <= 60 &&
+                   Time10X10 >= 30 && Time10X10 <= 70;
+        }
+
         public SettingsViewModel()
         {
             ChangeCowImageCommand = new RelayCommand(OnChangeCowImageExecuted);
@@ -178,9 +232,10 @@ namespace RSPO_UP_6.ViewModel
             ChangeCowDelayCommand = new RelayCommand(OnChangeCowDelayExecuted, CanChangeCowDelayExecute);
             ChangeWolfDelayCommand = new RelayCommand(OnChangeWolfDelayExecuted, CanChangeWolfDelayExecute);
             ChangeBombDelayCommand = new RelayCommand(OnChangeBombDelayExecuted, CanChangeBombDelayExecute);
-            ChangeCannabisDelayCommand = new RelayCommand(OnChangeCannabisDelayExecuted, CanChangeCannabisDelayExecute);
 
             ChangeCowLivesCountCommand = new RelayCommand(OnChangeCowLivesExecuted, CanChangeCowLivesExecute);
+
+            ChangeWalkTimeCommand = new RelayCommand(OnApplyWalkTimeExecuted, CanApplyWalkTimeExecute);
         }
     }
 }

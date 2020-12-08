@@ -13,8 +13,8 @@ namespace RSPO_UP_6.ViewModel
     public class CowAndWeedGameViewModel : ViewModelBase
     {
         private SettingsViewModel _settings;
+        private Page _previousPage;
         private Page _currentPage;
-
         private MapViewModel _map;
 
         public ICommand OpenSettingsCommand { get; }
@@ -37,7 +37,8 @@ namespace RSPO_UP_6.ViewModel
             set
             {
                 SetValue(ref _currentPage, value);
-                _currentPage.DataContext = this;
+                if (_currentPage != null)
+                    _currentPage.DataContext = this;
             }
         }
 
@@ -51,19 +52,14 @@ namespace RSPO_UP_6.ViewModel
         {
             if (CurrentPage is SettingsPage)
             {
-                CurrentPage = new Map10x10(Map?.Bricks, new bool[10,10])
-                {
-                    DataContext = this
-                };
-
-                Map?.Cow.Lives.Clear();
-                for (int i = 0; i < Settings.CowLivesCount; i++)
-                {
-                    Map?.Cow.Lives.Add(new LiveViewModel());
-                }
+                CurrentPage = _previousPage;
+                if (Map != null)
+                    Map.Bomb.IsGameStopped = false;
             }
             else
             {
+                Map.Bomb.IsGameStopped = true;
+                _previousPage = CurrentPage;
                 CurrentPage = new SettingsPage()
                 {
                     DataContext = this
@@ -77,29 +73,27 @@ namespace RSPO_UP_6.ViewModel
             {
                 Filter = "Text Files(*.txt)|*.txt"
             };
-            if (dialog.ShowDialog() ?? false)
-            {
-                var file = new FileWorker(dialog.FileName);
-                var text = file.Read();
-                var map = TextToMapConverter.Convert(text);
-                Map = new MapViewModel(map);
-                BuildMap(map);
-                ReloadObjects();
-            }
+            if (!(dialog.ShowDialog() ?? false)) return;
+            var file = new FileWorker(dialog.FileName);
+            var text = file.Read();
+            var map = TextToMapConverter.Convert(text);
+            Map = new MapViewModel(map);
+            BuildMap();
+            ReloadObjects();
         }
 
-        private void BuildMap(IMap map)
+        private void BuildMap()
         {
-            switch (map.Size)
+            switch (Map.CurrentMap.Size)
             {
                 case 10:
-                    CurrentPage = new Map10x10(Map.Bricks, map.Map);
+                    CurrentPage = new Map10x10(Map.Bricks, Map.CurrentMap.Map);
                     break;
                 case 8:
-                    CurrentPage = new Map8x8();
+                    CurrentPage = new Map8x8(Map.Bricks, Map.CurrentMap.Map);
                     break;
                 case 6:
-                    CurrentPage = new Map6x6();
+                    CurrentPage = new Map6x6(Map.Bricks, Map.CurrentMap.Map);
                     break;
             }
         }
@@ -132,6 +126,10 @@ namespace RSPO_UP_6.ViewModel
             MoveLeftCommand = new RelayCommand(async () => await Map.Cow.MoveLeft());
             OpenSettingsCommand = new RelayCommand(OnOpenSettingsExecuted);
             OpenMapCommand = new RelayCommand(OnLoadMapExecute);
+            Settings = new SettingsViewModel()
+            {
+                GameRedirectionIndex = 0
+            };
         }
     }
 }

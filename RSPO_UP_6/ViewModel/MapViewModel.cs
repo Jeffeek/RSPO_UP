@@ -86,7 +86,7 @@ namespace RSPO_UP_6.ViewModel
                 return;
             }
 
-            else if (Cow.Row == Cannabis.Row && Cow.Column == Cannabis.Column && !Cannabis.IsCollected)
+            if (Cow.Row == Cannabis.Row && Cow.Column == Cannabis.Column && !Cannabis.IsCollected)
             {
                 if (Cow.Lives.Count == 7) return;
                 Cow.Lives.Add(new LiveViewModel());
@@ -98,7 +98,7 @@ namespace RSPO_UP_6.ViewModel
         {
             if (Cow.Column == Wolf.Column && Cow.Row == Wolf.Row)
             {
-                Cow.Lives.RemoveAt(0);
+                Cow.Lives.Remove(Cow.Lives.First());
                 if (Cow.Lives.Count == 0)
                     OnGameResult?.Invoke(this, false);
             }

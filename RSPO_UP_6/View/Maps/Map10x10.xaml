@@ -64,6 +64,6 @@
         <Image
             Grid.Row="{Binding Map.Cannabis.Row}"
             Grid.Column="{Binding Map.Cannabis.Column}"
-            Source="{Binding Map.Cannabis.Settings.ImagePath}"/>
+            Source="{Binding Map.Cannabis.Settings.ImagePath}" />
     </Grid>
 </Page>
