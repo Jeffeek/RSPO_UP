@@ -13,16 +13,26 @@ namespace RSPO_UP_6.ViewModel
         private EntitySettingsViewModel _settings;
         private int _row, _column;
 
+        public event EventHandler WolfPositionChanged;
+
         public int Row
         {
-            get => _row; 
-            set => SetValue(ref _row, value);
+            get => _row;
+            set
+            {
+                SetValue(ref _row, value);
+                WolfPositionChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         public int Column
         {
-            get => _column; 
-            set => SetValue(ref _column, value);
+            get => _column;
+            set
+            {
+                SetValue(ref _column, value);
+                WolfPositionChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         public EntitySettingsViewModel Settings

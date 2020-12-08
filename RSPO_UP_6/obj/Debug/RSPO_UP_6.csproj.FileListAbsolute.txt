@@ -93,3 +93,6 @@ E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_6\bin\Debug\Files\brick.jpg
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_6\bin\Debug\Files\polska.mp3
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_6\obj\Debug\RSPO_UP_6_Content.g.cs
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_6\bin\Debug\Files\music.wav
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_6\bin\Debug\Files\music.wav
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_6\bin\Debug\Files\polska.mp3
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_6\obj\Debug\RSPO_UP_6_Content.g.cs

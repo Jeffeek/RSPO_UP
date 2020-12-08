@@ -21,7 +21,7 @@
         <KeyBinding Key="Right" Command="{Binding MoveRightCommand}" />
     </Window.InputBindings>
     <StackPanel>
-        <Grid Height="30">
+        <Grid Height="30" Background="LightGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />

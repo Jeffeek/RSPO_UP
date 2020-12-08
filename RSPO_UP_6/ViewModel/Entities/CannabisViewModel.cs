@@ -16,7 +16,7 @@ namespace RSPO_UP_6.ViewModel
         private EntitySettingsViewModel _settings;
         private bool _isCollected;
 
-        public event RoutedEventHandler CannabisCollected;
+        public event EventHandler CannabisCollectedEvent;
 
         public bool IsCollected
         {
@@ -24,7 +24,7 @@ namespace RSPO_UP_6.ViewModel
             set
             {
                 if (value)
-                    CannabisCollected?.Invoke(this, new RoutedEventArgs());
+                    CannabisCollectedEvent?.Invoke(this, EventArgs.Empty);
                 SetValue(ref _isCollected, value);
             }
         }
@@ -64,14 +64,13 @@ namespace RSPO_UP_6.ViewModel
             int placeToPaste = _randomCannabis.Next(0, _freeCells.Count);
             Row = _freeCells[placeToPaste].Item1;
             Column = _freeCells[placeToPaste].Item2;
+            IsCollected = false;
             await RemoveCannabis();
         }
 
         private async Task RemoveCannabis()
         {
             await Task.Delay(Settings.Delay / 2);
-            Row = 0;
-            Column = 0;
             await SpawnCannabis();
         }
     }

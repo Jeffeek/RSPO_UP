@@ -63,6 +63,8 @@ namespace RSPO_UP_6.ViewModel
             CurrentMap = map;
             _freeCells = new List<(int, int)>();
             FillFreeCells();
+            Bomb = new BombViewModel(_freeCells);
+            Cannabis = new CannabisViewModel(_freeCells);
             Cow = new CowViewModel(IsBlockOn);
             Wolf = new WolfViewModel(IsBlockOn)
             {
@@ -70,18 +72,36 @@ namespace RSPO_UP_6.ViewModel
                 Row = 0
             };
             Cow.CowPositionChanged += Wolf.CowMovedExecuted;
-            Cow.CowPositionChanged += CowChangedPosition;
-            Cow.CowPositionChanged += CheckCowState;
-            Bomb = new BombViewModel(_freeCells);
+            Cow.CowPositionChanged += CowChangedPositionHandler;
             Bomb.BombStateChanged += BombChangedStateHandler;
-            Cannabis = new CannabisViewModel(_freeCells);
+            Wolf.WolfPositionChanged += WolfMovedHandler;
             InitBricks();
         }
 
-        private void CowChangedPosition(MoveDirection direction)
+        private void CowChangedPositionHandler(MoveDirection direction)
         {
-            if (Cow.Row != Cannabis.Row || Cow.Column != Cannabis.Column) return;
-            Cow.Lives.Add(new LiveViewModel());
+            if (Cow.Column == CurrentMap.Size - 1 && Cow.Row == CurrentMap.Size - 1)
+            {
+                OnGameResult?.Invoke(this, true);
+                return;
+            }
+
+            else if (Cow.Row == Cannabis.Row && Cow.Column == Cannabis.Column && !Cannabis.IsCollected)
+            {
+                if (Cow.Lives.Count == 7) return;
+                Cow.Lives.Add(new LiveViewModel());
+                Cannabis.IsCollected = true;
+            }
+        }
+
+        private void WolfMovedHandler(object sender, EventArgs args)
+        {
+            if (Cow.Column == Wolf.Column && Cow.Row == Wolf.Row)
+            {
+                Cow.Lives.RemoveAt(0);
+                if (Cow.Lives.Count == 0)
+                    OnGameResult?.Invoke(this, false);
+            }
         }
 
         private void FillFreeCells()
@@ -99,20 +119,12 @@ namespace RSPO_UP_6.ViewModel
         private void BombChangedStateHandler(object bomb, bool state)
         {
             if (state == false) return;
-            if (Cow.Row != Bomb.Row || Cow.Column != Bomb.Column) return;
-            Cow.Lives.Remove(Cow.Lives.Last());
-            if (Cow.Lives.Count == 0)
-                OnGameResult?.Invoke(this, false);
-        }
-
-        private void CheckCowState(MoveDirection direction)
-        {
-            if (Cow.Column == CurrentMap.Size - 1 && Cow.Row == CurrentMap.Size - 1)
-                OnGameResult?.Invoke(this, true);
-            if (Cow.Column == Wolf.Column && Cow.Row == Wolf.Row)
-                Cow.Lives.Remove(Cow.Lives.Last());
-            if (Cow.Lives.Count == 0)
-                OnGameResult?.Invoke(this, false);
+            if (Cow.Row == Bomb.Row && Cow.Column == Bomb.Column)
+            {
+                Cow.Lives.RemoveAt(0);
+                if (Cow.Lives.Count == 0)
+                    OnGameResult?.Invoke(this, false);
+            }
         }
 
         private void InitBricks()
