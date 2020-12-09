@@ -168,7 +168,7 @@ namespace RSPO_UP_6.ViewModel.WindowVM
         public string Time8x8Text
         {
             get => _time8x8Text;
-            set => SetValue(ref _time6x6Text, value);
+            set => SetValue(ref _time8x8Text, value);
         }
 
         #endregion
@@ -332,6 +332,22 @@ namespace RSPO_UP_6.ViewModel.WindowVM
             Time8X8 = int.Parse(Time8x8Text);
             Time10X10 = int.Parse(Time10x10Text);
 
+            CowSettings.Delay = CowDelay;
+            CowSettings.ImagePath = CowImageSource;
+
+            WolfSettings.Delay = WolfDelay;
+            WolfSettings.ImagePath = WolfImageSource;
+
+            BombSettings.Delay = BombDelay;
+        }
+
+        private void SetStartSettings()
+        {
+            BombSettings = new EntitySettingsViewModel()
+            {
+                Delay = BombDelay,
+                ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\bomb.png"
+            };
             CowSettings = new EntitySettingsViewModel()
             {
                 Delay = CowDelay,
@@ -342,10 +358,6 @@ namespace RSPO_UP_6.ViewModel.WindowVM
                 Delay = WolfDelay,
                 ImagePath = WolfImageSource
             };
-            BombSettings = new EntitySettingsViewModel()
-            {
-                Delay = BombDelay
-            };
         }
 
         public SettingsViewModel()
@@ -353,6 +365,7 @@ namespace RSPO_UP_6.ViewModel.WindowVM
             ChangeCowImageCommand = new RelayCommand(OnChangeCowImageExecuted);
             ChangeWolfImageCommand = new RelayCommand(OnChangeWolfImageExecuted);
             ApplyAllSettingsCommand = new RelayCommand(OnApplyAllSettingsExecuted, CanApplyAllSettingsExecute);
+            SetStartSettings();
         }
     }
 }

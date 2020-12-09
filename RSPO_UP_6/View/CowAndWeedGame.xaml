@@ -24,10 +24,11 @@
     <StackPanel>
         <Grid Height="30" Background="LightGray">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition Width=".5*"/>
-                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition Width=".3*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="2.5*" />
             </Grid.ColumnDefinitions>
             <Button
                 Grid.Column="0"
@@ -51,8 +52,14 @@
                     <Image Source="../Files/music.png"/>
                 </Button.Content>
             </Button>
-            <ListView
+            <TextBlock 
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
                 Grid.Column="3"
+                Text="{Binding CurrentGameTime, StringFormat='ss', Mode=OneWay}"/>
+            <ListView
+                Grid.Column="4"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
                 FlowDirection="LeftToRight"

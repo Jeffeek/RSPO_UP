@@ -84,7 +84,7 @@ namespace RSPO_UP_6.ViewModel.Entities
             lock (_monitor)
             {
                 WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Right);
-                if (_isCellFree(Row, Column + 1)) return;
+                if (!_isCellFree(Row, Column + 1)) return;
                 Column++;
                 WolfPositionChanged?.Invoke(Row, Column);
             }
@@ -96,7 +96,7 @@ namespace RSPO_UP_6.ViewModel.Entities
             lock (_monitor)
             {
                 WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Left);
-                if (_isCellFree(Row, Column - 1)) return;
+                if (!_isCellFree(Row, Column - 1)) return;
                 Column--;
                 WolfPositionChanged?.Invoke(Row, Column);
             }
@@ -108,7 +108,7 @@ namespace RSPO_UP_6.ViewModel.Entities
             lock (_monitor)
             {
                 WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Down);
-                if (_isCellFree(Row + 1, Column)) return;
+                if (!_isCellFree(Row + 1, Column)) return;
                 Row++;
                 WolfPositionChanged?.Invoke(Row, Column);
             }
@@ -120,7 +120,7 @@ namespace RSPO_UP_6.ViewModel.Entities
             lock (_monitor)
             {
                 WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Down);
-                if (_isCellFree(Row - 1, Column)) return;
+                if (!_isCellFree(Row - 1, Column)) return;
                 Row--;
                 WolfPositionChanged?.Invoke(Row, Column);
             }

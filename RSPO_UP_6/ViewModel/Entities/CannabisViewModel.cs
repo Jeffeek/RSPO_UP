@@ -35,12 +35,7 @@ namespace RSPO_UP_6.ViewModel
         public bool IsGameStopped
         {
             get => _isGameStopped;
-            set
-            {
-                if (!value)
-                    SpawnCannabis();
-                SetValue(ref _isGameStopped, value);
-            }
+            set => SetValue(ref _isGameStopped, value);
         }
 
         public bool IsCollected
@@ -82,6 +77,10 @@ namespace RSPO_UP_6.ViewModel
                 Delay = 2000,
                 ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\cannabis.png"
             };
+        }
+
+        public void Start()
+        {
             SpawnCannabis();
         }
 
@@ -89,6 +88,12 @@ namespace RSPO_UP_6.ViewModel
         {
             await Task.Delay(Settings.Delay / 2);
             IsCollected = false;
+            if (IsGameStopped)
+            {
+                Row = 0;
+                Column = 0;
+                return;
+            }
             int row = _randomCannabis.Next(0, 10);
             int column = _randomCannabis.Next(0, 10);
             while (!_isCellFree(row, column))
@@ -98,14 +103,15 @@ namespace RSPO_UP_6.ViewModel
             }
             Row = row;
             Column = column;
-            await RemoveCannabis();
+            CannabisPositionChanged?.Invoke(Row, Column);
+            RemoveCannabis();
         }
 
         private async Task RemoveCannabis()
         {
             await Task.Delay(Settings.Delay / 2);
             if (!IsGameStopped)
-                await SpawnCannabis();
+                SpawnCannabis();
         }
     }
 }

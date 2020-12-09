@@ -62,7 +62,7 @@ namespace RSPO_UP_6.ViewModel.Entities
             lock (_monitor)
             {
                 CowWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Up);
-                if (_isCellFree(Row - 1, Column)) return;
+                if (!_isCellFree(Row - 1, Column)) return;
                 Row--;
                 CowPositionChanged?.Invoke(Row, Column);
                 CowMovedTo?.Invoke(MoveDirection.Up);
@@ -75,7 +75,7 @@ namespace RSPO_UP_6.ViewModel.Entities
             lock (_monitor)
             {
                 CowWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Down);
-                if (_isCellFree(Row + 1, Column)) return;
+                if (!_isCellFree(Row + 1, Column)) return;
                 Row++;
                 CowPositionChanged?.Invoke(Row, Column);
                 CowMovedTo?.Invoke(MoveDirection.Down);
@@ -88,7 +88,7 @@ namespace RSPO_UP_6.ViewModel.Entities
             lock (_monitor)
             {
                 CowWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Right);
-                if (_isCellFree(Row, Column + 1)) return;
+                if (!_isCellFree(Row, Column + 1)) return;
                 Column++;
                 CowPositionChanged?.Invoke(Row, Column);
                 CowMovedTo?.Invoke(MoveDirection.Right);
@@ -101,7 +101,7 @@ namespace RSPO_UP_6.ViewModel.Entities
             lock (_monitor)
             {
                 CowWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Left);
-                if (_isCellFree(Row, Column - 1)) return;
+                if (!_isCellFree(Row, Column - 1)) return;
                 Column--;
                 CowPositionChanged?.Invoke(Row, Column);
                 CowMovedTo?.Invoke(MoveDirection.Left);
@@ -113,17 +113,7 @@ namespace RSPO_UP_6.ViewModel.Entities
         public CowViewModel(Func<int, int, bool> isCellFree)
         {
             _isCellFree = isCellFree;
-            Lives = new ObservableCollection<LiveViewModel>()
-            {
-                new LiveViewModel(),
-                new LiveViewModel(),
-                new LiveViewModel()
-            };
-            Settings = new EntitySettingsViewModel
-            {
-                ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\cow.gif",
-                Delay = 0
-            };
+            Lives = new ObservableCollection<LiveViewModel>();
         }
     }
 }
