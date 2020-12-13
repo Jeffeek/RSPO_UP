@@ -34,7 +34,12 @@
         <Button
             Grid.Row="5"
             Grid.Column="5"
-            Background="LightGreen" />
+            Background="Transparent">
+            <Polygon   
+                Stretch="Fill"
+                Fill="Green"
+                Points="0, 20 10 0, 0 0 0, 0"/>
+        </Button>
         <Image
             x:Name="CowImage"
             Grid.Row="{Binding CurrentMap.Cow.Row}"
