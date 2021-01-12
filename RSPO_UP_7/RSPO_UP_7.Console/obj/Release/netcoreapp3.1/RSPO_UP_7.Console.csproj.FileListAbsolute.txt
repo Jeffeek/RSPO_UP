@@ -1,0 +1,16 @@
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Release\netcoreapp3.1\RSPO_UP_7.Console.exe
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Release\netcoreapp3.1\RSPO_UP_7.Console.deps.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Release\netcoreapp3.1\RSPO_UP_7.Console.runtimeconfig.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Release\netcoreapp3.1\RSPO_UP_7.Console.runtimeconfig.dev.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Release\netcoreapp3.1\RSPO_UP_7.Console.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Release\netcoreapp3.1\RSPO_UP_7.Console.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Release\netcoreapp3.1\RSPO.dotNet.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Release\netcoreapp3.1\RSPO.dotNet.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Release\netcoreapp3.1\RSPO_UP_7.Console.csprojAssemblyReference.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Release\netcoreapp3.1\RSPO_UP_7.Console.AssemblyInfoInputs.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Release\netcoreapp3.1\RSPO_UP_7.Console.AssemblyInfo.cs
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Release\netcoreapp3.1\RSPO_UP_7.Console.csproj.CoreCompileInputs.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Release\netcoreapp3.1\RSPO_UP_7.Console.csproj.CopyComplete
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Release\netcoreapp3.1\RSPO_UP_7.Console.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Release\netcoreapp3.1\RSPO_UP_7.Console.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Release\netcoreapp3.1\RSPO_UP_7.Console.genruntimeconfig.cache

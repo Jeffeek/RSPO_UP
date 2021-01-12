@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RSPO.dotNet</name>
+    </assembly>
+    <members>
+        <member name="T:RSPO.dotNet.AlphaFormule">
+            <summary>
+            Presents the ALPHA-HYPER-CYBER formule
+            </summary>
+        </member>
+        <member name="P:RSPO.dotNet.AlphaFormule.X">
+            <summary>
+            The X argument
+            </summary>
+        </member>
+        <member name="P:RSPO.dotNet.AlphaFormule.Y">
+            <summary>
+            The Y argument
+            </summary>
+        </member>
+        <member name="P:RSPO.dotNet.AlphaFormule.Z">
+            <summary>
+            The Z argument
+            </summary>
+        </member>
+        <member name="M:RSPO.dotNet.AlphaFormule.#ctor(System.Double,System.Double,System.Double)">
+            <summary>Initializes a new instance of the <see cref="T:RSPO.dotNet.AlphaFormule" /> class.</summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:RSPO.dotNet.AlphaFormule.Calculate" -->
+        <!-- Badly formed XML comment ignored for member "T:RSPO.dotNet.LargestIntegerKSquareNotExceedN" -->
+        <member name="M:RSPO.dotNet.LargestIntegerKSquareNotExceedN.Calculate(System.UInt32)">
+            <summary>
+            Calculates the result
+            </summary>
+            <param name="N">Bound for function</param>
+            <returns>The largest integer K whose square does not exceed N</returns>
+        </member>
+        <member name="T:RSPO.dotNet.Permutation">
+            <summary>
+            Extension for <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:RSPO.dotNet.Permutation.GetPermutations``1(System.Collections.Generic.IEnumerable{``0},System.Int32)" -->
+        <member name="T:RSPO.dotNet.PowMath">
+            <summary>
+            IDK WHY HELP
+            Class for represent ONE function - Power
+            </summary>
+        </member>
+        <member name="M:RSPO.dotNet.PowMath.Pow(System.Double,System.Int32)">
+            <summary>
+            Powers one <see cref="T:System.Double"/> number on <see cref="T:System.Int32"/>
+            </summary>
+            <param name="A">The number which will be powered</param>
+            <param name="N">The number - pow measure</param>
+            <returns>The result of Pow</returns>
+        </member>
+        <member name="T:RSPO.dotNet.PrimeNumbers">
+            <summary>
+            Find all prime numbers on the natural segment [1000.9999],
+            the sum of the first and second digits of which is equal to the
+            sum of the third and fourth digits.
+            </summary>
+        </member>
+        <member name="F:RSPO.dotNet.PrimeNumbers._numbers">
+            <summary>
+            Internal <seealso cref="T:System.Collections.Generic.IEnumerable`1"/> numbers
+            </summary>
+        </member>
+        <member name="M:RSPO.dotNet.PrimeNumbers.IsPrime(System.Int32)">
+            <summary>
+            Check for number - is it prime or not
+            </summary>
+            <param name="n">Number<see cref="T:System.Int32"/></param>
+            <returns>True is <see cref="!:n"/> prime</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:RSPO.dotNet.PrimeNumbers.FirstSecondEqualsThirdFourth" -->
+        <member name="M:RSPO.dotNet.PrimeNumbers.IsTaken(System.Int32)">
+            <summary>
+            Checks is number fit's conditions
+            </summary>
+            <param name="n"></param>
+            <returns><see cref="T:System.Boolean"/> - <value>true</value> if fit's and
+            <value>False</value> if NOT</returns>
+        </member>
+    </members>
+</doc>

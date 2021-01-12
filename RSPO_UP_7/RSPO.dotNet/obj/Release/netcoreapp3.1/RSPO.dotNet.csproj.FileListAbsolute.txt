@@ -1,0 +1,9 @@
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO.dotNet\bin\Release\netcoreapp3.1\RSPO.dotNet.deps.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO.dotNet\bin\Release\netcoreapp3.1\RSPO.dotNet.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO.dotNet\bin\Release\netcoreapp3.1\RSPO.dotNet.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO.dotNet\obj\Release\netcoreapp3.1\RSPO.dotNet.csprojAssemblyReference.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO.dotNet\obj\Release\netcoreapp3.1\RSPO.dotNet.AssemblyInfoInputs.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO.dotNet\obj\Release\netcoreapp3.1\RSPO.dotNet.AssemblyInfo.cs
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO.dotNet\obj\Release\netcoreapp3.1\RSPO.dotNet.csproj.CoreCompileInputs.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO.dotNet\obj\Release\netcoreapp3.1\RSPO.dotNet.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO.dotNet\obj\Release\netcoreapp3.1\RSPO.dotNet.pdb

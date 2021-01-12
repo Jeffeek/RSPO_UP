@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "RSPO.dotNet/1.0.0": {
+        "runtime": {
+          "RSPO.dotNet.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RSPO.dotNet/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
