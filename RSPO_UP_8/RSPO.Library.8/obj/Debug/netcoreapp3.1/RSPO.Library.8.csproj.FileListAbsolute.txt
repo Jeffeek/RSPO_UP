@@ -1,0 +1,9 @@
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_8\RSPO.Library.8\bin\Debug\netcoreapp3.1\RSPO.Library.8.deps.json
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_8\RSPO.Library.8\bin\Debug\netcoreapp3.1\RSPO.Library.8.dll
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_8\RSPO.Library.8\bin\Debug\netcoreapp3.1\RSPO.Library.8.pdb
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_8\RSPO.Library.8\obj\Debug\netcoreapp3.1\RSPO.Library.8.csprojAssemblyReference.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_8\RSPO.Library.8\obj\Debug\netcoreapp3.1\RSPO.Library.8.AssemblyInfoInputs.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_8\RSPO.Library.8\obj\Debug\netcoreapp3.1\RSPO.Library.8.AssemblyInfo.cs
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_8\RSPO.Library.8\obj\Debug\netcoreapp3.1\RSPO.Library.8.csproj.CoreCompileInputs.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_8\RSPO.Library.8\obj\Debug\netcoreapp3.1\RSPO.Library.8.dll
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_8\RSPO.Library.8\obj\Debug\netcoreapp3.1\RSPO.Library.8.pdb

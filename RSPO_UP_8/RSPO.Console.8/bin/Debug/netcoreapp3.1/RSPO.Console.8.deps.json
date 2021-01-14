@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "RSPO.Console.8/1.0.0": {
+        "dependencies": {
+          "RSPO.Library.8": "1.0.0"
+        },
+        "runtime": {
+          "RSPO.Console.8.dll": {}
+        }
+      },
+      "RSPO.Library.8/1.0.0": {
+        "runtime": {
+          "RSPO.Library.8.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RSPO.Console.8/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSPO.Library.8/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

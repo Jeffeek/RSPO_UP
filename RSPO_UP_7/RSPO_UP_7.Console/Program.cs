@@ -4,9 +4,9 @@ using RSPO.dotNet;
 
 namespace RSPO_UP_7.Console
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             System.Console.WriteLine("Первое задание: ");
             var formule = new AlphaFormule(-15.246, 4.642e-2, 20.001e2);
