@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "dgSpecHash": "L3aUicIupWjxrfU/BZ4jBPCGqF39h8668UR2v0hZoNe4onGMbr6XuXhNGRatsI+vba7KTOLhXpVZIUX/ZsmeYQ==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\Aprismatic.ElGamalExt\\Aprismatic.ElGamalExt.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\misha\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.3\\system.runtime.compilerservices.unsafe.4.5.3.nupkg.sha512",
+    "C:\\Users\\misha\\.nuget\\packages\\system.threading.channels\\4.7.1\\system.threading.channels.4.7.1.nupkg.sha512",
+    "C:\\Users\\misha\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Не удалось найти пакет Aprismatic.BigIntegerExt. Пакеты с таким идентификатором отсутствуют в следующих источниках пакетов: Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "Aprismatic.BigIntegerExt",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Не удалось найти пакет Aprismatic.BigFraction. Пакеты с таким идентификатором отсутствуют в следующих источниках пакетов: Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "Aprismatic.BigFraction",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Не удалось найти пакет Aprismatic.ElGamalExt.Homomorphism. Пакеты с таким идентификатором отсутствуют в следующих источниках пакетов: Microsoft Visual Studio Offline Packages, nuget.org",
+      "libraryId": "Aprismatic.ElGamalExt.Homomorphism",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\Aprismatic.ElGamalExt\\Aprismatic.ElGamalExt.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\Aprismatic.ElGamalExt\\Aprismatic.ElGamalExt.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\Aprismatic.ElGamalExt\\Aprismatic.ElGamalExt.csproj",
+        "projectName": "Aprismatic.ElGamalExt",
+        "projectPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\Aprismatic.ElGamalExt\\Aprismatic.ElGamalExt.csproj",
+        "packagesPath": "C:\\Users\\misha\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\Aprismatic.ElGamalExt\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\misha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "Aprismatic.BigFraction": {
+              "target": "Package",
+              "version": "[0.1.3, )"
+            },
+            "Aprismatic.BigIntegerExt": {
+              "target": "Package",
+              "version": "[0.1.6, )"
+            },
+            "Aprismatic.ElGamalExt.Homomorphism": {
+              "target": "Package",
+              "version": "[0.10.2, )"
+            },
+            "System.Threading.Channels": {
+              "target": "Package",
+              "version": "[4.7.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
