@@ -4,6 +4,11 @@ namespace RSPO.Library._8
 {
     public class ArrayTasks
     {
+	    /// <summary>
+		/// Увеличивает каждый нечетный элемент массива на первый нечетный элемент массива
+		/// </summary>
+		/// <param name="array"></param>
+		/// <returns>Новый массив, который либо остался без изменений, либо изменен по условию</returns>
 	    public int[] IncreaseOnFirstOdd(int[] array)
 	    {
 		    int firstOdd;

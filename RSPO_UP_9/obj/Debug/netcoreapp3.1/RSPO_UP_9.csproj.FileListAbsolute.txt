@@ -1,0 +1,13 @@
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\bin\Debug\netcoreapp3.1\RSPO_UP_9.exe
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\bin\Debug\netcoreapp3.1\RSPO_UP_9.deps.json
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\bin\Debug\netcoreapp3.1\RSPO_UP_9.runtimeconfig.json
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\bin\Debug\netcoreapp3.1\RSPO_UP_9.runtimeconfig.dev.json
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\bin\Debug\netcoreapp3.1\RSPO_UP_9.dll
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\bin\Debug\netcoreapp3.1\RSPO_UP_9.pdb
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.csprojAssemblyReference.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.AssemblyInfoInputs.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.AssemblyInfo.cs
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.csproj.CoreCompileInputs.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.dll
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.pdb
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.genruntimeconfig.cache

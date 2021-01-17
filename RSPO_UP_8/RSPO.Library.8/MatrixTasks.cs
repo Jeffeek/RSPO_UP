@@ -72,7 +72,12 @@ namespace RSPO.Library._8
 	        return (row, column);
         }
 
-        private double Avg(int[,] matrix)
+		/// <summary>
+		/// Возвращает среднее арифметическое матрицы
+		/// </summary>
+		/// <param name="matrix"></param>
+		/// <returns>Среднее арифметическое матрицы</returns>
+		private double Avg(int[,] matrix)
         {
 	        if(matrix == null) throw new ArgumentException(nameof(matrix));
 	        int sum = 0;
