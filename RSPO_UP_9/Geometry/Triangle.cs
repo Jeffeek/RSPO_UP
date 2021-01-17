@@ -6,27 +6,35 @@ using RSPO_UP_9.Geometry.Fundamental;
 
 namespace RSPO_UP_9.Geometry
 {
-    public class Triangle : IFigure
+    public class Triangle : FigureBase
     {
         private const int StraightCount = 3;
-        public Straight[] Straights { get; }
+        public double Height1 { get; }
+        public double Height2 { get; }
+        public double Height3 { get; }
 
-        public Triangle(IEnumerable<Straight> straights)
+        public Triangle(params Straight[] straights) : base(straights)
         {
-	        var lines = straights.ToArray();
-	        if(lines.Length != StraightCount) throw new ArgumentException(nameof(straights));
-	        if (!IsExists(lines)) throw new ArgumentException(nameof(straights));
-	        Straights = lines;
+	        Square = Math.Sqrt(HalfPerimeter *
+	                           (HalfPerimeter - Straights[2].Length) *
+	                           (HalfPerimeter - Straights[0].Length) *
+	                           (HalfPerimeter - Straights[1].Length));
+	        
+	        Height1 = 2 * Square / Straights[2].Length;
+	        Height2 = 2 * Square / Straights[0].Length;
+	        Height3 = 2 * Square / Straights[1].Length;
         }
 
-        private bool IsExists(Straight[] straights) => straights[1].Length + straights[2].Length - straights[0].Length > 0 &&
-                                                       straights[0].Length + straights[2].Length - straights[1].Length > 0 &&
-                                                       straights[0].Length + straights[1].Length - straights[2].Length > 0;
+        #region Overrides of FigureBase
 
-        public double Square() => 0.25 *
-                                  Math.Sqrt((Straights[0].Length + Straights[1].Length + Straights[2].Length) *
-                                            (Straights[1].Length + Straights[2].Length - Straights[0].Length) *
-                                            (Straights[0].Length + Straights[2].Length - Straights[1].Length) *
-                                            (Straights[0].Length + Straights[1].Length - Straights[2].Length));
+        /// <inheritdoc />
+        public override bool ArePointsValid(params Straight[] straights)
+        {
+	        if(straights.Length != StraightCount) throw new ArgumentException(nameof(straights));
+	        //TODO: доделать проверку
+	        return true;
+        }
+
+        #endregion
     }
 }

@@ -12,16 +12,18 @@ namespace RSPO_UP_9
 	    // ReSharper disable once ArrangeTypeMemberModifiers
 	    static void Main(string[] args)
 	    {
-		    var point1 = new Point(-10, 0);
-		    var point2 = new Point(0, 10);
-			var point3 = new Point(10, 0);
+            var rectStraights = new Straight[]
+                                {
+                                    new Straight(-10, 10, 10, 10),
+                                    new Straight(10, 10, 10, -10),
+                                    new Straight(10, -10, -10, -10),
+                                    new Straight(-10, -10, -10, 10)
+                                };
 
-			var straight1 = new Straight(point1, point2);
-			var straight2 = new Straight(point2, point3);
-			var straight3 = new Straight(point3, point1);
-
-			var triangle = new Triangle(new[] {straight1, straight2, straight3});
-
+            var rect = new Rectangle(rectStraights);
+            var circle = new Circle(new Straight(-11, 5, -11, 5), 3);
+            var res = rect.IsIntersectsWith(circle);
+			
 			Console.ReadLine();
 	    }
     }

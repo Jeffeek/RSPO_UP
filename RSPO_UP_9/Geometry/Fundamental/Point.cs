@@ -13,8 +13,8 @@ namespace RSPO_UP_9.Geometry.Fundamental
 		    Y = y;
 	    }
 
-		public static double Length(Point first, Point second) => Math.Round(Math.Sqrt(Math.Pow(second.X - first.X, 2) + 
-		                                                                      Math.Pow(second.Y - first.Y, 2)), 2);
+		public static double Length(Point first, Point second) => Math.Sqrt(Math.Pow(second.X - first.X, 2) + 
+		                                                                      Math.Pow(second.Y - first.Y, 2));
 		
 		
 

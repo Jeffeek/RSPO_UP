@@ -24,7 +24,7 @@ namespace RSPO_UP_9.Geometry.Fundamental
 
 		public Point IntersectionWith(Straight other)
 		{
-			var X = -((First.X * Second.Y - Second.X * First.Y) *
+			var x = -((First.X * Second.Y - Second.X * First.Y) *
 			            (other.Second.X - other.First.X) -
 			            (other.First.X * other.Second.Y -
 			             other.Second.X *
@@ -36,24 +36,15 @@ namespace RSPO_UP_9.Geometry.Fundamental
 			            other.Second.Y) *
 			           (Second.X - First.X));
 
-			var Y = ((other.First.Y - other.Second.Y) *
-			           -X -
+			var y = ((other.First.Y - other.Second.Y) *
+			           -x -
 			           (other.First.X * other.Second.Y -
 			            other.Second.X *
 			            other.First.Y)) /
 			          (other.Second.X - other.First.X);
-			return new Point(X, Y);
+			return new Point(x, y);
 		}
 		
-		//TODO: not working
-		public bool IsIntersectWith(Straight other)
-		{
-			var x1diff = First.X - Second.X;
-			var x2diff = other.First.X - other.Second.X;
-			var y1diff = First.Y - Second.Y;
-			var y2diff = other.First.Y - other.Second.Y;
-			return x1diff * y1diff - x2diff * y2diff == 0;
-		}		
 
 		#region Equality members
 

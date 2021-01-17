@@ -5,57 +5,105 @@ using RSPO_UP_9.Geometry.Fundamental;
 
 namespace RSPO_UP_9.Geometry
 {
-    public class Rectangle : IFigure
+    public class Rectangle : FigureBase
     {
 		private const int StraightsCount = 4;
-		/// <summary>
-		///	    1
-		///	  -----
-		/// 4 |   | 2
-		///   -----
-		///     3
-		/// </summary>
-	    public Straight[] Straights { get; }
 
-	    public Rectangle(params Point[] points)
-	    {
-		    if(points.Length != StraightsCount) throw new ArgumentException(nameof(points));
-		    if(!ArePointsValid(points)) throw new ArgumentException(nameof(points));
-		    Straights = new Straight[StraightsCount]
-		                {
-			                new Straight(points[0], points[1]),
-			                new Straight(points[1], points[2]),
-			                new Straight(points[2], points[3]),
-			                new Straight(points[3], points[0])
-		                };
-		    
-	    }
+		public double InnerRadius { get; protected set; }
+		
+		public double OuterRadius { get; protected set; }
+		
+		public double Diagonal { get; protected set; }
 
-	    protected bool ArePointsValid(params Point[] points)
+		public override bool ArePointsValid(params Straight[] straights)
 	    {
-		    var diagonal1 = Point.Length(points[0], points[2]);
-		    var diagonal2 = Point.Length(points[1], points[3]);
+		    if(straights.Length != StraightsCount) throw new ArgumentException(nameof(straights));
+		    var diagonal1 = Point.Length(straights[0].First, straights[1].Second);
+		    var diagonal2 = Point.Length(straights[1].First, straights[2].Second);
 		    return diagonal1 == diagonal2;
 	    }
 
-	    public Rectangle(params Straight[] straights)
+	    public Rectangle(params Straight[] straights) : base(straights)
 	    {
-		    if (straights.Length != StraightsCount) throw new ArgumentException(nameof(straights));
-			if (!ArePointsValid(straights[0].First, straights[0].Second,
-			                    straights[1].First, straights[1].Second,
-			                    straights[2].First, straights[2].Second,
-			                    straights[3].First, straights[3].Second)) throw new ArgumentException(nameof(straights));
-			Straights = straights;
-	    }
+		    Square = Straights[0].Length * Straights[1].Length;
+		    InnerRadius = Straights[0].Length / 2;
+		    OuterRadius = Math.Sqrt(Math.Pow(Straights[3].Length, 2) + 
+		                            Math.Pow(Straights[0].Length, 2)) / 2;
 
+		    Diagonal = Point.Length(straights[0].First, straights[1].Second);
+	    }
+	    
+	    /// <summary>
+		/// Возвращает две площади, которые остаются после вставки треугольника в прямоугольник
+		/// </summary>
+		/// <param name="triangle"></param>
+		/// <returns></returns>
+	    public (double, double) InsertTriangle(Triangle triangle)
+        {
+			//TODO: проверить входные данные
+			var firstTrianglePieces = new[]
+			                          {
+				                          new Straight(Straights[3].First, Straights[3].Second),
+				                          new Straight(Straights[3].Second, triangle.Straights[1].First),
+				                          new Straight(triangle.Straights[1].First, Straights[3].First)
+			                          };
+
+			var secondTrianglePieces = new[]
+			                          {
+				                          new Straight(triangle.Straights[0].Second, Straights[0].Second),
+				                          new Straight(Straights[0].Second, Straights[1].Second),
+				                          new Straight(Straights[1].Second, triangle.Straights[0].Second)
+			                          };
+
+			var first = new Triangle(firstTrianglePieces);
+			var second = new Triangle(secondTrianglePieces);
+			return (first.Square, second.Square);
+        }
+
+	    /// <summary>
+	    /// Принимает в себя коллекцию параллельных прямых основанию прямоугольника
+		/// Возвращает 2 точки: левая сторона пересечения и вторая сторона пересечения
+		/// </summary>
+		/// <param name="straights"></param>
+		/// <returns></returns>
 	    public IEnumerable<(Point, Point)> GetSideParallelIntersectionPoints(IEnumerable<Straight> straights)
 	    {
 		    var lines = straights.ToArray();
 		    foreach(var line in lines)
-			    if (line.IsIntersectWith(Straights[3]) && line.IsIntersectWith(Straights[1]))
-					yield return (Straights[3].IntersectionWith(line), Straights[1].IntersectionWith(line));
+		    {
+			    yield return (Straights[3].IntersectionWith(line),
+			                  Straights[1].IntersectionWith(line));
+		    }
 	    }
 
-	    public double Square() => Straights[0].Length * Straights[1].Length;
+	    /// <summary>
+		/// Проверка того если круг пересекается с прямоугольником
+		/// </summary>
+		/// <param name="circle"></param>
+		/// <returns></returns>
+	    public bool IsIntersectsWith(Circle circle)
+	    {
+		    var halfWidth = Straights[0].Length / 2;
+		    var halfHeight = Straights[1].Length / 2;
+		    var rectangleCenter = Straights[2].Second;
+		    var cx = Math.Abs(circle.CenterPoint.X - rectangleCenter.X - halfWidth);
+		    var xDist = halfWidth + circle.Radius;
+		    if (cx > xDist)
+			    return false;
+		    var cy = Math.Abs(circle.CenterPoint.Y - rectangleCenter.Y - halfHeight);
+		    var yDist = halfHeight + circle.Radius;
+		    if (cy > yDist)
+			    return false;
+		    if (cx <= halfWidth || cy <= halfHeight)
+			    return true;
+		    var xCornerDist = cx - halfWidth;
+		    var yCornerDist = cy - halfHeight;
+		    var xCornerDistSq = xCornerDist * xCornerDist;
+		    var yCornerDistSq = yCornerDist * yCornerDist;
+		    var maxCornerDistSq = circle.Radius * circle.Radius;
+		    return xCornerDistSq + yCornerDistSq <= maxCornerDistSq;
+		}
+	    
+	    
     }
 }
