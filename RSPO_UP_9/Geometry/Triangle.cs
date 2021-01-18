@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using RSPO_UP_9.Geometry.Fundamental;
 
 namespace RSPO_UP_9.Geometry
 {
-    public class Triangle : FigureBase
+    public class Triangle : AngleFigure
     {
         private const int StraightCount = 3;
         public double Height1 { get; }
@@ -28,7 +25,7 @@ namespace RSPO_UP_9.Geometry
         #region Overrides of FigureBase
 
         /// <inheritdoc />
-        public override bool ArePointsValid(params Straight[] straights)
+        public override bool ArePointsValid(params Point[] straights)
         {
 	        if(straights.Length != StraightCount) throw new ArgumentException(nameof(straights));
 	        //TODO: доделать проверку

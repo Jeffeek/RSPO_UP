@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "RSPO_UP_10.Cnsle/1.0.0": {
+        "dependencies": {
+          "RSPO_UP_10.Library": "1.0.0"
+        },
+        "runtime": {
+          "RSPO_UP_10.Cnsle.dll": {}
+        }
+      },
+      "RSPO_UP_10.Library/1.0.0": {
+        "runtime": {
+          "RSPO_UP_10.Library.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RSPO_UP_10.Cnsle/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSPO_UP_10.Library/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,9 @@
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\bin\Debug\netcoreapp3.1\RSPO_UP_10.Library.deps.json
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\bin\Debug\netcoreapp3.1\RSPO_UP_10.Library.dll
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\bin\Debug\netcoreapp3.1\RSPO_UP_10.Library.pdb
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.AssemblyInfoInputs.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.AssemblyInfo.cs
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.csproj.CoreCompileInputs.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.dll
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.pdb
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.csprojAssemblyReference.cache

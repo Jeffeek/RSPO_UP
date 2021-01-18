@@ -5,22 +5,19 @@ using RSPO_UP_9.Geometry.Fundamental;
 
 namespace RSPO_UP_9.Geometry
 {
-    public class Rectangle : FigureBase
+    public class Rectangle : AngleFigure
     {
 		private const int StraightsCount = 4;
+		public double InnerRadius { get;  }
+		public double OuterRadius { get; }
+		public double Diagonal { get; }
 
-		public double InnerRadius { get; protected set; }
-		
-		public double OuterRadius { get; protected set; }
-		
-		public double Diagonal { get; protected set; }
-
-		public override bool ArePointsValid(params Straight[] straights)
+		public override bool ArePointsValid(params Point[] points)
 	    {
-		    if(straights.Length != StraightsCount) throw new ArgumentException(nameof(straights));
-		    var diagonal1 = Point.Length(straights[0].First, straights[1].Second);
-		    var diagonal2 = Point.Length(straights[1].First, straights[2].Second);
-		    return diagonal1 == diagonal2;
+		    if(points.Length != StraightsCount * 2) return false;
+		    var diagonal1 = Point.Length(points[0], points[2]);
+		    var diagonal2 = Point.Length(points[1], points[3]);
+		    return Math.Abs(diagonal1 - diagonal2) < 0.0000000000000000000001;
 	    }
 
 	    public Rectangle(params Straight[] straights) : base(straights)
@@ -29,7 +26,6 @@ namespace RSPO_UP_9.Geometry
 		    InnerRadius = Straights[0].Length / 2;
 		    OuterRadius = Math.Sqrt(Math.Pow(Straights[3].Length, 2) + 
 		                            Math.Pow(Straights[0].Length, 2)) / 2;
-
 		    Diagonal = Point.Length(straights[0].First, straights[1].Second);
 	    }
 	    
@@ -103,7 +99,5 @@ namespace RSPO_UP_9.Geometry
 		    var maxCornerDistSq = circle.Radius * circle.Radius;
 		    return xCornerDistSq + yCornerDistSq <= maxCornerDistSq;
 		}
-	    
-	    
     }
 }

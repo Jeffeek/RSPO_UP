@@ -1,0 +1,16 @@
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\bin\Debug\netcoreapp3.1\RSPO_UP_10.Cnsle.exe
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\bin\Debug\netcoreapp3.1\RSPO_UP_10.Cnsle.deps.json
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\bin\Debug\netcoreapp3.1\RSPO_UP_10.Cnsle.runtimeconfig.json
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\bin\Debug\netcoreapp3.1\RSPO_UP_10.Cnsle.runtimeconfig.dev.json
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\bin\Debug\netcoreapp3.1\RSPO_UP_10.Cnsle.dll
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\bin\Debug\netcoreapp3.1\RSPO_UP_10.Cnsle.pdb
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\bin\Debug\netcoreapp3.1\RSPO_UP_10.Library.dll
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\bin\Debug\netcoreapp3.1\RSPO_UP_10.Library.pdb
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\obj\Debug\netcoreapp3.1\RSPO_UP_10.Cnsle.csprojAssemblyReference.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\obj\Debug\netcoreapp3.1\RSPO_UP_10.Cnsle.AssemblyInfoInputs.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\obj\Debug\netcoreapp3.1\RSPO_UP_10.Cnsle.AssemblyInfo.cs
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\obj\Debug\netcoreapp3.1\RSPO_UP_10.Cnsle.csproj.CoreCompileInputs.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\obj\Debug\netcoreapp3.1\RSPO_UP_10.Cnsle.csproj.CopyComplete
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\obj\Debug\netcoreapp3.1\RSPO_UP_10.Cnsle.dll
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\obj\Debug\netcoreapp3.1\RSPO_UP_10.Cnsle.pdb
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Cnsle\obj\Debug\netcoreapp3.1\RSPO_UP_10.Cnsle.genruntimeconfig.cache

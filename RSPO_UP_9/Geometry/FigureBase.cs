@@ -11,27 +11,20 @@ namespace RSPO_UP_9.Geometry
 	    #region Implementation of IFigure
 
 	    /// <inheritdoc />
-	    public virtual double Perimeter { get; protected set; }
+	    public double Perimeter { get; protected set; }
 
 	    /// <inheritdoc />
-	    public virtual double HalfPerimeter { get; protected set; }
+	    public double HalfPerimeter { get; protected set; }
 	    
 	    /// <inheritdoc />
-	    public virtual double Square { get; protected set; }
+	    public double Square { get; protected set; }
 
 	    /// <inheritdoc />
-	    public Straight[] Straights { get; }
+	    public abstract bool ArePointsValid(params Point[] points);
 
-	    /// <inheritdoc />
-	    public abstract bool ArePointsValid(params Straight[] straights);
-
-	    protected FigureBase(params Straight[] straights)
+	    protected FigureBase(params Point[] points)
 	    {
-		    // ReSharper disable once VirtualMemberCallInConstructor
-		    if(!ArePointsValid(straights)) throw new ArgumentException(nameof(straights));
-		    Straights = straights;
-		    Perimeter = Straights.Sum(x => x.Length);
-			HalfPerimeter = Perimeter / 2;
+		    if(!ArePointsValid(points)) throw new ArgumentException(nameof(points));
 	    }
 
 	    #endregion
