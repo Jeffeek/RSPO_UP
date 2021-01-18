@@ -7,22 +7,21 @@ namespace RSPO.Library._8
     public class MatrixTasks
     {
 		/// <summary>
-		/// Даны целые положительные числа M, N и набор из M чисел.
-		/// Сформировать матрицу размера M × N, у которой в каждом столбце содержатся
-		/// все числа из исходного набора (в том же порядке).
+		/// Формирует новую матрицу, у которой в каждом столбце содержаться
+		/// все числа из <param name="values"></param> в том же порядке
 		/// </summary>
-		/// <param name="m"></param>
-		/// <param name="n"></param>
+		/// <param name="rowsCount"></param>
+		/// <param name="columnsCount"></param>
 		/// <param name="values"></param>
 		/// <returns></returns>
-		public int[,] CreateColumnedMatrix(int m, int n, IEnumerable<int> values)
+		public int[,] CreateColumnedMatrix(int rowsCount, int columnsCount, IEnumerable<int> values)
         {
-            if(values.Count() != m) throw new ArgumentException(nameof(values));
-            var matrix = new int[m, n];
+            if(values.Count() != rowsCount) throw new ArgumentException(nameof(values));
+            var matrix = new int[rowsCount, columnsCount];
             var valuesAsArray = values.ToArray();
-            for(var i = 0; i < n; i++)
+            for(var i = 0; i < columnsCount; i++)
             {
-	            for(var j = 0; j < m; j++)
+	            for(var j = 0; j < rowsCount; j++)
 	            {
 		            matrix[j, i] = valuesAsArray[j];
 	            }
@@ -32,44 +31,29 @@ namespace RSPO.Library._8
         }
 
 		/// <summary>
-		/// Дана матрица размера M × N. Найти номера строки и столбца для
-		/// элемента матрицы, наиболее близкого к среднему значению всех ее элементов.
+		/// Возвращает индексы строки и столбца элемента, который максимально близок к
+		/// среднему арифметическому матрицы
 		/// </summary>
-		/// <param name="matrix"></param>
-		/// <returns></returns>
+		/// <param name="matrix">Исходная матрица</param>
+		/// <returns>Индексы строки и столбца в формате <see cref="ValueTuple"/></returns>
 		public ValueTuple<int, int> GetIndexesNearAvg(int[,] matrix)
         {
 	        var avg = Avg(matrix);
-	        var error = avg;
-	        int row = 0, column = 0;
-	        for (var i = 0; i < matrix.GetLength(0); i++)
-	        {
-		        for (var j = 0; j < matrix.GetLength(1); j++)
-		        {
-			        if(matrix[j, i] > avg)
-			        {
-				        if (matrix[j, i] - avg < error)
-					        error = matrix[j, i] - avg;
-				        row = i;
-				        column = j;
-			        }
-					else if(matrix[j, i] < avg)
-			        {
-				        if (avg - matrix[j, i] < error)
-					        error = avg - matrix[j, i];
-				        row = i;
-				        column = j;
-			        }
-			        else
-			        {
-				        error = matrix[j, i];
-				        row = i;
-				        column = j;
-			        }
-				}
-	        }
 
-	        return (row, column);
+			int row = 0, column = 0;
+			for (int i = 0; i < matrix.GetLength(0); i++)
+			{
+				for (int j = 0; j < matrix.GetLength(1); j++)
+				{
+					if (Math.Abs(avg - matrix[row, column]) > Math.Abs(avg - matrix[i, j]))
+					{
+						row = i;
+						column = j;
+					}
+				}
+			}
+
+			return (row, column);
         }
 
 		/// <summary>
@@ -91,5 +75,38 @@ namespace RSPO.Library._8
 
 	        return (double)sum / (matrix.GetLength(0) * matrix.GetLength(1));
         }
-    }
+
+		public int GetMaxSteps(int[,] matrix, int sum) => GetMaxStepsInternal(matrix, matrix.GetLength(0) - 1, matrix.GetLength(1) - 1, sum);
+		
+		//TODO: жесть
+		/// <summary>
+		/// Дан двумерный массив. Каждая ячейка имеет вес указанный в матрице,
+		/// необходимо пройти наибольшее количество шагов имею сумму n.
+		/// Начиная с правого верхнего. Каждый шаг её уменьшает на значения в матрице. 
+		/// </summary>
+		private int GetMaxStepsInternal(int[,] matrix,
+		                               int rowIndex, 
+		                               int columnIndex,
+		                               int maxDistance,
+		                               int stepsCount = 0)
+		{
+			var variants = new List<(int, int)>
+			               {
+				               (-1, 0),
+				               (1, 0),
+				               (0, -1),
+				               (0, 1)
+			               }
+							.Where(el => el.Item1 + rowIndex >= 0 && 
+				             el.Item1 + rowIndex < matrix.GetLength(0) && 
+				             el.Item2 + columnIndex >= 0 && 
+				             el.Item2 + columnIndex < matrix.GetLength(1)).ToList();
+			var value = variants.Select(el => GetMaxStepsInternal(matrix,
+			                                                      rowIndex + el.Item1,
+			                                              columnIndex + el.Item2,
+			                                              maxDistance - matrix[rowIndex + el.Item1, columnIndex + el.Item2],
+			                                              stepsCount + 1)).Max();
+			return value;
+		}
+	}
 }
