@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RSPO.Library._8;
 
@@ -14,7 +11,9 @@ namespace RSPO_UP_8.Tests
 	    public void CreateColumnedMatrix_test_positive()
 	    {
 		    var columnsItems = new []{1, 2, 3};
-		    var expected = new int[,] {{1, 1, 1}, {2, 2, 2}, {3, 3, 3}};
+		    var expected = new int[,] {{1, 1, 1}, 
+			                              {2, 2, 2},
+			                              {3, 3, 3}};
 		    var actual = new MatrixTasks().CreateColumnedMatrix(3, 3, columnsItems);
 		    for (var i = 0; i < 3; i++)
             {
@@ -46,6 +45,22 @@ namespace RSPO_UP_8.Tests
 			var expected = (2, 0);
 			var actual = new MatrixTasks().GetIndexesNearAvg(matrix);
 			Assert.IsTrue(expected.Item1 == actual.Item1 && expected.Item2 == actual.Item2);
+		}
+
+		[TestMethod]
+		public void GetMaxSteps_test()
+		{
+			var matrix = new[,]
+			             {
+				             {20, 20, 20},
+				             {20, 20, 1000},
+				             {20, 5, 1000}
+			             };
+
+			var maxSteps = new MaxSteps();
+			maxSteps.StepsCount(matrix, 0,2, 100, 0);
+			int steps = MaxSteps._stepsCount;
+			Assert.AreEqual(steps, 7);
 		}
 	}
 }

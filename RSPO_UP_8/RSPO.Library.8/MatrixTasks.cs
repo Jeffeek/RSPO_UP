@@ -76,9 +76,8 @@ namespace RSPO.Library._8
 	        return (double)sum / (matrix.GetLength(0) * matrix.GetLength(1));
         }
 
-		public int GetMaxSteps(int[,] matrix, int sum) => GetMaxStepsInternal(matrix, matrix.GetLength(0) - 1, matrix.GetLength(1) - 1, sum);
+		public int GetMaxSteps(int[,] matrix, int sum) => GetMaxStepsInternal(matrix, matrix.GetLength(0) - 1, matrix.GetLength(1) - 1, sum - matrix[matrix.GetLength(0) - 1, matrix.GetLength(1) - 1]);
 		
-		//TODO: жесть
 		/// <summary>
 		/// Дан двумерный массив. Каждая ячейка имеет вес указанный в матрице,
 		/// необходимо пройти наибольшее количество шагов имею сумму n.
@@ -90,23 +89,11 @@ namespace RSPO.Library._8
 		                               int maxDistance,
 		                               int stepsCount = 0)
 		{
-			var variants = new List<(int, int)>
-			               {
-				               (-1, 0),
-				               (1, 0),
-				               (0, -1),
-				               (0, 1)
-			               }
-							.Where(el => el.Item1 + rowIndex >= 0 && 
-				             el.Item1 + rowIndex < matrix.GetLength(0) && 
-				             el.Item2 + columnIndex >= 0 && 
-				             el.Item2 + columnIndex < matrix.GetLength(1)).ToList();
-			var value = variants.Select(el => GetMaxStepsInternal(matrix,
-			                                                      rowIndex + el.Item1,
-			                                              columnIndex + el.Item2,
-			                                              maxDistance - matrix[rowIndex + el.Item1, columnIndex + el.Item2],
-			                                              stepsCount + 1)).Max();
+			if(maxDistance <= 0 || rowIndex < 0 || columnIndex < 0 || rowIndex >= matrix.GetLength(0) || columnIndex >= matrix.GetLength(1)) return stepsCount;
+			var variants = new List<(int, int)> {(-1, 0), (1, 0), (0, -1), (0, 1)}.Where(el => el.Item1 + rowIndex >= 0 &&el.Item1 + rowIndex < matrix.GetLength(0) && el.Item2 + columnIndex >= 0 && el.Item2 + columnIndex < matrix.GetLength(1));
+			var value = variants.Select(el => GetMaxStepsInternal(matrix, rowIndex + el.Item1, columnIndex + el.Item2, maxDistance - matrix[rowIndex + el.Item1, columnIndex + el.Item2], stepsCount + 1)).Max();
 			return value;
 		}
+		
 	}
 }
