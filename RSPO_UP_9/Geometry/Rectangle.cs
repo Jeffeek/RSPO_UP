@@ -17,7 +17,7 @@ namespace RSPO_UP_9.Geometry
 		    if(points.Length != StraightsCount * 2) return false;
 		    var diagonal1 = Point.Length(points[0], points[2]);
 		    var diagonal2 = Point.Length(points[1], points[3]);
-		    return Math.Abs(diagonal1 - diagonal2) < 0.0000000000000000000001;
+		    return Math.Abs(diagonal1 - diagonal2) < 0.0000000000001;
 	    }
 
 	    public Rectangle(params Straight[] straights) : base(straights)
@@ -57,18 +57,22 @@ namespace RSPO_UP_9.Geometry
         }
 
 	    /// <summary>
-	    /// Принимает в себя коллекцию параллельных прямых основанию прямоугольника
-		/// Возвращает 2 точки: левая сторона пересечения и вторая сторона пересечения
+	    /// Принимает в себя коллекцию параллельных прямых боковым сторонам прямоугольника
+		/// Возвращает 2 точки: верхняя точка пересечения и вторая точка пересечения нижнего основания
 		/// </summary>
 		/// <param name="straights"></param>
 		/// <returns></returns>
-	    public IEnumerable<(Point, Point)> GetSideParallelIntersectionPoints(IEnumerable<Straight> straights)
+	    public IEnumerable<(Point, Point)> GroundParallelIntersectionPoints(IEnumerable<Straight> straights)
 	    {
-		    var lines = straights.ToArray();
-		    foreach(var line in lines)
+		    var straightsAsArray = straights as Straight[] ?? straights.ToArray();
+		    foreach(var line in straightsAsArray)
 		    {
-			    yield return (Straights[3].IntersectionWith(line),
-			                  Straights[1].IntersectionWith(line));
+			    if (Straight.IsIntersectsWith(line, Straights[0]) &&
+			        Straight.IsIntersectsWith(line, Straights[2]))
+			    {
+				    yield return (Straights[0].IntersectionWith(line),
+				                  Straights[2].IntersectionWith(line));
+				}
 		    }
 	    }
 

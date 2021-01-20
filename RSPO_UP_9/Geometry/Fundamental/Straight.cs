@@ -24,26 +24,48 @@ namespace RSPO_UP_9.Geometry.Fundamental
 
 		public Point IntersectionWith(Straight other)
 		{
-			var x = -((First.X * Second.Y - Second.X * First.Y) *
-			            (other.Second.X - other.First.X) -
-			            (other.First.X * other.Second.Y -
-			             other.Second.X *
-			             other.First.Y) *
-			            (Second.X - First.X)) /
-			          ((First.Y - Second.Y) *
-			           (other.Second.X - other.First.X) -
-			           (other.First.Y -
-			            other.Second.Y) *
-			           (Second.X - First.X));
+			double xo = First.X,
+			       yo = First.Y;
 
-			var y = ((other.First.Y - other.Second.Y) *
-			           -x -
-			           (other.First.X * other.Second.Y -
-			            other.Second.X *
-			            other.First.Y)) /
-			          (other.Second.X - other.First.X);
+			double p = Second.X - First.X,
+			       q = Second.Y - First.Y;
+
+			double x1 = other.First.X,
+			       y1 = other.First.Y;
+			double p1 = other.Second.X - other.First.X,
+			       q1 = other.Second.Y - other.First.Y;
+
+			var x = (xo * q * p1 - x1 * q1 * p - yo * p * p1 + y1 * p * p1) /
+			        (q * p1 - q1 * p);
+			var y = (yo * p * q1 - y1 * p1 * q - xo * q * q1 + x1 * q * q1) /
+			        (p * q1 - p1 * q);
+
 			return new Point(x, y);
 		}
+
+		public static bool IsIntersectsWith(Straight first, Straight second)
+        {
+	        double x1 = first.First.X, y1 = first.First.Y,
+	               x2 = first.Second.X, y2 = first.Second.Y,
+	               x3 = second.First.X, y3 = second.First.Y,
+	               x4 = second.Second.X, y4 = second.Second.Y;
+
+	        var denominator = (y4 - y3) * (x1 - x2) - (x4 - x3) * (y1 - y2);
+	        if (denominator == 0)
+	        {
+		        return (x1 * y2 - x2 * y1) * (x4 - x3) -
+		               (x3 * y4 - x4 * y3) * (x2 - x1) == 0 &&
+		               (x1 * y2 - x2 * y1) * (y4 - y3) -
+		               (x3 * y4 - x4 * y3) * (y2 - y1) == 0;
+	        }
+
+	        var numerator_a = (x4 - x2) * (y4 - y3) - (x4 - x3) * (y4 - y2);
+	        var numerator_b = (x1 - x2) * (y4 - y2) - (x4 - x2) * (y1 - y2);
+	        var Ua = numerator_a / denominator;
+	        var Ub = numerator_b / denominator;
+
+	        return Ua >= 0 && Ua <= 1 && Ub >= 0 && Ub <= 1;
+        }
 		
 
 		#region Equality members

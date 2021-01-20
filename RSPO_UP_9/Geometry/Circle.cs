@@ -5,6 +5,9 @@ namespace RSPO_UP_9.Geometry
 {
 	public sealed class Circle : NonAngleFigure
 	{
+		/// <inheritdoc />
+		public override string ToString() => $"{nameof(CenterPoint)}: {CenterPoint}, {nameof(Radius)}: {Radius}, {nameof(Diameter)}: {Diameter}, {nameof(Square)}: {Square}";
+
 		private const int StraightsCount = 1;
 		public Point CenterPoint { get; }
 		public double Radius { get; }
@@ -19,7 +22,7 @@ namespace RSPO_UP_9.Geometry
 			Perimeter = 2 * Math.PI * Radius;
 		}
 
-		public Circle(Point centerPoint, Point edgePoint)
+		public Circle(Point centerPoint, Point edgePoint) : base(centerPoint, edgePoint)
 		{
 			CenterPoint = centerPoint;
 			Radius = Point.Length(centerPoint, edgePoint);
@@ -34,5 +37,11 @@ namespace RSPO_UP_9.Geometry
 		public override bool ArePointsValid(params Point[] points) => points.Length == 1 || points.Length == 2;
 
 		#endregion
-    }
+
+		#region Overrides of Object
+
+		
+
+		#endregion
+	}
 }

@@ -47,6 +47,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "E:\\projectsVS\\Nuget Packages Local": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

@@ -4,8 +4,11 @@ namespace RSPO_UP_9.Geometry.Fundamental
 {
     public struct Point : IEquatable<Point>
     {
-	    public double X { get; private set; }
-	    public double Y { get; private set; }
+	    /// <inheritdoc />
+	    public override string ToString() => $"({nameof(X)}: {X}, {nameof(Y)}: {Y})";
+
+	    public double X { get; }
+	    public double Y { get; }
 
 	    public Point(double x, double y)
 	    {
