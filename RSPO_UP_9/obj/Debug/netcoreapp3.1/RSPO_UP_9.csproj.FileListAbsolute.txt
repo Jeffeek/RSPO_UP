@@ -11,3 +11,16 @@ E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.cspro
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.dll
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.pdb
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.genruntimeconfig.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_9\bin\Debug\netcoreapp3.1\RSPO_UP_9.exe
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_9\bin\Debug\netcoreapp3.1\RSPO_UP_9.deps.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_9\bin\Debug\netcoreapp3.1\RSPO_UP_9.runtimeconfig.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_9\bin\Debug\netcoreapp3.1\RSPO_UP_9.runtimeconfig.dev.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_9\bin\Debug\netcoreapp3.1\RSPO_UP_9.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_9\bin\Debug\netcoreapp3.1\RSPO_UP_9.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.csprojAssemblyReference.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.AssemblyInfoInputs.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.AssemblyInfo.cs
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.csproj.CoreCompileInputs.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_9\obj\Debug\netcoreapp3.1\RSPO_UP_9.genruntimeconfig.cache

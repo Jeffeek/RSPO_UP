@@ -25,9 +25,9 @@ namespace RSPO_UP_9.Geometry
         #region Overrides of FigureBase
 
         /// <inheritdoc />
-        public override bool ArePointsValid(params Point[] straights)
+        public override bool ArePointsValid(params Point[] points)
         {
-	        if(straights.Length != StraightCount) throw new ArgumentException(nameof(straights));
+	        if(points.Length != StraightCount * 2) throw new ArgumentException(nameof(points));
 	        //TODO: доделать проверку
 	        return true;
         }

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics.CodeAnalysis;
 using RSPO_UP_9.Geometry.Fundamental;
 
 namespace RSPO_UP_9.Geometry
 {
+    [SuppressMessage("ReSharper", "VirtualMemberCallInConstructor")]
     public abstract class FigureBase : IFigure
     {
 	    #region Implementation of IFigure

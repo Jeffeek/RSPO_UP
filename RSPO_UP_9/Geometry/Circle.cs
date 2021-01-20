@@ -3,27 +3,36 @@ using RSPO_UP_9.Geometry.Fundamental;
 
 namespace RSPO_UP_9.Geometry
 {
-    public class Circle : NonAngleFigure
-    {
-	    private const int StraightsCount = 1;
+	public sealed class Circle : NonAngleFigure
+	{
+		private const int StraightsCount = 1;
 		public Point CenterPoint { get; }
-	    public double Radius { get; }
-	    public double Diameter { get; }
-	    
-	    public Circle(Point centerPoint, int radius) : base(centerPoint)
-	    {
-		    CenterPoint = centerPoint;
-		    Radius = radius;
-		    Diameter = Radius * 2;
-		    Square = Math.PI * Math.Pow(Radius, 2);
-		    Perimeter = 2 * Math.PI * Radius;
-	    }
+		public double Radius { get; }
+		public double Diameter { get; }
 
-	    #region Overrides of FigureBase
+		public Circle(Point centerPoint, int radius) : base(centerPoint)
+		{
+			CenterPoint = centerPoint;
+			Radius = radius;
+			Diameter = Radius * 2;
+			Square = Math.PI * Math.Pow(Radius, 2);
+			Perimeter = 2 * Math.PI * Radius;
+		}
 
-	    /// <inheritdoc />
-	    public override bool ArePointsValid(params Point[] straights) => true;
+		public Circle(Point centerPoint, Point edgePoint)
+		{
+			CenterPoint = centerPoint;
+			Radius = Point.Length(centerPoint, edgePoint);
+			Diameter = Radius * 2;
+			Square = Math.PI * Math.Pow(Radius, 2);
+			Perimeter = 2 * Math.PI * Radius;
+		}
 
-	    #endregion
+		#region Overrides of FigureBase
+
+		/// <inheritdoc />
+		public override bool ArePointsValid(params Point[] points) => points.Length == 1 || points.Length == 2;
+
+		#endregion
     }
 }
