@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Cnsle\\RSPO_UP_10.Cnsle.csproj": {}
+    "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Cnsle\\RSPO_UP_10.Cnsle.csproj": {}
   },
   "projects": {
-    "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Cnsle\\RSPO_UP_10.Cnsle.csproj": {
+    "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Cnsle\\RSPO_UP_10.Cnsle.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Cnsle\\RSPO_UP_10.Cnsle.csproj",
+        "projectUniqueName": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Cnsle\\RSPO_UP_10.Cnsle.csproj",
         "projectName": "RSPO_UP_10.Cnsle",
-        "projectPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Cnsle\\RSPO_UP_10.Cnsle.csproj",
-        "packagesPath": "C:\\Users\\misha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Cnsle\\obj\\",
+        "projectPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Cnsle\\RSPO_UP_10.Cnsle.csproj",
+        "packagesPath": "C:\\Users\\Mikhail\\.nuget\\packages\\",
+        "outputPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Cnsle\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\misha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mikhail\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -31,8 +28,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Library\\RSPO_UP_10.Library.csproj": {
-                "projectPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Library\\RSPO_UP_10.Library.csproj"
+              "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Library\\RSPO_UP_10.Library.csproj": {
+                "projectPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Library\\RSPO_UP_10.Library.csproj"
               }
             }
           }
@@ -61,24 +58,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Library\\RSPO_UP_10.Library.csproj": {
+    "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Library\\RSPO_UP_10.Library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Library\\RSPO_UP_10.Library.csproj",
+        "projectUniqueName": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Library\\RSPO_UP_10.Library.csproj",
         "projectName": "RSPO_UP_10.Library",
-        "projectPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Library\\RSPO_UP_10.Library.csproj",
-        "packagesPath": "C:\\Users\\misha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Library\\obj\\",
+        "projectPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Library\\RSPO_UP_10.Library.csproj",
+        "packagesPath": "C:\\Users\\Mikhail\\.nuget\\packages\\",
+        "outputPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_10\\RSPO_UP_10.Library\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\misha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mikhail\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -118,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

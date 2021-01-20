@@ -58,9 +58,9 @@ namespace RSPO_UP_8.Tests
 			             };
 
 			var maxSteps = new MaxSteps();
-			maxSteps.StepsCount(matrix, 0,2, 100, 0);
-			int steps = MaxSteps._stepsCount;
-			Assert.AreEqual(steps, 7);
+			maxSteps.CalculateStepsCount(matrix, 0,2, 100, 0);
+			int steps = maxSteps.MaxStepsCount;
+			Assert.AreEqual(steps, 5);
 		}
 	}
 }

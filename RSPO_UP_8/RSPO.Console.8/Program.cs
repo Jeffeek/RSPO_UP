@@ -8,15 +8,15 @@ namespace RSPO.Console._8
 	    {
 			var matrix = new[,]
 			             {
-				             {10, 20, 20},
-				             {10, 1000, 1000},
-				             {30, 5, 5}
-			             };
+							 { 100, 19, 58, 1},
+							 { 10, 3, 1, 19 }, 
+							 { 100, 5, 13, 86 },
+							 { 10, 15, 39, 5 }
+						 };
 
 			var maxSteps = new MaxSteps();
-			maxSteps.StepsCount(matrix, 0, 2, 200, 0);
-			int steps = MaxSteps._stepsCount;
-			System.Console.WriteLine(steps);
+			maxSteps.CalculateStepsCount(matrix, 0, 3, 100, 0);
+			System.Console.WriteLine(maxSteps.MaxStepsCount);
 		}
     }
 }
