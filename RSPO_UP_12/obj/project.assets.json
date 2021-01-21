@@ -2,56 +2,51 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "СyberMath/1.0.1": {
+      "CyberMath/1.0.1": {
         "type": "package",
         "compile": {
-          "lib/netcoreapp3.1/СyberMath.dll": {}
+          "lib/netcoreapp3.1/CyberMath.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.1/СyberMath.dll": {}
+          "lib/netcoreapp3.1/CyberMath.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "СyberMath/1.0.1": {
-      "sha512": "Ttvkakb3ZJBCjtasxhdQRpCiIC2+vnf+813/k0DlI2ZyhYSQor5zm+UvYxiY5eprX2/usMgPYXje9ZYJJCa6fg==",
+    "CyberMath/1.0.1": {
+      "sha512": "AoloNkZecZ4A7qDN/2S4DItc/6B+COZzOxeA9tO53f/UkfaPC66+KWjjISVeNyMrwj15D0c99zl+7t3TvX5oNA==",
       "type": "package",
-      "path": "сybermath/1.0.1",
+      "path": "cybermath/1.0.1",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "cyberMath.png",
-        "lib/netcoreapp3.1/СyberMath.dll",
-        "lib/netcoreapp3.1/СyberMath.xml",
-        "сybermath.1.0.1.nupkg.sha512",
-        "сybermath.nuspec"
+        "cybermath.1.0.1.nupkg.sha512",
+        "cybermath.nuspec",
+        "lib/netcoreapp3.1/CyberMath.dll",
+        "lib/netcoreapp3.1/CyberMath.xml"
       ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "СyberMath >= 1.0.1"
+      "CyberMath >= 1.0.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\misha\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Mikhail\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_12\\RSPO_UP_12.csproj",
+      "projectUniqueName": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_12\\RSPO_UP_12.csproj",
       "projectName": "RSPO_UP_12",
-      "projectPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_12\\RSPO_UP_12.csproj",
-      "packagesPath": "C:\\Users\\misha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_12\\obj\\",
+      "projectPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_12\\RSPO_UP_12.csproj",
+      "packagesPath": "C:\\Users\\Mikhail\\.nuget\\packages\\",
+      "outputPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_12\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\misha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mikhail\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -59,7 +54,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\misha\\Documents\\GitHub\\Nuget Packages Local": {},
+        "E:\\projectsVS\\Nuget Packages Local": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -78,7 +73,7 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
-          "СyberMath": {
+          "CyberMath": {
             "target": "Package",
             "version": "[1.0.1, )"
           }
@@ -98,7 +93,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

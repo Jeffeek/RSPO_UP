@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="СyberMath" Version="1.0.1" />
+    <PackageReference Include="CyberMath" Version="1.0.1" />
   </ItemGroup>
 
 </Project>

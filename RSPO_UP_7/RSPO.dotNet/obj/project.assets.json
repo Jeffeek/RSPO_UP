@@ -8,23 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\misha\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Mikhail\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\RSPO.Library.7.csproj",
+      "projectUniqueName": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\RSPO.Library.7.csproj",
       "projectName": "RSPO.Library.7",
-      "projectPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\RSPO.Library.7.csproj",
-      "packagesPath": "C:\\Users\\misha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\obj\\",
+      "projectPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\RSPO.Library.7.csproj",
+      "packagesPath": "C:\\Users\\Mikhail\\.nuget\\packages\\",
+      "outputPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\misha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mikhail\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -32,7 +28,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\misha\\Documents\\GitHub\\Nuget Packages Local": {},
+        "E:\\projectsVS\\Nuget Packages Local": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -65,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

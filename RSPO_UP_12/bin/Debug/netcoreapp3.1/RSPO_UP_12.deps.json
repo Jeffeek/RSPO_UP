@@ -8,15 +8,15 @@
     ".NETCoreApp,Version=v3.1": {
       "RSPO_UP_12/1.0.0": {
         "dependencies": {
-          "СyberMath": "1.0.1"
+          "CyberMath": "1.0.1"
         },
         "runtime": {
           "RSPO_UP_12.dll": {}
         }
       },
-      "СyberMath/1.0.1": {
+      "CyberMath/1.0.1": {
         "runtime": {
-          "lib/netcoreapp3.1/СyberMath.dll": {
+          "lib/netcoreapp3.1/CyberMath.dll": {
             "assemblyVersion": "1.0.1.0",
             "fileVersion": "1.0.1.0"
           }
@@ -30,12 +30,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "СyberMath/1.0.1": {
+    "CyberMath/1.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Ttvkakb3ZJBCjtasxhdQRpCiIC2+vnf+813/k0DlI2ZyhYSQor5zm+UvYxiY5eprX2/usMgPYXje9ZYJJCa6fg==",
-      "path": "сybermath/1.0.1",
-      "hashPath": "сybermath.1.0.1.nupkg.sha512"
+      "sha512": "sha512-AoloNkZecZ4A7qDN/2S4DItc/6B+COZzOxeA9tO53f/UkfaPC66+KWjjISVeNyMrwj15D0c99zl+7t3TvX5oNA==",
+      "path": "cybermath/1.0.1",
+      "hashPath": "cybermath.1.0.1.nupkg.sha512"
     }
   }
 }
