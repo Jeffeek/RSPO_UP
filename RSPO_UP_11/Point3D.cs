@@ -12,5 +12,12 @@
             Y = y;
             Z = z;
         }
+
+        #region Overrides of ValueType
+
+        /// <inheritdoc />
+        public override string ToString() => $"{nameof(X)}: {X}, {nameof(Y)}: {Y}, {nameof(Z)}: {Z}";
+
+        #endregion
     }
 }

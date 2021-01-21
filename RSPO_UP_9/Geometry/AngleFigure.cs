@@ -5,7 +5,6 @@ namespace RSPO_UP_9.Geometry
 {
     public abstract class AngleFigure : FigureBase
     {
-	    /// <inheritdoc />
 	    public Straight[] Straights { get; }
 
 	    protected AngleFigure(params Straight[] straights) : base(straights.Select(x => x.First)

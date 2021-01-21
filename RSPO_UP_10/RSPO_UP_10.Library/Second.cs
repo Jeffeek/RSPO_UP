@@ -25,7 +25,7 @@ namespace RSPO_UP_10.Library
         {
 	        var strPresentation = Number.ToString();
 	        if(strPresentation.Length < 2) throw new ArgumentException(nameof(Number));
-	        return (int)Math.Pow(int.Parse(strPresentation[1].ToString()), 3);
+	        return (int) Math.Pow(int.Parse(strPresentation[1].ToString()), 3);
         }
     }
 }

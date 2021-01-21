@@ -6,6 +6,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="biggerMatrix.txt" />
+    <None Remove="first.txt" />
+    <None Remove="initMatrix.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="biggerMatrix.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="first.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="initMatrix.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\RSPO_UP_10.Library\RSPO_UP_10.Library.csproj" />
   </ItemGroup>
 

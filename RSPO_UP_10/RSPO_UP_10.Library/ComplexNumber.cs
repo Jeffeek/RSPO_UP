@@ -23,7 +23,7 @@ namespace RSPO_UP_10.Library
             Virtual = 1 + 19 * rnd.NextDouble();
         }
 
-        public static ComplexNumber operator*(ComplexNumber first, ComplexNumber second)
+        public static ComplexNumber operator *(ComplexNumber first, ComplexNumber second)
         {
 	        var real = first.Real * second.Real - first.Virtual * second.Virtual;
             var vir = first.Real * second.Virtual + second.Real * first.Virtual;
@@ -33,7 +33,7 @@ namespace RSPO_UP_10.Library
         #region Overrides of Object
 
         /// <inheritdoc />
-        public override string ToString() => $"{Real} {(Virtual < 0 ? "" : "+")} {Virtual}i";
+        public override string ToString() => $"{Real} {(Virtual < 0 ? String.Empty : "+")} {Virtual}i";
 
         #endregion
     }

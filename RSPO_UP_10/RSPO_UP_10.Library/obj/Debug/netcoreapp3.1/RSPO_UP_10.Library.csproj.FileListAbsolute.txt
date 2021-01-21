@@ -7,3 +7,12 @@ E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreap
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.dll
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.pdb
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.csprojAssemblyReference.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\bin\Debug\netcoreapp3.1\RSPO_UP_10.Library.deps.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\bin\Debug\netcoreapp3.1\RSPO_UP_10.Library.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\bin\Debug\netcoreapp3.1\RSPO_UP_10.Library.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.csprojAssemblyReference.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.AssemblyInfoInputs.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.AssemblyInfo.cs
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.csproj.CoreCompileInputs.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_10\RSPO_UP_10.Library\obj\Debug\netcoreapp3.1\RSPO_UP_10.Library.pdb

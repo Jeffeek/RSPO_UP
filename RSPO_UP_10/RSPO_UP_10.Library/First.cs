@@ -33,6 +33,6 @@ namespace RSPO_UP_10.Library
 		    SecondNumber = numbers[1];
 	    }
 
-	    public int PowOfMul() => (int)Math.Pow(FirstNumber * SecondNumber, 2);
+	    public int SquareOfSub() => (int) Math.Pow(FirstNumber - SecondNumber, 2);
     }
 }
