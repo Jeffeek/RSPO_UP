@@ -1,88 +1,129 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>RSPO.dotNet</name>
+        <name>RSPO.Library.7</name>
     </assembly>
     <members>
         <member name="T:RSPO.dotNet.AlphaFormule">
             <summary>
-            Presents the ALPHA-HYPER-CYBER formule
-            </summary>
-        </member>
-        <member name="P:RSPO.dotNet.AlphaFormule.X">
-            <summary>
-            The X argument
-            </summary>
-        </member>
-        <member name="P:RSPO.dotNet.AlphaFormule.Y">
-            <summary>
-            The Y argument
-            </summary>
-        </member>
-        <member name="P:RSPO.dotNet.AlphaFormule.Z">
-            <summary>
-            The Z argument
+                Presents the ALPHA-HYPER-CYBER formule
             </summary>
         </member>
         <member name="M:RSPO.dotNet.AlphaFormule.#ctor(System.Double,System.Double,System.Double)">
             <summary>Initializes a new instance of the <see cref="T:RSPO.dotNet.AlphaFormule" /> class.</summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:RSPO.dotNet.AlphaFormule.Calculate" -->
-        <!-- Badly formed XML comment ignored for member "T:RSPO.dotNet.LargestIntegerKSquareNotExceedN" -->
+        <member name="P:RSPO.dotNet.AlphaFormule.X">
+            <summary>
+                The X argument
+            </summary>
+        </member>
+        <member name="P:RSPO.dotNet.AlphaFormule.Y">
+            <summary>
+                The Y argument
+            </summary>
+        </member>
+        <member name="P:RSPO.dotNet.AlphaFormule.Z">
+            <summary>
+                The Z argument
+            </summary>
+        </member>
+        <member name="M:RSPO.dotNet.AlphaFormule.Calculate">
+            <summary>
+                Calculates the expression with the defined properties <seealso cref="P:RSPO.dotNet.AlphaFormule.X" />
+            <seealso cref="P:RSPO.dotNet.AlphaFormule.Y"/> <seealso cref="P:RSPO.dotNet.AlphaFormule.Z" />
+            </summary>
+            <returns>Calculated value</returns>
+        </member>
+        <member name="T:RSPO.dotNet.LargestIntegerKSquareNotExceedN">
+            <summary>
+                An integer N (> 0) is given.
+                Find the largest integer K whose square does not exceed N: K2 &lt;= N.
+            </summary>
+        </member>
         <member name="M:RSPO.dotNet.LargestIntegerKSquareNotExceedN.Calculate(System.UInt32)">
             <summary>
-            Calculates the result
+                Calculates the result
             </summary>
-            <param name="N">Bound for function</param>
+            <param name="n">Bound for function</param>
             <returns>The largest integer K whose square does not exceed N</returns>
         </member>
         <member name="T:RSPO.dotNet.Permutation">
             <summary>
-            Extension for <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+                Extension for <see cref="T:System.Collections.Generic.IEnumerable`1" />
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:RSPO.dotNet.Permutation.GetPermutations``1(System.Collections.Generic.IEnumerable{``0},System.Int32)" -->
+        <member name="M:RSPO.dotNet.Permutation.GetPermutations``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+                Returns a new <see cref="T:System.Collections.Generic.IEnumerable`1"/> collections with all permutations of elements <see>
+                    <cref>{T}</cref>
+                </see>
+                >
+            </summary>
+            <typeparam name="T">ANY</typeparam>
+            <param name="list">List of elements</param>
+            <param name="length">Max length for algorithm</param>
+            <returns>New <see cref="T:System.Collections.Generic.IEnumerable`1"/> collection with permutations/></returns>
+        </member>
         <member name="T:RSPO.dotNet.PowMath">
             <summary>
-            IDK WHY HELP
-            Class for represent ONE function - Power
+                IDK WHY HELP
+                Class for represent ONE function - Power
             </summary>
         </member>
         <member name="M:RSPO.dotNet.PowMath.Pow(System.Double,System.Int32)">
             <summary>
-            Powers one <see cref="T:System.Double"/> number on <see cref="T:System.Int32"/>
+                Powers one <see cref="T:System.Double" /> number on <see cref="T:System.Int32" />
             </summary>
-            <param name="A">The number which will be powered</param>
-            <param name="N">The number - pow measure</param>
+            <param name="a">The number which will be powered</param>
+            <param name="n">The number - pow measure</param>
             <returns>The result of Pow</returns>
         </member>
         <member name="T:RSPO.dotNet.PrimeNumbers">
             <summary>
-            Find all prime numbers on the natural segment [1000.9999],
-            the sum of the first and second digits of which is equal to the
-            sum of the third and fourth digits.
+                Find all prime numbers on the natural segment [1000.9999],
+                the sum of the first and second digits of which is equal to the
+                sum of the third and fourth digits.
             </summary>
         </member>
         <member name="F:RSPO.dotNet.PrimeNumbers._numbers">
             <summary>
-            Internal <seealso cref="T:System.Collections.Generic.IEnumerable`1"/> numbers
+                Internal <seealso cref="T:System.Collections.Generic.IEnumerable`1" /> numbers
             </summary>
+        </member>
+        <member name="M:RSPO.dotNet.PrimeNumbers.#ctor(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Init with <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+            <param name="numbers"></param>
         </member>
         <member name="M:RSPO.dotNet.PrimeNumbers.IsPrime(System.Int32)">
             <summary>
-            Check for number - is it prime or not
+                Check for number - is it prime or not
             </summary>
             <param name="n">Number<see cref="T:System.Int32"/></param>
-            <returns>True is <see cref="!:n"/> prime</returns>
+            <returns>True is <paramref name="n" /> prime</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:RSPO.dotNet.PrimeNumbers.FirstSecondEqualsThirdFourth" -->
+        <member name="M:RSPO.dotNet.PrimeNumbers.FirstSecondEqualsThirdFourth">
+            <summary>
+                Returns <see>
+                    <cref>IEnumerable{int}</cref>
+                </see>
+                where the sum of 1 and 2 digits
+                are equals to the sum of third and fourth digits
+            </summary>
+        </member>
         <member name="M:RSPO.dotNet.PrimeNumbers.IsTaken(System.Int32)">
             <summary>
-            Checks is number fit's conditions
+                Checks is number fit's conditions
             </summary>
             <param name="n"></param>
-            <returns><see cref="T:System.Boolean"/> - <value>true</value> if fit's and
-            <value>False</value> if NOT</returns>
+            <returns>
+                <see cref="T:System.Boolean" /> -
+                <value>true</value>
+                if fit's and
+                <value>False</value>
+                if NOT
+            </returns>
         </member>
     </members>
 </doc>

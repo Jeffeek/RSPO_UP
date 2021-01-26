@@ -1,54 +1,61 @@
-﻿using System.Windows.Input;
+﻿#region Using namespaces
+
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using RSPO_UP_5.View;
 
+#endregion
+
 namespace RSPO_UP_5.ViewModel
 {
-    public class ChooseOperationWindowViewModel : ViewModelBase
-    {
-        private bool _isSecondWindowNotOpened = true;
-        public ICommand MatrixChooseCommand { get; }
-        public ICommand NonlinearEquationChooseCommand { get; }
-        public ICommand IntegralChooseCommand { get; }
+	public class ChooseOperationWindowViewModel : ViewModelBase
+	{
+		private bool _isSecondWindowNotOpened = true;
 
-        public bool IsSecondFormNotOpened
-        {
-            get => _isSecondWindowNotOpened;
-            set => SetValue(ref _isSecondWindowNotOpened, value, nameof(IsSecondFormNotOpened));
-        }
+		public ChooseOperationWindowViewModel()
+		{
+			MatrixChooseCommand = new RelayCommand(OnMatrixChooseCommandExecuted, CanOpenSecondFromExecute);
+			NonlinearEquationChooseCommand =
+				new RelayCommand(OnNonlinearEquationChooseCommandExecuted, CanOpenSecondFromExecute);
 
-        #region MyRegion
+			IntegralChooseCommand = new RelayCommand(OnIntegralChooseCommandExecuted, CanOpenSecondFromExecute);
+		}
 
-        public void OnMatrixChooseCommandExecuted()
-        {
-            var matrixWindow = new MatrixWindow(() => IsSecondFormNotOpened = true);
-            matrixWindow.Show();
-            IsSecondFormNotOpened = false;
-        }
+		public ICommand MatrixChooseCommand { get; }
+		public ICommand NonlinearEquationChooseCommand { get; }
+		public ICommand IntegralChooseCommand { get; }
 
-        public void OnNonlinearEquationChooseCommandExecuted()
-        {
-            var matrixWindow = new NonLinearEquationWindow(() => IsSecondFormNotOpened = true);
-            matrixWindow.Show();
-            IsSecondFormNotOpened = false;
-        }
+		public bool IsSecondFormNotOpened
+		{
+			get => _isSecondWindowNotOpened;
+			set => SetValue(ref _isSecondWindowNotOpened, value, nameof(IsSecondFormNotOpened));
+		}
 
-        public void OnIntegralChooseCommandExecuted()
-        {
-            var integralWindow = new IntegralWindow(() => IsSecondFormNotOpened = true);
-            integralWindow.Show();
-            IsSecondFormNotOpened = false;
-        }
+		#region MyRegion
 
-        private bool CanOpenSecondFromExecute() => IsSecondFormNotOpened;
+		public void OnMatrixChooseCommandExecuted()
+		{
+			var matrixWindow = new MatrixWindow(() => IsSecondFormNotOpened = true);
+			matrixWindow.Show();
+			IsSecondFormNotOpened = false;
+		}
 
-        #endregion
+		public void OnNonlinearEquationChooseCommandExecuted()
+		{
+			var matrixWindow = new NonLinearEquationWindow(() => IsSecondFormNotOpened = true);
+			matrixWindow.Show();
+			IsSecondFormNotOpened = false;
+		}
 
-        public ChooseOperationWindowViewModel()
-        {
-            MatrixChooseCommand = new RelayCommand(OnMatrixChooseCommandExecuted, CanOpenSecondFromExecute);
-            NonlinearEquationChooseCommand = new RelayCommand(OnNonlinearEquationChooseCommandExecuted, CanOpenSecondFromExecute);
-            IntegralChooseCommand = new RelayCommand(OnIntegralChooseCommandExecuted, CanOpenSecondFromExecute);
-        }
-    }
+		public void OnIntegralChooseCommandExecuted()
+		{
+			var integralWindow = new IntegralWindow(() => IsSecondFormNotOpened = true);
+			integralWindow.Show();
+			IsSecondFormNotOpened = false;
+		}
+
+		private bool CanOpenSecondFromExecute() => IsSecondFormNotOpened;
+
+		#endregion
+	}
 }

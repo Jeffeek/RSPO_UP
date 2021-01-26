@@ -1,178 +1,181 @@
-﻿using System;
-using System.Threading;
+﻿#region Using namespaces
+
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
-using RSPO_UP_4.Model;
 using RSPO_UP_4.Model.Controller;
+
+#endregion
 
 namespace RSPO_UP_4.ViewModel
 {
-    public class RoomsViewModel : ViewModelBase
-    {
-        public ICommand MoveUpCommand { get; }
-        public ICommand MoveDownCommand { get; }
-        public ICommand MoveLeftCommand { get; }
-        public ICommand MoveRightCommand { get; }
-        public ICommand TouchLampCommand { get; }
-        public ICommand GuestsCommand { get; }
-        public ICommand TimeChangeCommand { get; }
+	public class RoomsViewModel : ViewModelBase
+	{
+		private PlayerController _playerController;
+		private TimeController _timerController;
 
-        private PlayerController _playerController;
-        private TimeController _timerController;
+		public RoomsViewModel()
+		{
+			FirstRoom = new RoomViewModel(195, 300);
+			SecondRoom = new RoomViewModel(195, 600);
+			ThirdRoom = new RoomViewModel(425, 300);
+			Bathroom = new BathroomViewModel(425, 600);
 
-        public RoomViewModel FirstRoom { get; }
-        public RoomViewModel SecondRoom { get; }
-        public RoomViewModel ThirdRoom { get; }
-        public BathroomViewModel Bathroom { get; }
+			PlayerController = new PlayerController();
+			TimerController = new TimeController(TurnOnRoomLamps, TurnOffRoomLamps);
 
-        public PlayerController PlayerController
-        {
-            get => _playerController;
-            set => SetValue(ref _playerController, value);
-        }
+			MoveUpCommand = new RelayCommand(OnMoveUp, CanMoveUp);
+			MoveDownCommand = new RelayCommand(OnMoveDown, CanMoveDown);
+			MoveRightCommand = new RelayCommand(OnMoveRight, CanMoveRight);
+			MoveLeftCommand = new RelayCommand(OnMoveLeft, CanMoveLeft);
 
-        public TimeController TimerController
-        {
-            get => _timerController;
-            set => SetValue(ref _timerController, value);
-        }
+			GuestsCommand = new RelayCommand(OnGuestsComing, () => true);
+			TouchLampCommand = new RelayCommand(OnTouchLamp, () => true);
+			TimeChangeCommand = new RelayCommand(OnChangeTime, () => true);
+		}
 
-        public void OnChangeTime()
-        {
-            if (TimerController.IsStopped)
-                TimerController.Start();
-            else
-                TimerController.Stop();
-        }
+		public ICommand MoveUpCommand { get; }
+		public ICommand MoveDownCommand { get; }
+		public ICommand MoveLeftCommand { get; }
+		public ICommand MoveRightCommand { get; }
+		public ICommand TouchLampCommand { get; }
+		public ICommand GuestsCommand { get; }
+		public ICommand TimeChangeCommand { get; }
 
-        #region keyBindings
+		public RoomViewModel FirstRoom { get; }
+		public RoomViewModel SecondRoom { get; }
+		public RoomViewModel ThirdRoom { get; }
+		public BathroomViewModel Bathroom { get; }
 
-        #region moveRight
+		public PlayerController PlayerController
+		{
+			get => _playerController;
+			set => SetValue(ref _playerController, value);
+		}
 
-        private bool CanMoveRight => PlayerController.Right > 0;
+		public TimeController TimerController
+		{
+			get => _timerController;
+			set => SetValue(ref _timerController, value);
+		}
 
-        private void OnMoveRight()
-        {
-            PlayerController.GoRight();
-            CheckPositionNearLamps();
-        }
+		public void OnChangeTime()
+		{
+			if (TimerController.IsStopped)
+				TimerController.Start();
+			else
+				TimerController.Stop();
+		}
 
-        #endregion
+		private void OnGuestsComing()
+		{
+			TurnOnRoomLamps();
+		}
 
-        #region moveLeft
+		private void TurnOnRoomLamps()
+		{
+			FirstRoom.Lamp.IsOn = true;
+			FirstRoom.Bruh.IsOn = true;
+			SecondRoom.Lamp.IsOn = true;
+			SecondRoom.Bruh.IsOn = true;
+			ThirdRoom.Lamp.IsOn = true;
+			ThirdRoom.Bruh.IsOn = true;
+		}
 
-        private bool CanMoveLeft => PlayerController.Left > 0;
+		private void TurnOffRoomLamps()
+		{
+			FirstRoom.Lamp.IsOn = false;
+			FirstRoom.Bruh.IsOn = false;
+			SecondRoom.Lamp.IsOn = false;
+			SecondRoom.Bruh.IsOn = false;
+			ThirdRoom.Lamp.IsOn = false;
+			ThirdRoom.Bruh.IsOn = false;
+		}
 
-        private void OnMoveLeft()
-        {
-            PlayerController.GoLeft();
-            CheckPositionNearLamps();
-        }
+		private void CheckPositionNearLamps()
+		{
+			FirstRoom.Lamp.CheckPlayer(PlayerController);
+			FirstRoom.Bruh.CheckPlayer(PlayerController);
+			SecondRoom.Lamp.CheckPlayer(PlayerController);
+			SecondRoom.Bruh.CheckPlayer(PlayerController);
+			ThirdRoom.Lamp.CheckPlayer(PlayerController);
+			ThirdRoom.Bruh.CheckPlayer(PlayerController);
+			Bathroom.Lamp.CheckPlayer(PlayerController);
+		}
 
-        #endregion
+		#region keyBindings
 
-        #region moveUp
+		#region moveRight
 
-        private bool CanMoveUp => PlayerController.Up > 0;
+		private bool CanMoveRight => PlayerController.Right > 0;
 
-        private void OnMoveUp()
-        {
-            PlayerController.GoUp();
-            CheckPositionNearLamps();
-        }
+		private void OnMoveRight()
+		{
+			PlayerController.GoRight();
+			CheckPositionNearLamps();
+		}
 
-        #endregion
+		#endregion
 
-        #region moveDown
+		#region moveLeft
 
-        private bool CanMoveDown => PlayerController.Down > 0;
+		private bool CanMoveLeft => PlayerController.Left > 0;
 
-        private void OnMoveDown()
-        {
-            PlayerController.GoDown();
-            CheckPositionNearLamps();
-        }
+		private void OnMoveLeft()
+		{
+			PlayerController.GoLeft();
+			CheckPositionNearLamps();
+		}
 
-        #endregion
+		#endregion
 
+		#region moveUp
 
-        private void OnTouchLamp()
-        {
-            if (FirstRoom.Lamp.IsPlayerNearLamp)
-                FirstRoom.Lamp.IsOn = !FirstRoom.Lamp.IsOn;
-            if (FirstRoom.Bruh.IsPlayerNearLamp)
-                FirstRoom.Bruh.IsOn = !FirstRoom.Bruh.IsOn;
+		private bool CanMoveUp => PlayerController.Up > 0;
 
-            if (SecondRoom.Lamp.IsPlayerNearLamp)
-                SecondRoom.Lamp.IsOn = !SecondRoom.Lamp.IsOn;
-            if (SecondRoom.Bruh.IsPlayerNearLamp)
-                SecondRoom.Bruh.IsOn = !SecondRoom.Bruh.IsOn;
+		private void OnMoveUp()
+		{
+			PlayerController.GoUp();
+			CheckPositionNearLamps();
+		}
 
-            if (ThirdRoom.Lamp.IsPlayerNearLamp)
-                ThirdRoom.Lamp.IsOn = !ThirdRoom.Lamp.IsOn;
-            if (ThirdRoom.Bruh.IsPlayerNearLamp)
-                ThirdRoom.Bruh.IsOn = !ThirdRoom.Bruh.IsOn;
+		#endregion
 
-            if (Bathroom.Lamp.IsPlayerNearLamp)
-                Bathroom.Lamp.IsOn = !Bathroom.Lamp.IsOn;
-        }
+		#region moveDown
 
-        #endregion
+		private bool CanMoveDown => PlayerController.Down > 0;
 
-        private void OnGuestsComing()
-        {
-            TurnOnRoomLamps();
-        }
+		private void OnMoveDown()
+		{
+			PlayerController.GoDown();
+			CheckPositionNearLamps();
+		}
 
-        private void TurnOnRoomLamps()
-        {
-            FirstRoom.Lamp.IsOn = true;
-            FirstRoom.Bruh.IsOn = true;
-            SecondRoom.Lamp.IsOn = true;
-            SecondRoom.Bruh.IsOn = true;
-            ThirdRoom.Lamp.IsOn = true;
-            ThirdRoom.Bruh.IsOn = true;
-        }
+		#endregion
 
-        private void TurnOffRoomLamps()
-        {
-            FirstRoom.Lamp.IsOn = false;
-            FirstRoom.Bruh.IsOn = false;
-            SecondRoom.Lamp.IsOn = false;
-            SecondRoom.Bruh.IsOn = false;
-            ThirdRoom.Lamp.IsOn = false;
-            ThirdRoom.Bruh.IsOn = false;
-        }
+		private void OnTouchLamp()
+		{
+			if (FirstRoom.Lamp.IsPlayerNearLamp)
+				FirstRoom.Lamp.IsOn = !FirstRoom.Lamp.IsOn;
 
-        private void CheckPositionNearLamps()
-        {
-            FirstRoom.Lamp.CheckPlayer(PlayerController);
-            FirstRoom.Bruh.CheckPlayer(PlayerController);
-            SecondRoom.Lamp.CheckPlayer(PlayerController);
-            SecondRoom.Bruh.CheckPlayer(PlayerController);
-            ThirdRoom.Lamp.CheckPlayer(PlayerController);
-            ThirdRoom.Bruh.CheckPlayer(PlayerController);
-            Bathroom.Lamp.CheckPlayer(PlayerController);
-        }
+			if (FirstRoom.Bruh.IsPlayerNearLamp)
+				FirstRoom.Bruh.IsOn = !FirstRoom.Bruh.IsOn;
 
-        public RoomsViewModel()
-        {
-            FirstRoom = new RoomViewModel(195, 300);
-            SecondRoom = new RoomViewModel(195, 600);
-            ThirdRoom = new RoomViewModel(425, 300);
-            Bathroom = new BathroomViewModel(425,600);
+			if (SecondRoom.Lamp.IsPlayerNearLamp)
+				SecondRoom.Lamp.IsOn = !SecondRoom.Lamp.IsOn;
 
-            PlayerController= new PlayerController();
-            TimerController = new TimeController(TurnOnRoomLamps, TurnOffRoomLamps);
+			if (SecondRoom.Bruh.IsPlayerNearLamp)
+				SecondRoom.Bruh.IsOn = !SecondRoom.Bruh.IsOn;
 
-            MoveUpCommand = new RelayCommand(OnMoveUp, CanMoveUp);
-            MoveDownCommand = new RelayCommand(OnMoveDown, CanMoveDown);
-            MoveRightCommand = new RelayCommand(OnMoveRight, CanMoveRight);
-            MoveLeftCommand = new RelayCommand(OnMoveLeft, CanMoveLeft);
+			if (ThirdRoom.Lamp.IsPlayerNearLamp)
+				ThirdRoom.Lamp.IsOn = !ThirdRoom.Lamp.IsOn;
 
-            GuestsCommand = new RelayCommand(OnGuestsComing, () => true);
-            TouchLampCommand = new RelayCommand(OnTouchLamp, () => true);
-            TimeChangeCommand = new RelayCommand(OnChangeTime, () => true);
-        }
-    }
+			if (ThirdRoom.Bruh.IsPlayerNearLamp)
+				ThirdRoom.Bruh.IsOn = !ThirdRoom.Bruh.IsOn;
+
+			if (Bathroom.Lamp.IsPlayerNearLamp)
+				Bathroom.Lamp.IsOn = !Bathroom.Lamp.IsOn;
+		}
+
+		#endregion
+	}
 }

@@ -1,17 +1,15 @@
-﻿using System;
+﻿#region Using namespaces
+
+using System;
 using RSPO_UP_9.Geometry.Fundamental;
+
+#endregion
 
 namespace RSPO_UP_9.Geometry
 {
 	public sealed class Circle : NonAngleFigure
 	{
-		/// <inheritdoc />
-		public override string ToString() => $"{nameof(CenterPoint)}: {CenterPoint}, {nameof(Radius)}: {Radius}, {nameof(Diameter)}: {Diameter}, {nameof(Square)}: {Square}";
-
 		private const int StraightsCount = 1;
-		public Point CenterPoint { get; }
-		public double Radius { get; }
-		public double Diameter { get; }
 
 		public Circle(Point centerPoint, int radius) : base(centerPoint)
 		{
@@ -31,6 +29,14 @@ namespace RSPO_UP_9.Geometry
 			Perimeter = 2 * Math.PI * Radius;
 		}
 
+		public Point CenterPoint { get; }
+		public double Radius { get; }
+		public double Diameter { get; }
+
+		/// <inheritdoc />
+		public override string ToString() =>
+			$"{nameof(CenterPoint)}: {CenterPoint}, {nameof(Radius)}: {Radius}, {nameof(Diameter)}: {Diameter}, {nameof(Square)}: {Square}";
+
 		#region Overrides of FigureBase
 
 		/// <inheritdoc />
@@ -39,8 +45,6 @@ namespace RSPO_UP_9.Geometry
 		#endregion
 
 		#region Overrides of Object
-
-		
 
 		#endregion
 	}

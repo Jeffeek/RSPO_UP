@@ -1,227 +1,217 @@
-﻿using System;
+﻿#region Using namespaces
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using RSPO_UP_1.Locators;
 using RSPO_UP_1.Models;
-using UP_1.Algorithms;
+
+#endregion
 
 namespace RSPO_UP_1.Algorithms
 {
-    public class AddDeleteHelper : IAlgo
-    {
-        private List<Movie> _movies;
+	public class AddDeleteHelper : IAlgo
+	{
+		private readonly List<Movie> _movies;
 
-        #region Add Getters
+		public bool AddNewTicket()
+		{
+			if (CheckForFileName())
+			{
+				var movieName = GetMovieName();
+				if (CheckForName(movieName))
+				{
+					var moviePrice = GetMoviePrice();
+					var cinemaName = GetMovieCinemaName();
+					var movieDate = GeteDateTime();
+					var newMovie = new Movie(movieName, moviePrice)
+					               {
+						               CinemaName = cinemaName,
+						               Date = movieDate
+					               };
 
-        private string GetMovieName()
-        {
-            Console.WriteLine("Введите имя фильма: ");
-            var movieName = Console.ReadLine();
-            return !String.IsNullOrWhiteSpace(movieName)
-                ? movieName
-                : throw new Exception(nameof(movieName) + ", ввод некорректен");
-        }
+					SerializeTicket(newMovie);
+					return true;
+				}
+			}
 
-        private DateTime GeteDateTime()
-        {
-            Console.WriteLine("Введите время показа: ");
-            if (DateTime.TryParse(Console.ReadLine(), out DateTime movieDate))
-            {
-                return movieDate;
-            }
-            Console.WriteLine("Ошибка парсинга даты");
-            throw new Exception(nameof(movieDate));
-        }
+			return false;
+		}
 
-        private string GetMovieCinemaName()
-        {
-            Console.WriteLine("Введите название кинотеатра: ");
-            string movieCinema = Console.ReadLine();
-            return !String.IsNullOrWhiteSpace(movieCinema)
-                ? movieCinema
-                : throw new Exception(nameof(movieCinema) + ", ввод некорректен");
-        }
+		public bool SerializeTicket(Movie movie)
+		{
+			_movies.Add(movie);
+			var serializer = new MovieSerializer();
+			var result = serializer.WriteMovies(_movies);
+			Console.WriteLine(result ? "Объект был записан в файл" : "Объект НЕ был записан");
+			return result;
+		}
 
-        private int GetMoviePrice()
-        {
-            Console.WriteLine("Введите цену билета: ");
-            if (int.TryParse(Console.ReadLine(), out int moviePrice))
-            {
-                return Math.Abs(moviePrice);
-            }
-            Console.WriteLine("Ошибка парсинга цены");
-            throw new Exception("проблемы с парсингом цены");
-        }
+		public bool CanSerializeTicket(List<Movie> list, Movie movie)
+		{
+			return list.SingleOrDefault(x => x.Name == movie.Name) == null;
+		}
 
-        #endregion
+		#region Add Getters
 
-        #region Delete
+		private string GetMovieName()
+		{
+			Console.WriteLine("Введите имя фильма: ");
+			var movieName = Console.ReadLine();
+			return !string.IsNullOrWhiteSpace(movieName)
+				       ? movieName
+				       : throw new Exception(nameof(movieName) + ", ввод некорректен");
+		}
 
-        public bool DeleteTicket()
-        {
-            string movieName = GetMovieName();
-            if (!CheckForName(movieName))
-            {
-                DeleteTicketByName(movieName);
-                return true;
-            }
-            return false;
-        }
+		private DateTime GeteDateTime()
+		{
+			Console.WriteLine("Введите время показа: ");
+			if (DateTime.TryParse(Console.ReadLine(), out var movieDate)) return movieDate;
+			Console.WriteLine("Ошибка парсинга даты");
+			throw new Exception(nameof(movieDate));
+		}
 
-        public void DeleteTicketByName(string deleteName)
-        {
-            var item = _movies.Find(x => x.Name == deleteName);
-            if (item != null)
-            {
-                _movies.Remove(item);
-                MovieSerializer deserializer = new MovieSerializer();
-                deserializer.WriteMovies(_movies);
-            }
-        }
+		private string GetMovieCinemaName()
+		{
+			Console.WriteLine("Введите название кинотеатра: ");
+			var movieCinema = Console.ReadLine();
+			return !string.IsNullOrWhiteSpace(movieCinema)
+				       ? movieCinema
+				       : throw new Exception(nameof(movieCinema) + ", ввод некорректен");
+		}
 
-        #endregion
+		private int GetMoviePrice()
+		{
+			Console.WriteLine("Введите цену билета: ");
+			if (int.TryParse(Console.ReadLine(), out var moviePrice)) return Math.Abs(moviePrice);
+			Console.WriteLine("Ошибка парсинга цены");
+			throw new Exception("проблемы с парсингом цены");
+		}
 
-        #region Check's
+		#endregion
 
-        public bool CheckForFileName()
-        {
-            int answer;
-            string typedName = String.Empty;
-            Console.WriteLine("Хотите ввести имя файла? \n1.Да\n2.Нет");
-            if (int.TryParse(Console.ReadLine(), out answer))
-            {
-                switch (answer)
-                {
-                    case 1:
-                    {
-                        Console.WriteLine("Введите имя файла: ");
-                        typedName = Console.ReadLine();
-                        break;
-                    }
+		#region Delete
 
-                    case 2:
-                    {
-                        Console.WriteLine("Хорошо!");
-                        return true;
-                    }
-                }
-            }
-            
-            if (typedName != FileSettings.Name)
-            {
-                Console.WriteLine("Введенное имя файла не совпадает с настройками.");
-                Console.WriteLine($"Создать ли новый файл с именем: {typedName}?\n1. Да\n2.Нет");
-                if (int.TryParse(Console.ReadLine(), out answer))
-                {
-                    switch (answer)
-                    {
-                        case 1:
-                        {
-                            File.Create(FileSettings.Path);
-                            FileSettings.Path = typedName;
-                            Console.WriteLine("Создан новый json файл. Настройка пути была сменена");
-                            break;
-                        }
+		public bool DeleteTicket()
+		{
+			var movieName = GetMovieName();
+			if (!CheckForName(movieName))
+			{
+				DeleteTicketByName(movieName);
+				return true;
+			}
 
-                        case 2:
-                        {
-                            Console.WriteLine("Хорошо!");
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Неудачный парсинг");
-                }
-                return false;
-            }
-            return true;
-        }
+			return false;
+		}
 
-        public bool CheckForName(string name)
-        {
-            return _movies.SingleOrDefault(x => x.Name == name) == null;
-        }
+		public void DeleteTicketByName(string deleteName)
+		{
+			var item = _movies.Find(x => x.Name == deleteName);
+			if (item != null)
+			{
+				_movies.Remove(item);
+				var deserializer = new MovieSerializer();
+				deserializer.WriteMovies(_movies);
+			}
+		}
 
-        #endregion
+		#endregion
 
-        #region Constructor and start
+		#region Check's
 
-        public AddDeleteHelper()
-        {
-            _movies = new MovieDeserializer().GetMovies();
-        }
+		public bool CheckForFileName()
+		{
+			int answer;
+			var typedName = string.Empty;
+			Console.WriteLine("Хотите ввести имя файла? \n1.Да\n2.Нет");
+			if (int.TryParse(Console.ReadLine(), out answer))
+			{
+				switch (answer)
+				{
+					case 1:
+					{
+						Console.WriteLine("Введите имя файла: ");
+						typedName = Console.ReadLine();
+						break;
+					}
 
-        public AddDeleteHelper(List<Movie> list)
-        {
-            _movies = list;
-        }
+					case 2:
+					{
+						Console.WriteLine("Хорошо!");
+						return true;
+					}
+				}
+			}
 
-        public void Start()
-        {
-            if (int.TryParse(Console.ReadLine(), out int answer))
-            {
-                switch (answer)
-                {
-                    case 1:
-                    {
-                        AddNewTicket();
-                        break;
-                    }
+			if (typedName != FileSettings.Name)
+			{
+				Console.WriteLine("Введенное имя файла не совпадает с настройками.");
+				Console.WriteLine($"Создать ли новый файл с именем: {typedName}?\n1. Да\n2.Нет");
+				if (int.TryParse(Console.ReadLine(), out answer))
+				{
+					switch (answer)
+					{
+						case 1:
+						{
+							File.Create(FileSettings.Path);
+							FileSettings.Path = typedName;
+							Console.WriteLine("Создан новый json файл. Настройка пути была сменена");
+							break;
+						}
 
-                    case 2:
-                    {
-                        DeleteTicket();
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                Console.WriteLine(nameof(answer) + " - парсинг не удался");
-            }
-        }
+						case 2:
+						{
+							Console.WriteLine("Хорошо!");
+							break;
+						}
+					}
+				}
+				else
+					Console.WriteLine("Неудачный парсинг");
 
-        #endregion
+				return false;
+			}
 
+			return true;
+		}
 
+		public bool CheckForName(string name)
+		{
+			return _movies.SingleOrDefault(x => x.Name == name) == null;
+		}
 
-        public bool AddNewTicket()
-        {
-            if (CheckForFileName())
-            {
-                string movieName = GetMovieName();
-                if (CheckForName(movieName))
-                {
-                    int moviePrice = GetMoviePrice();
-                    string cinemaName = GetMovieCinemaName();
-                    DateTime movieDate = GeteDateTime();
-                    Movie newMovie = new Movie(movieName, moviePrice)
-                    {
-                        CinemaName = cinemaName,
-                        Date = movieDate
-                    };
-                    SerializeTicket(newMovie);
-                    return true;
-                }
-            }
-            return false;
-        }
+		#endregion
 
-        public bool SerializeTicket(Movie movie)
-        {
-            _movies.Add(movie);
-            MovieSerializer serializer = new MovieSerializer();
-            bool result = serializer.WriteMovies(_movies);
-            Console.WriteLine(result ? "Объект был записан в файл" : "Объект НЕ был записан");
-            return result;
-        }
+		#region Constructor and start
 
-        public bool CanSerializeTicket(List<Movie> list, Movie movie)
-        {
-            return list.SingleOrDefault(x => x.Name == movie.Name) == null;
-        }
-    }
+		public AddDeleteHelper() => _movies = new MovieDeserializer().GetMovies();
+
+		public AddDeleteHelper(List<Movie> list) => _movies = list;
+
+		public void Start()
+		{
+			if (int.TryParse(Console.ReadLine(), out var answer))
+			{
+				switch (answer)
+				{
+					case 1:
+					{
+						AddNewTicket();
+						break;
+					}
+
+					case 2:
+					{
+						DeleteTicket();
+						break;
+					}
+				}
+			}
+			else
+				Console.WriteLine(nameof(answer) + " - парсинг не удался");
+		}
+
+		#endregion
+	}
 }

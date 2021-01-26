@@ -1,141 +1,150 @@
-﻿using System;
+﻿#region Using namespaces
+
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using RSPO_UP_6.Model.Controllers;
 
+#endregion
+
 namespace RSPO_UP_6.ViewModel.Entities
 {
-    public class WolfViewModel : ViewModelBase
-    {
-        #region Events
+	public class WolfViewModel : ViewModelBase
+	{
+		public WolfViewModel(Func<int, int, bool> isCellFree)
+		{
+			_isCellFree = isCellFree;
+			Settings = new EntitySettingsViewModel
+			           {
+				           ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\wolf.png",
+				           Delay = 100
+			           };
+		}
 
-        public event EntityMovedTo WolfPositionChanged;
-        public event EntityToMoveDirection WolfWantsToChangePosition;
+		public async Task CowMovedEventHandler(MoveDirection direction)
+		{
+			switch (direction)
+			{
+				case MoveDirection.Down:
+				{
+					await MoveUp();
+					break;
+				}
 
-        #endregion
+				case MoveDirection.Up:
+				{
+					await MoveDown();
+					break;
+				}
 
-        #region Fields
+				case MoveDirection.Left:
+				{
+					await MoveRight();
+					break;
+				}
 
-        private readonly object _monitor = new object();
-        private Func<int, int, bool> _isCellFree;
-        private EntitySettingsViewModel _settings;
-        private int _row, _column;
+				case MoveDirection.Right:
+				{
+					await MoveLeft();
+					break;
+				}
 
-        #endregion
+				case MoveDirection.None:
+					break;
 
-        #region Properties
+				default:
+					throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+			}
+		}
 
-        public int Row
-        {
-            get => _row;
-            set => SetValue(ref _row, value);
-        }
+		#region Events
 
-        public int Column
-        {
-            get => _column;
-            set => SetValue(ref _column, value);
-        }
+		public event EntityMovedTo WolfPositionChanged;
+		public event EntityToMoveDirection WolfWantsToChangePosition;
 
-        public EntitySettingsViewModel Settings
-        {
-            get => _settings;
-            set => SetValue(ref _settings, value);
-        }
+		#endregion
 
-        #endregion
+		#region Fields
 
-        public async Task CowMovedEventHandler(MoveDirection direction)
-        {
-            switch (direction)
-            {
-                case MoveDirection.Down:
-                {
-                    await MoveUp();
-                    break;
-                }
-                case MoveDirection.Up:
-                {
-                    await MoveDown();
-                    break;
-                }
-                case MoveDirection.Left:
-                {
-                    await MoveRight();
-                    break;
-                }
-                case MoveDirection.Right:
-                {
-                    await MoveLeft();
-                    break;
-                }
-                case MoveDirection.None:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
-            }
-        }
+		private readonly object _monitor = new object();
+		private readonly Func<int, int, bool> _isCellFree;
+		private EntitySettingsViewModel _settings;
+		private int _row, _column;
 
-        #region Controller
+		#endregion
 
-        public async Task MoveRight()
-        {
-            await Task.Delay(Settings.Delay);
-            lock (_monitor)
-            {
-                WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Right);
-                if (!_isCellFree(Row, Column + 1)) return;
-                Column++;
-                WolfPositionChanged?.Invoke(Row, Column);
-            }
-        }
+		#region Properties
 
-        public async Task MoveLeft()
-        {
-            await Task.Delay(Settings.Delay);
-            lock (_monitor)
-            {
-                WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Left);
-                if (!_isCellFree(Row, Column - 1)) return;
-                Column--;
-                WolfPositionChanged?.Invoke(Row, Column);
-            }
-        }
+		public int Row
+		{
+			get => _row;
+			set => SetValue(ref _row, value);
+		}
 
-        public async Task MoveDown()
-        {
-            await Task.Delay(Settings.Delay);
-            lock (_monitor)
-            {
-                WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Down);
-                if (!_isCellFree(Row + 1, Column)) return;
-                Row++;
-                WolfPositionChanged?.Invoke(Row, Column);
-            }
-        }
+		public int Column
+		{
+			get => _column;
+			set => SetValue(ref _column, value);
+		}
 
-        public async Task MoveUp()
-        {
-            await Task.Delay(Settings.Delay);
-            lock (_monitor)
-            {
-                WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Down);
-                if (!_isCellFree(Row - 1, Column)) return;
-                Row--;
-                WolfPositionChanged?.Invoke(Row, Column);
-            }
-        }
+		public EntitySettingsViewModel Settings
+		{
+			get => _settings;
+			set => SetValue(ref _settings, value);
+		}
 
-        #endregion
+		#endregion
 
-        public WolfViewModel(Func<int, int, bool> isCellFree)
-        {
-            _isCellFree = isCellFree;
-            Settings = new EntitySettingsViewModel
-            {
-                ImagePath = $"{Directory.GetCurrentDirectory()}\\Files\\wolf.png",
-                Delay = 100
-            };
-        }
-    }
+		#region Controller
+
+		public async Task MoveRight()
+		{
+			await Task.Delay(Settings.Delay);
+			lock (_monitor)
+			{
+				WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Right);
+				if (!_isCellFree(Row, Column + 1)) return;
+				Column++;
+				WolfPositionChanged?.Invoke(Row, Column);
+			}
+		}
+
+		public async Task MoveLeft()
+		{
+			await Task.Delay(Settings.Delay);
+			lock (_monitor)
+			{
+				WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Left);
+				if (!_isCellFree(Row, Column - 1)) return;
+				Column--;
+				WolfPositionChanged?.Invoke(Row, Column);
+			}
+		}
+
+		public async Task MoveDown()
+		{
+			await Task.Delay(Settings.Delay);
+			lock (_monitor)
+			{
+				WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Down);
+				if (!_isCellFree(Row + 1, Column)) return;
+				Row++;
+				WolfPositionChanged?.Invoke(Row, Column);
+			}
+		}
+
+		public async Task MoveUp()
+		{
+			await Task.Delay(Settings.Delay);
+			lock (_monitor)
+			{
+				WolfWantsToChangePosition?.Invoke(Row, Column, MoveDirection.Down);
+				if (!_isCellFree(Row - 1, Column)) return;
+				Row--;
+				WolfPositionChanged?.Invoke(Row, Column);
+			}
+		}
+
+		#endregion
+	}
 }

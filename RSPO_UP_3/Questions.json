@@ -1,95 +1,108 @@
-[{
-        "Id": 1,
-        "Text": "What is the CLR?",
-        "Answers": [
-            {
-                "Text": "This is a component .The NET Framework, whose main task is to manage the interpretation and execution of IL code. the CLR is responsible for application memory isolation, type checking, code security, and converting IL to machine code.",
-                "IsRight": true
-            },
-            {
-                "Text": "Code that contains a set of platform-independent instructions. In other words, after compiling the source code, it is converted not to code for a specific platform, but to intermediate code in the IL language.",
-                "IsRight": false
-            },
-            {
-                "Text": "This is a set of rules that developers follow to achieve conflict-free operation in all .NET languages .",
-                "IsRight": false
-            },
-            { "Text": "Execution environment", "IsRight": true },
-            {
-                "Text": "This is code that runs in the CLR. Contains metadata that contains information for the runtime environment, such as types, members, and references used in the code.",
-                "IsRight": false
-            }
-        ]
-    },
-    {
-        "Id": 2,
-        "Text": "What can't you use the abstract modifier with?",
-        "Answers": [
-            { "Text": "With events.", "IsRight": false },
-            { "Text": "With indexers.", "IsRight": false },
-            { "Text": "With structures.", "IsRight": true },
-            { "Text": "Of course structures.", "IsRight": true },
-            { "Text": "With properties.", "IsRight": false }
-        ]
-    },
-    {
-        "Id": 3,
-        "Text": "The system ensures the principle of inheritance in the event that",
-        "Answers": [{
-                "Text": "In any place where it is permissible to use an object belonging to a derived class, it is also permissible to use an ancestor class. ",
-                "IsRight": false
-            },
-            { "Text": "The third", "IsRight": false },
-            {
-                "Text": "In any place where the use of an object belonging to the ancestor class is permissible, the use of a descendant class is also permissible.",
-                "IsRight": true
-            },
-            {
-                "Text": "There is at least one successor in the system.",
-                "IsRight": false
-            },
-            { "Text": "Chirkash politics", "IsRight": true }
-        ]
-    },
-    {
-        "Id": 4,
-        "Text": "What is static?",
-        "Answers": [{
-                "Text": "A modifier that defines members of a class that are shared by all instances of that class and stored in one place.",
-                "IsRight": true
-            },
-            {
-                "Text": "A modifier indicating that the value of a field or local variable cannot be changed.",
-                "IsRight": false
-            },
-            {
-                "Text": " Modifier that prohibits inheriting from the class, as well as overriding methods in child classes.",
-                "IsRight": false
-            },
-            { "Text": "IDK, but I can use it", "IsRight": false },
-            { "Text": "For static classes and so on, you know", "IsRight": true }
-        ]
-    },
-    {
-        "Id": 5,
-        "Text": "What is the difference between the in keyword and the out and ref keywords?",
-        "Answers": [{
-                "Text": "An argument passed to a parameter with the in keyword does not need to be initialized before being passed to a method.",
-                "IsRight": false
-            },
-            {
-                "Text": "An argument passed to a parameter with the in keyword cannot be changed by the called method.",
-                "IsRight": true
-            },
-            {
-                "Text": "The argument passed to the parameter with the in keyword must be initialized before being passed to the method.",
-                "IsRight": false
-            },
-            {
-                "Text": "The argument passed to the parameter with the in keyword can be changed by the called method.",
-                "IsRight": false
-            },
-            { "Text": "IDK", "IsRight": true }
-        ]
-    }
+[
+  {
+    "Id": 1,
+    "Text": "What is the CLR?",
+    "Answers": [
+      {
+        "Text":
+          "This is a component .The NET Framework, whose main task is to manage the interpretation and execution of IL code. the CLR is responsible for application memory isolation, type checking, code security, and converting IL to machine code.",
+        "IsRight": true
+      },
+      {
+        "Text":
+          "Code that contains a set of platform-independent instructions. In other words, after compiling the source code, it is converted not to code for a specific platform, but to intermediate code in the IL language.",
+        "IsRight": false
+      },
+      {
+        "Text":
+          "This is a set of rules that developers follow to achieve conflict-free operation in all .NET languages .",
+        "IsRight": false
+      },
+      { "Text": "Execution environment", "IsRight": true },
+      {
+        "Text":
+          "This is code that runs in the CLR. Contains metadata that contains information for the runtime environment, such as types, members, and references used in the code.",
+        "IsRight": false
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "Text": "What can't you use the abstract modifier with?",
+    "Answers": [
+      { "Text": "With events.", "IsRight": false },
+      { "Text": "With indexers.", "IsRight": false },
+      { "Text": "With structures.", "IsRight": true },
+      { "Text": "Of course structures.", "IsRight": true },
+      { "Text": "With properties.", "IsRight": false }
+    ]
+  },
+  {
+    "Id": 3,
+    "Text": "The system ensures the principle of inheritance in the event that",
+    "Answers": [
+      {
+        "Text":
+          "In any place where it is permissible to use an object belonging to a derived class, it is also permissible to use an ancestor class. ",
+        "IsRight": false
+      },
+      { "Text": "The third", "IsRight": false },
+      {
+        "Text":
+          "In any place where the use of an object belonging to the ancestor class is permissible, the use of a descendant class is also permissible.",
+        "IsRight": true
+      },
+      {
+        "Text": "There is at least one successor in the system.",
+        "IsRight": false
+      },
+      { "Text": "Chirkash politics", "IsRight": true }
+    ]
+  },
+  {
+    "Id": 4,
+    "Text": "What is static?",
+    "Answers": [
+      {
+        "Text":
+          "A modifier that defines members of a class that are shared by all instances of that class and stored in one place.",
+        "IsRight": true
+      },
+      {
+        "Text": "A modifier indicating that the value of a field or local variable cannot be changed.",
+        "IsRight": false
+      },
+      {
+        "Text": " Modifier that prohibits inheriting from the class, as well as overriding methods in child classes.",
+        "IsRight": false
+      },
+      { "Text": "IDK, but I can use it", "IsRight": false },
+      { "Text": "For static classes and so on, you know", "IsRight": true }
+    ]
+  },
+  {
+    "Id": 5,
+    "Text": "What is the difference between the in keyword and the out and ref keywords?",
+    "Answers": [
+      {
+        "Text":
+          "An argument passed to a parameter with the in keyword does not need to be initialized before being passed to a method.",
+        "IsRight": false
+      },
+      {
+        "Text": "An argument passed to a parameter with the in keyword cannot be changed by the called method.",
+        "IsRight": true
+      },
+      {
+        "Text":
+          "The argument passed to the parameter with the in keyword must be initialized before being passed to the method.",
+        "IsRight": false
+      },
+      {
+        "Text": "The argument passed to the parameter with the in keyword can be changed by the called method.",
+        "IsRight": false
+      },
+      { "Text": "IDK", "IsRight": true }
+    ]
+  }
 ]

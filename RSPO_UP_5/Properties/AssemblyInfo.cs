@@ -1,8 +1,10 @@
-﻿using System.Reflection;
-using System.Resources;
-using System.Runtime.CompilerServices;
+﻿#region Using namespaces
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
+
+#endregion
 
 // Общие сведения об этой сборке предоставляются следующим набором
 // набор атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
@@ -30,16 +32,14 @@ using System.Windows;
 
 //[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
 
-
 [assembly: ThemeInfo(
-    ResourceDictionaryLocation.None, //где расположены словари ресурсов по конкретным тематикам
-                                     //(используется, если ресурс не найден на странице,
-                                     // или в словарях ресурсов приложения)
-    ResourceDictionaryLocation.SourceAssembly //где расположен словарь универсальных ресурсов
-                                              //(используется, если ресурс не найден на странице,
-                                              // в приложении или в каких-либо словарях ресурсов для конкретной темы)
-)]
-
+	                    ResourceDictionaryLocation.None, //где расположены словари ресурсов по конкретным тематикам
+	                    //(используется, если ресурс не найден на странице,
+	                    // или в словарях ресурсов приложения)
+	                    ResourceDictionaryLocation.SourceAssembly //где расположен словарь универсальных ресурсов
+	                    //(используется, если ресурс не найден на странице,
+	                    // в приложении или в каких-либо словарях ресурсов для конкретной темы)
+                    )]
 
 // Сведения о версии для сборки включают четыре следующих значения:
 //

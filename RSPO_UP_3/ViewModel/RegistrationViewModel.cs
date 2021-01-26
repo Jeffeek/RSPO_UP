@@ -1,4 +1,5 @@
-﻿using System;
+﻿#region Using namespaces
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -8,98 +9,102 @@ using RSPO_UP_3.Models.EntityFramework.Models;
 using RSPO_UP_3.Services;
 using RSPO_UP_3.ViewModel.Base;
 
+#endregion
+
 namespace RSPO_UP_3.ViewModel
 {
-    class RegistrationViewModel : ViewModelBase
-    {
-        #region fields
+	internal class RegistrationViewModel : ViewModelBase
+	{
+		public RegistrationViewModel(List<User> users)
+		{
+			_users = users;
+			RegisterNewUser = new RelayCommand(OnRegisterButtonExecuted, CanRegisterButtonExecute);
+		}
 
-        private string _name = String.Empty;
-        private string _password = String.Empty;
-        private string _repeatPassword = String.Empty;
-        private string _login = String.Empty;
-        private List<User> _users;
+		#region commands
 
-        #endregion
+		public ICommand RegisterNewUser { get; }
 
-        #region commands
+		#endregion
 
-        public ICommand RegisterNewUser { get; }
+		#region fields
 
-        #endregion
+		private string _name = string.Empty;
+		private string _password = string.Empty;
+		private string _repeatPassword = string.Empty;
+		private string _login = string.Empty;
+		private readonly List<User> _users;
 
-        #region command methods
+		#endregion
 
-        private bool CanRegisterButtonExecute() => NameText.Length >= 3 && 
-                                                   LoginText.Length >= 5 &&
-                                                   PasswordText.Length >= 7 && 
-                                                   PasswordText == RepeatPasswordText;
+		#region command methods
 
-        private void OnRegisterButtonExecuted()
-        {
-            var user = new User()
-            {
-                Login = LoginText,
-                Name = NameText,
-                Password = PasswordText
-            };
-            var checkUser = _users.SingleOrDefault(x => x.Login == user.Login);
-            if (checkUser == null)
-            {
-                UsersProvider.AddNewUser(user);
-                _users.Add(user);
-                MessageBox.Show($"User with login {LoginText} was registered!",
-                    "Successful registration",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
-                LoginText = String.Empty;
-                PasswordText = String.Empty;
-                RepeatPasswordText = String.Empty;
-                NameText = String.Empty;
-            }
-            else
-            {
-                MessageBox.Show($"User with login {LoginText} is already exists!",
-                    "Bad login", 
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-            }
-        }
+		private bool CanRegisterButtonExecute() => NameText.Length >= 3 &&
+		                                           LoginText.Length >= 5 &&
+		                                           PasswordText.Length >= 7 &&
+		                                           PasswordText == RepeatPasswordText;
 
-        #endregion
+		private void OnRegisterButtonExecuted()
+		{
+			var user = new User
+			           {
+				           Login = LoginText,
+				           Name = NameText,
+				           Password = PasswordText
+			           };
 
-        #region props
+			var checkUser = _users.SingleOrDefault(x => x.Login == user.Login);
+			if (checkUser == null)
+			{
+				UsersProvider.AddNewUser(user);
+				_users.Add(user);
+				MessageBox.Show($"User with login {LoginText} was registered!",
+				                "Successful registration",
+				                MessageBoxButton.OK,
+				                MessageBoxImage.Information);
 
-        public string NameText
-        {
-            get => _name;
-            set => SetValue(ref _name, value);
-        }
+				LoginText = string.Empty;
+				PasswordText = string.Empty;
+				RepeatPasswordText = string.Empty;
+				NameText = string.Empty;
+			}
+			else
+			{
+				MessageBox.Show($"User with login {LoginText} is already exists!",
+				                "Bad login",
+				                MessageBoxButton.OK,
+				                MessageBoxImage.Error);
+			}
+		}
 
-        public string PasswordText
-        {
-            get => _password;
-            set => SetValue(ref _password, value);
-        }
+		#endregion
 
-        public string RepeatPasswordText
-        {
-            get => _repeatPassword;
-            set => SetValue(ref _repeatPassword, value);
-        }
+		#region props
 
-        public string LoginText
-        {
-            get => _login;
-            set => SetValue(ref _login, value);
-        }
+		public string NameText
+		{
+			get => _name;
+			set => SetValue(ref _name, value);
+		}
 
-        #endregion
+		public string PasswordText
+		{
+			get => _password;
+			set => SetValue(ref _password, value);
+		}
 
-        public RegistrationViewModel(List<User> users)
-        {
-            _users = users;
-            RegisterNewUser = new RelayCommand(OnRegisterButtonExecuted, CanRegisterButtonExecute);
-        }
-    }
+		public string RepeatPasswordText
+		{
+			get => _repeatPassword;
+			set => SetValue(ref _repeatPassword, value);
+		}
+
+		public string LoginText
+		{
+			get => _login;
+			set => SetValue(ref _login, value);
+		}
+
+		#endregion
+	}
 }

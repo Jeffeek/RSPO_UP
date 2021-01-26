@@ -1,0 +1,16 @@
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Debug\netcoreapp3.1\RSPO.Console.7.exe
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Debug\netcoreapp3.1\RSPO.Console.7.deps.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Debug\netcoreapp3.1\RSPO.Console.7.runtimeconfig.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Debug\netcoreapp3.1\RSPO.Console.7.runtimeconfig.dev.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Debug\netcoreapp3.1\RSPO.Console.7.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Debug\netcoreapp3.1\RSPO.Console.7.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Debug\netcoreapp3.1\RSPO.Library.7.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\bin\Debug\netcoreapp3.1\RSPO.Library.7.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Debug\netcoreapp3.1\RSPO.Console.7.csprojAssemblyReference.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Debug\netcoreapp3.1\RSPO.Console.7.AssemblyInfoInputs.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Debug\netcoreapp3.1\RSPO.Console.7.AssemblyInfo.cs
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Debug\netcoreapp3.1\RSPO.Console.7.csproj.CoreCompileInputs.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Debug\netcoreapp3.1\RSPO.Console.7.csproj.CopyComplete
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Debug\netcoreapp3.1\RSPO.Console.7.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Debug\netcoreapp3.1\RSPO.Console.7.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_7\RSPO_UP_7.Console\obj\Debug\netcoreapp3.1\RSPO.Console.7.genruntimeconfig.cache

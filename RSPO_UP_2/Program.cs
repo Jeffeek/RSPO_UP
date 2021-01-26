@@ -1,14 +1,18 @@
-﻿using System;
+﻿#region Using namespaces
+
+using System;
 using RSPO_UP_2.View;
+
+#endregion
 
 namespace RSPO_UP_2
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            MainView view = new MainView();
-            Console.ReadLine();
-        }
-    }
+	internal static class Program
+	{
+		private static void Main(string[] args)
+		{
+			var dummy = new MainView();
+			Console.ReadLine();
+		}
+	}
 }

@@ -1,18 +1,19 @@
-﻿using CyberMath.Structures.Matrices.JaggedMatrix;
-using System;
+﻿#region Using namespaces
+
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using CyberMath.Extensions.Int32;
 using CyberMath.Structures.Matrices.Extensions;
 using CyberMath.Structures.Matrices.Matrix;
 
+#endregion
+
 namespace RSPO_UP_12
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
+	internal static class Program
+	{
+		private static void Main(string[] args)
+		{
 			//1
 			//int[] arr = {1, 2, 3, 4, 5};
 			//var sum = Sum(arr);
@@ -54,15 +55,15 @@ namespace RSPO_UP_12
 			//6
 			var matrix = new Matrix<int>(3, 3);
 			matrix.FillRandomly();
-			for (int i = 0; i < matrix.ColumnsCount; i++)
+			for (var i = 0; i < matrix.ColumnsCount; i++)
 			{
-				for (int j = 0; j < matrix.RowsCount; j++)
+				for (var j = 0; j < matrix.RowsCount; j++)
 				{
 					if (matrix[j, i] >= 0 &&
 					    matrix[j, i].IsPrime() &&
 					    i != matrix.ColumnsCount - 1)
 					{
-						var min = matrix.Select(x => x.ElementAt(j)).Min();
+						var unused = matrix.Select(x => x.ElementAt(j)).Min();
 
 						break;
 					}
@@ -72,12 +73,12 @@ namespace RSPO_UP_12
 
 		private static int Sum(int[] array) => InternalSumRecursion(array, 0, 0);
 
-        private static int InternalSumRecursion(int[] array, int index, int sum)
-        {
-	        if(index == array.Length) return sum;
-	        sum += array[index];
-	        index++;
-	        return InternalSumRecursion(array, index, sum);
-        }
-    }
+		private static int InternalSumRecursion(IReadOnlyList<int> array, int index, int sum)
+		{
+			if (index == array.Count) return sum;
+			sum += array[index];
+			index++;
+			return InternalSumRecursion(array, index, sum);
+		}
+	}
 }

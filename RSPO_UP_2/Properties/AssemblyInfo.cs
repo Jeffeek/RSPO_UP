@@ -1,6 +1,9 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿#region Using namespaces
+
+using System.Reflection;
 using System.Runtime.InteropServices;
+
+#endregion
 
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,

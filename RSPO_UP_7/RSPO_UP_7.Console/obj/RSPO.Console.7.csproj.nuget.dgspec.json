@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO_UP_7.Console\\RSPO.Console.7.csproj": {}
+    "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO_UP_7.Console\\RSPO.Console.7.csproj": {}
   },
   "projects": {
-    "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\RSPO.Library.7.csproj": {
+    "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\RSPO.Library.7.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\RSPO.Library.7.csproj",
+        "projectUniqueName": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\RSPO.Library.7.csproj",
         "projectName": "RSPO.Library.7",
-        "projectPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\RSPO.Library.7.csproj",
-        "packagesPath": "C:\\Users\\Mikhail\\.nuget\\packages\\",
-        "outputPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\obj\\",
+        "projectPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\RSPO.Library.7.csproj",
+        "packagesPath": "C:\\Users\\misha\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Mikhail\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\misha\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "E:\\projectsVS\\Nuget Packages Local": {},
+          "C:\\Users\\misha\\Documents\\GitHub\\Nuget Packages Local": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -55,21 +58,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO_UP_7.Console\\RSPO.Console.7.csproj": {
+    "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO_UP_7.Console\\RSPO.Console.7.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO_UP_7.Console\\RSPO.Console.7.csproj",
+        "projectUniqueName": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO_UP_7.Console\\RSPO.Console.7.csproj",
         "projectName": "RSPO.Console.7",
-        "projectPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO_UP_7.Console\\RSPO.Console.7.csproj",
-        "packagesPath": "C:\\Users\\Mikhail\\.nuget\\packages\\",
-        "outputPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO_UP_7.Console\\obj\\",
+        "projectPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO_UP_7.Console\\RSPO.Console.7.csproj",
+        "packagesPath": "C:\\Users\\misha\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO_UP_7.Console\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Mikhail\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\misha\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -77,15 +83,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "E:\\projectsVS\\Nuget Packages Local": {},
+          "C:\\Users\\misha\\Documents\\GitHub\\Nuget Packages Local": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\RSPO.Library.7.csproj": {
-                "projectPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\RSPO.Library.7.csproj"
+              "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\RSPO.Library.7.csproj": {
+                "projectPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_7\\RSPO.dotNet\\RSPO.Library.7.csproj"
               }
             }
           }
@@ -114,7 +120,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

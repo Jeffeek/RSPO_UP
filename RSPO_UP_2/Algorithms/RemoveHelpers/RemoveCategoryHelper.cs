@@ -1,67 +1,71 @@
-﻿using System;
+﻿#region Using namespaces
+
+using System;
 using System.Data.Entity;
 using System.Linq;
 using RSPO_UP_2.EntityFramework;
 using RSPO_UP_2.View;
 
+#endregion
+
 namespace RSPO_UP_2.Algorithms.RemoveHelpers
 {
-    public class RemoveCategoryHelper
-    {
-        public RemoveCategoryHelper()
-        {
-            Remove();
-        }
+	public class RemoveCategoryHelper
+	{
+		public RemoveCategoryHelper()
+		{
+			Remove();
+		}
 
-        public bool UpdateDataBase(string categoryName)
-        {
-            int result = -1;
-            using (var db = new BootsContext())
-            {
-                db.Categories.Load();
-                var elem = db.Categories
-                                .First(x => x.CategoryName == categoryName);
-                db.Categories.Remove(elem);
-                result = db.SaveChanges();
-            }
+		public bool UpdateDataBase(string categoryName)
+		{
+			int result;
+			using (var db = new BootsContext())
+			{
+				db.Categories.Load();
+				var elem = db.Categories
+				             .First(x => x.CategoryName == categoryName);
 
-            return result == 1;
-        }
+				db.Categories.Remove(elem);
+				result = db.SaveChanges();
+			}
 
-        private string GetCategoryName()
-        {
-            int id = -1;
-            Console.WriteLine("Удаляем категорию");
-            var bootslist = DbCollectionHelper.GetBoots();
-            var categorieslist = DbCollectionHelper.GetCategories();
-            ShowInfoView.PrintList(categorieslist);
-            Console.WriteLine("Введите название категории: ");
-            var name = Console.ReadLine();
-            bool isUsedCategory = bootslist
-                                        .Select(x => x.Category.CategoryName)
-                                        .Contains(name);
-            bool isExists = categorieslist.FirstOrDefault(x => x.CategoryName == name) != null;
+			return result == 1;
+		}
 
-            if (!isUsedCategory && isExists)
-                return name;
+		private string GetCategoryName()
+		{
+			Console.WriteLine("Удаляем категорию");
+			var bootslist = DbCollectionHelper.GetBoots();
+			var categorieslist = DbCollectionHelper.GetCategories();
+			ShowInfoView.PrintList(categorieslist);
+			Console.WriteLine("Введите название категории: ");
+			var name = Console.ReadLine();
+			var isUsedCategory = bootslist
+			                     .Select(x => x.Category.CategoryName)
+			                     .Contains(name);
 
-            if (isUsedCategory)
-            {
-                Console.WriteLine("Данная категория используется товарами, сначала удалите товары");
-            }
+			var isExists = categorieslist.FirstOrDefault(x => x.CategoryName == name) != null;
 
-            if (!isExists)
-            {
-                Console.WriteLine("Данная категория не найдена");
-            }
+			switch (isUsedCategory)
+			{
+				case false when isExists:
+					return name;
 
-            throw new Exception();
-        }
+				case true:
+					Console.WriteLine("Данная категория используется товарами, сначала удалите товары");
+					break;
+			}
 
-        private void Remove()
-        {
-            string categoryName = GetCategoryName();
-            UpdateDataBase(categoryName);
-        }
-    }
+			if (!isExists) Console.WriteLine("Данная категория не найдена");
+
+			throw new Exception();
+		}
+
+		private void Remove()
+		{
+			var categoryName = GetCategoryName();
+			UpdateDataBase(categoryName);
+		}
+	}
 }

@@ -1,195 +1,205 @@
-﻿using System;
+﻿#region Using namespaces
+
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RSPO_UP_6.Model.Controllers;
 using RSPO_UP_6.Model.Map;
 using RSPO_UP_6.ViewModel.Entities;
 
+#endregion
+
 namespace RSPO_UP_6.ViewModel
 {
-    public class MapViewModel : ViewModelBase
-    {
-        public event EventHandler<bool> OnGameResult;
+	public class MapViewModel : ViewModelBase
+	{
+		public MapViewModel(IMap map)
+		{
+			Map = map;
+			_bricks = new ObservableCollection<BrickViewModel>();
+			SetBricksInPosition();
+		}
 
-        #region Fields
+		public event EventHandler<bool> OnGameResult;
 
-        private IMap _map;
-        private CowViewModel _cow;
-        private WolfViewModel _wolf;
-        private CannabisViewModel _cannabis;
-        private BombViewModel _bomb;
-        private ObservableCollection<BrickViewModel> _bricks;
-        private bool _isGameStopped = false;
+		private bool IsCowDied() => Cow.Lives.Count == 0;
 
-        #endregion
+		private void CheckCowForCannabis()
+		{
+			if (Cow.Row != Cannabis.Row) return;
+			if (Cow.Column != Cannabis.Column) return;
+			if (Cannabis.IsCollected) return;
+			if (Cow.Lives.Count == 7) return;
+			var item = new LiveViewModel();
+			Cow.Lives.Add(item);
+			Cannabis.IsCollected = true;
+		}
 
-        #region Properties
+		private void CheckCowForBomb()
+		{
+			if (Cow.Row != Bomb.Row) return;
+			if (Cow.Column != Bomb.Column) return;
+			if (!Bomb.IsExploded) return;
+			var item = Cow.Lives.Last();
+			Cow.Lives.Remove(item);
+		}
 
-        public ObservableCollection<BrickViewModel> Bricks
-        {
-            get => _bricks;
-            set => SetValue(ref _bricks, value);
-        }
+		private void CheckCowForDying()
+		{
+			if (IsCowDied())
+			{
+				IsGameStopped = true;
 
-        public bool IsGameStopped
-        {
-            get => _isGameStopped;
-            set
-            {
-                SetValue(ref _isGameStopped, value);
-                Cannabis.IsGameStopped = value;
-                Bomb.IsGameStopped = value;
-            }
-        }
+				//OnGameResult?.Invoke(this, false);
+			}
+		}
 
-        public IMap Map
-        {
-            get => _map;
-            set => SetValue(ref _map, value);
-        }
+		private void SetBricksInPosition()
+		{
+			for (var i = 0; i < Map.Size; i++)
+			{
+				for (var j = 0; j < Map.Size; j++)
+				{
+					if (Map.Map[i, j])
+						_bricks.Add(new BrickViewModel {Column = j, Row = i});
+				}
+			}
+		}
 
-        public WolfViewModel Wolf
-        {
-            get => _wolf;
-            set => SetValue(ref _wolf, value);
-        }
+		public void StartMap()
+		{
+			Bomb = new BombViewModel((row, column) => Map.IsCellFree(row, column));
+			Cannabis = new CannabisViewModel((row, column) => Map.IsCellFree(row, column));
+			Cow = new CowViewModel((row, column) => Map.IsCellFree(row, column))
+			      {
+				      Column = 0,
+				      Row = 0
+			      };
 
-        public CannabisViewModel Cannabis
-        {
-            get => _cannabis;
-            set => SetValue(ref _cannabis, value);
-        }
+			Wolf = new WolfViewModel((row, column) => Map.IsCellFree(row, column))
+			       {
+				       Column = Map.Size - 1,
+				       Row = 0
+			       };
 
-        public BombViewModel Bomb
-        {
-            get => _bomb;
-            set => SetValue(ref _bomb, value);
-        }
+			Cow.CowMovedTo += Wolf.CowMovedEventHandler;
+			Wolf.WolfPositionChanged += WolfWalkedEventHandler;
+			Cannabis.CannabisPositionChanged += CannabisChangedPositionEventHandler;
+			Bomb.BombExploded += BombExplodedEventHandler;
+			Cow.CowPositionChanged += CowChangedPositionEventHandler;
+		}
 
-        public CowViewModel Cow
-        {
-            get => _cow;
-            set => SetValue(ref _cow, value);
-        }
+		#region Fields
 
-        #endregion
+		private IMap _map;
+		private CowViewModel _cow;
+		private WolfViewModel _wolf;
+		private CannabisViewModel _cannabis;
+		private BombViewModel _bomb;
+		private ObservableCollection<BrickViewModel> _bricks;
+		private bool _isGameStopped;
 
-        #region Event Handlers
+		#endregion
 
-        private void CowChangedPositionEventHandler(int row, int column)
-        {
-            if (row == Map.Size - 1 && column == Map.Size - 1)
-            {
-                OnGameResult?.Invoke(this, true);
-                return;
-            }
+		#region Properties
 
-            CheckCowForCannabis();
-            CheckCowForBomb();
-        }
+		public ObservableCollection<BrickViewModel> Bricks
+		{
+			get => _bricks;
+			set => SetValue(ref _bricks, value);
+		}
 
-        private void BombExplodedEventHandler(int row, int column)
-        {
-            if (row == Cow.Row && column == Cow.Column)
-            {
-                var live = Cow.Lives.Last();
-                Cow.Lives.Remove(live);
-                CheckCowForDying();
-            }
-        }
+		public bool IsGameStopped
+		{
+			get => _isGameStopped;
+			set
+			{
+				SetValue(ref _isGameStopped, value);
+				Cannabis.IsGameStopped = value;
+				Bomb.IsGameStopped = value;
+			}
+		}
 
-        private void WolfWalkedEventHandler(int row, int column)
-        {
-            if (row == Cow.Row && column == Cow.Column)
-            {
-                var live = Cow.Lives.Last();
-                Cow.Lives.Remove(live);
-                CheckCowForDying();
-            }
-        }
+		public IMap Map
+		{
+			get => _map;
+			set => SetValue(ref _map, value);
+		}
 
-        private void CannabisChangedPositionEventHandler(int row, int column)
-        {
-            if (row != Cow.Row || column != Cow.Column) return;
-            if (Cow.Lives.Count == 7) return;
-            if (Cannabis.IsCollected) return;
-            var item = new LiveViewModel();
-            Cow.Lives.Add(item);
-            Cannabis.IsCollected = true;
-        }
+		public WolfViewModel Wolf
+		{
+			get => _wolf;
+			set => SetValue(ref _wolf, value);
+		}
 
-        #endregion
+		public CannabisViewModel Cannabis
+		{
+			get => _cannabis;
+			set => SetValue(ref _cannabis, value);
+		}
 
-        private bool IsCowDied() => Cow.Lives.Count == 0;
+		public BombViewModel Bomb
+		{
+			get => _bomb;
+			set => SetValue(ref _bomb, value);
+		}
 
-        private void CheckCowForCannabis()
-        {
-            if (Cow.Row != Cannabis.Row) return;
-            if (Cow.Column != Cannabis.Column) return;
-            if (Cannabis.IsCollected) return;
-            if (Cow.Lives.Count == 7) return;
-            var item = new LiveViewModel();
-            Cow.Lives.Add(item);
-            Cannabis.IsCollected = true;
-        }
+		public CowViewModel Cow
+		{
+			get => _cow;
+			set => SetValue(ref _cow, value);
+		}
 
-        private void CheckCowForBomb()
-        {
-            if (Cow.Row != Bomb.Row) return;
-            if (Cow.Column != Bomb.Column) return;
-            if (!Bomb.IsExploded) return;
-            var item = Cow.Lives.Last();
-            Cow.Lives.Remove(item);
-        }
+		#endregion
 
-        private void CheckCowForDying()
-        {
-            if (IsCowDied())
-            {
-                IsGameStopped = true;
-                //OnGameResult?.Invoke(this, false);
-                return;
-            }
-        }
+		#region Event Handlers
 
-        private void SetBricksInPosition()
-        {
-            for (int i = 0; i < Map.Size; i++)
-            {
-                for (int j = 0; j < Map.Size; j++)
-                {
-                    if (Map.Map[i, j])
-                        _bricks.Add(new BrickViewModel() {Column = j, Row = i});
-                }
-            }
-        }
+		private void CowChangedPositionEventHandler(int row, int column)
+		{
+			if (row == Map.Size - 1 &&
+			    column == Map.Size - 1)
+			{
+				OnGameResult?.Invoke(this, true);
+				return;
+			}
 
-        public void StartMap()
-        {
-            Bomb = new BombViewModel((row, column) => Map.IsCellFree(row, column));
-            Cannabis = new CannabisViewModel((row, column) => Map.IsCellFree(row, column));
-            Cow = new CowViewModel((row, column) => Map.IsCellFree(row, column))
-            {
-                Column = 0,
-                Row = 0
-            };
-            Wolf = new WolfViewModel((row, column) => Map.IsCellFree(row, column))
-            {
-                Column = Map.Size - 1,
-                Row = 0
-            };
-            Cow.CowMovedTo += Wolf.CowMovedEventHandler;
-            Wolf.WolfPositionChanged += WolfWalkedEventHandler;
-            Cannabis.CannabisPositionChanged += CannabisChangedPositionEventHandler;
-            Bomb.BombExploded += BombExplodedEventHandler;
-            Cow.CowPositionChanged += CowChangedPositionEventHandler;
-        }
+			CheckCowForCannabis();
+			CheckCowForBomb();
+		}
 
-        public MapViewModel(IMap map)
-        {
-            Map = map;
-            _bricks = new ObservableCollection<BrickViewModel>();
-            SetBricksInPosition();
-        }
-    }
+		private void BombExplodedEventHandler(int row, int column)
+		{
+			if (row == Cow.Row &&
+			    column == Cow.Column)
+			{
+				var live = Cow.Lives.Last();
+				Cow.Lives.Remove(live);
+				CheckCowForDying();
+			}
+		}
+
+		private void WolfWalkedEventHandler(int row, int column)
+		{
+			if (row == Cow.Row &&
+			    column == Cow.Column)
+			{
+				var live = Cow.Lives.Last();
+				Cow.Lives.Remove(live);
+				CheckCowForDying();
+			}
+		}
+
+		private void CannabisChangedPositionEventHandler(int row, int column)
+		{
+			if (row != Cow.Row ||
+			    column != Cow.Column) return;
+
+			if (Cow.Lives.Count == 7) return;
+			if (Cannabis.IsCollected) return;
+			var item = new LiveViewModel();
+			Cow.Lives.Add(item);
+			Cannabis.IsCollected = true;
+		}
+
+		#endregion
+	}
 }

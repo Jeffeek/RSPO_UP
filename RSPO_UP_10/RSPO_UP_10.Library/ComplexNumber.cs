@@ -1,40 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿#region Using namespaces
+
+using System;
+
+#endregion
 
 namespace RSPO_UP_10.Library
 {
-    public class ComplexNumber
-    {
-	    public const int iSquare = -1;
-        public double Real { get; }
-        public double Virtual { get; }
+	public sealed class ComplexNumber
+	{
+		public ComplexNumber(double real, double vir)
+		{
+			Real = real;
+			Virtual = vir;
+		}
 
-        public ComplexNumber(double real, double vir)
-        {
-	        Real = real;
-	        Virtual = vir;
-        }
+		public ComplexNumber()
+		{
+			var rnd = new Random();
+			Real = 1 + 19 * rnd.NextDouble();
+			Virtual = 1 + 19 * rnd.NextDouble();
+		}
 
-        public ComplexNumber()
-        {
-	        var rnd = new Random();
-            Real = 1 + 19 * rnd.NextDouble();
-            Virtual = 1 + 19 * rnd.NextDouble();
-        }
+		// ReSharper disable once UnusedMember.Global
+		// ReSharper disable once InconsistentNaming
+		public static int ISquare { get; } = -1;
 
-        public static ComplexNumber operator *(ComplexNumber first, ComplexNumber second)
-        {
-	        var real = first.Real * second.Real - first.Virtual * second.Virtual;
-            var vir = first.Real * second.Virtual + second.Real * first.Virtual;
-            return new ComplexNumber(real, vir);
-        }
+		public double Real { get; }
+		public double Virtual { get; }
 
-        #region Overrides of Object
+		public static ComplexNumber operator *(ComplexNumber first, ComplexNumber second)
+		{
+			var real = first.Real * second.Real - first.Virtual * second.Virtual;
+			var vir = first.Real * second.Virtual + second.Real * first.Virtual;
+			return new ComplexNumber(real, vir);
+		}
 
-        /// <inheritdoc />
-        public override string ToString() => $"{Real} {(Virtual < 0 ? String.Empty : "+")} {Virtual}i";
+		#region Overrides of Object
 
-        #endregion
-    }
+		/// <inheritdoc />
+		public override string ToString() => $"{Real} {(Virtual < 0 ? string.Empty : "+")} {Virtual}i";
+
+		#endregion
+	}
 }

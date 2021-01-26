@@ -1,4 +1,5 @@
-﻿using System;
+﻿#region Using namespaces
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -9,114 +10,118 @@ using RSPO_UP_3.Services;
 using RSPO_UP_3.View.Windows;
 using RSPO_UP_3.ViewModel.Base;
 
+#endregion
+
 namespace RSPO_UP_3.ViewModel
 {
-    class LoginWindowViewModel : ViewModelBase
-    {
-        #region fields
+	internal class LoginWindowViewModel : ViewModelBase
+	{
+		public LoginWindowViewModel()
+		{
+			_users = UsersProvider.GetUsersList();
+			RegistrationViewModel = new RegistrationViewModel(_users);
+			EnterCommand = new RelayCommand(OnEnterButtonExecuted, CanEnterButtonExecute);
+		}
 
-        private string _login = String.Empty;
-        private string _password = String.Empty;
-        private RegistrationViewModel _registrationViewModel;
-        private List<User> _users;
+		#region commands
 
-        #endregion
+		public ICommand EnterCommand { get; }
 
-        #region commands
+		#endregion
 
-        public ICommand EnterCommand { get; }
+		private void OpenChildForm(Role role)
+		{
+			Window w = null;
+			switch (role)
+			{
+				case Role.Student:
+				{
+					w = new MainWindow();
+					break;
+				}
 
-        #endregion
+				case Role.Admin:
+				{
+					w = new AdminWindow();
+					break;
+				}
 
-        #region props
+				case Role.Teacher:
+				{
+					w = new TeacherWindow();
+					break;
+				}
+			}
 
-        public RegistrationViewModel RegistrationViewModel
-        {
-            get => _registrationViewModel;
-            set => SetValue(ref _registrationViewModel, value);
-        }
+			w?.ShowDialog();
+			Application.Current.Shutdown();
+		}
 
-        public string LoginText
-        {
-            get => _login;
-            set => SetValue(ref _login, value);
-        }
+		#region fields
 
-        public string PasswordText
-        {
-            get => _password;
-            set => SetValue(ref _password, value);
-        }
+		private string _login = string.Empty;
+		private string _password = string.Empty;
+		private RegistrationViewModel _registrationViewModel;
+		private readonly List<User> _users;
 
-        #endregion
+		#endregion
 
-        #region command methods
+		#region props
 
-        private bool CanEnterButtonExecute() => LoginText.Length >= 5 && PasswordText.Length >= 7;
+		public RegistrationViewModel RegistrationViewModel
+		{
+			get => _registrationViewModel;
+			set => SetValue(ref _registrationViewModel, value);
+		}
 
-        private void OnEnterButtonExecuted()
-        {
-            var user = _users.SingleOrDefault(x => x.Login == LoginText);
-            if (user != null)
-            {
-                if (user.Password == PasswordText)
-                {
-                    UsersProvider.AddNewEntrance(user.Id);
-                    OpenChildForm(user.Role);
-                }
-                else
-                {
-                    MessageBox.Show($"Password is wrong!",
-                        "Bad pass",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show($"User with login {LoginText} is not exists!",
-                    "Bad login",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-            }
-            LoginText = String.Empty;
-            PasswordText = String.Empty;
-        }
+		public string LoginText
+		{
+			get => _login;
+			set => SetValue(ref _login, value);
+		}
 
-        #endregion
+		public string PasswordText
+		{
+			get => _password;
+			set => SetValue(ref _password, value);
+		}
 
-        private void OpenChildForm(Role role)
-        {
-            Window w = null;
-            switch (role)
-            {
-                case Role.Student:
-                {
-                    w = new MainWindow();
-                    break;
-                }
+		#endregion
 
-                case Role.Admin:
-                {
-                    w = new AdminWindow();
-                    break;
-                }
+		#region command methods
 
-                case Role.Teacher:
-                {
-                    w = new TeacherWindow();
-                    break;
-                }
-            }
-            w?.ShowDialog();
-            Application.Current.Shutdown();
-        }
+		private bool CanEnterButtonExecute() => LoginText.Length >= 5 && PasswordText.Length >= 7;
 
-        public LoginWindowViewModel()
-        {
-            _users = UsersProvider.GetUsersList();
-            RegistrationViewModel = new RegistrationViewModel(_users);
-            EnterCommand = new RelayCommand(OnEnterButtonExecuted, CanEnterButtonExecute);
-        }
-    }
+		private void OnEnterButtonExecuted()
+		{
+			var user = _users.SingleOrDefault(x => x.Login == LoginText);
+			if (user != null)
+			{
+				if (user.Password == PasswordText)
+				{
+					UsersProvider.AddNewEntrance(user.Id);
+					OpenChildForm(user.Role);
+				}
+				else
+				{
+					MessageBox.Show("Password is wrong!",
+					                "Bad pass",
+					                MessageBoxButton.OK,
+					                MessageBoxImage.Error);
+				}
+			}
+			else
+			{
+				MessageBox.Show($"User with login {LoginText} is not exists!",
+				                "Bad login",
+				                MessageBoxButton.OK,
+				                MessageBoxImage.Error);
+			}
+
+			LoginText = string.Empty;
+			PasswordText = string.Empty;
+		}
+
+		#endregion
+	}
 }

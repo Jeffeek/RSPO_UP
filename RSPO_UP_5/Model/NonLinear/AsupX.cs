@@ -1,12 +1,14 @@
-﻿using System;
+﻿#region Using namespaces
 
-namespace RSPO_UP_5.Model
+using System;
+
+#endregion
+
+namespace RSPO_UP_5.Model.NonLinear
 {
-    public class AsupX : EquationBase
-    {
-        public override double Calculate(double x, double a)
-        {
-            return Math.Pow(a, x);
-        }
-    }
+	// ReSharper disable once IdentifierTypo
+	public sealed class AsupX : EquationBase
+	{
+		public override double Calculate(double x, double a) => Math.Pow(a, x);
+	}
 }

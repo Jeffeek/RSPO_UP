@@ -8,16 +8,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("RSPO_UP_11")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("RSPO_UP_11")]
-[assembly: System.Reflection.AssemblyTitleAttribute("RSPO_UP_11")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: AssemblyCompany("RSPO_UP_11")]
+[assembly: AssemblyConfiguration("Debug")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyInformationalVersion("1.0.0")]
+[assembly: AssemblyProduct("RSPO_UP_11")]
+[assembly: AssemblyTitle("RSPO_UP_11")]
+[assembly: AssemblyVersion("1.0.0.0")]
 
 // Создано классом WriteCodeFragment MSBuild.
 

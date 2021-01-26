@@ -1,162 +1,155 @@
-﻿using System;
+﻿#region Using namespaces
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RSPO_UP_1.Locators;
 using RSPO_UP_1.Models;
-using UP_1.Algorithms;
+
+#endregion
 
 namespace RSPO_UP_1.Algorithms
 {
-    public class FilterAlgo : IAlgo
-    {
-        private List<Movie> _movies;
+	public sealed class FilterAlgo : IAlgo
+	{
+		private readonly List<Movie> _movies;
 
-        public FilterAlgo()
-        {
-            _movies = new MovieDeserializer().GetMovies();
-        }
+		public FilterAlgo() => _movies = new MovieDeserializer().GetMovies();
 
-        public FilterAlgo(List<Movie> list)
-        {
-            _movies = list;
-        }
+		public FilterAlgo(List<Movie> list) => _movies = list;
 
-        private void PrintList(IEnumerable<Movie> list)
-        {
-            foreach (var item in list)
-            {
-                Console.WriteLine(item);
-            }
-        }
+		public void Start()
+		{
+			if (!int.TryParse(Console.ReadLine(), out var answer)) return;
+			switch (answer)
+			{
+				case 1:
+				{
+					PrintList(_movies);
+					break;
+				}
 
-        public List<Movie> SearchByHighestPrice()
-        {
-            if (_movies.Count > 1)
-            {
-                int biggestPrice = _movies.Max(x => x.Price);
-                var items = _movies.Where(x => x.Price == biggestPrice);
-                if (items.Count() > 1)
-                {
-                    Console.WriteLine("Нашлось несколько сеансов с самой большой ценой: ");
-                    PrintList(items);
-                }
-                else
-                {
-                    Console.WriteLine("Сеанс с самой большой ценой: ");
-                    Console.WriteLine(items.First());
-                }
+				case 2:
+				{
+					SearchByName();
+					break;
+				}
 
-                return items.ToList();
-            }
-            else
-            {
-                Console.WriteLine("Сеансов нет");
-            }
-            return new List<Movie>();
-        }
+				case 3:
+				{
+					SearchByHighestPrice();
+					break;
+				}
 
-        public List<Movie> SearchByName()
-        {
-            Console.WriteLine("Введите название фильма: ");
-            string searchName = Console.ReadLine();
-            var items = _movies.Where(x => x.Name == searchName);
-            Console.WriteLine($"Список сеансов с фильмом \"{searchName}\"");
-            PrintList(items);
-            return items.ToList();
-        }
+				case 4:
+				{
+					SearchByLessTypedPrice();
+					break;
+				}
 
-        public List<Movie> SearchByLessTypedPrice()
-        {
-            Console.WriteLine("Введите цену: ");
-            if (int.TryParse(Console.ReadLine(), out int price))
-            {
-                var items = _movies.Where(x => x.Price < price);
-                if (items.Any())
-                {
-                    Console.WriteLine($"Сеансы с ценой билетов меньше {price}");
-                    PrintList(items);
-                    return items.ToList();
-                }
-            }
-            else
-            {
-                Console.WriteLine("Произошла ошибка ввода!");
-            }
+				case 5:
+				{
+					SearchByAfterDate();
+					break;
+				}
 
-            return null;
-        }
+				case 6:
+				{
+					SearchByHigherThanAveragePrice();
+					break;
+				}
+			}
+		}
 
-        public List<Movie> SearchByAfterDate()
-        {
-            DateTime afterTime = DateTime.Parse("18:00");
-            var items = _movies.Where(x => x.Date.Hour > afterTime.Hour);
-            Console.WriteLine($"Сеансы, начинающиеся после {afterTime.Hour}");
-            PrintList(items);
+		private void PrintList(IEnumerable<Movie> list)
+		{
+			foreach (var item in list) Console.WriteLine(item);
+		}
 
-            Console.WriteLine($"Количество фильмов: {items.Count()}");
-            return items.ToList();
-        }
+		public List<Movie> SearchByHighestPrice()
+		{
+			if (_movies.Count > 1)
+			{
+				var biggestPrice = _movies.Max(x => x.Price);
+				var items = _movies.Where(x => x.Price == biggestPrice);
+				var enumerable = items as Movie[] ?? items.ToArray();
+				if (enumerable.Count() > 1)
+				{
+					Console.WriteLine("Нашлось несколько сеансов с самой большой ценой: ");
+					PrintList(enumerable);
+				}
+				else
+				{
+					Console.WriteLine("Сеанс с самой большой ценой: ");
+					Console.WriteLine(enumerable.First());
+				}
 
-        public List<Movie> SearchByHigherThanAveragePrice()
-        {
-            if (!_movies.Any())
-            {
-                Console.WriteLine("Нет сеансов");
-                return new List<Movie>();
-            }
-            var priceSum = _movies.Select(x => x.Price).Sum();
-            double averagePrice = (double)priceSum / _movies.Count;
-            var higherPriceList = _movies.Where(x => x.Price > averagePrice);
-            Console.WriteLine($"Средняя цена: {averagePrice}");
-            Console.WriteLine("Сеансы, цена за билет которых выше средней по всем билетам");
-            PrintList(higherPriceList);
+				return enumerable.ToList();
+			}
 
-            return higherPriceList.ToList();
-        }
+			Console.WriteLine("Сеансов нет");
 
-        public void Start()
-        {
-            if (int.TryParse(Console.ReadLine(), out int answer))
-            {
-                switch (answer)
-                {
-                    case 1:
-                    {
-                        PrintList(_movies);
-                        break;
-                    }
+			return new List<Movie>();
+		}
 
-                    case 2:
-                    {
-                        SearchByName();
-                        break;
-                    }
+		public List<Movie> SearchByName()
+		{
+			Console.WriteLine("Введите название фильма: ");
+			var searchName = Console.ReadLine();
+			var items = _movies.Where(x => x.Name == searchName);
+			Console.WriteLine($"Список сеансов с фильмом \"{searchName}\"");
+			var enumerable = items as Movie[] ?? items.ToArray();
+			PrintList(enumerable);
+			return enumerable.ToList();
+		}
 
-                    case 3:
-                    {
-                        SearchByHighestPrice();
-                        break;
-                    }
+		public List<Movie> SearchByLessTypedPrice()
+		{
+			Console.WriteLine("Введите цену: ");
+			if (int.TryParse(Console.ReadLine(), out var price))
+			{
+				var items = _movies.Where(x => x.Price < price);
+				var enumerable = items as Movie[] ?? items.ToArray();
+				if (!enumerable.Any()) return null;
+				Console.WriteLine($"Сеансы с ценой билетов меньше {price}");
+				PrintList(enumerable);
+				return enumerable.ToList();
+			}
 
-                    case 4:
-                    {
-                        SearchByLessTypedPrice();
-                        break;
-                    }
+			Console.WriteLine("Произошла ошибка ввода!");
 
-                    case 5:
-                    {
-                        SearchByAfterDate();
-                        break;
-                    }
+			return null;
+		}
 
-                    case 6:
-                    {
-                        SearchByHigherThanAveragePrice();
-                        break;
-                    }
-                }
-            }
-        }
-    }
+		public List<Movie> SearchByAfterDate()
+		{
+			var afterTime = DateTime.Parse("18:00");
+			var items = _movies.Where(x => x.Date.Hour > afterTime.Hour);
+			Console.WriteLine($"Сеансы, начинающиеся после {afterTime.Hour}");
+			var enumerable = items as Movie[] ?? items.ToArray();
+			PrintList(enumerable);
+
+			Console.WriteLine($"Количество фильмов: {enumerable.Count()}");
+			return enumerable.ToList();
+		}
+
+		public List<Movie> SearchByHigherThanAveragePrice()
+		{
+			if (!_movies.Any())
+			{
+				Console.WriteLine("Нет сеансов");
+				return new List<Movie>();
+			}
+
+			var priceSum = _movies.Select(x => x.Price).Sum();
+			var averagePrice = (double) priceSum / _movies.Count;
+			var higherPriceList = _movies.Where(x => x.Price > averagePrice);
+			Console.WriteLine($"Средняя цена: {averagePrice}");
+			Console.WriteLine("Сеансы, цена за билет которых выше средней по всем билетам");
+			var priceList = higherPriceList as Movie[] ?? higherPriceList.ToArray();
+			PrintList(priceList);
+
+			return priceList.ToList();
+		}
+	}
 }

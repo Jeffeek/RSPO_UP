@@ -10,7 +10,6 @@ C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_12\obj\Debug\netcoreapp3.1\RSP
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_12\obj\Debug\netcoreapp3.1\RSPO_UP_12.dll
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_12\obj\Debug\netcoreapp3.1\RSPO_UP_12.pdb
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_12\obj\Debug\netcoreapp3.1\RSPO_UP_12.genruntimeconfig.cache
-C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_12\bin\Debug\netcoreapp3.1\СyberMath.dll
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_12\obj\Debug\netcoreapp3.1\RSPO_UP_12.csprojAssemblyReference.cache
 C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_12\obj\Debug\netcoreapp3.1\RSPO_UP_12.csproj.CopyComplete
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_12\bin\Debug\netcoreapp3.1\RSPO_UP_12.exe
@@ -29,3 +28,5 @@ E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_12\obj\Debug\netcoreapp3.1\RSPO_UP_12.csp
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_12\obj\Debug\netcoreapp3.1\RSPO_UP_12.dll
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_12\obj\Debug\netcoreapp3.1\RSPO_UP_12.pdb
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_12\obj\Debug\netcoreapp3.1\RSPO_UP_12.genruntimeconfig.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_12\bin\Debug\netcoreapp3.1\jaggedMatrix.txt
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_12\bin\Debug\netcoreapp3.1\CyberMath.dll
