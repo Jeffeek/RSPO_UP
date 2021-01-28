@@ -13,6 +13,7 @@ namespace RSPO_UP_13
         {
             //FirstTask();
             //SecondTask();
+			ThirdTask();
         }
 
         static void FirstTask()
@@ -38,5 +39,16 @@ namespace RSPO_UP_13
 	        var result = test.All(x => matAstr.Contains(x));
 	        Console.WriteLine(result);
         }
+
+		static void ThirdTask()
+		{
+			var rnd = new Random();
+			var alphabet = "ВЕЖМНОПРСТ";//String.Concat(Enumerable.Range(0, 9).Select(x => (char)rnd.Next(0x410, 0x42F)));
+			var key = "1234";//String.Concat(Enumerable.Range(0, rnd.Next(3, 9)).Select(x => rnd.Next(0, 10)));
+			Console.WriteLine("Введите сообщение: ");
+			var message = Console.ReadLine() ?? String.Empty;
+			var encrypted = string.Concat(message.Select((e, i) => (alphabet.IndexOf(e) + key[i % key.Length] - 48) % 10));
+			Console.WriteLine($"Зашифрованное сообщение: {encrypted}");
+		}
     }
 }
