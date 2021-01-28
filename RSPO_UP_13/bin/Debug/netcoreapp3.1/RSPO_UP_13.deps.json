@@ -1,0 +1,41 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "RSPO_UP_13/1.0.0": {
+        "dependencies": {
+          "CyberMath": "1.0.1"
+        },
+        "runtime": {
+          "RSPO_UP_13.dll": {}
+        }
+      },
+      "CyberMath/1.0.1": {
+        "runtime": {
+          "lib/netcoreapp3.1/CyberMath.dll": {
+            "assemblyVersion": "1.0.1.0",
+            "fileVersion": "1.0.1.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RSPO_UP_13/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CyberMath/1.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AoloNkZecZ4A7qDN/2S4DItc/6B+COZzOxeA9tO53f/UkfaPC66+KWjjISVeNyMrwj15D0c99zl+7t3TvX5oNA==",
+      "path": "cybermath/1.0.1",
+      "hashPath": "cybermath.1.0.1.nupkg.sha512"
+    }
+  }
+}

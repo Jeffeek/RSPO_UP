@@ -1,14 +1,13 @@
 ﻿#region Using namespaces
 
 using System;
-using System.Windows;
 using RSPO_UP_5.ViewModel;
 
 #endregion
 
 namespace RSPO_UP_5.View
 {
-	public partial class MatrixWindow : Window
+	public partial class MatrixWindow
 	{
 		private readonly Action _closeAction;
 

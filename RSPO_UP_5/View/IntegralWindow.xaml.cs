@@ -1,13 +1,12 @@
 ﻿#region Using namespaces
 
 using System;
-using System.Windows;
 
 #endregion
 
 namespace RSPO_UP_5.View
 {
-	public partial class IntegralWindow : Window
+	public partial class IntegralWindow
 	{
 		private readonly Action _closeAction;
 

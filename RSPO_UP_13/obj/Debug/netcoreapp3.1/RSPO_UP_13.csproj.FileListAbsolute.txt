@@ -1,0 +1,15 @@
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\bin\Debug\netcoreapp3.1\RSPO_UP_13.exe
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\bin\Debug\netcoreapp3.1\RSPO_UP_13.deps.json
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\bin\Debug\netcoreapp3.1\RSPO_UP_13.runtimeconfig.json
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\bin\Debug\netcoreapp3.1\RSPO_UP_13.runtimeconfig.dev.json
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\bin\Debug\netcoreapp3.1\RSPO_UP_13.dll
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\bin\Debug\netcoreapp3.1\RSPO_UP_13.pdb
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\obj\Debug\netcoreapp3.1\RSPO_UP_13.csprojAssemblyReference.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\obj\Debug\netcoreapp3.1\RSPO_UP_13.AssemblyInfoInputs.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\obj\Debug\netcoreapp3.1\RSPO_UP_13.AssemblyInfo.cs
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\obj\Debug\netcoreapp3.1\RSPO_UP_13.csproj.CoreCompileInputs.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\obj\Debug\netcoreapp3.1\RSPO_UP_13.dll
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\obj\Debug\netcoreapp3.1\RSPO_UP_13.pdb
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\obj\Debug\netcoreapp3.1\RSPO_UP_13.genruntimeconfig.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\bin\Debug\netcoreapp3.1\CyberMath.dll
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_13\obj\Debug\netcoreapp3.1\RSPO_UP_13.csproj.CopyComplete

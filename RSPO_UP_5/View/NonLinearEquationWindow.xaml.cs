@@ -1,13 +1,12 @@
 ﻿#region Using namespaces
 
 using System;
-using System.Windows;
 
 #endregion
 
 namespace RSPO_UP_5.View
 {
-	public partial class NonLinearEquationWindow : Window
+	public partial class NonLinearEquationWindow
 	{
 		private readonly Action _closeAction;
 

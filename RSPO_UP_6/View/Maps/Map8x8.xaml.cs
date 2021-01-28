@@ -11,7 +11,7 @@ using RSPO_UP_6.ViewModel.Entities;
 
 namespace RSPO_UP_6.View.Maps
 {
-	public sealed partial class Map8X8 : Page
+	public sealed partial class Map8X8
 	{
 		private readonly ObservableCollection<BrickViewModel> _bricks;
 

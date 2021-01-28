@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "0jMr+GH+RYZH5HpbTZCaE7P2Pd8jmAlO9VmrueKhNu4efs9CaaCeEJLRfXtFFSuQIyx4D/0c9m7DlLpI0szIqA==",
+  "dgSpecHash": "T7WmVAMaGBn8SX8FZLiGgMbjQVl5LpIrXLpl50rMGna00npkFdrzVjJx37kkvlT9TcIba4Cja2fuMyYfDJ04aw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_12\\RSPO_UP_12.csproj",
+  "projectFilePath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_12\\RSPO_UP_12.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\misha\\.nuget\\packages\\cybermath\\1.0.1\\cybermath.1.0.1.nupkg.sha512"
+    "C:\\Users\\Mikhail\\.nuget\\packages\\cybermath\\1.0.1\\cybermath.1.0.1.nupkg.sha512"
   ],
   "logs": []
 }

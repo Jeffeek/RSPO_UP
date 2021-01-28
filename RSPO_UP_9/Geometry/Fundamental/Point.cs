@@ -27,7 +27,7 @@ namespace RSPO_UP_9.Geometry.Fundamental
 
 		/// <inheritdoc />
 		// ReSharper disable once CompareOfFloatsByEqualityOperator
-		public bool Equals(Point other) => X == other.X && Y == other.Y;
+		public bool Equals(Point other) => X == other.X && Y.Equals(other.Y);
 
 		/// <inheritdoc />
 		public override bool Equals(object obj)

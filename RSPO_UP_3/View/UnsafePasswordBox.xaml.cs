@@ -1,14 +1,13 @@
 ﻿#region Using namespaces
 
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 
 #endregion
 
 namespace RSPO_UP_3.View
 {
-	public partial class UnsafePasswordBox : UserControl
+	public partial class UnsafePasswordBox
 	{
 		public static readonly DependencyProperty PasswordProperty =
 			DependencyProperty.Register("Password", typeof(string), typeof(UnsafePasswordBox),

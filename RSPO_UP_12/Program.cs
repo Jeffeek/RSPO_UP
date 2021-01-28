@@ -33,8 +33,13 @@ namespace RSPO_UP_12
 
 			//4
 			//var converter = new PostfixToInfixConverter();
-			//var input = "xy+v*ut*";
+			//var input = "ABC*EF-/+";
 			//Console.WriteLine(converter.Convert(input));
+
+							//TREE
+
+			//var tree = new ExpressionTree("ABC*EF-/+");
+			//var result = tree.Inorder();
 
 			//5
 			//var matrix = new Matrix<int>(10, 10);
@@ -53,22 +58,22 @@ namespace RSPO_UP_12
 			//Console.WriteLine(0 % 2 == 0);
 
 			//6
-			var matrix = new Matrix<int>(3, 3);
-			matrix.FillRandomly();
-			for (var i = 0; i < matrix.ColumnsCount; i++)
-			{
-				for (var j = 0; j < matrix.RowsCount; j++)
-				{
-					if (matrix[j, i] >= 0 &&
-					    matrix[j, i].IsPrime() &&
-					    i != matrix.ColumnsCount - 1)
-					{
-						var unused = matrix.Select(x => x.ElementAt(j)).Min();
+			//var matrix = new Matrix<int>(3, 3);
+			//matrix.FillRandomly();
+			//for (var i = 0; i < matrix.ColumnsCount; i++)
+			//{
+			//	for (var j = 0; j < matrix.RowsCount; j++)
+			//	{
+			//		if (matrix[j, i] >= 0 &&
+			//		    matrix[j, i].IsPrime() &&
+			//		    i != matrix.ColumnsCount - 1)
+			//		{
+			//			var unused = matrix.Select(x => x.ElementAt(j)).Min();
 
-						break;
-					}
-				}
-			}
+			//			break;
+			//		}
+			//	}
+			//}
 		}
 
 		private static int Sum(int[] array) => InternalSumRecursion(array, 0, 0);
