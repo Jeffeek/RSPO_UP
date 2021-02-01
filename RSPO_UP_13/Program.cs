@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using CyberMath.Structures.Matrices.Extensions;
 using CyberMath.Structures.Matrices.JaggedMatrix;
 using CyberMath.Structures.Matrices.Matrix;
@@ -13,7 +14,8 @@ namespace RSPO_UP_13
         {
             //FirstTask();
             //SecondTask();
-			ThirdTask();
+			//ThirdTask();
+			FourthTask();
         }
 
         static void FirstTask()
@@ -46,9 +48,19 @@ namespace RSPO_UP_13
 			var alphabet = "ВЕЖМНОПРСТ";//String.Concat(Enumerable.Range(0, 9).Select(x => (char)rnd.Next(0x410, 0x42F)));
 			var key = "1234";//String.Concat(Enumerable.Range(0, rnd.Next(3, 9)).Select(x => rnd.Next(0, 10)));
 			Console.WriteLine("Введите сообщение: ");
-			var message = Console.ReadLine() ?? String.Empty;
-			var encrypted = string.Concat(message.Select((e, i) => (alphabet.IndexOf(e) + key[i % key.Length] - 48) % 10));
+			var message = "МНОЖЕСТВО";//Console.ReadLine() ?? String.Empty;
+			var encrypted = string.Concat(message.Select((e, i) => (alphabet.IndexOf(e) + int.Parse(key[i % key.Length].ToString())) % 10));
 			Console.WriteLine($"Зашифрованное сообщение: {encrypted}");
+		}
+
+		static void FourthTask()
+		{
+			var oRegex = new Regex("o", RegexOptions.IgnoreCase);
+			var zirkaRegex = new Regex("(?<!\\*)\\*\\*(?!\\*)");
+			var text = "jsdfjsdfj**osjdhfjs**dosdjfbs****jdoofsdfsdf*oos**dfsdfoosdf";
+			var newText = zirkaRegex.Replace(oRegex.Replace(text, "oOk"), "!");
+			Console.WriteLine($"Init: {text}");
+			Console.WriteLine($"Formatted: {newText}");
 		}
     }
 }
