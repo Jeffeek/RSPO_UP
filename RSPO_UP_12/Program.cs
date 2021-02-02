@@ -1,10 +1,6 @@
 ﻿#region Using namespaces
 
 using System.Collections.Generic;
-using System.Linq;
-using CyberMath.Extensions.Int32;
-using CyberMath.Structures.Matrices.Extensions;
-using CyberMath.Structures.Matrices.Matrix;
 
 #endregion
 

@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using CyberMath.Structures.Matrices.Extensions;
-using CyberMath.Structures.Matrices.JaggedMatrix;
 using CyberMath.Structures.Matrices.Matrix;
 
 namespace RSPO_UP_13
 {
-    class Program
+	internal class Program
     {
-        static void Main(string[] args)
+	    private static void Main(string[] args)
         {
             //FirstTask();
             //SecondTask();
@@ -18,7 +15,7 @@ namespace RSPO_UP_13
 			FourthTask();
         }
 
-        static void FirstTask()
+	    private static void FirstTask()
         {
 	        var initialString = "1 2 3 4 5 6 7 8 9 10";
 	        Console.WriteLine($"Входная строка: {initialString}");
@@ -27,7 +24,7 @@ namespace RSPO_UP_13
 	        Console.WriteLine($"Result: {result}");
         }
 
-        static void SecondTask()
+	    private static void SecondTask()
         {
 	        var test = "АБВГД";
 	        var matrix = new Matrix<char>(3, 3)
@@ -42,18 +39,18 @@ namespace RSPO_UP_13
 	        Console.WriteLine(result);
         }
 
-		static void ThirdTask()
+	    private static void ThirdTask()
 		{
 			var rnd = new Random();
-			var alphabet = "ВЕЖМНОПРСТ";//String.Concat(Enumerable.Range(0, 9).Select(x => (char)rnd.Next(0x410, 0x42F)));
-			var key = "1234";//String.Concat(Enumerable.Range(0, rnd.Next(3, 9)).Select(x => rnd.Next(0, 10)));
+			var alphabet = "ВЕЖМНОПРСТ"; //String.Concat(Enumerable.Range(0, 9).Select(x => (char)rnd.Next(0x410, 0x42F)));
+			var key = "1234"; //String.Concat(Enumerable.Range(0, rnd.Next(3, 9)).Select(x => rnd.Next(0, 10)));
 			Console.WriteLine("Введите сообщение: ");
-			var message = "МНОЖЕСТВО";//Console.ReadLine() ?? String.Empty;
+			var message = "МНОЖЕСТВО"; //Console.ReadLine() ?? String.Empty;
 			var encrypted = string.Concat(message.Select((e, i) => (alphabet.IndexOf(e) + int.Parse(key[i % key.Length].ToString())) % 10));
 			Console.WriteLine($"Зашифрованное сообщение: {encrypted}");
 		}
 
-		static void FourthTask()
+	    private static void FourthTask()
 		{
 			var oRegex = new Regex("o", RegexOptions.IgnoreCase);
 			var zirkaRegex = new Regex("(?<!\\*)\\*\\*(?!\\*)");

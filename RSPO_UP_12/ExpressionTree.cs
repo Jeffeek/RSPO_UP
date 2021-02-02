@@ -7,7 +7,7 @@ namespace RSPO_UP_12
 	{
 		private readonly Node _root;
 
-		private class Node
+		private sealed class Node
 		{
 			public readonly char Data;
 			public Node Left, Right;

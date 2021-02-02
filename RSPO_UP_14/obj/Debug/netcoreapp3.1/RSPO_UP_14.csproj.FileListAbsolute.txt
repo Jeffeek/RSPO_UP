@@ -1,0 +1,17 @@
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\bin\Debug\netcoreapp3.1\RSPO_UP_14.exe
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\bin\Debug\netcoreapp3.1\countries.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\bin\Debug\netcoreapp3.1\RSPO_UP_14.deps.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\bin\Debug\netcoreapp3.1\RSPO_UP_14.runtimeconfig.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\bin\Debug\netcoreapp3.1\RSPO_UP_14.runtimeconfig.dev.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\bin\Debug\netcoreapp3.1\RSPO_UP_14.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\bin\Debug\netcoreapp3.1\RSPO_UP_14.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\obj\Debug\netcoreapp3.1\RSPO_UP_14.csprojAssemblyReference.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\obj\Debug\netcoreapp3.1\RSPO_UP_14.AssemblyInfoInputs.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\obj\Debug\netcoreapp3.1\RSPO_UP_14.AssemblyInfo.cs
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\obj\Debug\netcoreapp3.1\RSPO_UP_14.csproj.CoreCompileInputs.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\obj\Debug\netcoreapp3.1\RSPO_UP_14.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\obj\Debug\netcoreapp3.1\RSPO_UP_14.pdb
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\obj\Debug\netcoreapp3.1\RSPO_UP_14.genruntimeconfig.cache
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\bin\Debug\netcoreapp3.1\facts.json
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\misha\Documents\GitHub\RSPO_UP-s\RSPO_UP_14\obj\Debug\netcoreapp3.1\RSPO_UP_14.csproj.CopyComplete

@@ -1,0 +1,136 @@
+[
+  {
+    "Name": "Italy",
+    "Population": 60360000,
+    "Cities": [
+      {
+        "Name": "Rome",
+        "Population": 2870493
+      },
+      {
+        "Name": "Milan",
+        "Population": 1331586
+      },
+      {
+        "Name": "Neapolis",
+        "Population": 956183
+      },
+      {
+        "Name": "Genua",
+        "Population": 580097
+      },
+      {
+        "Name": "Panormus",
+        "Population": 663770
+      },
+      {
+        "Name": "Turin",
+        "Population": 878735
+      }
+    ]
+  },
+  {
+    "Name": "Sweden",
+    "Population": 10230000,
+    "Cities": [
+      {
+        "Name": "Alingsos",
+        "Population": 27501
+      },
+      {
+        "Name": "Arbuga",
+        "Population": 10330
+      },
+      {
+        "Name": "Buden",
+        "Population": 18277
+      },
+      {
+        "Name": "Borlange",
+        "Population": 48185
+      },
+      {
+        "Name": "Boros",
+        "Population": 73782
+      }
+    ]
+  },
+  {
+    "Name": "Switzerland",
+    "Population": 8570000,
+    "Cities": [
+      {
+        "Name": "Zurich",
+        "Population": 428737
+      },
+      {
+        "Name": "Geneva",
+        "Population": 200548
+      },
+      {
+        "Name": "Basel",
+        "Population": 169916
+      },
+      {
+        "Name": "Lausanne",
+        "Population": 138634
+      },
+      {
+        "Name": "Berne",
+        "Population": 131554
+      }
+    ]
+  },
+  {
+    "Name": "USA",
+    "Population": 328200000,
+    "Cities": [
+      {
+        "Name": "Los Angeles",
+        "Population": 3990456
+      },
+      {
+        "Name": "Austin",
+        "Population": 964254
+      },
+      {
+        "Name": "Jacksonville",
+        "Population": 821784
+      },
+      {
+        "Name": "Denver",
+        "Population": 649495
+      },
+      {
+        "Name": "Phoenix",
+        "Population": 1660272
+      }
+    ]
+  },
+  {
+    "Name": "Japan",
+    "Population": 126500000,
+    "Cities": [
+      {
+        "Name": "Nagoya",
+        "Population": 2283289
+      },
+      {
+        "Name": "Toyohashi",
+        "Population": 377045
+      },
+      {
+        "Name": "Okazaki",
+        "Population": 371380
+      },
+      {
+        "Name": "Itinomiya",
+        "Population": 132311
+      },
+      {
+        "Name": "Seto",
+        "Population": 117927
+      }
+    ]
+  }
+]
