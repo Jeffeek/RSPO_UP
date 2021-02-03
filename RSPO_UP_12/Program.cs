@@ -1,6 +1,11 @@
 ﻿#region Using namespaces
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using CyberMath.Extensions.Int32;
+using CyberMath.Structures.Matrices.Extensions;
+using CyberMath.Structures.Matrices.Matrix;
 
 #endregion
 
@@ -32,7 +37,7 @@ namespace RSPO_UP_12
 			//var input = "ABC*EF-/+";
 			//Console.WriteLine(converter.Convert(input));
 
-							//TREE
+			//TREE
 
 			//var tree = new ExpressionTree("ABC*EF-/+");
 			//var result = tree.Inorder();
@@ -53,23 +58,36 @@ namespace RSPO_UP_12
 
 			//Console.WriteLine(0 % 2 == 0);
 
-			//6
+			//6.1
 			//var matrix = new Matrix<int>(3, 3);
 			//matrix.FillRandomly();
-			//for (var i = 0; i < matrix.ColumnsCount; i++)
-			//{
-			//	for (var j = 0; j < matrix.RowsCount; j++)
-			//	{
-			//		if (matrix[j, i] >= 0 &&
-			//		    matrix[j, i].IsPrime() &&
-			//		    i != matrix.ColumnsCount - 1)
-			//		{
-			//			var unused = matrix.Select(x => x.ElementAt(j)).Min();
+			//var ordered = matrix.OrderBy(x => x.Count(number => number.ToString()
+			//                                                          .Select(str => int.Parse(str.ToString())).Sum() % 2 == 0));
 
-			//			break;
-			//		}
-			//	}
-			//}
+			//6.2
+			var matrix = new Matrix<int>(3, 3);
+			matrix.FillRandomly();
+
+			Matrix<int> fucked;
+			for (var i = 0; i < matrix.ColumnsCount; i++)
+			{
+				for (var j = 0; j < matrix.RowsCount; j++)
+				{
+					if (matrix[j, i] >= 0 &&
+						matrix[j, i].IsPrime() &&
+						i != matrix.ColumnsCount - 1)
+					{
+						var min = matrix.Select(x => x.ElementAt(j)).Min();
+						var first = matrix.Select(x => x.ElementAt(j)).First();
+						var newElement = Math.Pow(min, first);
+						//TODO: доделать 6.2
+						//Добавить в каждом столбце после первого простого элемента, значение,
+						//равное минимальному элементу столбца, возведенному в степень, равную
+						//первому элементу.
+						break;
+					}
+				}
+			}
 		}
 
 		private static int Sum(int[] array) => InternalSumRecursion(array, 0, 0);
