@@ -27,19 +27,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mikhail\\.nuget\\packages\\": {}
+    "C:\\Users\\misha\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\RSPO.Console.8\\RSPO.Console.8.csproj",
+      "projectUniqueName": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\RSPO.Console.8\\RSPO.Console.8.csproj",
       "projectName": "RSPO.Console.8",
-      "projectPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\RSPO.Console.8\\RSPO.Console.8.csproj",
-      "packagesPath": "C:\\Users\\Mikhail\\.nuget\\packages\\",
-      "outputPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\RSPO.Console.8\\obj\\",
+      "projectPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\RSPO.Console.8\\RSPO.Console.8.csproj",
+      "packagesPath": "C:\\Users\\misha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\RSPO.Console.8\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Mikhail\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\misha\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -47,15 +51,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "E:\\projectsVS\\Nuget Packages Local": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\RSPO.Library.8\\RSPO.Library.8.csproj": {
-              "projectPath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\RSPO.Library.8\\RSPO.Library.8.csproj"
+            "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\RSPO.Library.8\\RSPO.Library.8.csproj": {
+              "projectPath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_8\\RSPO.Library.8\\RSPO.Library.8.csproj"
             }
           }
         }
@@ -84,7 +87,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
