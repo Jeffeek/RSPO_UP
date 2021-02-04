@@ -1,4 +1,5 @@
-﻿using RSPO_UP_15.Interfaces;
+﻿using RSPO_UP_15.Exceptions;
+using RSPO_UP_15.Interfaces;
 
 namespace RSPO_UP_15.Entities
 {
@@ -12,6 +13,9 @@ namespace RSPO_UP_15.Entities
 	    
 	    protected Person(string firstName, string secondName, string mobileNumber)
 	    {
+		    if (firstName == null ||
+		        secondName == null ||
+		        mobileNumber == null) throw new BadPersonProfile();
 		    FirstName = firstName;
 		    SecondName = secondName;
 		    MobileNumber = mobileNumber;
