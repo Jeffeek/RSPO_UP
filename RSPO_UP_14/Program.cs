@@ -14,7 +14,7 @@ namespace RSPO_UP_14
     {
 	    private static void Main(string[] args)
         {
-            //FirstTask();
+            FirstTask();
             SecondTask();
         }
 
@@ -27,7 +27,6 @@ namespace RSPO_UP_14
 	        Console.WriteLine("Города Италии: ");
 	        foreach (var city in italyCities)
 		        Console.WriteLine(city.Name);
-	        
         }
 
 	    private static void SecondTask()

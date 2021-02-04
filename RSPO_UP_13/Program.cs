@@ -10,8 +10,8 @@ namespace RSPO_UP_13
 	    private static void Main(string[] args)
         {
             FirstTask();
-            //SecondTask();
-			//ThirdTask();
+            SecondTask();
+			ThirdTask();
 			FourthTask();
         }
 
