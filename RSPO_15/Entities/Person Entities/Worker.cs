@@ -28,7 +28,7 @@ namespace RSPO_UP_15.Entities
 	    #region Implementation of ISkills
 
 	    /// <inheritdoc />
-	    public string[] Skills { get; }
+	    public string[] Skills { get; set; }
 
 	    #endregion
     }
