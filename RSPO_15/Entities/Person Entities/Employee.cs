@@ -1,21 +1,26 @@
-﻿using RSPO_UP_15.Interfaces;
+﻿#region Using derectives
+
+using RSPO_UP_15.Interfaces;
+
+#endregion
 
 namespace RSPO_UP_15.Entities
 {
     public abstract class Employee : Person, IEmployee, IWorkable
     {
-	    public int WorkYears { get; }
-	    
-	    #region Overrides of Person
+        /// <inheritdoc />
+        protected Employee(string firstName, string secondName, string mobileNumber) : base(firstName, secondName,
+                                                                                            mobileNumber) { }
 
-	    /// <inheritdoc />
-	    public override string Say() => "I'm an employee!";
+        public virtual string GoHire() => "Employee goes to hire a new job!";
 
-	    #endregion
+        public int WorkYears { get; set; }
 
-	    public virtual string GoHire() => "Employee goes to hire a new job!";
+        #region Overrides of Person
 
-	    /// <inheritdoc />
-	    protected Employee(string firstName, string secondName, string mobileNumber) : base(firstName, secondName, mobileNumber) { }
+        /// <inheritdoc />
+        public override string Say() => "I'm an employee!";
+
+        #endregion
     }
 }

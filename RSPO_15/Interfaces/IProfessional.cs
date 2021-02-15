@@ -2,6 +2,6 @@
 {
     public interface IProfessional
     {
-	    string GoDoProfessionalThings();
+        string GoDoProfessionalThings();
     }
 }

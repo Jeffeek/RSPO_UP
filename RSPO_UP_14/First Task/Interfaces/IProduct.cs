@@ -2,10 +2,11 @@
 {
     public interface IProduct
     {
-	    string Name { get; }
-	    int HashCode { get; }
-	    int Quantity { get; }
+        string Name { get; }
+        int HashCode { get; }
+        int Quantity { get; }
         string Equipment { get; }
+
         bool DecreaseQuantity();
     }
 }

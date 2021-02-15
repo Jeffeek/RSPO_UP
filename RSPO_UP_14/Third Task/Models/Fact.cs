@@ -1,25 +1,30 @@
-﻿using System;
+﻿#region Using derectives
+
+using System;
 using System.Runtime.Serialization;
+
+#endregion
 
 namespace RSPO_UP_14.Third_Task.Models
 {
-	[DataContract]
-	public sealed class Fact
+    [DataContract]
+    public sealed class Fact
     {
-	    [DataMember]
-	    public string Text { get; set; }
-	    
-	    [DataMember]
-	    public DateTime Date { get; set; }
+        [DataMember]
+        public string Text { get; set; }
 
-	    public static bool operator >(Fact first, Fact second) => first.Date > second.Date;
-		public static bool operator <(Fact first, Fact second) => first.Date < second.Date;
+        [DataMember]
+        public DateTime Date { get; set; }
 
-		#region Overrides of Object
+        public static bool operator >(Fact first, Fact second) => first.Date > second.Date;
 
-		/// <inheritdoc />
-		public override string ToString() => $"{nameof(Date)}: {Date} | {nameof(Text)}: {Text}";
+        public static bool operator <(Fact first, Fact second) => first.Date < second.Date;
 
-		#endregion
+        #region Overrides of Object
+
+        /// <inheritdoc />
+        public override string ToString() => $"{nameof(Date)}: {Date} | {nameof(Text)}: {Text}";
+
+        #endregion
     }
 }

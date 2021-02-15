@@ -4,6 +4,7 @@
     {
         string FirstName { get; }
         string SecondName { get; }
+
         void Print();
     }
 }

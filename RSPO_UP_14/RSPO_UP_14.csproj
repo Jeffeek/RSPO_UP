@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="First Task\Entitites\**" />
+    <EmbeddedResource Remove="First Task\Entitites\**" />
+    <None Remove="First Task\Entitites\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="countries.json" />
     <None Remove="facts.json" />
   </ItemGroup>
@@ -17,10 +23,6 @@
     <Content Include="facts.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="First Task\Entitites\" />
   </ItemGroup>
 
   <ItemGroup>

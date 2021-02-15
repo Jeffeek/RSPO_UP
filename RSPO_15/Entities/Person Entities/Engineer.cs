@@ -1,45 +1,50 @@
-﻿using RSPO_UP_15.Interfaces;
+﻿#region Using derectives
+
+using RSPO_UP_15.Interfaces;
+
+#endregion
 
 namespace RSPO_UP_15.Entities
 {
     public class Engineer : Worker, IProfessional, IEngineer
     {
-	    /// <inheritdoc />
-	    public Engineer(string firstName, string secondName, string mobileNumber) : base(firstName, secondName, mobileNumber) { }
+        /// <inheritdoc />
+        public Engineer(string firstName, string secondName, string mobileNumber) : base(firstName, secondName,
+                                                                                         mobileNumber) { }
 
-	    #region Overrides of Employee
+        #region Implementation of IEngineer
 
-	    /// <inheritdoc />
-	    public override string GoHire() => base.GoHire() + " as Engineer";
+        /// <inheritdoc />
+        public string GoDoEngineer() => "Going to do engineer things! WOW!";
 
-	    #endregion
+        #endregion
 
-	    #region Overrides of Person
+        #region Implementation of IProfessional
 
-	    /// <inheritdoc />
-	    public override string Say() => "I'm an engineer";
+        /// <inheritdoc />
+        public string GoDoProfessionalThings() => GoDoEngineer();
 
-	    #endregion
+        #endregion
 
-	    #region Overrides of Worker
+        #region Overrides of Employee
 
-	    /// <inheritdoc />
-	    public override string GoWorking() => base.GoWorking() + " as Engineer";
+        /// <inheritdoc />
+        public override string GoHire() => base.GoHire() + " as Engineer";
 
-	    #endregion
+        #endregion
 
-	    #region Implementation of IProfessional
+        #region Overrides of Person
 
-	    /// <inheritdoc />
-	    public string GoDoProfessionalThings() => GoDoEngineer();
+        /// <inheritdoc />
+        public override string Say() => "I'm an engineer";
 
-	    #endregion
+        #endregion
 
-	    #region Implementation of IEngineer
+        #region Overrides of Worker
 
-	    /// <inheritdoc />
-	    public string GoDoEngineer() => "Going to do engineer things! WOW!";
+        /// <inheritdoc />
+        public override string GoWorking() => base.GoWorking() + " as Engineer";
 
-	    #endregion
+        #endregion
     }
 }

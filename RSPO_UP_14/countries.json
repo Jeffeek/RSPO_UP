@@ -32,7 +32,8 @@
   {
     "Name": "Sweden",
     "Population": 10230000,
-    "Cities": [
+    "Cities": 
+    [
       {
         "Name": "Alingsos",
         "Population": 27501

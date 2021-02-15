@@ -1,27 +1,31 @@
-﻿using System.Collections;
+﻿#region Using derectives
+
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+
+#endregion
 
 namespace RSPO_UP_14.Third_Task.Models
 {
     public sealed class FactsExplorer : IEnumerable<Fact>
     {
-	    private Fact[] _facts;
- 
-	    public FactsExplorer(IEnumerable<Fact> facts) => _facts = facts.ToArray();
+        private readonly Fact[] _facts;
 
-	    public Fact this[int index] => _facts[index];
+        public FactsExplorer(IEnumerable<Fact> facts) => _facts = facts.ToArray();
 
-	    public Fact this[string eventText] => _facts.First(x => x.Text == eventText);
+        public Fact this[int index] => _facts[index];
 
-	    #region Implementation of IEnumerable
+        public Fact this[string eventText] => _facts.First(x => x.Text == eventText);
 
-	    /// <inheritdoc />
-	    public IEnumerator<Fact> GetEnumerator() => _facts.Where((t, i) => i % 3 == 0).GetEnumerator();
+        #region Implementation of IEnumerable
 
-	    /// <inheritdoc />
-	    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        /// <inheritdoc />
+        public IEnumerator<Fact> GetEnumerator() => _facts.Where((t, i) => i % 3 == 0).GetEnumerator();
 
-	    #endregion
+        /// <inheritdoc />
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        #endregion
     }
 }

@@ -1,6 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿#region Using derectives
+
 using System.Threading.Tasks;
+
+#endregion
 
 /*
 
@@ -56,11 +58,8 @@ using System.Threading.Tasks;
 */
 namespace RSPO_UP_16
 {
-    class Program
+    internal class Program
     {
-        static async Task Main(string[] args)
-        {
-            
-        }
+        private static async Task Main(string[] args) { }
     }
 }
