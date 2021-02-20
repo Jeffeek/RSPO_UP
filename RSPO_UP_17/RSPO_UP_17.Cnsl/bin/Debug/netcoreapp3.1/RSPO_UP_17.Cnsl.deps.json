@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "RSPO_UP_17.Cnsl/1.0.0": {
+        "runtime": {
+          "RSPO_UP_17.Cnsl.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RSPO_UP_17.Cnsl/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
