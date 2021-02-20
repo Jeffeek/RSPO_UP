@@ -11,3 +11,4 @@ E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_17\RSPO_UP_17.Cnsl\obj\Debug\netcoreapp3.
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_17\RSPO_UP_17.Cnsl\obj\Debug\netcoreapp3.1\RSPO_UP_17.Cnsl.dll
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_17\RSPO_UP_17.Cnsl\obj\Debug\netcoreapp3.1\RSPO_UP_17.Cnsl.pdb
 E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_17\RSPO_UP_17.Cnsl\obj\Debug\netcoreapp3.1\RSPO_UP_17.Cnsl.genruntimeconfig.cache
+E:\projectsVS\GitHub\RSPO_UP-s\RSPO_UP_17\RSPO_UP_17.Cnsl\obj\Debug\netcoreapp3.1\RSPO_UP_17.Cnsl.csprojAssemblyReference.cache
