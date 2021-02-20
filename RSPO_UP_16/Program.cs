@@ -1,5 +1,8 @@
 ﻿#region Using derectives
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 #endregion
@@ -60,6 +63,103 @@ namespace RSPO_UP_16
 {
     internal class Program
     {
-        private static async Task Main(string[] args) { }
+        private static async Task Main(string[] args)
+        {
+            //MenuTask();
+            //await CalculateSumOfOddDigitsFromCollectionTask();
+
+        }
+
+        private static async Task CalculateSumOfOddDigitsFromCollectionTask()
+        {
+            int[] GetArrayFromUser()
+            {
+                int ParseStringToInt()
+                {
+                    int result;
+
+                    while (!Int32.TryParse(Console.ReadLine(), out result))
+                    {
+                        Console.WriteLine("Error, try again");
+                        Console.WriteLine("Int32 parse: ");
+                    }
+
+                    return result;
+                }
+
+                var list = new List<int>();
+                Console.WriteLine("Write while you want to add item to array (press enter to cancel)");
+
+                while (true)
+                {
+                    Console.Write($"[{list.Count}]: ");
+                    var readKey = Console.ReadKey(true);
+
+                    if (readKey.Key == ConsoleKey.Enter) break;
+
+                    var addItem = ParseStringToInt();
+                    list.Add(addItem);
+                }
+
+                return list.ToArray();
+            }
+
+            async Task<int[]> GenerateRandomArray()
+            {
+                var array = new int[10];
+                var rnd = new Random();
+                for (var i = 0; i < 10; i++)
+                {
+                    await Task.Delay(300);
+                    array[i] = rnd.Next(0, 30);
+                }
+
+                return array;
+            }
+
+            async Task WriteFactorialForEach(int[] array)
+            {
+                for (var i = 0; i < array.Length; i++)
+                {
+                    await Task.Delay(700);
+                    try
+                    {
+                        var result = 1;
+                        for (var j = 1; j < array[i]; j++)
+                            result *= i;
+                        Console.WriteLine(result);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Error {e.Message}");
+                    }
+                }
+            }
+
+            int[] collection = null;
+            collection = GetArrayFromUser();
+            await Task.Run(() => WriteSum(collection));
+
+            collection = await GenerateRandomArray();
+            await WriteFactorialForEach(collection);
+        }
+
+        private static void WriteSum(int[] array)
+        {
+            for (var i = 0; i < array.Length; i++)
+                Console.WriteLine($"\r\n[{i}]: {array[i].ToString().Select(x => Int32.Parse(x.ToString())).Where(x => x % 2 == 0).Sum()}");
+        }
+
+        private static void MenuTask()
+        {
+            var menu = new ConsoleMenu();
+            menu.MenuItemChoosed += Menu_MenuItemChoosed;
+            menu.Start();
+
+            void Menu_MenuItemChoosed(int[] array, bool flag)
+            {
+                Console.WriteLine("EVENT FROM MAIN");
+            }
+        }
     }
 }

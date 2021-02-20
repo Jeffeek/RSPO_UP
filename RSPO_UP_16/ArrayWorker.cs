@@ -14,10 +14,16 @@ namespace RSPO_UP_16
         {
             if (ReferenceEquals(array, null)) throw new ArgumentNullException(nameof(array));
             if (array.Length < N) throw new ArgumentException(nameof(N));
+
             var newArray = new int[array.Length - N];
 
             if (array.Length - N == 0) return Array.Empty<int>();
-            Array.Copy(array, N, newArray, 0, array.Length - N);
+
+            Array.Copy(array,
+                       N,
+                       newArray,
+                       0,
+                       array.Length - N);
 
             return newArray;
         }
@@ -34,16 +40,17 @@ namespace RSPO_UP_16
         public int[] SwapMaxAndElementAt(int[] array, int N)
         {
             if (array is null) throw new ArgumentNullException(nameof(array));
-            if (N <= 0) throw new ArgumentException(nameof(N));
-            var index = N - 1;
+            if (N < 0) throw new ArgumentException(nameof(N));
 
-            if (index >= array.Length - 1) throw new ArgumentException(nameof(index));
+            if (N >= array.Length) throw new ArgumentException(nameof(N));
             var indexOfMax = Array.FindIndex(array, x => x == array.Max());
-            var temp = array[indexOfMax];
-            array[indexOfMax] = array[index];
-            array[index] = temp;
+            var newArray = new int[array.Length];
+            Array.Copy(array, newArray, array.Length);
+            var temp = newArray[indexOfMax];
+            newArray[indexOfMax] = newArray[N];
+            newArray[N] = temp;
 
-            return array;
+            return newArray;
         }
     }
 }
