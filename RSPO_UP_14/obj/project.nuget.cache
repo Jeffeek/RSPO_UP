@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "DMRk4OGO+UUFuREO4hoSpnsBaz4eJDMpVTD7ivuON3DAr8y7FWMoUUX2XLsSygbDyoeI6rOgZ8GfIpQa8+uQpg==",
+  "dgSpecHash": "ac4cRFfcPQUNsUubp4QxR4gX+nrwPlHb/RxpjZjrk7ATLvAJLviGWmAQdn81QpwNnK2JUa/hU77445aWIliu8g==",
   "success": true,
-  "projectFilePath": "E:\\projectsVS\\GitHub\\RSPO_UP-s\\RSPO_UP_14\\RSPO_UP_14.csproj",
+  "projectFilePath": "C:\\Users\\misha\\Documents\\GitHub\\RSPO_UP-s\\RSPO_UP_14\\RSPO_UP_14.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Mikhail\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+    "C:\\Users\\misha\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
   ],
   "logs": []
 }
