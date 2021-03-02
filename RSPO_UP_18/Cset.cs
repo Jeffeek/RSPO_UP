@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Dynamic;
 using System.Linq;
-using System.Text;
 
 namespace RSPO_UP_18
 {
@@ -54,7 +51,9 @@ namespace RSPO_UP_18
         {
             get
             {
-                if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
+                if (index < 0
+                    || index >= Count)
+                    throw new ArgumentOutOfRangeException(nameof(index));
 
                 return _innerArray[index];
             }
@@ -87,8 +86,10 @@ namespace RSPO_UP_18
         public bool Contains(T item)
         {
             for (var i = 0; i < Count; i++)
+            {
                 if (_innerArray[i].Equals(item))
                     return true;
+            }
 
             return false;
         }
@@ -137,8 +138,10 @@ namespace RSPO_UP_18
             if (Count != other?.Count) return false;
 
             for (var i = 0; i < Count; i++)
+            {
                 if (!this[i].Equals(other[i]))
                     return false;
+            }
 
             return true;
         }
